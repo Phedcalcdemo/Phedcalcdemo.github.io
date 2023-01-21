@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	<style>
+	
+	html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #2E1F60;
+}
+
+.container {
+  width: 65%;
+  padding-top: 5vh;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 3em;
+  background: #F0F1D5;
+/*  background: white;*/
+  border-radius: 15px;
+  box-shadow: 1px 2px 2px rgba(0,0,0,.2);
+  color: #105187;
+}
+
+.fa-calculator {
+  font-size: 50px;
+  color: #105187;
+}
+
+.form-container, .output {
+  display: flex;
+  flex-direction: column;
+  margin: 3em;
+  justify-content: center;
+  align-items: center;
+}
+
+.output {
+  display: content;
+}
+
+.form-control {
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.btn {
+  border-radius: 10%;
+  width: 12rem;
+  height: 4rem;
+  box-shadow: 2px 3px 1px rgba(16,81,135,.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2C8693;
+  border: none;
+}
+
+.btn:hover {
+  background: #F19722;
+  box-shadow: 2px 3px 1px rgba(241,151,35,.4);
+}
+
+.btn:active, .btn:visited {
+  background: #2C8693 !important;
+  outline: 0 none !important;
+}
+
+	</style>
+</head>
+
+<body>
+	<div class="container">
+  <div class="logo"> 
+	  <img src="../Downloads/PHED logo.png" alt="PHED" style="width: 200px; height: 80px;">
+<!--    <i class="fas fa-calculator"></i>-->
+    <h3>BILL CALCULATOR</h3>
+  <div>
+  <form class="form-container">
+    <label for="inputAmps" class="sr-only">Total Load(Amp)</label>
+    <input type="number" id="inputAmps" class="form-control" placeholder="Load (Amps)" required>
+<!--
+    <label for="inputRate"></label>
+    <input type="number" id="inputRate" class="form-control" placeholder="Band" required>
+-->
+	  
+	   <select id="selectBand" class="form-control input select-input drop-down-caret">
+<!--          <option disabled selected>Customer's Band...</option>       -->
+          <option value="" disabled selected="selected">Select a Band *</option>
+		   <option value="43602">Band A</option>
+		   <option value="33100.8">Band B</option>
+		   <option value="20296.8">Band C</option>
+		   <option value="9520.8">Band D</option>
+		   <option value="4732.8">Band E</option>
+        </select>
+	  
+	  
+	    <select id="selectPhase" class="form-control input select-input drop-down-caret">
+<!--          <option disabled selected>Customer's PHASE...</option>       -->
+          <option value="" disabled selected="selected">Select Phase *</option>
+		   <option value="1">Single Phase</option>
+		   <option value="1.7321">3 Phase</option>
+		   
+        </select>
+	  
+    <button id="btnStart" style="margin-top: 12px" class="btn btn-lg btn-primary btn-block">Calculate</button>
+  </form>
+  <div class="output">
+    <h4>Your Bill is</h4>
+    <div id="outputCost" class="form-control" style="text-align: center"></div>
+    <button id="btnRefresh" class="btn btn-lg btn-primary btn-block">Reset</button>
+  </div>
+</div>
+</div>
+</div>
+</body>
+		<script>
+		const loadAmps = document.querySelector("#inputAmps");
+//		const inputPhase = document.querySelector("#selectPhase");
+const Band = document.querySelector("#selectBand");
+const Phase = document.querySelector("#selectPhase");
+const output = document.querySelector("#outputCost");
+const start = document.getElementById("btnStart");
+const refresh = document.getElementById("btnRefresh");
+
+function calculate(e) {
+  console.log(e);
+  e.preventDefault();
+  console.log("btn clicked");
+  var total = loadAmps.value * Band.value* Phase.value * 0.240*0.6*0.85*1.075;
+  console.log(total);
+  output.innerHTML = "\u20a6" + total.toFixed(2);
+}
+
+function emptyInput() {
+  console.log("emptied!");
+  output.innerHTML = "";
+  loadAmps.value = "";
+  Band.value = "";
+  Phase.value = "";
+}
+
+
+start.addEventListener("click", calculate);
+refresh.addEventListener("click", emptyInput);
+
+		
+		</script>
+</html>
