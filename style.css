@@ -1,233 +1,271 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>PHED BILL AND LOR CALCULATOR</title>
-</head>
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	
-	
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	
-	<link rel="stylesheet" href="style.css">
-	
-<body>
-	
-	<div class="container">
-		
-		<div class="logo" style=""> 
-	  <img class="phed" src="PHED logo.png" alt="PHED">
+@charset "utf-8";
+/* CSS Document */
 
-			<h2>CALCULATOR</h2>
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:#F0F1D5;
+}
+.b-display{
+	font-size: 40px;
+				
+}	
+.container {
+  width: 100vw;
+/*  height: 100%;*/
   
-    <div class="billing-button-container clearfix" >
+}
 
-      <div class=" billing">
-		  
-        <button class="btn billing__button active">
-          Non-MD Billing        
-        </button>
-      </div>
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 1em;
+  background: #F0F1D5;
+/*  border-radius: 15px; */
+/*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
+  color: #105187;
+}
+.phed{
+ width: 50vw; 
+ height: auto;
+}
 
-      <div class="lor">
-        <button class="btn lor__button">
-          Loss of Revenue        
-        </button>
-      </div>
+.form-container, .output {
+  width: 80vw;	
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  justify-content: center;
+  align-items: center;
+}
 
+.output {
+  display: content;
+	margin-top: 4px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+  width: 100%;
+/*  height:100px;*/
+}
+
+.load{		
+  padding: 50px 20px;
+  margin: 30px;
+  font-size:50px;
+}
+
+select{
+   font-size : 40px;
+   padding : 30px;
+} 
+option{
+/*font-size: 60px;*/
+}
+
+.btn {
+  font-size: 20px;
+  width: 80vw;
+  height: 12rem;
+  box-shadow: 2px 3px 1px rgba(16,81,135,.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #7c73e6;
+  border: none;
+}
+.drop-down-caret{
+  height: 100px;
+  font-size: 60px;
+
+}
+
+.btn:hover {
+  background: #F19722;
+  box-shadow: 2px 3px 1px rgba(241,151,35,.4);
+}
+
+.btn:active, .btn:visited {
+  background: #2C8693 !important;
+  outline: 0 none !important;
+}
+
+.bill{
+	text-align: center;
+	height:100px; 
+	font-size:60px; 
+	padding:10px;
+}
+
+
+.billing__button,
+.lor__button {
+  background-color: white;
+  border: 1px solid black;
+/*  display: block;*/
+/*	margin: 0px 50px;*/
+	width: 22rem;
+  max-height: 64px;
+	font-size: 24px;
+/*  width: 100%;*/
+}
+
+.billing-button-container {
+	width: 100%;
+  margin-top: 32px;
+	text-align: center;
+	 display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+/*margin-left: 10%;*/
+/*margin-right: 5%;*/
+}
+
+
+
+		@media screen and (min-width: 1200px) {
+ body {
+  background:#534484;
+}
+
+		
+			
+			
+
+.bill{
+	height:40px; 
+	font-size:20px; 
+	padding:5px;
+}
+.load{		
+  padding: 20px 10px;
+  margin: 0px;
+  font-size:20px;
+}
+.b-display{
+	font-size: 20px;
+				
+}
+.drop-down-caret{
+  height: 40px;
+  font-size: 20px;
+
+}
+.phed{
+ width: 20vw; 
+ height: auto;
+}
+			
+	.form-container, .output {
+  width: 50vw;	
   
-  </div>
+}
+.btn {
+  font-size: 20px;
+  width: 60%;
+  height: 4rem;
+ 
+}
+.logo{
+   border-radius: 15px; 
+  box-shadow: 1px 2px 2px rgba(0,0,0,.2); 
+				
+}
+.container {
+ width: 65%;
+  padding-top: 1vh;	
+}
 
-  <div class="">
+.form-control {
+  margin-bottom: 8px;
+  width: 60%;
+}
+			
+			
+						
+.billing__button,
+.lor__button {
+  font-size: 20px;
+	display: inline-block;
+  margin: 0 auto;
+	width: 17rem;
+  max-height: 40px;
+/*  width: 100%;*/
+}
 
-    <div class="row login__form" style="display: block;">
+			.billing-button-container {
+	width: 65%;
+  margin-top: 32px;
+	text-align: center;
+	 display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+/*margin-left: 10%;*/
+/*margin-right: 5%;*/
+}
 		
-  <form class="form-container">
-    <label for="inputAmps" class="sr-only">Total Load(Amp)</label>
-    <input type="number" id="inputAmps" class="form-control load" placeholder="Load (Amps) *" required>
-<!--
-    <label for="inputRate"></label>
-    <input type="number" id="inputRate" class="form-control" style="font-size:40px;" placeholder="Band" required>
--->
-	  
-	   <select id="selectBand" class="form-control input select-input drop-down-caret">
-<!--          <option disabled selected>Customer's Band...</option>       -->
-          <option value="" disabled selected="selected">Select a Band *</option>
-		   <option value="43602">Band A</option>
-		   <option value="33100.8">Band B</option>
-		   <option value="20296.8">Band C</option>
-		   <option value="9520.8">Band D</option>
-		   <option value="4732.8">Band E</option>
-        </select>
-	  
-	  
-	    <select id="selectPhase"  class="form-control input select-input drop-down-caret">
-<!--          <option disabled selected>Customer's PHASE...</option>       -->
-          <option value="" disabled selected="selected">Select Phase *</option>
-		   <option value="1">Single Phase</option>
-		   <option value="1.7321">3 Phase</option>
-		   
-        </select>
-	  
-    <button id="btnStart" style="margin-top: 8px" class="btn btn-lg btn-primary btn-block">Calculate</button>
-  </form>
-     <div class="output">
-    <h1 class="b-display">Your Bill is:</h1>
-    <div id="outputCost" class="form-control bill"></div>
-    <button id="btnRefresh" class="btn btn-lg btn-primary btn-block">Reset</button>
-  </div>
-     
-    </div>
-
-	  
-	  
-<!--	  LOSS OF REVENUE-->
-	  
-	  
-	  
-    <div class="row lor__form" style="display: none;">
-      <div id="registration-form-wrapper">
-       
-		  
-				  <form class="form-container">
-    <label for="inputAmps1" class="sr-only">Total Load(Amp)</label>
-    <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
-					  
- <label for="inputHrs" class="sr-only">Number of Hours</label>
-    <input type="number" id="inputHrs" class="form-control load" placeholder="Number of Hours *" required>
-
-<!--
-    <label for="inputRate"></label>
-    <input type="number" id="inputRate" class="form-control" style="font-size:40px;" placeholder="Band" required>
--->
-
-	  
-	   <select id="selectBand1" class="form-control input select-input drop-down-caret">
-<!--          <option disabled selected>Customer's Band...</option>       -->
-          <option value="" disabled selected="selected">Select a Band *</option>
-		   <option value="43602">Band A</option>
-		   <option value="33100.8">Band B</option>
-		   <option value="20296.8">Band C</option>
-		   <option value="9520.8">Band D</option>
-		   <option value="4732.8">Band E</option>
-        </select>
-	  
-	  
-	    <select id="selectPhase1"  class="form-control input select-input drop-down-caret">
-<!--          <option disabled selected>Customer's PHASE...</option>       -->
-          <option value="" disabled selected="selected">Select Phase *</option>
-		   <option value="1">Single Phase</option>
-		   <option value="1.7321">3 Phase</option>
-		   
-        </select>
-	  
-    <button id="btnStart1" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
-  </form>
-  <div class="output">
-    <h1 class="b-display">Your LOR is:</h1>
-    <div id="outputCost1" class="form-control bill"></div>
-    <button id="btnRefresh1" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
-  </div>
-       
-		  
-		  
-      </div>
-    </div>
-
-  </div>
-
-</div>
-</div>
-</body>
-
-<script>
-$('.lor__form').hide();
-
- $('.billing__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.lor__button').removeClass('active');
-   $('.login__form').show();
-   $('.lor__form').hide();
-   $('#edit-email').focus(); //Should appear after $('.login__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- });
-
- $('.lor__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.lor__form').show();
-   $('.login__form').hide();
-   $('#edit-firstname').focus(); //Should appear after $('.lor__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- });
-</script>
-	
-	<script>
-		const loadAmps = document.querySelector("#inputAmps");
-//		const inputPhase = document.querySelector("#selectPhase");
-const Band = document.querySelector("#selectBand");
-const Phase = document.querySelector("#selectPhase");
-const output = document.querySelector("#outputCost");
-const start = document.getElementById("btnStart");
-const refresh = document.getElementById("btnRefresh");
-
-function calculate(e) {
-  console.log(e);
-  e.preventDefault();
-  console.log("btn clicked");
-  var total = loadAmps.value * Band.value* Phase.value * 0.240*0.6*0.85*1.075;
-  console.log(total);
-  output.innerHTML = "\u20a6" + total.toLocaleString('en-US');
-}
-
-function emptyInput() {
-  console.log("emptied!");
-  output.innerHTML = "";
-  loadAmps.value = "";
-  Band.value = "";
-  Phase.value = "";
 }
 
 
-start.addEventListener("click", calculate);
-refresh.addEventListener("click", emptyInput);
 
-		
-		</script>
-	
-		<script>
-		const loadAmps1 = document.querySelector("#inputAmps1");
-		const billHrs = document.querySelector("#inputHrs");
-//		const inputPhase = document.querySelector("#selectPhase");
-const Band1 = document.querySelector("#selectBand1");
-const Phase1 = document.querySelector("#selectPhase1");
-const output1 = document.querySelector("#outputCost1");
-const start1 = document.getElementById("btnStart1");
-const refresh1 = document.getElementById("btnRefresh1");
 
-function calculate(e) {
-  console.log(e);
-  e.preventDefault();
-  console.log("btn2 clicked");
-  var total = loadAmps1.value * billHrs.value * Band1.value* Phase1.value * 0.240*0.6*0.85*1.075;
-  console.log(total);
-  output1.innerHTML = "\u20a6" + total.toLocaleString('en-US');
+
+
+
+
+
+
+
+
+
+
+.billing {
+  padding-left: 0;
+/*	margin-right: 10px;*/
 }
 
-function emptyInput() {
-  console.log("emptied!");
-  output1.innerHTML = "";
-  loadAmps1.value = "";
-  billHrs.value = "";
-  Band1.value = "";
-  Phase1.value = "";
+.lor {
+  padding-right: 0;
 }
 
 
-start1.addEventListener("click", calculate);
-refresh1.addEventListener("click", emptyInput);
+.billing__button:hover,
+.lor__button:hover {
+  background: none;
+  border: 1px solid #ccc;
+  color: green;
+}
+.billing__button:focus, .billing__button.focus,
+.lor__button:focus,
+.lor__button.focus {
+  outline: 3px solid orange !important;
+}
+.billing__button:active, .billing__button.active,
+.lor__button:active,
+.lor__button.active {
+  background-color: #7c73e6;
+  border: 1px solid pink;
+  color: antiquewhite;
+  box-shadow: none;
+}
 
-		
-		</script>
-	
-</html>
+.hidden_clip {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+}
+
+
