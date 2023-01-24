@@ -57,7 +57,7 @@ body {
 .form-control {
   margin-bottom: 20px;
   width: 100%;
-   border: 1px solid #AE5AD3;
+   border: 2px solid #AE5AD3;
 	
 /*  height:100px;*/
 }
@@ -200,6 +200,8 @@ option{
 .form-control {
   margin-bottom: 8px;
   width: 60%;
+  border: 1px solid #AE5AD3;
+	
 }
 			
 			
