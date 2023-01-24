@@ -51,6 +51,7 @@ body {
 
 .output {
   display: content;
+	margin-top: 4px;
 }
 
 .form-control {
@@ -107,11 +108,41 @@ option{
 	padding:10px;
 }
 
+
+.billing__button,
+.lor__button {
+  background-color: white;
+  border: 1px solid black;
+/*  display: block;*/
+/*	margin: 0px 50px;*/
+	width: 22rem;
+  max-height: 64px;
+	font-size: 24px;
+/*  width: 100%;*/
+}
+
+.billing-button-container {
+	width: 100%;
+  margin-top: 32px;
+	text-align: center;
+	 display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+/*margin-left: 10%;*/
+/*margin-right: 5%;*/
+}
+
+
+
 		@media screen and (min-width: 1200px) {
  body {
   background:#534484;
 }
 
+		
+			
+			
 
 .bill{
 	height:40px; 
@@ -120,7 +151,7 @@ option{
 }
 .load{		
   padding: 20px 10px;
-  margin: 10px;
+  margin: 0px;
   font-size:20px;
 }
 .b-display{
@@ -154,12 +185,36 @@ option{
 }
 .container {
  width: 65%;
-  padding-top: 3vh;	
+  padding-top: 1vh;	
 }
 
 .form-control {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   width: 60%;
+}
+			
+			
+						
+.billing__button,
+.lor__button {
+  font-size: 20px;
+	display: inline-block;
+  margin: 0 auto;
+	width: 17rem;
+  max-height: 40px;
+/*  width: 100%;*/
+}
+
+			.billing-button-container {
+	width: 65%;
+  margin-top: 32px;
+	text-align: center;
+	 display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+/*margin-left: 10%;*/
+/*margin-right: 5%;*/
 }
 		
 }
@@ -175,45 +230,32 @@ option{
 
 
 
-.login-button-container {
-  margin-top: 32px;
-margin-left: 10%;
-margin-right: 5%;
-}
 
-.sign-in {
+
+.billing {
   padding-left: 0;
-	margin-right: 10px;
+/*	margin-right: 10px;*/
 }
 
-.register {
+.lor {
   padding-right: 0;
 }
 
-.sign-in__button,
-.register__button {
-  background-color: white;
-  border: 1px solid black;
-  display: block;
-	margin: 0px 40px;
-	width: 17rem;
-  max-height: 40px;
-/*  width: 100%;*/
-}
-.sign-in__button:hover,
-.register__button:hover {
+
+.billing__button:hover,
+.lor__button:hover {
   background: none;
   border: 1px solid #ccc;
   color: green;
 }
-.sign-in__button:focus, .sign-in__button.focus,
-.register__button:focus,
-.register__button.focus {
+.billing__button:focus, .billing__button.focus,
+.lor__button:focus,
+.lor__button.focus {
   outline: 3px solid orange !important;
 }
-.sign-in__button:active, .sign-in__button.active,
-.register__button:active,
-.register__button.active {
+.billing__button:active, .billing__button.active,
+.lor__button:active,
+.lor__button.active {
   background-color: #7c73e6;
   border: 1px solid pink;
   color: antiquewhite;
