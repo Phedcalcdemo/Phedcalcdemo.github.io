@@ -75,7 +75,7 @@ option{
 }
 
 .btn {
-  font-size: 20px;
+
   width: 80vw;
   height: 12rem;
   box-shadow: 2px 3px 1px rgba(16,81,135,.2);
@@ -112,7 +112,7 @@ option{
 .billing__button,
 .lor__button {
   background-color: white;
-  border: 1px solid blue;
+  border: 2px solid blue;
 /*  display: block;*/
 /*	margin: 0px 50px;*/
 	width: 22rem;
@@ -133,15 +133,22 @@ option{
 /*margin-right: 5%;*/
 }
 
-
+.btn2 {
+  font-size: 40px !important;
+}
 
 		@media screen and (min-width: 1200px) {
  body {
   background:#534484;
 }
 
+	.billing__button,.lor__button {
+  border: 1px solid blue;
+	}
 		
-			
+.btn2 {
+  font-size: 24px !important;
+}			
 			
 
 .bill{
