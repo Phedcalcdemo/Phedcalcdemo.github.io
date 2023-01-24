@@ -97,7 +97,7 @@ option{
 }
 
 .btn:active, .btn:visited {
-  background: #2C8693 !important;
+/*  background: #2C8693 !important;*/
   outline: 0 none !important;
 }
 
@@ -112,7 +112,7 @@ option{
 .billing__button,
 .lor__button {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid blue;
 /*  display: block;*/
 /*	margin: 0px 50px;*/
 	width: 22rem;
@@ -251,7 +251,7 @@ option{
 .billing__button:focus, .billing__button.focus,
 .lor__button:focus,
 .lor__button.focus {
-  outline: 3px solid orange !important;
+  outline: 4px solid white !important;
 }
 .billing__button:active, .billing__button.active,
 .lor__button:active,
