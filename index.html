@@ -18,23 +18,24 @@
 		<div class="logo" style=""> 
 	  <img class="phed" src="PHED logo.png" alt="PHED">
 
-  <div class="">
-    <div class="login-button-container clearfix" >
+			<h2>CALCULATOR</h2>
+  
+    <div class="billing-button-container clearfix" >
 
-      <div class="col-xs-4 sign-in">
+      <div class=" billing">
 		  
-        <button class="btn sign-in__button active">
+        <button class="btn billing__button active">
           Billing        
         </button>
       </div>
 
-      <div class="col-xs-4 register">
-        <button class="btn register__button">
+      <div class="lor">
+        <button class="btn lor__button">
           Loss of Revenue        
         </button>
       </div>
 
-    </div>
+  
   </div>
 
   <div class="">
@@ -68,10 +69,10 @@
 		   
         </select>
 	  
-    <button id="btnStart" style="margin-top: 12px" class="btn btn-lg btn-primary btn-block">Calculate</button>
+    <button id="btnStart" style="margin-top: 8px" class="btn btn-lg btn-primary btn-block">Calculate</button>
   </form>
      <div class="output">
-    <h1 class="b-display">Your Bill is</h1>
+    <h1 class="b-display">Your Bill is:</h1>
     <div id="outputCost" class="form-control bill"></div>
     <button id="btnRefresh" class="btn btn-lg btn-primary btn-block">Reset</button>
   </div>
@@ -84,7 +85,7 @@
 	  
 	  
 	  
-    <div class="row register__form" style="display: none;">
+    <div class="row lor__form" style="display: none;">
       <div id="registration-form-wrapper">
        
 		  
@@ -123,7 +124,7 @@
     <button id="btnStart1" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
   </form>
   <div class="output">
-    <h1 class="b-display">Your Bill is</h1>
+    <h1 class="b-display">Your LOR is:</h1>
     <div id="outputCost1" class="form-control bill"></div>
     <button id="btnRefresh1" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
   </div>
@@ -140,24 +141,24 @@
 </body>
 
 <script>
-$('.register__form').hide();
+$('.lor__form').hide();
 
- $('.sign-in__button').click(function(e) {
+ $('.billing__button').click(function(e) {
    e.preventDefault();
    $(this).addClass('active');
-   $('.register__button').removeClass('active');
+   $('.lor__button').removeClass('active');
    $('.login__form').show();
-   $('.register__form').hide();
-   $('#edit-email').focus(); //Should appear after $('.login__form').show(); because if it's before that, the register form doesn't exist in the DOM
+   $('.lor__form').hide();
+   $('#edit-email').focus(); //Should appear after $('.login__form').show(); because if it's before that, the lor form doesn't exist in the DOM
  });
 
- $('.register__button').click(function(e) {
+ $('.lor__button').click(function(e) {
    e.preventDefault();
    $(this).addClass('active');
-   $('.sign-in__button').removeClass('active');
-   $('.register__form').show();
+   $('.billing__button').removeClass('active');
+   $('.lor__form').show();
    $('.login__form').hide();
-   $('#edit-firstname').focus(); //Should appear after $('.register__form').show(); because if it's before that, the register form doesn't exist in the DOM
+   $('#edit-firstname').focus(); //Should appear after $('.lor__form').show(); because if it's before that, the lor form doesn't exist in the DOM
  });
 </script>
 	
