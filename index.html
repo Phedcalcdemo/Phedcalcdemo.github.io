@@ -49,6 +49,10 @@
     <div class="row billing__form" style="display: block;">
 		
   <form class="form-container">
+	  <div class="info">
+    <h4>Calculate customer's bill using captured Load(Amps) </h4>
+     </div>
+	  
     <label for="inputAmps" class="sr-only">Total Load(Amp)</label>
     <input type="number" id="inputAmps" class="form-control load" placeholder="Load (Amps) *" required>
 <!--
@@ -64,7 +68,7 @@
 		   <option value="20296.8">Band C</option>
 		   <option value="9520.8">Band D</option>
 		   <option value="4732.8">Band E</option>
-		   <option value="61.40">Myto Aggregate</option>
+<!--		   <option value="61.40">Myto Aggregate</option>-->
         </select>
 	  
 <!--
@@ -99,6 +103,10 @@
        
 		  
 				  <form class="form-container">
+					  
+	<div class="info">
+    <h4>Calculate Loss of Revenue for Energy Theft </h4>
+     </div>
     <label for="inputAmps1" class="sr-only">Total Load(Amp)</label>
     <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
 					  
@@ -158,8 +166,12 @@
        
 		  
 				  <form class="form-container" required>
+					  
+		 <div class="info">
+			 <h4>Calculate Loss of Revenue for Haulage/Relocation </h4>
+     </div>			  
     <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
-    <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (Megawatts) *" required>
+    <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (kilowatts) *" required>
 					  
  <label for="inputHrs2" class="sr-only">Duration</label>
     <input type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *" required>
@@ -178,7 +190,7 @@
 		   <option value="56.38">Band C</option>
 		   <option value="39.67">Band D</option>
 		   <option value="39.44">Band E</option>
-		   <option value="61.4">Myto</option>
+		   <option value="61.4">Myto Aggregate</option>
         </select>
 	  
 <!--
