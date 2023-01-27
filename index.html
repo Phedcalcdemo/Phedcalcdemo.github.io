@@ -103,7 +103,7 @@
     <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
 					  
  <label for="inputHrs" class="sr-only">Duration</label>
-    <input type="number" id="inputHrs" class="form-control load" placeholder="Duration *" required>
+    <input type="number" id="inputHrs" class="form-control load" placeholder="Duration (Number of Months) *" required>
 
 <!--
     <label for="inputRate"></label>
@@ -162,7 +162,7 @@
     <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (Megawatts) *" required>
 					  
  <label for="inputHrs2" class="sr-only">Duration</label>
-    <input type="number" id="inputHrs2" class="form-control load" placeholder="Duration *" required>
+    <input type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *" required>
 
 <!--
     <label for="inputRate"></label>
@@ -172,12 +172,13 @@
 	  
 	   <select id="selectBand2" class="form-control input select-input drop-down-caret">
 <!--          <option disabled selected>Customer's Band...</option>       -->
-          <option value="" disabled selected="selected">Select a Band *</option>
-		   <option value="43602">Band A</option>
-		   <option value="33100.8">Band B</option>
-		   <option value="20296.8">Band C</option>
-		   <option value="9520.8">Band D</option>
-		   <option value="4732.8">Band E</option>
+          <option value="" disabled selected="selected">Select Band *</option>
+		   <option value="71.62">Band A</option>
+		   <option value="68.96">Band B</option>
+		   <option value="56.38">Band C</option>
+		   <option value="39.67">Band D</option>
+		   <option value="39.44">Band E</option>
+		   <option value="61.4">Myto</option>
         </select>
 	  
 <!--
@@ -300,7 +301,7 @@ function calculate(e) {
   console.log(e);
   e.preventDefault();
   console.log("btn2 clicked");
-  var total = loadAmps1.value * billHrs.value * Band1.value* 0.240*0.6*0.85*1.075;
+  var total = loadAmps1.value * (billHrs.value *30) * Band1.value* 0.240*0.6*0.85*1.075;
   console.log(total);
   output1.innerHTML = "\u20a6" + total.toLocaleString('en-US');
 }
@@ -335,7 +336,7 @@ function calculate(e) {
   console.log(e);
   e.preventDefault();
   console.log("btn2 clicked");
-  var total = ((40000) + (loadAmps2.value * billHrs2.value * Band2.value * 1.075) );
+  var total = ((40000) + ((loadAmps2.value * 1000) * billHrs2.value * Band2.value * 1.075) );
   console.log(total);
   output2.innerHTML = "\u20a6" + total.toLocaleString('en-US');
 }
