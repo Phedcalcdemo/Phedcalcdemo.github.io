@@ -121,14 +121,15 @@ outline: none !important;
 
 
 .billing__button,
-.lor__button {
+.lor__button, 
+.lorH__button {
   background-color: #AE5AD3;
   border: 2px solid #AE5AD3 !important;
 /*  display: block;*/
 /*	margin: 0px 50px;*/
-	width: 22rem;
-  max-height: 64px;
-	font-size: 24px;
+	width: 10rem;
+  max-height: 25px;
+	font-size: 10px;
 	color: white;
 	
 /*  width: 100%;*/
@@ -157,7 +158,7 @@ outline: none !important;
   background:#534484;
 }
 
-	.billing__button,.lor__button {
+	.billing__button,.lor__button,.lorH__button {
   border: 1px solid blue;
 	}
 		
@@ -220,12 +221,13 @@ outline: none !important;
 			
 						
 .billing__button,
-.lor__button {
-  font-size: 20px;
+.lor__button, 
+.lorH__button {
+  font-size: 14px;
 	display: inline-block;
   margin: 0 auto;
-	width: 17rem;
-  max-height: 40px;
+	width: 11rem;
+  max-height: 30px;
 	color: white;
 	
 /*  width: 100%;*/
@@ -239,6 +241,7 @@ outline: none !important;
     flex-direction: row;
     justify-content: space-around;
     flex-flow: wrap;
+/*				background-color: aqua;*/
 /*margin-left: 10%;*/
 /*margin-right: 5%;*/
 }
@@ -263,28 +266,34 @@ outline: none !important;
 /*	margin-right: 10px;*/
 }
 
-.lor {
+.lor,.lorH {
   padding-right: 0;
 }
 
-.lor__button{
+.lor__button,.lor__button{
 	border: 2px solid blue;
 }
 .billing__button:hover,
-.lor__button:hover {
+.lor__button:hover, 
+.lorH__button:hover {
   background: #D73A3A;
   border: 1px solid white !important;
   color: whitesmoke;
 }
-.billing__button:focus, .billing__button.focus,
+.billing__button:focus, 
+.billing__button.focus,
 .lor__button:focus,
-.lor__button.focus {
+.lor__button.focus,
+.lorH__button:focus,
+.lorH__button.focus {
   outline: 2px solid blue !important;
 border: 1px solid blue;
 }
 .billing__button:active, .billing__button.active,
 .lor__button:active,
-.lor__button.active {
+.lor__button.active,
+ .lorH__button:active,
+.lorH__button.active {
   background-color: white;
   border: 1px solid blue;
   color: blue;
