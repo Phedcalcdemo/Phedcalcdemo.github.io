@@ -301,7 +301,7 @@ function calculate(e) {
   console.log(e);
   e.preventDefault();
   console.log("btn2 clicked");
-  var total = loadAmps1.value * (billHrs.value *30) * Band1.value* 0.240*0.6*0.85*1.075;
+  var total = loadAmps1.value * billHrs.value * Band1.value* 0.240*0.6*0.85*1.075;
   console.log(total);
   output1.innerHTML = "\u20a6" + total.toLocaleString('en-US');
 }
