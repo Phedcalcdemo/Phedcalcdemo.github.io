@@ -105,14 +105,14 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #1174A8;
+/*  background: 	#008ECC;*/
 }
 .drop-down-caret {
   height: 100px;
   font-size: 60px;
 }
 .btn:hover {
-  background: #5F8D4E;
+/*  background: #5F8D4E;*/
   box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
   border: 1px solid none !important;
   color: whitesmoke;
@@ -132,8 +132,9 @@ select {
   padding: 10px;
 }
 .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
-  background-color: #1174A8;
+  background-color: 	#008ECC;
   border: 1px solid #1174A8 !important;
+	border-radius: 30px;
   /*  display: block;*/
   /*	margin: 0px 50px;*/
   width: 22rem;
@@ -165,7 +166,15 @@ select {
 #marquee-cont {
   background: #f4f4f4;
   margin-top: 10px;
-  font-size: 26px
+  font-size: 26px;
+  position: relative;
+	bottom: -20px;
+	left: 0px;
+	width: 100vw;
+}
+table img{
+	width:120px; 
+	height: auto;
 }
 @media screen and (min-width: 1200px) {
   body {
@@ -271,10 +280,17 @@ select {
     font-size: 16px;
   }
   #marquee-cont {
-    /*  background: #f4f4f4;*/
-    /*  margin-top: 10px;*/
+     position: relative;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
     font-size: 18px
   }
+	
+	table img{
+	width:80px; 
+	height: auto;
+}
 }
 .billing {
   /*  padding-left: 0;*/
@@ -289,7 +305,7 @@ select {
 }
 */
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .lorH__button:hover, .fuse__button:hover, .DTRloading__button:hover {
-  background: #5F8D4E;
+  background: A4BE7B;
   border: 2px solid white !important;
   color: white;
   box-shadow: none;
@@ -339,18 +355,7 @@ input, label {
 .btn:hover {
   outline: none !important
 }
-#yellow {
-  background: #FFD800;
-  font-weight: 400
-}
-#red {
-  background: #FF0000;
-  font-weight: 400
-}
-#blue {
-  background: #3399CC;
-  font-weight: 400
-}
-#neutral {
+#yellow, #red, #blue, #neutral {
+  
   font-weight: 400
 }
