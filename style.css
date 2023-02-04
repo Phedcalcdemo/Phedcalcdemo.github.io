@@ -1,708 +1,351 @@
-@charset "utf-8";
-/* CSS Document */
-
-@charset "utf-8";
-/* CSS Document */
-
-
 html {
   box-sizing: border-box;
 }
-
 *, *:before, *:after {
   margin: 0;
   padding: 0;
 }
-
 body {
-  background:#F0F1D5;
+  background: #F0F1D5;
 }
-.b-display{
-	font-size: 40px;
-				
+.b-display {
+  font-size: 40px;
 }
-.info{
-/*	width: 80%;*/
-	border-top: 2px solid #D73A3A; 
-	border-bottom: 2px solid #D73A3A;
-	height: 50px; 
-	margin-bottom: 30px;
-	margin-top: 28px;
-	font-size: 30px;
-	padding: 2px
-/*	text-align: center;*/
+.phase input {
+  width: 180px !important;
+  height: 60px;
+  font-size: 30px;
+  margin-bottom: 24px !important
+}
+.info {
+  /*	width: 80%;*/
+  border-top: 2px solid #5F8D4E;
+  border-bottom: 2px solid #5F8D4E;
+  height: 50px;
+  margin-bottom: 30px;
+  margin-top: 28px;
+  font-size: 30px;
+  padding: 0px /*	text-align: center;*/
 }
 .container {
   width: 100vw;
-/*  height: 100%;*/
-
-  
+  /*  height: 100%;*/
 }
-
 .logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 1em;
-	padding-bottom: 2em;
+  /*  display: flex;*/
+  /*  justify-content: center;*/
+  min-height: 100vh;
+  /*  align-items: center;*/
+  /*  flex-direction: column;*/
+  /*  padding-top: 1em;*/
+  /*  padding-bottom: 2em;*/
   background: #F0F1D5;
-/*  border-radius: 15px; */
-/*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
+  /*  border-radius: 15px; */
+  /*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
   color: #105187;
 }
-.phed{
- width: 50vw; 
- height: auto;
+.calc-container {
+  min-height: 50vh;
+  /*	background-color: greenyellow*/
 }
-
+.cont-wrapper {
+  display: flex;
+  justify-content: center;
+  /*	min-height: 100vh;*/
+  align-items: center;
+  flex-direction: column;
+  /*  padding-top: 1em;*/
+  padding-bottom: 2em;
+  /*  background: #F0F1D5;*/
+  /*  border-radius: 15px; */
+  /*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
+  /*  color: #105187;*/
+}
+div .phed {
+  width: 80vh;
+  height: auto;
+}
 .form-container, .output {
-  width: 80vw;	
+  width: 80vw;
   display: flex;
   flex-direction: column;
   margin: 1em;
   justify-content: center;
   align-items: center;
 }
-
 .output {
   display: content;
-	margin-top: -12px;
+  /*	margin-top: -12px;*/
 }
-
 .form-control {
   margin-bottom: 20px;
   width: 100%;
-   border: 2px solid #AE5AD3;
-	
-/*  height:100px;*/
+  border: 1px solid #1174A8;
+  text-align: left;
+  /*  height:100px;*/
 }
-
-.load{		
+.load {
   padding: 50px 20px;
-/*  margin-top: 30px;*/
-  font-size:50px;
+  /*  margin-top: 30px;*/
+  font-size: 50px;
 }
-
-select{
-   font-size : 40px;
-   padding : 30px;
-} 
-
-
+select {
+  font-size: 40px;
+  padding: 30px;
+}
 .btn {
-
   width: 80vw;
   height: 12rem;
-  box-shadow: 2px 3px 1px rgba(16,81,135,.2);
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #AE5AD3;
-   
+  background: #1174A8;
 }
-.drop-down-caret{
+.drop-down-caret {
   height: 100px;
   font-size: 60px;
-
 }
-
 .btn:hover {
-  background: #D73A3A;
-  box-shadow: 2px 3px 1px rgba(241,151,35,.4);
-	 border: 1px solid white !important;
+  background: #5F8D4E;
+  box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
+  border: 1px solid none !important;
   color: whitesmoke;
-	
 }
-
 .btn:active, .btn:visited {
-/*  background: #2C8693 !important;*/
+  /*  background: #2C8693 !important;*/
   outline: 0 none !important;
-	
 }
-.btn2:focus{
-outline: none !important;
-	 border: 2px solid #AE5AD3 !important;
-	
+.btn2:focus {
+  outline: none !important;
+  border: 1px solid #1174A8 !important;
 }
-
-.bill{
-	text-align: center;
-	height:100px; 
-	font-size:60px; 
-	padding:10px;
+.bill {
+  text-align: center;
+  height: 100px;
+  font-size: 60px;
+  padding: 10px;
 }
-
-
-.billing__button,
-.lor__button, 
-.lorH__button {
-  background-color: #AE5AD3;
-  border: 2px solid #AE5AD3 !important;
-/*  display: block;*/
-/*	margin: 0px 50px;*/
-	width: 22rem;
+.billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
+  background-color: #1174A8;
+  border: 1px solid #1174A8 !important;
+  /*  display: block;*/
+  /*	margin: 0px 50px;*/
+  width: 22rem;
   max-height: 45px;
-	font-size: 30px;
-	color: white;
-	
-/*  width: 100%;*/
+  font-size: 30px;
+  color: white;
+  /*  width: 100%;*/
 }
-
 .billing-button-container {
-	width: 100%;
-  margin-top: 32px;
-	text-align: center;
-	 display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-flow: wrap;
-	
-	
-/*
+  width: 100%;
+  margin-top: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+  /*
 	border-bottom: 2px solid #D73A3A;
 	height: 60px;
 */
-/*margin-left: 10%;*/
-/*margin-right: 5%;*/
+  /*margin-left: 10%;*/
+  /*margin-right: 5%;*/
 }
-
 .btn2 {
   font-size: 40px !important;
-	border: 2px solid #AE5AD3 !important;
-	color: white !important;
+  border: 2px solid #1174A8 !important;
+  color: white !important;
 }
-
-		@media screen and (min-width: 1200px) {
- body {
-  background:#534484;
+#marquee-cont {
+  background: #f4f4f4;
+  margin-top: 10px;
+  font-size: 26px
 }
-
-	.billing__button,.lor__button,.lorH__button {
-  border: 1px solid blue;
-	}
-		
-.btn2 {
-  font-size: 24px !important;
-}			
-			
-
-.bill{
-	height:40px; 
-	font-size:20px; 
-	padding:5px;
-	font-weight: bold;
-}
-.load{		
-  padding: 5px 10px;
-  margin: 0px;
-/*  font-size:20px;*/
-}
-.b-display{
-	font-size: 16px;
-				
-}
-/*
-.drop-down-caret{
-  height: 40px;
-  font-size: 20px;
-
-}
-*/
-.phed{
- width: 20vw; 
- height: auto;
-}
-			
-	.form-container, .output {
-  width: 50vw;	
-  
-}
-.btn {
- 
-  width: 60%;
-  height: 3rem;
- 
-}
-.btn2 {
-  font-size: 18px !important;
-	}
-.logo{
-   border-radius: 15px; 
-  box-shadow: 1px 2px 2px rgba(0,0,0,.2); 
-				
-}
-.container {
- width: 65%;
-  padding-top: 1vh;	
-}
-
-.form-control {
-  margin-bottom: 8px;
-  width: 60%;
-   border: 1px solid #AE5AD3;
-  
-}
-			
-			
-						
-.billing__button,
-.lor__button, 
-.lorH__button {
-  font-size: 14px;
-/*	display: inline-block;*/
-  margin: 0 auto;
-	width: 11rem;
-  max-height: 30px;
-	color: white;
-/*	padding-right: 15px*/
-	
-/*  width: 100%;*/
-}
-
-			.billing-button-container {
-	width: 65%;
-  margin-top: 32px;
-	text-align: center;
-	 display: flex;
+@media screen and (min-width: 1200px) {
+  body {
+    background: #534484;
+  }
+  .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
+    border: 1px solid blue;
+  }
+  .btn2 {
+    font-size: 24px !important;
+  }
+  .bill {
+    height: 40px;
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+  }
+  .load {
+    padding: 5px 10px;
+    margin: 0px;
+    /*  font-size:20px;*/
+  }
+  .b-display {
+    font-size: 16px;
+  }
+  .phase input {
+    width: 80px !important;
+    height: auto;
+    font-size: 16px;
+    margin-bottom: 12px !important;
+    margin-top: -5px !important
+  }
+  .phase label {
+    font-size: 12px
+  }
+  div .phed {
+    width: 38vh;
+    height: auto;
+  }
+  .form-container, .output {
+    width: 50vw;
+  }
+  .btn {
+    width: 60%;
+    height: 3rem;
+  }
+  .btn2 {
+    font-size: 18px !important;
+  }
+  .logo {
+    border-radius: 15px;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
+    /*	min-height: 600px;*/
+  }
+  .container {
+    width: 65%;
+    /*    padding-top: 1vh;*/
+  }
+  .form-control {
+    text-align: center;
+    margin-bottom: 6px;
+    width: 60%;
+    border: 1px solid #AE5AD3;
+  }
+  .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
+    font-size: 14px;
+    /*	display: inline-block;*/
+    margin: 0 auto;
+    width: 11rem;
+    max-height: 30px;
+    color: white;
+    /*	padding-right: 15px*/
+    /*  width: 100%;*/
+  }
+  .billing-button-container {
+    width: 65%;
+    /*  margin-top: 32px;*/
+    text-align: center;
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-flow: wrap;
-				
-/*
+    /*
 	border-bottom: 2px solid #D73A3A;
 	height: 60px;
 */
-/*				background-color: aqua;*/
-/*margin-left: 10%;*/
-/*margin-right: 5%;*/
+    /*				background-color: aqua;*/
+    /*margin-left: 10%;*/
+    /*margin-right: 5%;*/
+  }
+  .info {
+    border-top: 1px solid #5F8D4E;
+    border-bottom: 1px solid #5F8D4E;
+    margin-bottom: 10px;
+    height: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+    padding: 1px;
+  }
+  .drop-down-caret, .load, .form-control {
+    height: 30px;
+    font-size: 16px;
+  }
+  #marquee-cont {
+    /*  background: #f4f4f4;*/
+    /*  margin-top: 10px;*/
+    font-size: 18px
+  }
 }
-			
-			.info{
-	border-top: 1px solid #D73A3A;
-	border-bottom: 1px solid #D73A3A;
-	margin-bottom: 10px;
-	height: 30px;
-	margin-top: 10px;
-	font-size: 16px;
-	text-align: center;
-	padding: 4px;
-	
-}
-			
-			.drop-down-caret, .load, .form-control{
-  height: 30px;
-  font-size: 16px;
-		
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 .billing {
-/*  padding-left: 0;*/
-/*	margin-right: 10px;*/
+  /*  padding-left: 0;*/
+  /*	margin-right: 10px;*/
 }
-
-.lor,.lorH {
-/*  padding-right: ;*/
+.lor, .lorH {
+  /*  padding-right: ;*/
 }
-
-.lor__button,.lor__button{
-	border: 2px solid blue;
+/*
+.lor__button, .lor__button {
+  border: 2px solid 116530;
 }
-.billing__button:hover,
-.lor__button:hover, 
-.lorH__button:hover {
-  background: #D73A3A;
-  border: 1px solid white !important;
-  color: whitesmoke;
+*/
+.billing__button:hover, .billingKW__button:hover, .lor__button:hover, .lorH__button:hover, .fuse__button:hover, .DTRloading__button:hover {
+  background: #5F8D4E;
+  border: 2px solid white !important;
+  color: white;
+  box-shadow: none;
 }
-.billing__button:focus, 
-.billing__button.focus,
-.lor__button:focus,
-.lor__button.focus,
-.lorH__button:focus,
-.lorH__button.focus {
-  outline: 2px solid blue !important;
-border: 1px solid blue;
+.billing__button:focus, .billing__button.focus, .billingKW__button:focus, .billingKW__button.focus, .lor__button:focus, .lor__button.focus, .lorH__button:focus, .lorH__button.focus, .fuse__button:focus, .fuse__button.focus, .DTRloading__button:focus, .DTRloading__button.focus {
+  outline: none !important;
+  border-: 1px solid white;
 }
-.billing__button:active, .billing__button.active,
-.lor__button:active,
-.lor__button.active,
- .lorH__button:active,
-.lorH__button.active {
+.billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .lorH__button:active, .lorH__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
   background-color: white;
   border: 1px solid blue;
   color: blue;
   box-shadow: none;
 }
-
 .hidden_clip {
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute;
 }
-
-
-
-html {
-  box-sizing: border-box;
+input, label {
+  display: block;
+  text-align: center /*margin: 0px,10px*/
 }
-
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
+.formInline {
+  margin: 0px 10px 10px
 }
-
-body {
-  background:#F0F1D5;
+#marquee-cont marquee {
+  margin-top: 5px;
 }
-.b-display{
-	font-size: 40px;
-				
+#marquee-news {
+  background: #1174A8;
+  padding: 5px;
+  font-color: red !important
 }
-.info{
-/*	width: 80%;*/
-	border-top: 2px solid #D73A3A; 
-	border-bottom: 2px solid #D73A3A;
-	height: 50px; 
-	margin-bottom: 30px;
-	margin-top: 28px;
-	font-size: 30px;
-	padding: 2px
-/*	text-align: center;*/
+#ticker-title {
+  border: none;
+  padding: 5px 20px;
+  background: #1174A8;
+  color: white;
 }
-.container {
-  width: 100vw;
-/*  height: 100%;*/
-
-  
+#ticker-title:focus {
+  outline: none;
 }
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 1em;
-	padding-bottom: 2em;
-  background: #F0F1D5;
-/*  border-radius: 15px; */
-/*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
-  color: #105187;
+.btn:focus {
+  outline: none !important
 }
-.phed{
- width: 50vw; 
- height: auto;
-}
-
-.form-container, .output {
-  width: 80vw;	
-  display: flex;
-  flex-direction: column;
-  margin: 1em;
-  justify-content: center;
-  align-items: center;
-}
-
-.output {
-  display: content;
-	margin-top: -12px;
-}
-
-.form-control {
-  margin-bottom: 20px;
-  width: 100%;
-   border: 2px solid #AE5AD3;
-	
-/*  height:100px;*/
-}
-
-.load{		
-  padding: 50px 20px;
-/*  margin-top: 30px;*/
-  font-size:50px;
-}
-
-select{
-   font-size : 40px;
-   padding : 30px;
-} 
-
-
-.btn {
-
-  width: 80vw;
-  height: 12rem;
-  box-shadow: 2px 3px 1px rgba(16,81,135,.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #AE5AD3;
-   
-}
-.drop-down-caret{
-  height: 100px;
-  font-size: 60px;
-
-}
-
 .btn:hover {
-  background: #D73A3A;
-  box-shadow: 2px 3px 1px rgba(241,151,35,.4);
-	 border: 1px solid white !important;
-  color: whitesmoke;
-	
+  outline: none !important
 }
-
-.btn:active, .btn:visited {
-/*  background: #2C8693 !important;*/
-  outline: 0 none !important;
-	
+#yellow {
+  background: yellow;
+  font-weight: 400
 }
-.btn2:focus{
-outline: none !important;
-	 border: 2px solid #AE5AD3 !important;
-	
+#red {
+  background: red;
+  font-weight: 400
 }
-
-.bill{
-	text-align: center;
-	height:100px; 
-	font-size:60px; 
-	padding:10px;
+#blue {
+  background: blue;
+  font-weight: 400
 }
-
-
-.billing__button,
-.lor__button, 
-.lorH__button {
-  background-color: #AE5AD3;
-  border: 2px solid #AE5AD3 !important;
-/*  display: block;*/
-/*	margin: 0px 50px;*/
-	width: 22rem;
-  max-height: 45px;
-	font-size: 30px;
-	color: white;
-	
-/*  width: 100%;*/
+#neutral {
+  font-weight: 400
 }
-
-.billing-button-container {
-	width: 100%;
-  margin-top: 32px;
-	text-align: center;
-	 display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-flow: wrap;
-	
-	
-/*
-	border-bottom: 2px solid #D73A3A;
-	height: 60px;
-*/
-/*margin-left: 10%;*/
-/*margin-right: 5%;*/
-}
-
-.btn2 {
-  font-size: 40px !important;
-	border: 2px solid #AE5AD3 !important;
-	color: white !important;
-}
-
-		@media screen and (min-width: 1200px) {
- body {
-  background:#534484;
-}
-
-	.billing__button,.lor__button,.lorH__button {
-  border: 1px solid blue;
-	}
-		
-.btn2 {
-  font-size: 24px !important;
-}			
-			
-
-.bill{
-	height:40px; 
-	font-size:20px; 
-	padding:5px;
-	font-weight: bold;
-}
-.load{		
-  padding: 5px 10px;
-  margin: 0px;
-/*  font-size:20px;*/
-}
-.b-display{
-	font-size: 16px;
-				
-}
-/*
-.drop-down-caret{
-  height: 40px;
-  font-size: 20px;
-
-}
-*/
-.phed{
- width: 20vw; 
- height: auto;
-}
-			
-	.form-container, .output {
-  width: 50vw;	
-  
-}
-.btn {
- 
-  width: 60%;
-  height: 3rem;
- 
-}
-.btn2 {
-  font-size: 18px !important;
-	}
-.logo{
-   border-radius: 15px; 
-  box-shadow: 1px 2px 2px rgba(0,0,0,.2); 
-				
-}
-.container {
- width: 65%;
-  padding-top: 1vh;	
-}
-
-.form-control {
-  margin-bottom: 8px;
-  width: 60%;
-   border: 1px solid #AE5AD3;
-  
-}
-			
-			
-						
-.billing__button,
-.lor__button, 
-.lorH__button {
-  font-size: 14px;
-/*	display: inline-block;*/
-  margin: 0 auto;
-	width: 11rem;
-  max-height: 30px;
-	color: white;
-/*	padding-right: 15px*/
-	
-/*  width: 100%;*/
-}
-
-			.billing-button-container {
-	width: 65%;
-  margin-top: 32px;
-	text-align: center;
-	 display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-flow: wrap;
-				
-/*
-	border-bottom: 2px solid #D73A3A;
-	height: 60px;
-*/
-/*				background-color: aqua;*/
-/*margin-left: 10%;*/
-/*margin-right: 5%;*/
-}
-			
-			.info{
-	border-top: 1px solid #D73A3A;
-	border-bottom: 1px solid #D73A3A;
-	margin-bottom: 10px;
-	height: 30px;
-	margin-top: 10px;
-	font-size: 16px;
-	text-align: center;
-	padding: 4px;
-	
-}
-			
-			.drop-down-caret, .load, .form-control{
-  height: 30px;
-  font-size: 16px;
-		
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.billing {
-/*  padding-left: 0;*/
-/*	margin-right: 10px;*/
-}
-
-.lor,.lorH {
-/*  padding-right: ;*/
-}
-
-.lor__button,.lor__button{
-	border: 2px solid blue;
-}
-.billing__button:hover,
-.lor__button:hover, 
-.lorH__button:hover {
-  background: #D73A3A;
-  border: 1px solid white !important;
-  color: whitesmoke;
-}
-.billing__button:focus, 
-.billing__button.focus,
-.lor__button:focus,
-.lor__button.focus,
-.lorH__button:focus,
-.lorH__button.focus {
-  outline: 2px solid blue !important;
-border: 1px solid blue;
-}
-.billing__button:active, .billing__button.active,
-.lor__button:active,
-.lor__button.active,
- .lorH__button:active,
-.lorH__button.active {
-  background-color: white;
-  border: 1px solid blue;
-  color: blue;
-  box-shadow: none;
-}
-
-.hidden_clip {
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute;
-}
-
-
