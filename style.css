@@ -27,7 +27,7 @@ body {
   font-size: 40px;
 }
 .phase input {
-  width: 140px !important;
+  width: 180px !important;
   height: 60px;
   font-size: 30px;
   margin-bottom: 24px !important
@@ -309,18 +309,11 @@ table img {
     height: auto;
   }
 }
-.billing {
-  /*  padding-left: 0;*/
-  /*	margin-right: 10px;*/
-}
-.lor, .lorH {
-  /*  padding-right: ;*/
-}
-/*
-.lor__button, .lor__button {
-  border: 2px solid 116530;
-}
-*/
+
+
+
+
+
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .lorH__button:hover, .fuse__button:hover, .DTRloading__button:hover {
   background: A4BE7B;
   border: 2px solid white !important;
