@@ -12,7 +12,7 @@ body {
   font-size: 40px;
 }
 .phase input {
-  width: 180px !important;
+  width: 140px !important;
   height: 60px;
   font-size: 30px;
   margin-bottom: 24px !important
@@ -62,9 +62,14 @@ body {
   /*  color: #105187;*/
 }
 div .phed {
-  width: 80vw;
+  width: 60vw;
   height: auto;
 }
+
+.phase label {
+    font-size: 22px
+  }
+
 .form-container, .output {
   width: 80vw;
   display: flex;
@@ -197,7 +202,7 @@ select {
     font-size: 12px
   }
   div .phed {
-    width: 38vh;
+    width: 18vw;
     height: auto;
   }
   .form-container, .output {
@@ -335,15 +340,15 @@ input, label {
   outline: none !important
 }
 #yellow {
-  background: yellow;
+  background: #FFD800;
   font-weight: 400
 }
 #red {
-  background: red;
+  background: #FF0000;
   font-weight: 400
 }
 #blue {
-  background: blue;
+  background: #3399CC;
   font-weight: 400
 }
 #neutral {
