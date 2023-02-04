@@ -5,8 +5,23 @@ html {
   margin: 0;
   padding: 0;
 }
+.form-container .btn-primary, .output .btn-primary {
+  background-color: #008ECC;
+  outline: none !important;
+  border: none !important
+}
+.form-container .btn-primary:focus, .output .btn-primary:focus {
+  outline: none !important;
+  border: none !important
+}
 body {
   background: #F0F1D5;
+}
+.logo-txt h2 {
+  font-size: 30px
+}
+.DTRloading__form ::placeholder {
+  text-align: center
 }
 .b-display {
   font-size: 40px;
@@ -65,11 +80,9 @@ div .phed {
   width: 60vw;
   height: auto;
 }
-
 .phase label {
-    font-size: 22px
-  }
-
+  font-size: 22px
+}
 .form-container, .output {
   width: 80vw;
   display: flex;
@@ -105,16 +118,16 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-/*  background: 	#008ECC;*/
+  /*  background: 	*/
 }
 .drop-down-caret {
   height: 100px;
   font-size: 60px;
 }
 .btn:hover {
-/*  background: #5F8D4E;*/
+  /*  background: #5F8D4E;*/
   box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
-  border: 1px solid none !important;
+  /*  border: 1px solid none !important;*/
   color: whitesmoke;
 }
 .btn:active, .btn:visited {
@@ -123,7 +136,7 @@ select {
 }
 .btn2:focus {
   outline: none !important;
-  border: 1px solid #1174A8 !important;
+  /*  border: 1px solid #1174A8 !important;*/
 }
 .bill {
   text-align: center;
@@ -132,14 +145,14 @@ select {
   padding: 10px;
 }
 .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
-  background-color: 	#008ECC;
-  border: 1px solid #1174A8 !important;
-	border-radius: 30px;
+  background-color: #008ECC;
+  /*  border: 1px solid #1174A8 !important;*/
+  border-radius: 30px;
   /*  display: block;*/
   /*	margin: 0px 50px;*/
-  width: 22rem;
+  width: 20rem;
   max-height: 45px;
-  font-size: 30px;
+  font-size: 22px;
   color: white;
   /*  width: 100%;*/
 }
@@ -160,7 +173,7 @@ select {
 }
 .btn2 {
   font-size: 40px !important;
-  border: 2px solid #1174A8 !important;
+  /*  border: 2px solid #1174A8 !important;*/
   color: white !important;
 }
 #marquee-cont {
@@ -168,23 +181,27 @@ select {
   margin-top: 10px;
   font-size: 26px;
   position: relative;
-	bottom: -20px;
-	left: 0px;
-	width: 100vw;
+  bottom: -20px;
+  left: 0px;
+  width: 100vw;
 }
-table img{
-	width:120px; 
-	height: auto;
+table img {
+  width: 120px;
+  height: auto;
 }
 @media screen and (min-width: 1200px) {
   body {
     background: #534484;
   }
   .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
-    border: 1px solid blue;
+    border: 1px solid #008ECC;
+    ;
   }
   .btn2 {
     font-size: 24px !important;
+  }
+  .logo-txt h2 {
+    font-size: 20px
   }
   .bill {
     height: 40px;
@@ -280,17 +297,16 @@ table img{
     font-size: 16px;
   }
   #marquee-cont {
-     position: relative;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
     font-size: 18px
   }
-	
-	table img{
-	width:80px; 
-	height: auto;
-}
+  table img {
+    width: 80px;
+    height: auto;
+  }
 }
 .billing {
   /*  padding-left: 0;*/
@@ -316,8 +332,8 @@ table img{
 }
 .billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .lorH__button:active, .lorH__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
   background-color: white;
-  border: 1px solid blue;
-  color: blue;
+  /*  border: 1px solid blue;*/
+  color: #008ECC;
   box-shadow: none;
 }
 .hidden_clip {
@@ -356,6 +372,5 @@ input, label {
   outline: none !important
 }
 #yellow, #red, #blue, #neutral {
-  
   font-weight: 400
 }
