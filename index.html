@@ -7,72 +7,61 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<!--
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
--->
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
 
 <body>
 <div class="container">
-  <div class="logo" >
-    <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED">
-      <h2 style="margin-top: 8px">CALCULATOR</h2>
-    </div>
-    <div class="cont-wrapper">
-      <div class="billing-button-container clearfix" style="" >
-        <div class=" billing">
-          <button class="btn billing__button active"> Non-MD Billing </button>
-        </div>
-        <div class="lor">
-          <button class="btn lor__button"> LOR (RPD) </button>
-        </div>
-        <div class="lorH">
-          <button class="btn lorH__button"> LOR (Haulage) </button>
-        </div>
+   <div class="logo" >
+      <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED">
+         <h2 style="margin-top: 8px">CALCULATOR</h2>
       </div>
-      <div class="billing-button-container clearfix" >
-        <div class=" billing">
-          <button class="btn billingKW__button"> Billing (KW) </button>
-        </div>
-        <div class="lor">
-          <button class="btn fuse__button"> Fuse Rating </button>
-        </div>
-        <div class="lorH">
-          <button class="btn DTRloading__button"> DTR %Loading </button>
-        </div>
-      </div>
-      <div class="calc-container">
-        <div class="billing__form" style="display: block;">
-          <form class="form-container">
-            <div class="info">
-              <p>Calculate customer's bill using captured Load(Amps)</p>
+      <div class="cont-wrapper">
+         <div class="billing-button-container clearfix" style="" >
+            <div>
+               <button class="btn billing__button active"> Non-MD Billing </button>
             </div>
-            <label for="inputAmps" class="sr-only">Total Load(Amp)</label>
-            <input type="number" id="inputAmps" class="form-control load" placeholder="Load (Amps) *" required>
-            <!--
-    <label for="inputRate"></label>
-    <input type="number" id="inputRate" class="form-control" style="font-size:40px;" placeholder="Band" required>
--->
-            
-            <select id="selectBand" class="form-control input select-input drop-down-caret">
-              <!--          <option disabled selected>Customer's Band...</option>       -->
-              <option value="" disabled selected="selected">Select a Band *</option>
-              <option value="43602">Band A</option>
-              <option value="33100.8">Band B</option>
-              <option value="20296.8">Band C</option>
-              <option value="9520.8">Band D</option>
-              <option value="4732.8">Band E</option>
-              <!--		   <option value="61.40">Myto Aggregate</option>-->
-            </select>
-            
-            <!--	                        PHASE--> 
-            
-            <!--
+            <div>
+               <button class="btn lor__button"> LOR (RPD) </button>
+            </div>
+            <div>
+               <button class="btn lorH__button"> LOR (Haulage) </button>
+            </div>
+         </div>
+         <div class="billing-button-container clearfix" >
+            <div>
+               <button class="btn billingKW__button"> Billing (KW) </button>
+            </div>
+            <div>
+               <button class="btn DTRloading__button"> DTR Loading </button>
+            </div>
+            <div>
+               <button class="btn fuse__button"> Fuse Rating </button>
+            </div>
+         </div>
+         <div class="calc-container">
+            <div class="billing__form" style="display: block;">
+               <form class="form-container">
+                  <div class="info">
+                     <p>Calculate customer's bill using captured Load(Amps)</p>
+                  </div>
+                  <label for="inputAmps" class="sr-only">Total Load(Amp)</label>
+                  <input type="number" id="inputAmps" class="form-control load" placeholder="Load (Amps) *" required>
+                  <select id="selectBand" class="form-control input select-input drop-down-caret">
+                     <!--          <option disabled selected>Customer's Band...</option>       -->
+                     <option value="" disabled selected="selected">Select a Band *</option>
+                     <option value="43602">Band A</option>
+                     <option value="33100.8">Band B</option>
+                     <option value="20296.8">Band C</option>
+                     <option value="9520.8">Band D</option>
+                     <option value="4732.8">Band E</option>
+                     <!--		   <option value="61.40">Myto Aggregate</option>-->
+                  </select>
+                  
+                  <!--	                        PHASE--> 
+                  
+                  <!--
 	  
 	    <select id="selectPhase"  class="form-control input select-input drop-down-caret">
           <option disabled selected>Customer's PHASE...</option>       
@@ -82,230 +71,171 @@
 		   
         </select>
 -->
+                  
+                  <button id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
+               </form>
+               <div class="output">
+                  <h1 class="b-display">Your Monthly Bill is:</h1>
+                  <div id="outputCost" class="form-control bill"></div>
+                  <button id="btnRefresh" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+               </div>
+            </div>
             
-            <button id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
-          </form>
-          <div class="output">
-            <h1 class="b-display">Your Monthly Bill is:</h1>
-            <div id="outputCost" class="form-control bill"></div>
-            <button id="btnRefresh" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
-          </div>
-        </div>
-        
-        <!--	  BILLING KW-->
-        
-        <div class="billingKW__form" style="display: none;">
-          <div id="billingKW-form-wrapper">
-            <form class="form-container">
-              <div class="info">
-                <p> Calculate customer's bill using total Load(KW) </p>
-              </div>
-              <label for="inputKW" class="sr-only">Total Load(KW)</label>
-              <input type="number" id="inputKW" class="form-control load" placeholder="Load (KW) *" required>
-              <!--
-					  
- <label for="inputHrs" class="sr-only">Duration</label>
-    <input type="number" id="inputHrs" class="form-control load" placeholder="Duration (Number of Months) *" required>
---> 
-              
-              <!--
-    <label for="inputRate"></label>
-    <input type="number" id="inputRate" class="form-control" style="font-size:40px;" placeholder="Band" required>
--->
-              
-              <select id="selectBandKW" class="form-control input select-input drop-down-caret">
-                <!--          <option disabled selected>Customer's Band...</option>       -->
-                <option value="" disabled selected="selected">Select a Band *</option>
-                <option value="43602">Band A</option>
-                <option value="33100.8">Band B</option>
-                <option value="20296.8">Band C</option>
-                <option value="9520.8">Band D</option>
-                <option value="4732.8">Band E</option>
-              </select>
-              
-              <!--
-	  
-	    <select id="selectPhase1"  class="form-control input select-input drop-down-caret">
-          <option disabled selected>Customer's PHASE...</option>       
-          <option value="" disabled selected="selected">Select Phase *</option>
-		   <option value="1">Single Phase</option>
-		   <option value="1.7321">3 Phase</option>
-		   
-        </select>
--->
-              
-              <button id="btnStartKW" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
-            </form>
-            <div class="output">
-              <h1 class="b-display">Your Monthly Bill is:</h1>
-              <div id="outputCostKW" class="form-control bill"></div>
-              <button id="btnRefreshKW" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
-            </div>
-          </div>
-        </div>
-        
-        <!--	  LOSS OF REVENUE-->
-        
-        <div class="lor__form" style="display: none;">
-          <div id="lor-form-wrapper">
-            <form class="form-container">
-              <div class="info">
-                <p> Calculate Loss of Revenue for Energy Theft </p>
-              </div>
-              <label for="inputAmps1" class="sr-only">Total Load(Amp)</label>
-              <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
-              <label for="inputHrs" class="sr-only">Duration</label>
-              <input type="number" id="inputHrs" class="form-control load" placeholder="Duration (Number of Months) *" required>
-              
-              <!--
-    <label for="inputRate"></label>
-    <input type="number" id="inputRate" class="form-control" style="font-size:40px;" placeholder="Band" required>
--->
-              
-              <select id="selectBand1" class="form-control input select-input drop-down-caret">
-                <!--          <option disabled selected>Customer's Band...</option>       -->
-                <option value="" disabled selected="selected">Select a Band *</option>
-                <option value="43602">Band A</option>
-                <option value="33100.8">Band B</option>
-                <option value="20296.8">Band C</option>
-                <option value="9520.8">Band D</option>
-                <option value="4732.8">Band E</option>
-              </select>
-              
-              <!--
-	  
-	    <select id="selectPhase1"  class="form-control input select-input drop-down-caret">
-          <option disabled selected>Customer's PHASE...</option>       
-          <option value="" disabled selected="selected">Select Phase *</option>
-		   <option value="1">Single Phase</option>
-		   <option value="1.7321">3 Phase</option>
-		   
-        </select>
--->
-              
-              <button id="btnStart1" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
-            </form>
-            <div class="output">
-              <h1 class="b-display">Your LOR is:</h1>
-              <div id="outputCost1" class="form-control bill"></div>
-              <button id="btnRefresh1" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
-            </div>
-          </div>
-        </div>
-        
-        <!--	  LOSS OF REVENUE HAULAGE-->
-        
-        <div class="lorH__form" style="display: none;">
-          <div id="lorH-form-wrapper">
-            <form class="form-container" required>
-              <div class="info">
-                <p>Calculate Loss of Revenue for Haulage/Relocation</p>
-              </div>
-              <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
-              <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (kilowatts) *" required>
-              <label for="inputHrs2" class="sr-only">Duration</label>
-              <input minlength="1"  type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *"  >
-              
-              <!--
-    <label for="inputRate"></label>
-    <input type="number" id="inputRate" class="form-control" style="font-size:40px;" placeholder="Band" required>
--->
-              
-              <select id="selectBand2" class="form-control input select-input drop-down-caret">
-                <!--          <option disabled selected>Customer's Band...</option>       -->
-                <option value="" disabled selected="selected">Select Band *</option>
-                <option value="71.62">Band A</option>
-                <option value="68.96">Band B</option>
-                <option value="56.38">Band C</option>
-                <option value="39.67">Band D</option>
-                <option value="39.44">Band E</option>
-                <option value="61.4">Myto Aggregate</option>
-              </select>
-              
-              <!--
-	  
-	    <select id="selectPhase1"  class="form-control input select-input drop-down-caret">
-          <option disabled selected>Customer's PHASE...</option>       
-          <option value="" disabled selected="selected">Select Phase *</option>
-		   <option value="1">Single Phase</option>
-		   <option value="1.7321">3 Phase</option>
-		   
-        </select>
--->
-              
-              <button  id="btnStart2" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
-            </form>
-            <div class="output">
-              <h1 class="b-display">Your LOR is:</h1>
-              <div id="outputCost2" class="form-control bill"></div>
-              <button id="btnRefresh2" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
-            </div>
-          </div>
-        </div>
-        
-        <!--	  Fuse Rating-->
-        
-        <div class="fuse__form" style="display: none; margin-bottom:50px">
-          <div class="form-container">
-            <div class="info">
-              <p>Calculate Fuse rating of Transformer</p>
-            </div>
-            <h2 style="margin-top:60px ">COMING SOON</h2>
-          </div>
-        </div>
-        
-        <!--	  TRANSFORMER LOADING-->
-        
-        <div class=" DTRloading__form" style="display: none;">
-          <div class="form-container">
-            <div class="info">
-              <p>Calculate Percentage Loading of Transformer</p>
-            </div>
-            <form class="form-inline" style="width: 100%; text-align: center">
-              <div class="form-group w-5 phase ">
-                <label for="red">Red Phase:</label>
-                <input type="number" placeholder="R" class="form-control  formInline" id="red">
-              </div>
-              <div class="form-group phase">
-                <label for="yellow">Yellow Phase:</label>
-                <input type="number" placeholder="Y" class="form-control formInline" id="yellow">
-              </div>
-              <div class="form-group phase">
-                <label for="blue">Blue Phase:</label>
-                <input type="number" placeholder="B" class="form-control formInline" id="blue" >
-              </div>
-              <div class="form-group phase">
-                <label for="neutral">Neutral:</label>
-                <input type="number" placeholder="N" class="form-control formInline" id="neutral">
-              </div>
-            </form>
-            <label for="inputKVA" class="sr-only">DTR CAPACITY(Amp)</label>
-            <input type="number" style="text-align: center" id="inputKVA" class="form-control load" placeholder="DTR CAPACITY (KVA) *" required>
-            <button id="btnStart3" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
-          </div>
-          <div class="output">
-            <h1 class="b-display">DTR Full Load Current is:</h1>
-            <div id="flA" class="form-control bill"></div>
-            <h1 class="b-display">The percentage Loading of this DTR is:</h1>
-            <div id="outputLoading" class="form-control bill"></div>
-            <!--    <div id="outputSum" class="form-control bill"></div>-->
+            <!--	  BILLING KW-->
             
-            <button id="btnRefresh3" onClick="emptyInput1()" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
-          </div>
-        </div>
+            <div class="billingKW__form" style="display: none;">
+               <div id="billingKW-form-wrapper">
+                  <form class="form-container">
+                     <div class="info">
+                        <p> Calculate customer's bill using total Load(KW) </p>
+                     </div>
+                     <label for="inputKW" class="sr-only">Total Load(KW)</label>
+                     <input type="number" id="inputKW" class="form-control load" placeholder="Load (KW) *" required>
+                     <select id="selectBandKW" class="form-control input select-input drop-down-caret">
+                        <!--          <option disabled selected>Customer's Band...</option>       -->
+                        <option value="" disabled selected="selected">Select a Band *</option>
+                        <option value="43602">Band A</option>
+                        <option value="33100.8">Band B</option>
+                        <option value="20296.8">Band C</option>
+                        <option value="9520.8">Band D</option>
+                        <option value="4732.8">Band E</option>
+                     </select>
+                     <button id="btnStartKW" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+                  </form>
+                  <div class="output">
+                     <h1 class="b-display">Your Monthly Bill is:</h1>
+                     <div id="outputCostKW" class="form-control bill"></div>
+                     <button id="btnRefreshKW" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+                  </div>
+               </div>
+            </div>
+            
+            <!--	  LOSS OF REVENUE-->
+            
+            <div class="lor__form" style="display: none;">
+               <div id="lor-form-wrapper">
+                  <form class="form-container">
+                     <div class="info">
+                        <p> Calculate Loss of Revenue for Energy Theft </p>
+                     </div>
+                     <label for="inputAmps1" class="sr-only">Total Load(Amp)</label>
+                     <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
+                     <label for="inputHrs" class="sr-only">Duration</label>
+                     <input type="number" id="inputHrs" class="form-control load" placeholder="Duration (Number of Months) *" required>
+                     <select id="selectBand1" class="form-control input select-input drop-down-caret">
+                        <!--          <option disabled selected>Customer's Band...</option>       -->
+                        <option value="" disabled selected="selected">Select a Band *</option>
+                        <option value="43602">Band A</option>
+                        <option value="33100.8">Band B</option>
+                        <option value="20296.8">Band C</option>
+                        <option value="9520.8">Band D</option>
+                        <option value="4732.8">Band E</option>
+                     </select>
+                     <button id="btnStart1" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+                  </form>
+                  <div class="output">
+                     <h1 class="b-display">Your LOR is:</h1>
+                     <div id="outputCost1" class="form-control bill"></div>
+                     <button id="btnRefresh1" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+                  </div>
+               </div>
+            </div>
+            
+            <!--	  LOSS OF REVENUE HAULAGE-->
+            
+            <div class="lorH__form" style="display: none;">
+               <div id="lorH-form-wrapper">
+                  <form class="form-container" required>
+                     <div class="info">
+                        <p>Calculate Loss of Revenue for Haulage/Relocation</p>
+                     </div>
+                     <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
+                     <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (kilowatts) *" required>
+                     <label for="inputHrs2" class="sr-only">Duration</label>
+                     <input minlength="1"  type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *"  >
+                     <select id="selectBand2" class="form-control input select-input drop-down-caret">
+                        <!--          <option disabled selected>Customer's Band...</option>       -->
+                        <option value="" disabled selected="selected">Select Band *</option>
+                        <option value="71.62">Band A</option>
+                        <option value="68.96">Band B</option>
+                        <option value="56.38">Band C</option>
+                        <option value="39.67">Band D</option>
+                        <option value="39.44">Band E</option>
+                        <option value="61.4">Myto Aggregate</option>
+                     </select>
+                     <button  id="btnStart2" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+                  </form>
+                  <div class="output">
+                     <h1 class="b-display">Your LOR is:</h1>
+                     <div id="outputCost2" class="form-control bill"></div>
+                     <button id="btnRefresh2" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+                  </div>
+               </div>
+            </div>
+            
+            <!--	  Fuse Rating-->
+            
+            <div class="fuse__form" style="display: none; margin-bottom:50px">
+               <div class="form-container">
+                  <div class="info">
+                     <p>Calculate Fuse rating of Transformer</p>
+                  </div>
+                  <h2 style="margin-top:60px ">COMING SOON</h2>
+               </div>
+            </div>
+            
+            <!--	  TRANSFORMER LOADING-->
+            
+            <div class=" DTRloading__form" style="display: none;">
+               <div class="form-container">
+                  <div class="info">
+                     <p>Calculate Percentage Loading of Transformer</p>
+                  </div>
+                  <form class="form-inline" style="width: 100%; text-align: center">
+                     <div class="form-group w-5 phase ">
+                        <label for="red">Red Phase:</label>
+                        <input type="number" placeholder="R" class="form-control  formInline" id="red">
+                     </div>
+                     <div class="form-group phase">
+                        <label for="yellow">Yellow Phase:</label>
+                        <input type="number" placeholder="Y" class="form-control formInline" id="yellow">
+                     </div>
+                     <div class="form-group phase">
+                        <label for="blue">Blue Phase:</label>
+                        <input type="number" placeholder="B" class="form-control formInline" id="blue" >
+                     </div>
+                     <div class="form-group phase">
+                        <label for="neutral">Neutral:</label>
+                        <input type="number" placeholder="N" class="form-control formInline" id="neutral">
+                     </div>
+                  </form>
+                  <label for="inputKVA" class="sr-only">DTR CAPACITY(Amp)</label>
+                  <input type="number" style="text-align: center" id="inputKVA" class="form-control load" placeholder="DTR CAPACITY (KVA) *" required>
+                  <button id="btnStart3" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
+               </div>
+               <div class="output">
+                  <h1 class="b-display">DTR Full Load Current is:</h1>
+                  <div id="flA" class="form-control bill"></div>
+                  <h1 class="b-display">The percentage Loading of this DTR is:</h1>
+                  <div id="outputLoading" class="form-control bill"></div>
+                  <!--    <div id="outputSum" class="form-control bill"></div>-->
+                  
+                  <button id="btnRefresh3" onClick="emptyInput1()" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+               </div>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
-  <div id="marquee-cont">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="50px" style="background:#1174A8;"><button id="ticker-title"><img src="PHED-logo-transparent.png"  alt=""></button></td>
-        <td id="marquee"><marquee onmouseover="this.stop();" onmouseout="this.start();" id="scroll">
-          <img src="PHED logo.png" alt="rr" width="25px" />
-          </marquee></td>
-      </tr>
-    </table>
-  </div>
+   </div>
+   <div id="marquee-cont">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         <tr>
+            <td width="50px" style="background:#1174A8;"><button id="ticker-title"><img src="PHED-logo-transparent.png"  alt=""></button></td>
+            <td id="marquee"><marquee onmouseover="this.stop();" onmouseout="this.start();" id="scroll">
+               <img src="PHED logo.png" alt="rr" width="25px" />
+               </marquee></td>
+         </tr>
+      </table>
+   </div>
 </div>
 </body>
 <script>
