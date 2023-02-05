@@ -25,6 +25,7 @@ body {
 }
 input[type=number]:focus {
   background-color: lightblue;
+outline: 2px solid #9999FF !important
 }
 .b-display {
   font-size: 40px;
