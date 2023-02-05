@@ -1,5 +1,9 @@
 html {
   box-sizing: border-box;
+  -webkit-appearance:none;
+  -webkit-appearance:button;
+  -webkit-appearance:pushbutton;
+	
 }
 *, *:before, *:after {
   margin: 0;
