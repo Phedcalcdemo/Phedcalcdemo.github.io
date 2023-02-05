@@ -28,7 +28,7 @@ body {
   text-align: center
 }
 input[type=number]:focus {
-  background-color: #F9F6EE;
+  background-color: white;
 outline: 2px solid #9999FF !important
 }
 .b-display {
