@@ -23,6 +23,9 @@ body {
 .DTRloading__form ::placeholder {
   text-align: center
 }
+input[type=number]:focus {
+  background-color: lightblue;
+}
 .b-display {
   font-size: 40px;
 }
