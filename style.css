@@ -190,6 +190,7 @@ select {
   color: white !important;
 }
 #marquee-cont {
+/*  background: #f4f4f4;*/
   background: #f4f4f4;
   margin-top: 10px;
   font-size: 26px;
@@ -308,12 +309,12 @@ table img {
     font-size: 16px;
   }
   #marquee-cont {
-    position: relative;
+    position: sticky;
     bottom: 0px;
    left: 0px;
     width:100%;
 	  text-align: center;
-    font-size: 18px
+    font-size: 16px
   }
   table img {
     width: 80px;
