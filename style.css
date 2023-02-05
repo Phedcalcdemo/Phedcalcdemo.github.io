@@ -14,6 +14,9 @@ html {
   outline: none !important;
   border: none !important
 }
+.output .bill{
+	background-color: lightblue
+}
 input:focus::placeholder {
         color: transparent;
       }
