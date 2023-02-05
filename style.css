@@ -14,9 +14,22 @@ html {
   outline: none !important;
   border: none !important
 }
-::placeholder:focus{
-  Color:white
-} 
+::-webkit-input-placeholder:focus {
+   color:transparent;
+}
+
+:-moz-placeholder:focus {
+   color:transparent; 
+}
+
+::-moz-placeholder:focus { 
+   color:transparent; 
+}
+
+:-ms-input-placeholder:focus {  
+   color:transparent;
+}
+
 body {
   background: #F0F1D5;
 }
