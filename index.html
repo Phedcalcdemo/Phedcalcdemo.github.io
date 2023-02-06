@@ -215,12 +215,12 @@
                </div>
                <div class="output">
                   <h1 class="b-display">DTR Full Load Current is:</h1>
-                  <div id="flA" class="form-control bill"></div>
+                  <div id="flA" class="clear form-control bill"></div>
                   <h1 class="b-display">The percentage Loading of this DTR is:</h1>
-                  <div id="outputLoading" class="form-control bill"></div>
+                  <div id="outputLoading" class="clear form-control bill"></div>
                   <!--    <div id="outputSum" class="form-control bill"></div>-->
                   
-                  <button id="btnRefresh3" onClick="emptyInput1()" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+                  <button id="btnRefresh3" class="btnReset btn btn2 btn-lg btn-primary btn-block">Reset</button>
                </div>
             </div>
          </div>
@@ -366,7 +366,8 @@ function calculate(e) {
   console.log(total);
   output.innerHTML = "\u20a6" + total.toLocaleString('en-US');
 }
-
+	
+	
 function emptyInput() {
   console.log("emptied!");
   output.innerHTML = "";
@@ -378,6 +379,8 @@ function emptyInput() {
 
 start.addEventListener("click", calculate);
 refresh.addEventListener("click", emptyInput);
+
+
 
 		
 		</script>
@@ -522,8 +525,6 @@ function getAverage(x,y,z,n) {
 	console.log(average);
 	outputLoading.innerHTML = average.toFixed(0) + "%";
 	
-	
-//
 }
 		const capacity = document.querySelector("#inputKVA");
 	function calculate(e) {
@@ -538,28 +539,24 @@ function getAverage(x,y,z,n) {
   flA.innerHTML = totalfLA.toFixed(1) + "A";
 }	
 	
-	
-	
-	
-	
-		
-	function emptyInput1() {
-  console.log("emptied!");
-  outputKVA.innerHTML = "";
-  flA.innerHTML = "";
-  x.value = "";
-  y.value = "";
-  z.value = "";
-  n.value = "";
-  capacity.value = "";
-  flA.value = "";
-
-}	
-		
-		
 	btnStart3.addEventListener("click", calculate);
-refresh3.addEventListener("click", emptyInput);	
+	
+
+	$( ".btnReset" ).click(function() {
+  $( ".clear" ).empty();
+	document.querySelector('#red').value ='';
+	document.querySelector('#yellow').value ='';
+	document.querySelector('#blue').value ='';
+	document.querySelector('#neutral').value ='';
+	document.querySelector('#inputKVA').value ='';
+//	document.querySelector('#flA').value ='';
+//	document.querySelector('#outputLoading').value ='';
+	
+});
+	
 		
+		
+
 		
 		</script>
 <script>
