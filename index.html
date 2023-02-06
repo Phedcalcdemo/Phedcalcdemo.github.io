@@ -87,7 +87,7 @@
                <div id="billingKW-form-wrapper">
                   <form class="form-container">
                      <div class="info">
-                        <p> Calculate customer's bill using Assessed Load(KW) </p>
+                        <p> Calculate customer's bill using total Load(KW) </p>
                      </div>
                      <label for="inputKW" class="sr-only">Total Load(KW)</label>
                      <input type="number" id="inputKW" class="form-control load" placeholder="Load (KW) *" required>
@@ -150,7 +150,7 @@
                         <p>Calculate Loss of Revenue for Haulage/Relocation</p>
                      </div>
                      <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
-                     <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (Megawatts) *" required>
+                     <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (MW) *" required>
                      <label for="inputHrs2" class="sr-only">Duration</label>
                      <input minlength="1"  type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *"  >
                      <select id="selectBand2" class="form-control input select-input drop-down-caret">
@@ -517,8 +517,11 @@ function getAverage(x,y,z,n) {
    // Calculate the average
    let average = ((((x + y + z + n) / 3) / (capacity.value * 1.391) )* 100);
    // Display result to user 
+	average = average || 0;
+
 	console.log(average);
 	outputLoading.innerHTML = average.toFixed(0) + "%";
+	
 	
 //
 }
@@ -528,6 +531,7 @@ function getAverage(x,y,z,n) {
   e.preventDefault();
   console.log("btnStart3 clicked");
   var totalfLA = ((capacity.value * 1000) / (1.7321 * 415));
+  
   console.log(totalfLA);
 	
 
