@@ -518,12 +518,17 @@ refresh2.addEventListener("click", emptyInput);
 
 function getAverage(x,y,z,n) {
    // Calculate the average
-   let average = ((((x + y + z + n) / 3) / (capacity.value * 1.391) )* 100);
+   let loading = ((((x + y + z + n) / 3) / (capacity.value * 1.391) )* 100);
    // Display result to user 
-	average = average || 0;
-
-	console.log(average);
-	outputLoading.innerHTML = average.toFixed(0) + "%";
+	loading = loading || 0;
+	
+	 if(loading >= 80) {
+                document.getElementById('outputLoading').style.color = "red";
+		
+            }
+	
+	console.log(loading);
+	outputLoading.innerHTML = loading.toFixed(0) + "%";
 	
 }
 		const capacity = document.querySelector("#inputKVA");
@@ -532,6 +537,8 @@ function getAverage(x,y,z,n) {
   e.preventDefault();
   console.log("btnStart3 clicked");
   var totalfLA = ((capacity.value * 1000) / (1.7321 * 415));
+		
+		
   
   console.log(totalfLA);
 	
