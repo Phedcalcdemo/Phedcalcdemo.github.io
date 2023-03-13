@@ -94,6 +94,7 @@ outline: 2px solid #9999FF !important
 div .phed {
   width: 70vw;
   height: auto;
+ margin-right: 30px;
 }
 .phase label {
   font-size: 22px
