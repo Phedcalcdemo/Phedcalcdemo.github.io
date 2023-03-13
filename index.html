@@ -214,10 +214,12 @@
                   <button id="btnStart3" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
                </div>
                <div class="output">
-                  <h1 class="b-display">DTR Full Load Current is:</h1>
-                  <div id="flA" class="clear form-control bill"></div>
-                  <h1 class="b-display">The percentage Loading of this DTR is:</h1>
+                  <h1 class="b-display">The Percentage Loading of this DTR:</h1>
                   <div id="outputLoading" class="clear form-control bill"></div>
+                  <h1 class="b-display">The Percentage Imbalance of this DTR is:</h1>
+                  <div id="outputImbalance" class="clear form-control bill"></div> 
+				   
+                  <div id="balance" style="font-size: 18px; padding-top:-5px; " class="clear"></div>
                   <!--    <div id="outputSum" class="form-control bill"></div>-->
                   
                   <button id="btnRefresh3" class="btnReset btn btn2 btn-lg btn-primary btn-block">Reset</button>
@@ -231,7 +233,7 @@
          <tr>
             <td width="50px" style="background:#1174A8;"><button id="ticker-title"><img src="PHED-logo-transparent.png"  alt=""></button></td>
             <td id="marquee"><marquee onmouseover="this.stop();" onmouseout="this.start();" id="scroll">
-               <img src="PHED logo.png" alt="rr" width="25px" />
+               <img src="PHED logo.png" alt="PHED" width="25px" />
                </marquee></td>
          </tr>
       </table>
@@ -461,12 +463,18 @@ const start2 = document.getElementById("btnStart2");
 const refresh2 = document.getElementById("btnRefresh2");
 		
 function calculate(e) {
+	total = total || 0;
   console.log(e);
   e.preventDefault();
   console.log("btn2 clicked");
   var total = ((40000) + ((loadAmps2.value * 1000) * billHrs2.value * Band2.value * 1.075) );
-  console.log(total);
+	console.log(total);
+	if(total === 40000) {
+		 output2.innerHTML = "\u20a6" + "0";
+	}else{
+  
   output2.innerHTML = "\u20a6" + total.toLocaleString('en-US');
+	}
 }
 
 function emptyInput() {
@@ -520,15 +528,62 @@ function getAverage(x,y,z,n) {
    // Calculate the average
    let loading = ((((x + y + z + n) / 3) / (capacity.value * 1.391) )* 100);
    // Display result to user 
+	
 	loading = loading || 0;
 	
-	 if(loading >= 80) {
-                document.getElementById('outputLoading').style.color = "red";
-		
-            }
+
 	
 	console.log(loading);
 	outputLoading.innerHTML = loading.toFixed(0) + "%";
+	}
+	
+	document.getElementById("btnStart3").addEventListener('click', doMath);
+		
+	
+
+		function doMath() {
+   // Assign user inputs to variables
+			
+   let xx = parseFloat(document.querySelector("#red").value);
+   let yy = parseFloat(document.querySelector("#yellow").value);
+   let zz = parseFloat(document.querySelector("#blue").value);
+   let nn = parseFloat(document.querySelector("#neutral").value);
+   
+		let imbalance = ((nn/Math.max(xx,yy,zz,nn))*100);
+	
+	imbalance = imbalance || 0;
+	
+	 if(imbalance === 0) {
+		 balance.innerHTML = "";
+		
+            }else if(imbalance <= 20) {
+                document.getElementById('outputImbalance').style.color = "black";
+                document.getElementById('balance').style.color = "green";
+		 balance.innerHTML = "DTR's Load is Balanced";
+			}else if(imbalance > 49) {
+                document.getElementById('outputImbalance').style.color = "red";
+                document.getElementById('balance').style.color = "red";
+		         balance.innerHTML = "DTR's Load is Highly Unbalanced";
+		
+            }else if(imbalance >= 20) {
+                document.getElementById('outputImbalance').style.color = "brown";
+                document.getElementById('balance').style.color = "brown";
+		 balance.innerHTML = "DTR's Load is Moderately Balanced";
+		
+            } ;
+	
+	
+	console.log(imbalance);
+	outputImbalance.innerHTML = imbalance.toFixed(0) + "%";
+	
+	
+	
+	
+	
+//	 let imbalance = (n / (math.max(x,y,z,n)) * 100);
+//	
+//	console.log(imbalance);
+//	outpfLA.innerHTML = imbalance.toFixed(0) + "%";
 	
 }
 		const capacity = document.querySelector("#inputKVA");
@@ -537,13 +592,17 @@ function getAverage(x,y,z,n) {
   e.preventDefault();
   console.log("btnStart3 clicked");
   var totalfLA = ((capacity.value * 1000) / (1.7321 * 415));
+	
 		
+
 		
   
   console.log(totalfLA);
 	
 
-  flA.innerHTML = totalfLA.toFixed(1) + "A";
+//  flA.innerHTML = totalfLA.toFixed(1) + "A";
+
+	
 }	
 	
 	btnStart3.addEventListener("click", calculate);
