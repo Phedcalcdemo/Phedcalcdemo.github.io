@@ -207,6 +207,10 @@ table img {
   width: 130px;
   height: auto;
 }
+.status{
+		font-size: 40px;
+		padding-bottom: 15px;
+	}
 @media screen and (min-width: 1200px) {
   body {
     background: #534484;
@@ -218,6 +222,10 @@ table img {
   .logo-txt h2 {
     font-size: 20px
   }
+	.status{
+		font-size: 18px;
+		padding-bottom: 10px;
+	}
   .bill {
     height: 40px;
     font-size: 20px;
