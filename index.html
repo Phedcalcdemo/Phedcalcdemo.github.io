@@ -503,7 +503,7 @@ refresh2.addEventListener("click", emptyInput);
 		</script>
 <script>
 		
-		document.getElementById("btnStart3").addEventListener('click', doCalc);
+			document.getElementById("btnStart3").addEventListener('click', doCalc);
 		
 		
 
@@ -516,22 +516,12 @@ refresh2.addEventListener("click", emptyInput);
    let n = parseFloat(document.querySelector("#neutral").value);
    
 	const capacity = document.querySelector("#inputKVA");
-//	const output2 = document.querySelector("#outputCost2");
-//    const start2 = document.getElementById("btnStart3");
     const refresh3 = document.getElementById("btnRefresh3");
 		
 			
-				
+   let loading = ((Math.max(x,y,z,n) / (capacity.value * 1.391) )* 100);
 			
 			
-			
-//   // Call the average function
-   getAverage(x,y,z,n);
-}
-
-function getAverage(x,y,z,n) {
-   // Calculate the average
-   let loading = ((((x + y + z + n) / 3) / (capacity.value * 1.391) )* 100);
    // Display result to user 
 	
 	loading = loading || 0;
@@ -543,7 +533,8 @@ function getAverage(x,y,z,n) {
 	}
 	
 	document.getElementById("btnStart3").addEventListener('click', doMath);
-		
+	
+	
 	
 
 		function doMath() {
