@@ -519,7 +519,7 @@ refresh2.addEventListener("click", emptyInput);
     const refresh3 = document.getElementById("btnRefresh3");
 		
 			
-   let loading = ((Math.max(x,y,z,n) / (capacity.value * 1.391) )* 100);
+    let loading = ((Math.max(x,y,z) / (capacity.value * 1.4) )* 100);
 			
 			
    // Display result to user 
@@ -567,14 +567,9 @@ refresh2.addEventListener("click", emptyInput);
 		 balance.innerHTML = "DTR Load is Moderately Balanced";
 		
             } ;
-	
-	
+
 	console.log(imbalance);
 	outputImbalance.innerHTML = imbalance.toFixed(0) + "%";
-	
-	
-	
-	
 	
 //	 let imbalance = (n / (math.max(x,y,z,n)) * 100);
 //	
@@ -589,12 +584,7 @@ refresh2.addEventListener("click", emptyInput);
   console.log("btnStart3 clicked");
   var totalfLA = ((capacity.value * 1000) / (1.7321 * 415));
 	
-		
-
-		
-  
   console.log(totalfLA);
-	
 
 //  flA.innerHTML = totalfLA.toFixed(1) + "A";
 
