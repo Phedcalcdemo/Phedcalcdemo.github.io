@@ -155,7 +155,7 @@
                         <p>Calculate Loss of Revenue for Haulage/Relocation</p>
                      </div>
                      <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
-                     <input type="number" id="inputAmps2" class="form-control load" placeholder="Load (MW) *" required>
+                     <input type="number" id="inputMW" class="form-control load" placeholder="Load (MW) *" required>
                      <label for="inputHrs2" class="sr-only">Duration</label>
                      <input minlength="1"  type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *"  >
                      <select id="selectBand2" class="form-control input select-input drop-down-caret">
@@ -458,7 +458,7 @@ refresh1.addEventListener("click", emptyInput);
 		
 		</script>
 <script>
-		const loadAmps2 = document.querySelector("#inputAmps2");
+		const loadMW = document.querySelector("#inputMW");
 		const billHrs2 = document.querySelector("#inputHrs2");
 //		const inputPhase = document.querySelector("#selectPhase");
 const Band2 = document.querySelector("#selectBand2");
@@ -472,7 +472,7 @@ function calculate(e) {
   console.log(e);
   e.preventDefault();
   console.log("btn2 clicked");
-  var total = ((40000) + ((loadAmps2.value * 1000) * billHrs2.value * Band2.value * 1.075) );
+  var total = ((40000) + ((loadMW.value * 1000) * billHrs2.value * Band2.value * 1.075) );
 	console.log(total);
 	if(total === 40000) {
 		 output2.innerHTML = "\u20a6" + "0";
@@ -485,7 +485,7 @@ function calculate(e) {
 function emptyInput() {
   console.log("emptied!");
   output2.innerHTML = "";
-  loadAmps2.value = "";
+  loadMW.value = "";
   billHrs2.value = "";
   Band2.value = "";
 //  Phase1.value = "";
