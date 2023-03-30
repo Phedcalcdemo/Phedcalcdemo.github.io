@@ -3,43 +3,42 @@
 <head>
 <meta charset="utf-8">
 <title>PHED BILL AND LOR CALCULATOR</title>
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
 </head>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="css/style.css">
 
 <body>
 <div class="container">
    <div class="logo" >
-      <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED" oncontextmenu="return false;">
+      <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED">
          <h2 style="margin-top: -18px">CALCULATOR</h2>
       </div>
       <div class="cont-wrapper">
-          <div class="billing-button-container clearfix" style="" >
+         <div class="billing-button-container clearfix" style="" >
             <div>
                <button class="btn billing__button active"> Billing(Amp) </button>
             </div>
-			   <div>
+            <div>
                <button class="btn billingKW__button"> Billing (Watt) </button>
             </div>
-            <div>
-               <button class="btn DTRloading__button"> DTR Loading </button>
+			  <div>
+               <button class="btn fuse__button"> Bill Discount </button>
             </div>
-          
+            
          </div>
          <div class="billing-button-container clearfix" >
-          
-			   <div>
+            <div>
                <button class="btn lor__button"> LOR (RPD) </button>
             </div>
             <div>
                <button class="btn lorH__button"> LOR (Haulage) </button>
             </div>
-            <div>
-               <button class="btn fuse__button"> Fuse Rating </button>
+           <div>
+               <button class="btn DTRloading__button"> DTR Loading </button>
             </div>
          </div>
          <div class="calc-container">
@@ -51,6 +50,7 @@
                   <label for="inputAmps" class="sr-only">Total Load(Amp)</label>
                   <input type="number" id="inputAmps" class="form-control load" placeholder="Load (Amps) *" required>
                   <select id="selectBand" class="form-control input select-input drop-down-caret">
+                     
                      <!--          <option disabled selected>Customer's Band...</option>       -->
                      <option value="" disabled selected="selected">Select a Band *</option>
                      <option value="43602">Band A</option>
@@ -61,18 +61,7 @@
                      <!--		   <option value="61.40">Myto Aggregate</option>-->
                   </select>
                   
-                  <!--	                        PHASE--> 
-                  
-                  <!--
-	  
-	    <select id="selectPhase"  class="form-control input select-input drop-down-caret">
-          <option disabled selected>Customer's PHASE...</option>       
-          <option value="" disabled selected="selected">Select Phase *</option>
-		   <option value="1">Single Phase</option>
-		   <option value="1.7321">3 Phase</option>
-		   
-        </select>
--->
+                  <!--	                        PHASE-->
                   
                   <button id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
                </form>
@@ -83,7 +72,7 @@
                </div>
             </div>
             
-           <!--	  BILLING W-->
+            <!--	  BILLING W-->
             
             <div class="billingKW__form" style="display: none;">
                <div id="billingKW-form-wrapper">
@@ -91,9 +80,9 @@
                      <div class="info">
                         <p> Calculate customer's bill using Assessed Load(Watt) </p>
                      </div>
-                     <label for="inputKW" class="sr-only">Total Load(W)</label>
-                     <input type="number" id="inputKW" class="form-control load" placeholder="Total Load (Watts) *" required>
-                     <select id="selectBandKW" class="form-control input select-input drop-down-caret">
+                     <label for="inputW" class="sr-only">Total Load(W)</label>
+                     <input type="number" id="inputW" class="form-control load" placeholder="Total Load (Watts) *" required>
+                     <select id="selectBandW" class="form-control input select-input drop-down-caret">
                         <!--          <option disabled selected>Customer's Band...</option>       -->
                         <option value="" disabled selected="selected">Select a Band *</option>
                         <option value="43602">Band A</option>
@@ -102,16 +91,16 @@
                         <option value="9520.8">Band D</option>
                         <option value="4732.8">Band E</option>
                      </select>
-                     <button id="btnStartKW" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+                     <button id="btnStartW" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
                   </form>
                   <div class="output">
                      <h1 class="b-display">Your Monthly Bill is:</h1>
-                     <div id="outputCostKW" class="form-control bill"></div>
-                     <button id="btnRefreshKW" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+                     <div id="outputCostW" class="form-control bill"></div>
+                     <button id="btnRefreshW" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
                   </div>
-				    <div class="tips">
-                        <p>Note: If an appliance is rated in kW, multiply the kw value by 1000 to get the rating in watts </p>
-                     </div>
+                  <div class="tips">
+                     <p>Note: If an appliance is rated in kW, multiply the kw value by 1000 to get the rating in watts </p>
+                  </div>
                </div>
             </div>
             
@@ -178,16 +167,50 @@
                </div>
             </div>
             
-            <!--	  Fuse Rating-->
+      
+			 
+			     <!--	  BILL DISCOUNT-->
             
             <div class="fuse__form" style="display: none; margin-bottom:50px">
-               <div class="form-container">
-                  <div class="info">
-                     <p>Calculate Transformer Fuse rating</p>
+               <div id="fuse-form-wrapper">
+                  <div class="form-container">
+                     <div class="info">
+                        <p> Calculate Arrears Discount </p>
+                     </div>
+                     <label for="inputBill" class="sr-only">Total Arrears</label>
+                     <input type="number" id="inputBill" class="form-control load" placeholder="Total Arrears*" required>
+					  
+					  
+					  
+<!--
+                     <label for="inputRate" class="sr-only">Duration</label>
+                     <input type="number" id="inputRate" class="form-control load" placeholder="Discount Rate (%) *" required>
+-->
+                    
+                     <button id="btnStartDiscount" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
                   </div>
-                  <h2 style="margin-top:60px ">COMING SOON</h2>
+                  <div class="output">
+					   <div id="discountGiven" class="status clear2"></div>
+                  <h1 class="b-display">You pay:</h1>
+                  <div id="totalDiv" class="clear2 form-control bill"></div>
+                  <h1 class="b-display">You save:</h1>
+                  <div id="discountDiv" class="clear2 form-control bill" style="color:green"></div>
+					 
+<!--                  <div id="outputSave" class="status clear"></div>-->
+                  <!--    <div id="outputSum" class="form-control bill"></div>-->
+                  
+                  <button id="btnRefreshDisc" class="btnReset2 btn btn2 btn-lg btn-primary btn-block">Reset</button>
+               </div>
                </div>
             </div>
+            
+			 
+			 
+			 
+			 
+            
+            
+               
             
             <!--	  TRANSFORMER LOADING-->
             
@@ -222,8 +245,7 @@
                   <h1 class="b-display">The Percentage Loading of this DTR is:</h1>
                   <div id="outputLoading" class="clear form-control bill"></div>
                   <h1 class="b-display">The Percentage Imbalance of this DTR is:</h1>
-                  <div id="outputImbalance" class="clear form-control bill"></div> 
-				   
+                  <div id="outputImbalance" class="clear form-control bill"></div>
                   <div id="balance" class="status clear"></div>
                   <!--    <div id="outputSum" class="form-control bill"></div>-->
                   
@@ -245,396 +267,9 @@
    </div>
 </div>
 </body>
-<script>
-//$('.lor__form').hide();
-$('.lorH__form').hide();
-//$('.lorH__form').hide();
-
- $('.billing__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.lor__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.billing__form').show();
-   $('.billingKW__form').hide();
-   $('.lor__form').hide();
-   $('.lorH__form').hide();
-   $('.DTRloading__form').hide();
-   $('.fuse__form').hide();
-                   //Should appear after $('.billing__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- });
-
- $('.lor__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.lor__form').show();
-   $('.lorH__form').hide();
-   $('.billingKW__form').hide();
-   $('.billing__form').hide();
-//   $('.fuse__form').hide();
-   $('.DTRloading__form').hide();
-   $('.fuse__form').hide();
-     //Should appear after $('.lor__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- });
-	
-    ;$('.lorH__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.lorH__form').show();
-   $('.lor__form').hide();
-    $('.billingKW__form').hide();
-   $('.billing__form').hide();
-   $('.DTRloading__form').hide();
-   $('.fuse__form').hide();
-   //Should appear after $('.lor__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- })
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/myScript.js"></script>
 	
 
- $('.DTRloading__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.DTRloading__form').show();
-   $('.billingKW__form').hide();
-   $('.lorH__form').hide();
-   $('.lor__form').hide();
-   $('.billing__form').hide();
-   $('.fuse__form').hide();
-     //Should appear after $('.DTRloading__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- }); 
-	
-	$('.fuse__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__form').show();
-   $('.lorH__form').hide();
-   $('.lor__form').hide(); 
-   $('.billingKW__form').hide();
-   $('.billing__form').hide();
-   $('.DTRloading__form').hide();
-     //Should appear after $('.DTRloading__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- });
-	
-	$('.billingKW__button').click(function(e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-  $('.fuse__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.billingKW__form').show();
-   $('.lorH__form').hide();
-   $('.lor__form').hide();
-   $('.fuse__form').hide();
-   $('.billing__form').hide();
-   $('.DTRloading__form').hide();
-     //Should appear after $('.DTRloading__form').show(); because if it's before that, the lor form doesn't exist in the DOM
- });
-	
-    
-</script>
-<script>
-		const loadAmps = document.querySelector("#inputAmps");
-//		const inputPhase = document.querySelector("#selectPhase");
-const Band = document.querySelector("#selectBand");
-//const Phase = document.querySelector("#selectPhase");
-const output = document.querySelector("#outputCost");
-const start = document.getElementById("btnStart");
-const refresh = document.getElementById("btnRefresh");
-
-function calculate(e) {
-  console.log(e);
-  e.preventDefault();
-  console.log("btn clicked");
-  var total = loadAmps.value * Band.value * 0.240*0.6*0.85*1.075;
-  console.log(total);
-  output.innerHTML = "\u20a6" + total.toLocaleString('en-US');
-}
-	
-	
-function emptyInput() {
-  console.log("emptied!");
-  output.innerHTML = "";
-  loadAmps.value = "";
-  Band.value = "";
-//  Phase.value = "";
-}
-
-
-start.addEventListener("click", calculate);
-refresh.addEventListener("click", emptyInput);
-
-
-
-		
-		</script>
-<script>
-		const loadKW = document.querySelector("#inputKW");
-//		const inputPhase = document.querySelector("#selectPhase");
-const BandKW = document.querySelector("#selectBandKW");
-//const Phase = document.querySelector("#selectPhase");
-const outputKW = document.querySelector("#outputCostKW");
-const startKW = document.getElementById("btnStartKW");
-const refreshKW = document.getElementById("btnRefreshKW");
-
-function calculate(e) {
-  console.log(e);
-  e.preventDefault();
-  console.log("btn clicked");
-  var total = (((loadKW.value)/1000)* BandKW.value *1.075*0.6);
-  console.log(total);
-  outputKW.innerHTML = "\u20a6" + total.toLocaleString('en-US');
-}
-
-function emptyInput() {
-  console.log("emptied!");
-  outputKW.innerHTML = "";
-  loadKW.value = "";
-  BandKW.value = "";
-//  Phase.value = "";
-}
-
-
-startKW.addEventListener("click", calculate);
-refreshKW.addEventListener("click", emptyInput);
-
-		
-		</script>
-<script>
-		const loadAmps1 = document.querySelector("#inputAmps1");
-		const billHrs = document.querySelector("#inputHrs");
-//		const inputPhase = document.querySelector("#selectPhase");
-const Band1 = document.querySelector("#selectBand1");
-//const Phase1 = document.querySelector("#selectPhase1");
-const output1 = document.querySelector("#outputCost1");
-const start1 = document.getElementById("btnStart1");
-const refresh1 = document.getElementById("btnRefresh1");
-
-function calculate(e) {
-  console.log(e);
-  e.preventDefault();
-  console.log("btn2 clicked");
-  var total = loadAmps1.value * billHrs.value * Band1.value * 0.240*0.6*0.85*1.075;
-  console.log(total);
-  output1.innerHTML = "\u20a6" + total.toLocaleString('en-US');
-}
-
-function emptyInput() {
-  console.log("emptied!");
-  output1.innerHTML = "";
-  loadAmps1.value = "";
-  billHrs.value = "";
-  Band1.value = "";
-//  Phase1.value = "";
-}
-
-
-start1.addEventListener("click", calculate);
-refresh1.addEventListener("click", emptyInput);
-
-		
-		</script>
-<script>
-		const loadMW = document.querySelector("#inputMW");
-		const billHrs2 = document.querySelector("#inputHrs2");
-//		const inputPhase = document.querySelector("#selectPhase");
-const Band2 = document.querySelector("#selectBand2");
-//const Phase1 = document.querySelector("#selectPhase1");
-const output2 = document.querySelector("#outputCost2");
-const start2 = document.getElementById("btnStart2");
-const refresh2 = document.getElementById("btnRefresh2");
-		
-function calculate(e) {
-	total = total || 0;
-  console.log(e);
-  e.preventDefault();
-  console.log("btn2 clicked");
-  var total = ((40000) + ((loadMW.value * 1000) * billHrs2.value * Band2.value * 1.075) );
-	console.log(total);
-	if(total === 40000) {
-		 output2.innerHTML = "\u20a6" + "0";
-	}else{
-  
-  output2.innerHTML = "\u20a6" + total.toLocaleString('en-US');
-	}
-}
-
-function emptyInput() {
-  console.log("emptied!");
-  output2.innerHTML = "";
-  loadMW.value = "";
-  billHrs2.value = "";
-  Band2.value = "";
-//  Phase1.value = "";
-}
-	
-
-
-start2.addEventListener("click", calculate);
-refresh2.addEventListener("click", emptyInput);
-		
-	
-		
-
-		
-		</script>
-<script>
-		
-			document.getElementById("btnStart3").addEventListener('click', doCalc);
-		
-		
-
-		function doCalc() {
-   // Assign user inputs to variables
-			
-   let x = parseFloat(document.querySelector("#red").value);
-   let y = parseFloat(document.querySelector("#yellow").value);
-   let z = parseFloat(document.querySelector("#blue").value);
-   let n = parseFloat(document.querySelector("#neutral").value);
-   
-	const capacity = document.querySelector("#inputKVA");
-    const refresh3 = document.getElementById("btnRefresh3");
-		
-			
-    let loading = ((Math.max(x,y,z) / (capacity.value * 1.4) )* 100);
-			
-			
-   // Display result to user 
-	
-	loading = loading || 0;
-	
-
-	
-	console.log(loading);
-	outputLoading.innerHTML = loading.toFixed(0) + "%";
-	}
-	
-	document.getElementById("btnStart3").addEventListener('click', doMath);
-	
-	
-	
-
-		function doMath() {
-   // Assign user inputs to variables
-			
-   let xx = parseFloat(document.querySelector("#red").value);
-   let yy = parseFloat(document.querySelector("#yellow").value);
-   let zz = parseFloat(document.querySelector("#blue").value);
-   let nn = parseFloat(document.querySelector("#neutral").value);
-   
-		let imbalance = ((nn/Math.max(xx,yy,zz,nn))*100);
-	
-	imbalance = imbalance || 0;
-	
-	 if(imbalance === 0) {
-		 balance.innerHTML = "";
-		
-            }else if(imbalance <= 20) {
-                document.getElementById('outputImbalance').style.color = "black";
-                document.getElementById('balance').style.color = "green";
-		 balance.innerHTML = "DTR Load is Balanced";
-			}else if(imbalance > 49) {
-                document.getElementById('outputImbalance').style.color = "red";
-                document.getElementById('balance').style.color = "red";
-		         balance.innerHTML = "DTR Load is Highly Unbalanced";
-		
-            }else if(imbalance >= 20) {
-                document.getElementById('outputImbalance').style.color = "brown";
-                document.getElementById('balance').style.color = "brown";
-		 balance.innerHTML = "DTR Load is Moderately Balanced";
-		
-            } ;
-
-	console.log(imbalance);
-	outputImbalance.innerHTML = imbalance.toFixed(0) + "%";
-	
-//	 let imbalance = (n / (math.max(x,y,z,n)) * 100);
-//	
-//	console.log(imbalance);
-//	outpfLA.innerHTML = imbalance.toFixed(0) + "%";
-	
-}
-		const capacity = document.querySelector("#inputKVA");
-	function calculate(e) {
-  console.log(e);
-  e.preventDefault();
-  console.log("btnStart3 clicked");
-  var totalfLA = ((capacity.value * 1000) / (1.7321 * 415));
-	
-  console.log(totalfLA);
-
-//  flA.innerHTML = totalfLA.toFixed(1) + "A";
-
-	
-}	
-	
-	btnStart3.addEventListener("click", calculate);
-	
-
-	$( ".btnReset" ).click(function() {
-  $( ".clear" ).empty();
-	document.querySelector('#red').value ='';
-	document.querySelector('#yellow').value ='';
-	document.querySelector('#blue').value ='';
-	document.querySelector('#neutral').value ='';
-	document.querySelector('#inputKVA').value ='';
-//	document.querySelector('#flA').value ='';
-//	document.querySelector('#outputLoading').value ='';
-	
-});
-	
-		
-		
-
-		
-		</script>
-<script>
-	
-	
-//logo
-//array of news
-const news = ["Current Non-MD Tariff  &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; Band A - \u20a672.67  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;      Band B - \u20a669.96   &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Band C - \u20a656.38  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;      Band D - \u20a639.67   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Band E - \u20a639.44. &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Designed by: &nbsp; &nbsp; &nbsp;Obot   &nbsp; Akpan ",
-//"&nbsp; &nbsp;",
-//"&nsbsp; &nbsp;",
-"&nbsp; &nbsp;" ]
-
-//logo
-const logo = "<img src  width='25px' style='margin:0 8px'/>";
-let tickerText = "";
-//looping through the news array
-for(let i=0; i<news.length; i++){
-  tickerText+=news[i];
-  //adds the logo in between news items
-  if(i!=news.length-1){
-    tickerText+=logo;
-  }
-	
-}
-
-document.querySelector("#scroll").innerHTML = tickerText;
-	
-	</script>
 </html>
