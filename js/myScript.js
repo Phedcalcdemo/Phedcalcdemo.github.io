@@ -236,54 +236,66 @@ refresh2.addEventListener("click", emptyLorHInput);
 document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
 
    function doDisc() {
-      var totalArrears = document.getElementById("inputBill").value;
+      var totalArrears = parseFloat(document.querySelector("#inputBill").value);
+      var currentBill = parseFloat(document.querySelector("#currentCharge").value);
       let rate = 0;
 //      let tax = 1.06;
-      let total = 0;
-      if (totalArrears >9999 && totalArrears < 50000) {
+	   
+	   currentBill = currentBill || 0;
+	   totalArrears = totalArrears || 0;
+      let total = totalArrears + currentBill;
+      if (total ==="") {
+        rate = "";
+		 discGiven = "null"; 
+      } else if (total > 9999 && total <50000){
         rate = 0.2;
-      } else if (totalArrears > 49999 && totalArrears <200000){
+	  } else if (total > 49999 && total <200000){
         rate = 0.22;
-	  } else if (totalArrears > 199999 && totalArrears <300000){
+	  } else if (total > 199999 && total <300000){
         rate = 0.25;
-	  } else if (totalArrears > 299999 && totalArrears <400000){
+	  } else if (total > 299999 && total <400000){
         rate = 0.3;
-	  }  else if (totalArrears > 399999 && totalArrears <500000){
+	  }  else if (total > 399999 && total <500000){
         rate = 0.35;
-	  }  else if (totalArrears >= 500000){
+	  }  else if (total >= 500000){
         rate = 0.4;
+	  }  else if (total >0 && total <10000){
+        rate = "0";
       } else{
         rate = 0;
       }
-      let discount = totalArrears * rate;
+      let discount = total * rate;
       if (rate == 0.2) {
         disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "You're Eligible for 20% discount.";
+		discGiven = "Congrats, you are eligible for 20% discount.";
       }else if (rate == 0.22) {
         disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "You're Eligible for 22% discount.";
+		discGiven = "Congrats, you are eligible for 22% discount.";
 	  }else if (rate == 0.25) {
         disctotal = "\u20a6" +discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "You're Eligible for 25% discount.";
+		discGiven = "Congrats, you are eligible for 25% discount.";
 	  }else if (rate == 0.3) {
         disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "You're Eligible for 30% discount.";
+		discGiven = "Congrats, you are eligible for 30% discount.";
 	  }else if (rate == 0.35) {
         disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "You're Eligible for 35% discount.";
+		discGiven = "Congrats, you are eligible for 35% discount.";
 	  }else if (rate == 0.4) {
         disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "You're Eligible for 40% discount.";
+		discGiven = "Congrats, you are eligible for 40% discount.";
+	  }else if (rate =="") {
+        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
+		discGiven = "";
       } else {
         if (rate == 0) {
         disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "";
+		discGiven = "Sorry, you are not eligible for this promo.";
         } else {
           disctotal = "";
         }
       }
 //      taxtotal = tax;
-      finaltotal = ((totalArrears - discount) * 1);
+      finaltotal = (total - discount);
       document.getElementById('discountDiv').innerHTML = disctotal;
       document.getElementById('discountGiven').innerHTML = discGiven;
 //      document.getElementById('taxDiv').innerHTML = "Tax: $".toFixed(2);
@@ -302,10 +314,12 @@ $( ".btnReset2" ).click(function() {
 
 document.getElementById("btnRefreshDisc").addEventListener('click', emptyArrears);
  const Arrears = document.querySelector("#inputBill");
+ const currentB = document.querySelector("#currentCharge");
 function emptyArrears() {
   console.log("emptied!");
   
   Arrears.value = "";
+  currentB.value = "";
   
 //  Phase1.value = "";
 };
