@@ -240,13 +240,12 @@ document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
       var currentBill = parseFloat(document.querySelector("#currentCharge").value);
       let rate = 0;
 //      let tax = 1.06;
-	   
-	   currentBill = currentBill || 0;
-	   totalArrears = totalArrears || 0;
+	  currentBill = currentBill || 0;
+	  totalArrears = totalArrears || 0;
       let total = totalArrears + currentBill;
       if (total ==="") {
-        rate = "";
-		 discGiven = "null"; 
+      rate = "";
+	  discGiven = "null"; 
       } else if (total > 9999 && total <50000){
         rate = 0.2;
 	  } else if (total > 49999 && total <200000){
@@ -296,11 +295,13 @@ document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
       }
 //      taxtotal = tax;
       finaltotal = (total - discount);
+      
       document.getElementById('discountDiv').innerHTML = disctotal;
       document.getElementById('discountGiven').innerHTML = discGiven;
+      document.getElementById('totalDebt').innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 //      document.getElementById('taxDiv').innerHTML = "Tax: $".toFixed(2);
       document.getElementById('totalDiv').innerHTML = "\u20a6" + finaltotal.toLocaleString(undefined,{maximumFractionDigits:2});
-    };
+    }
 
 $( ".btnReset2" ).click(function() {
   $( ".clear2" ).empty();
