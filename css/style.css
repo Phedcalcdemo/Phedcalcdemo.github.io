@@ -147,9 +147,11 @@ select {
 }
 .pay {
    margin-right: 1px;
+	font-size: 50px
 }
 .disc {
    float: right;
+	font-size: 50px
 }
 .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
    background-color: #008ECC;
@@ -211,6 +213,7 @@ table img {
    }
    .discDiv {
       width: 60%;
+	   
    }
    .load {
       padding: 5px 10px;
