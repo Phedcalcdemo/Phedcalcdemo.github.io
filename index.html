@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-
 <title>PHED BILL AND LOR CALCULATOR</title>
 	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
@@ -193,12 +192,19 @@
                      <button id="btnStartDiscount" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
                   </div>
                   <div class="output">
+					  <h1 class="b-display">Your total debt is:</h1>
+                  <div id="totalDebt" class="clear2 form-control bill"></div>
 					   <div id="discountGiven" class="status clear2" style="color: green"></div>
-                  <h1 class="b-display">You pay:</h1>
-                  <div id="totalDiv" class="clear2 form-control bill"></div>
-                  <h1 class="b-display">You save:</h1>
-                  <div id="discountDiv" class="clear2 form-control bill" style="color:green"></div>
-					 
+				<div class="discDiv">
+					<div>
+                  <h1 class="b-display" style="text-align: center">You pay:</h1>
+                  <div id="totalDiv" class="clear2 bill pay clear2 form-control"></div>
+					</div>
+					<div>
+                  <h1 class="b-display" style="text-align: center">You save:</h1>
+                  <div id="discountDiv"  class="clear2 bill disc  form-control" style="color:green"></div>
+					</div>
+				</div>	 
 <!--                  <div id="outputSave" class="status clear"></div>-->
                   <!--    <div id="outputSum" class="form-control bill"></div>-->
                   
