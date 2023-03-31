@@ -1,403 +1,357 @@
 html {
-  box-sizing: border-box;
-  -webkit-appearance:none;
-  -webkit-appearance:button;
-  -webkit-appearance:pushbutton;
-	
+   box-sizing: border-box;
+   -webkit-appearance: none;
+   -webkit-appearance: button;
+   -webkit-appearance: pushbutton;
 }
 *, *:before, *:after {
-  margin: 0;
-  padding: 0;
+   margin: 0;
+   padding: 0;
 }
 .form-container .btn-primary, .output .btn-primary {
-  background-color: #008ECC;
-  outline: none !important;
-  border: none !important
+   background-color: #008ECC;
+   outline: none !important;
+   border: none !important
 }
 .form-container .btn-primary:focus, .output .btn-primary:focus {
-  outline: none !important;
-  border: none !important
+   outline: none !important;
+   border: none !important
 }
-.output .bill{
-	background-color: lightblue
+.output .bill {
+   background-color: lightblue
 }
 input:focus::placeholder {
-        color: transparent;
-      }
-
+   color: transparent;
+}
 body {
-  background: #F0F1D5;
+   background: #F0F1D5;
 }
 .logo-txt h2 {
-  font-size: 40px
+   font-size: 40px
 }
 .DTRloading__form ::placeholder {
-  text-align: center
+   text-align: center
 }
 input[type=number]:focus {
-  background-color: white;
-outline: 2px solid #9999FF !important
+   background-color: white;
+   outline: 2px solid #9999FF !important
 }
 .b-display {
-  font-size: 40px;
+   font-size: 40px;
 }
 .phase input {
-  width: 170px !important;
-  height: 60px;
-  font-size: 30px;
-  margin-bottom: 24px !important
+   width: 170px !important;
+   height: 60px;
+   font-size: 30px;
+   margin-bottom: 24px !important
 }
 .info {
-  /*	width: 80%;*/
-  border-top: 2px solid #5F8D4E;
-  border-bottom: 2px solid #5F8D4E;
-  height: 50px;
-  margin-bottom: 30px;
-  margin-top: 28px;
-  font-size: 30px;
-  padding: 0px /*	text-align: center;*/
+   border-top: 2px solid #5F8D4E;
+   border-bottom: 2px solid #5F8D4E;
+   height: 50px;
+   margin-bottom: 30px;
+   margin-top: 28px;
+   font-size: 30px;
+   padding: 0px
 }
-
-.tips{
-	font-size: 30px;
-	text-align: center
+.tips {
+   font-size: 30px;
+   text-align: center
 }
 .container {
-  width: 100vw;
-  /*  height: 100%;*/
+   width: 100vw;
 }
 .logo {
-  /*  display: flex;*/
-  /*  justify-content: center;*/
-  min-height: 100vh;
-  /*  align-items: center;*/
-  /*  flex-direction: column;*/
-  /*  padding-top: 1em;*/
-    padding-bottom: 8em;
-  background: #F0F1D5;
-  /*  border-radius: 15px; */
-  /*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
-  color: #105187;
+   min-height: 100vh;
+   padding-bottom: 8em;
+   background: #F0F1D5;
+   color: #105187;
 }
 .calc-container {
-  min-height: 50vh;
-  /*	background-color: greenyellow*/
+   min-height: 50vh;
 }
 .cont-wrapper {
-  display: flex;
-  justify-content: center;
-  /*	min-height: 100vh;*/
-  align-items: center;
-  flex-direction: column;
-  /*  padding-top: 1em;*/
-  padding-bottom: 2em;
-  /*  background: #F0F1D5;*/
-  /*  border-radius: 15px; */
-  /*  box-shadow: 1px 2px 2px rgba(0,0,0,.2); */
-  /*  color: #105187;*/
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   padding-bottom: 2em;
 }
 div .phed {
-  width: 70vw;
-  height: auto;
- margin-right: 30px;
+   width: 70vw;
+   height: auto;
+   margin-right: 30px;
 }
 .phase label {
-  font-size: 22px
+   font-size: 22px
 }
 .form-container, .output {
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  margin: 1em;
-  justify-content: center;
-  align-items: center;
+   width: 80vw;
+   display: flex;
+   flex-direction: column;
+   margin: 1em;
+   justify-content: center;
+   align-items: center;
 }
 .output {
-  display: content;
-  /*	margin-top: -12px;*/
+   display: content;
 }
 .form-control {
-  margin-bottom: 20px;
-  width: 100%;
-  border: 1px solid #1174A8;
-  text-align: left;
-  /*  height:100px;*/
+   margin-bottom: 20px;
+   width: 100%;
+   border: 1px solid #1174A8;
+   text-align: left;
 }
 .load {
-  padding: 50px 20px;
-  /*  margin-top: 30px;*/
-  font-size: 50px;
+   padding: 50px 20px;
+   font-size: 50px;
 }
 select {
-  font-size: 40px;
-  padding: 30px;
+   font-size: 40px;
+   padding: 30px;
 }
 .btn {
-  width: 80vw;
-  height: 12rem;
-  box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*  background: 	*/
+   width: 80vw;
+   height: 12rem;
+   box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 .drop-down-caret {
-  height: 100px;
-  font-size: 60px;
+   height: 100px;
+   font-size: 60px;
 }
 .btn:hover {
-  /*  background: #5F8D4E;*/
-  box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
-  /*  border: 1px solid none !important;*/
-  color: whitesmoke;
+   box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
+   color: whitesmoke;
 }
 .btn:active, .btn:visited {
-  /*  background: #2C8693 !important;*/
-  outline: 0 none !important;
+   outline: 0 none !important;
 }
 .btn2:focus {
-  outline: none !important;
-  /*  border: 1px solid #1174A8 !important;*/
+   outline: none !important;
 }
 .bill {
-  text-align: center;
-  height: 100px;
-  font-size: 60px;
-  padding: 10px;
+   text-align: center;
+   height: 100px;
+   font-size: 60px;
+   padding: 10px;
+}
+.discDiv {
+   display: flex;
+   width: 80vw;
+}
+.discDiv div {
+   width: 96%;
+}
+.pay {
+   margin-right: 1px;
+}
+.disc {
+   float: right;
 }
 .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
-  background-color: #008ECC;
-	border: 1px solid #008ECC;
- 
-  border-radius: 50px;
-  /*  display: block;*/
-  /*	margin: 0px 50px;*/
-  width: 20rem;
-	padding: 28px;
-  max-height: 45px;
-  font-size: 22px;
-  color: white;
-  /*  width: 100%;*/
+   background-color: #008ECC;
+   border: 1px solid #008ECC;
+   border-radius: 50px;
+   width: 20rem;
+   padding: 28px;
+   max-height: 45px;
+   font-size: 22px;
+   color: white;
 }
 .billing-button-container {
-  width: 100%;
-  margin-top: 14px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-flow: wrap;
-  /*
-	border-bottom: 2px solid #D73A3A;
-	height: 60px;
-*/
-  /*margin-left: 10%;*/
-  /*margin-right: 5%;*/
+   width: 100%;
+   margin-top: 14px;
+   text-align: center;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   flex-flow: wrap;
 }
 .btn2 {
-  font-size: 40px !important;
-  /*  border: 2px solid #1174A8 !important;*/
-  color: white !important;
+   font-size: 40px !important;
+   color: white !important;
 }
 #marquee-cont {
-/*  background: #f4f4f4;*/
-  background: #f4f4f4;
-  margin-top: 10px;
-  font-size: 26px;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100vw;
+   background: #f4f4f4;
+   margin-top: 10px;
+   font-size: 26px;
+   position: fixed;
+   bottom: 0px;
+   left: 0px;
+   width: 100vw;
 }
 table img {
-  width: 130px;
-  height: auto;
+   width: 130px;
+   height: auto;
 }
-.status{
-		font-size: 40px;
-		padding-bottom: 15px;
-	}
-@media screen and (min-width: 1200px) {
-  body {
-    background: #534484;
-  }
-
-  .btn2 {
-    font-size: 24px !important;
-  }
-  .logo-txt h2 {
-    font-size: 20px
-  }
-	.status{
-		font-size: 18px;
-		padding-bottom: 10px;
-	}
-  .bill {
-    height: 40px;
-    font-size: 20px;
-    padding: 2px;
-    font-weight: bold;
-  }
-  .load {
-    padding: 5px 10px;
-    margin: 0px;
-    /*  font-size:20px;*/
-  }
-  .b-display {
-    font-size: 16px;
-  }
-  .phase input {
-    width: 80px !important;
-    height: auto;
-    font-size: 16px;
-    margin-bottom: 12px !important;
-    margin-top: -5px !important
-  }
-  .phase label {
-    font-size: 12px
-  }
-  div .phed {
-    width: 24vw;
-    height: auto;
-  }
-  .form-container, .output {
-    width: 50vw;
-  }
-  .btn {
-    width: 60%;
-    height: 3rem;
-  }
-  .btn2 {
-    font-size: 18px !important;
-  }
-  .logo {
-/*    border-radius: 15px;*/
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
-	  padding-bottom: 0px;
-    /*	min-height: 600px;*/
-  }
-  .container {
-    width: 65%;
-    /*    padding-top: 1vh;*/
-  }
-  .form-control {
-    text-align: center;
-    margin-bottom: 6px;
-    width: 60%;
-    border: 1px solid #AE5AD3;
-  }
-  .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
-    font-size: 14px;
-    /*	display: inline-block;*/
-    margin: 0 auto;
-    width: 11rem;
-    max-height: 30px;
-    color: white;
-    padding: 10px
-    /*  width: 100%;*/
-  }
-  .billing-button-container {
-    width: 65%;
-    /*  margin-top: 32px;*/
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-flow: wrap;
-    /*
-	border-bottom: 2px solid #D73A3A;
-	height: 60px;
-*/
-    /*				background-color: aqua;*/
-    /*margin-left: 10%;*/
-    /*margin-right: 5%;*/
-  }
-  .info {
-    border-top: 1px solid #5F8D4E;
-    border-bottom: 1px solid #5F8D4E;
-    margin-bottom: 10px;
-    height: 30px;
-    margin-top: 10px;
-    font-size: 16px;
-    text-align: center;
-    padding: 1px;
-  }
-	.tips{
-	font-size: 16px
+.status {
+   font-size: 40px;
 }
-  .drop-down-caret, .load, .form-control {
-    height: 30px;
-    font-size: 16px;
-  }
-  #marquee-cont {
-    position: sticky;
-    bottom: 0px;
-   left: 0px;
-    width:100%;
-	  text-align: center;
-    font-size: 16px
-  }
-  table img {
-    width: 80px;
-    height: auto;
-  }
+@media screen and (min-width: 1024px) {
+   body {
+      background: #534484;
+   }
+   .btn2 {
+      font-size: 24px !important;
+   }
+   .logo-txt h2 {
+      font-size: 20px
+   }
+   .status {
+      font-size: 18px;
+   }
+   .bill {
+      height: 40px;
+      font-size: 20px;
+      padding: 2px;
+      font-weight: bold;
+   }
+   .discDiv {
+      width: 60%;
+   }
+   .load {
+      padding: 5px 10px;
+      margin: 0px;
+   }
+   .b-display {
+      font-size: 16px;
+   }
+   .phase input {
+      width: 80px !important;
+      height: auto;
+      font-size: 16px;
+      margin-bottom: 12px !important;
+      margin-top: -5px !important
+   }
+   .phase label {
+      font-size: 12px
+   }
+   div .phed {
+      width: 24vw;
+      height: auto;
+   }
+   .form-container, .output {
+      width: 50vw;
+   }
+   .btn {
+      width: 60%;
+      height: 3rem;
+   }
+   .btn2 {
+      font-size: 18px !important;
+   }
+   .logo {
+      box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
+      padding-bottom: 0px;
+   }
+   .container {
+      width: 65%;
+   }
+   .form-control {
+      text-align: center;
+      margin-bottom: 6px;
+      width: 60%;
+      border: 1px solid #AE5AD3;
+   }
+   .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
+      font-size: 14px;
+      margin: 0 auto;
+      width: 11rem;
+      max-height: 30px;
+      color: white;
+      padding: 10px
+   }
+   .billing-button-container {
+      width: 65%;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-flow: wrap;
+   }
+   .info {
+      border-top: 1px solid #5F8D4E;
+      border-bottom: 1px solid #5F8D4E;
+      margin-bottom: 10px;
+      height: 30px;
+      margin-top: 10px;
+      font-size: 16px;
+      text-align: center;
+      padding: 1px;
+   }
+   .tips {
+      font-size: 16px
+   }
+   .drop-down-caret, .load, .form-control {
+      height: 30px;
+      font-size: 16px;
+   }
+   #marquee-cont {
+      position: sticky;
+      bottom: 0px;
+      left: 0px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px
+   }
+   table img {
+      width: 80px;
+      height: auto;
+   }
 }
-
-
-
-
-
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .lorH__button:hover, .fuse__button:hover, .DTRloading__button:hover {
-  background: A4BE7B;
-  border: 2px solid white !important;
-  color: white;
-  box-shadow: none;
+   background: A4BE7B;
+   border: 2px solid white !important;
+   color: white;
+   box-shadow: none;
 }
 .billing__button:focus, .billing__button.focus, .billingKW__button:focus, .billingKW__button.focus, .lor__button:focus, .lor__button.focus, .lorH__button:focus, .lorH__button.focus, .fuse__button:focus, .fuse__button.focus, .DTRloading__button:focus, .DTRloading__button.focus {
-  outline: none !important;
-  border-: 1px solid white;
+   outline: none !important;
+   border-: 1px solid white;
 }
 .billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .lorH__button:active, .lorH__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
-  background-color: white;
-  /*  border: 1px solid blue;*/
-  color: #008ECC;
-  box-shadow: none;
+   background-color: white;
+   color: #008ECC;
+   box-shadow: none;
 }
 .hidden_clip {
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute;
+   clip: rect(1px 1px 1px 1px);
+   clip: rect(1px, 1px, 1px, 1px);
+   position: absolute;
 }
 input, label {
-  display: block;
-  text-align: center /*margin: 0px,10px*/
+   display: block;
+   text-align: center
 }
 .formInline {
-  margin: 0px 10px 10px
+   margin: 0px 10px 10px
 }
 #marquee-cont marquee {
-  margin-top: 5px;
+   margin-top: 5px;
 }
 #marquee-news {
-  background: #1174A8;
-  padding: 5px;
-  font-color: red !important
+   background: #1174A8;
+   padding: 5px;
+   font-color: red !important
 }
 #ticker-title {
-  border: none;
-  padding: 5px 20px;
-  background: #1174A8;
-  color: white;
+   border: none;
+   padding: 5px 20px;
+   background: #1174A8;
+   color: white;
 }
 #ticker-title:focus {
-  outline: none;
+   outline: none;
 }
 .btn:focus {
-  outline: none !important
+   outline: none !important
 }
 .btn:hover {
-  outline: none !important
+   outline: none !important
 }
 #yellow, #red, #blue, #neutral {
-  font-weight: 400
+   font-weight: 400
 }
