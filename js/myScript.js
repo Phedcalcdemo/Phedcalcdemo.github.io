@@ -367,7 +367,7 @@ document.getElementById("btnStart3").addEventListener('click', doMath);
    let zz = parseFloat(document.querySelector("#blue").value);
    let nn = parseFloat(document.querySelector("#neutral").value);
 	
-	let imbalance = ((nn/Math.max(xx,yy,zz,nn))*100);
+	let imbalance = ((nn/Math.max(xx,yy,zz))*100);
 	
 	imbalance = imbalance || 0;
 	
