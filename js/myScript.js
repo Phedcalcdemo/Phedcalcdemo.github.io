@@ -242,7 +242,7 @@ document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
 //      let tax = 1.06;
 	  currentBill = currentBill || 0;
 	  totalArrears = totalArrears || 0;
-      let total = totalArrears + currentBill;
+      let total = totalArrears
       if (total ==="") {
       rate = "";
 	  discGiven = "null"; 
@@ -294,7 +294,7 @@ document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
         }
       }
 //      taxtotal = tax;
-      finaltotal = (total - discount);
+      finaltotal = ((total - discount)+(currentBill));
       
       document.getElementById('discountDiv').innerHTML = disctotal;
       document.getElementById('discountGiven').innerHTML = discGiven;
