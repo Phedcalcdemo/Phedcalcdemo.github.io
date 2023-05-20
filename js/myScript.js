@@ -1,7 +1,7 @@
 // JavaScript Document
 
-
 //$('.lor__form').hide();
+
 $('.lorH__form').hide();
 //$('.lorH__form').hide();
 
@@ -71,8 +71,6 @@ $('.DTRloading__button').click(function (e) {
    $('.lor__form').hide();
    $('.billing__form').hide();
    $('.fuse__form').hide();
-
-
 });
 
 $('.fuse__button').click(function (e) {
@@ -89,7 +87,6 @@ $('.fuse__button').click(function (e) {
    $('.billingKW__form').hide();
    $('.billing__form').hide();
    $('.DTRloading__form').hide();
-
 });
 
 $('.billingKW__button').click(function (e) {
@@ -113,15 +110,25 @@ $('.billingKW__button').click(function (e) {
 
 //  BILLING (AMP)
 
-const loadAmps = document.querySelector("#inputAmps");
+//  BILLING (AMP)
+
+const loadAmps = document.querySelector("#singlePhaseAmps");
 const Band = document.querySelector("#selectBand");
 const output = document.querySelector("#outputCost");
 const start = document.getElementById("btnStart");
 const refresh = document.getElementById("btnRefresh");
+const a = document.getElementById("rAmp");
+const b = document.getElementById("yAmp");
+const c = document.getElementById("bAmp");
+const neutral = document.getElementById("nAmp");
+
 
 function calculate(e) {
    e.preventDefault();
-   var total = (loadAmps.value * Band.value * (0.240 * 0.6 * 0.85 * 1.075));
+	
+	let avg = (Number(a.value) + Number(b.value) + Number(c.value) + Number(neutral.value)) / 3;
+  let total = ((avg + loadAmps.value)* Band.value * 0.240 * 0.6 * 0.85 * 1.075);
+//   var total = (((loadAmps.value)+ampThree) * Band.value * (0.240 * 0.6 * 0.85 * 1.075));
    output.innerHTML = "\u20a6" + total.toLocaleString('en-US');
 }
 
@@ -130,12 +137,19 @@ function emptyInput() {
    output.innerHTML = "";
    loadAmps.value = "";
    Band.value = "";
+   a.value = "";
+   b.value = "";
+   c.value = "";
+   neutral.value = "";
    //  Phase.value = "";
 }
 
 
 start.addEventListener("click", calculate);
 refresh.addEventListener("click", emptyInput);
+tab1.addEventListener("click", emptyInput);
+tab2.addEventListener("click", emptyInput);
+
 
 //      BILLING (WATT)
 
@@ -230,7 +244,6 @@ function emptyLorHInput() {
 }
 start2.addEventListener("click", calcLorH);
 refresh2.addEventListener("click", emptyLorHInput);
-
 
 //       BILL DISCOUNT
 document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
@@ -366,8 +379,22 @@ document.getElementById("btnStart3").addEventListener('click', doMath);
    let yy = parseFloat(document.querySelector("#yellow").value);
    let zz = parseFloat(document.querySelector("#blue").value);
    let nn = parseFloat(document.querySelector("#neutral").value);
+		
+		
+		
+		
+		
+		
+		
 	
 	let imbalance = ((nn/Math.max(xx,yy,zz))*100);
+		
+		
+		
+		
+		
+		
+		
 	
 	imbalance = imbalance || 0;
 	
@@ -421,11 +448,62 @@ for(let i=0; i<news.length; i++){
     tickerText+=logo;
   }
 	
-}
+};
 
 document.querySelector("#scroll").innerHTML = tickerText;
+
 	
+//	$( ".btnResetSingle" ).click(function() {
+//  $( ".clearSingle" ).empty();
+//	document.querySelector('#singlePhaseAmps').value ='';
+//	
+//});	
+//
+//$( ".btnReset8" ).click(function() {
+//  $( ".clear3phase" ).empty();
+//	document.querySelector('#rAmp').value ='';
+//	document.querySelector('#yAmp').value ='';
+//	document.querySelector('#bAmp').value ='';
+//	document.querySelector('#nAmp').value ='';
+//	
+//});	
+//	
 
 
 
-
+//   
+//		
+//		document.getElementById("btnStart3").addEventListener('click', doCalc);
+//		
+//		
+//		function doCalc() {
+//   // Assign user inputs to variables
+//			
+//   let loadR = parseFloat(document.querySelector("#rAmp").value);
+//   let loadY = parseFloat(document.querySelector("#yAmp").value);
+//   let loadB = parseFloat(document.querySelector("#bAmp").value);
+//   let loadN = parseFloat(document.querySelector("#nAmp").value);
+//
+////   // Call the average function
+//   getAverage(loadR,loadY,loadB,loadN);
+//}
+//
+//function getAverage(x,y,z,n) {
+//   // Calculate the average
+//   let average = ((loadR,loadY,loadB,loadN) / 3);
+//   // Display result to user 
+//	average = average || 0;
+//
+//	console.log(average);
+//	outputLoading.innerHTML = average.toFixed(0);
+////	loading = loading || 0;
+//
+////	 if(loading >= 80) {
+////                document.getElementById('outputLoading').style.color = "red";
+////
+////            }
+//
+////	console.log(loading);
+////	outputLoading.innerHTML = loading.toFixed(0) + "%";
+//
+//}
