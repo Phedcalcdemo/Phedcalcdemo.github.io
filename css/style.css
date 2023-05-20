@@ -53,10 +53,8 @@ input[type=number]:focus {
 }
 .phaseAmp input {
   width: 170px !important;
-  /*   width: 10%;*/
   height: 80px;
   font-size: 30px;
-  /*   margin-bottom: 524px !important*/
 }
 .phaseAmp label {
   font-size: 22px;
@@ -119,7 +117,7 @@ div .phed {
   border: 1px solid #1174A8;
   text-align: left;
 }
-.load {
+.load, .loadA {
   padding: 50px 20px;
   font-size: 50px;
 }
@@ -487,7 +485,7 @@ input, label {
   .discDiv {
     width: 60%;
   }
-  .load {
+  .load, .loadA {
     padding: 5px 10px;
     margin: 0px;
   }
