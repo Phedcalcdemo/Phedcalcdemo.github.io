@@ -45,16 +45,12 @@ input[type=number]:focus {
   font-size: 30px;
   margin-bottom: 24px !important
 }
-.phaseAmp {
-  /*	width: 80vw;*/
-  /*	width: 400px;*/
-  /*	background-color: aqua;*/
-  /*	height: 400px*/
-}
+
 .phaseAmp input {
   width: 170px !important;
   height: 80px;
   font-size: 30px;
+  text-align: center !important;
 }
 .phaseAmp label {
   font-size: 22px;
@@ -117,9 +113,14 @@ div .phed {
   border: 1px solid #1174A8;
   text-align: left;
 }
-.load, .loadA {
+.load{
   padding: 50px 20px;
   font-size: 50px;
+}
+.loadA {
+  padding: 50px 20px;
+  font-size: 50px !important;
+	color: blue
 }
 select {
   font-size: 40px;
@@ -320,11 +321,11 @@ input, label {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   opacity: 0;
-  transition: all 0.2s;
-  -o-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -webkit-transition: all 0.2s;
+  transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 .pcss3t > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t > .tab-content-2:checked ~ ul .tab-content-2 {
   /*	z-index: 1;*/
@@ -463,6 +464,8 @@ input, label {
   overflow: hidden;
   font-size: 30px;
 }
+
+
 @media screen and (min-width: 1024px) {
   body {
     background: #534484;
@@ -489,6 +492,9 @@ input, label {
     padding: 5px 10px;
     margin: 0px;
   }
+	.loadA{
+		font-size: 16px !important;
+	}
   .b-display {
     font-size: 16px;
   }
@@ -506,8 +512,9 @@ input, label {
     width: 80px !important;
     height: auto;
     font-size: 16px;
-    margin-top: -5px !important
-  }
+    margin-top: -7px !important;
+	}
+	
   .phaseAmp label {
     font-size: 12px;
     margin-bottom: 5px;
@@ -586,7 +593,8 @@ input, label {
   }
   .pcss3t > ul {
     width: 100%;
-    padding-bottom: 60px;
+      margin-top: 8px;
+    padding-bottom: 65px;
     /*	background-color:*/
     text-align: left;
   }
