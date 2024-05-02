@@ -406,7 +406,7 @@ document.getElementById("btnStart3").addEventListener('click', doMath);
                 document.getElementById('outputImbalance').style.color = "green";
                 document.getElementById('balance').style.color = "green";
     			balance.innerHTML = "DTR's Load is Balanced";
-			}else if(imbalance > 49) {
+			}else if(imbalance >=50) {
                 document.getElementById('outputImbalance').style.color = "red";
                 document.getElementById('balance').style.color = "red";
     			balance.innerHTML = "DTR's Load is Highly Unbalanced";
