@@ -1,5 +1,14 @@
 // JavaScript Document
 
+const tariffs = {
+  '600': 206.8, // Tariff for Band A
+  '480': 69.96, // Tariff for Band B
+  '360': 56.38, // Tariff for Band C
+  '240': 39.67, // Tariff for Band D
+  '120': 39.44  // Tariff for Band E
+};
+
+
 //$('.lor__form').hide();
 
 $('.lorH__form').hide();
@@ -112,9 +121,11 @@ $('.billingKW__button').click(function (e) {
 
 //  BILLING (AMP)
 
+
 const loadAmps = document.querySelector("#singlePhaseAmps");
 const Band = document.querySelector("#selectBand");
 const output = document.querySelector("#outputCost");
+const outputkWh = document.querySelector("#outputKilowattHr");
 const start = document.getElementById("btnStart");
 const refresh = document.getElementById("btnRefresh");
 const a = document.getElementById("rAmp");
@@ -123,18 +134,53 @@ const c = document.getElementById("bAmp");
 const neutral = document.getElementById("nAmp");
 
 
+
 function calculate(e) {
-   e.preventDefault();
+  e.preventDefault();
+  
+  // Calculate the average current if phase values are provided
+  let avg = (Number(a.value) + Number(b.value) + Number(c.value) + Number(neutral.value)) / 3;
+  
+  // Check if any of the phase values are provided
+  let isAvgProvided = a.value || b.value || c.value || neutral.value;
+  
+  // Use 0.415 x root 3 if avg is provided, otherwise use 0.240
+  let multiplier = isAvgProvided ? 0.719 : 0.240;
+  
+  // Calculate total cost based on whether avg or loadAmps.value is used
+  let totalCost;
+  if (isAvgProvided) {
+    totalCost = avg * Number(Band.value) * tariffs[Band.value] * multiplier * 0.6 * 0.85 * 1.075;
+  } else {
+    totalCost = Number(loadAmps.value) * Number(Band.value) * tariffs[Band.value] * multiplier * 0.85 * 0.6 * 1.075;
+  }
 	
-	let avg = (Number(a.value) + Number(b.value) + Number(c.value) + Number(neutral.value)) / 3;
-  let total = ((avg + loadAmps.value)* Band.value * 0.240 * 0.6 * 0.85 * 1.075);
-//   var total = (((loadAmps.value)+ampThree) * Band.value * (0.240 * 0.6 * 0.85 * 1.075));
-   output.innerHTML = "\u20a6" + total.toLocaleString('en-US');
+  let kWh;
+  if (isAvgProvided) {
+    kWh = avg * 0.85 * multiplier;
+  } else {
+    kWh = Number(loadAmps.value) * multiplier * 0.85;
+  }
+	totalCost = totalCost || 0;
+	outputkWh.innerHTML = "Your bill for " + kWh.toFixed(1) + "kWh consumption is:";
+  
+  output.innerHTML = "\u20a6" + totalCost.toLocaleString('en-US');
 }
 
+// Event listeners for buttons
+start.addEventListener('click', calculate);
+refresh.addEventListener('click', () => {
+  // Reset code for refresh button
+});
+//// Event listeners for buttons
+//start.addEventListener('click', calculate);
+//refresh.addEventListener('click', () => {
+//  // Reset code for refresh button
+//});
 
 function emptyInput() {
    output.innerHTML = "";
+   outputkWh.innerHTML = "";
    loadAmps.value = "";
    Band.value = "";
    a.value = "";
@@ -147,8 +193,8 @@ function emptyInput() {
 
 start.addEventListener("click", calculate);
 refresh.addEventListener("click", emptyInput);
-tab1.addEventListener("click", emptyInput);
-tab2.addEventListener("click", emptyInput);
+//tab1.addEventListener("click", emptyInput);
+//tab2.addEventListener("click", emptyInput);
 
 
 //      BILLING (WATT)
@@ -374,51 +420,56 @@ document.getElementById("btnStart3").addEventListener('click', doMath);
 
 		
 	function doMath() {
-
+//function calculatePercentageImbalance(xx, yy, zz) {
    let xx = parseFloat(document.querySelector("#red").value);
    let yy = parseFloat(document.querySelector("#yellow").value);
    let zz = parseFloat(document.querySelector("#blue").value);
-   let nn = parseFloat(document.querySelector("#neutral").value);
-		
-		
-		
-		
-		
-		
-		
+//   let nn = parseFloat(document.querySelector("#neutral").value);
 	
-	let imbalance = ((nn/Math.max(xx,yy,zz))*100);
 		
-		
-		
-		
-		
-		
-		
-	
-	imbalance = imbalance || 0;
-	
-	if(imbalance === 0) {
-	            balance.innerHTML = "";
-	            document.getElementById('outputImbalance').style.color = "black";
-		
-    }else if(imbalance <= 20) {
-                document.getElementById('outputImbalance').style.color = "green";
-                document.getElementById('balance').style.color = "green";
-    			balance.innerHTML = "DTR's Load is Balanced";
-			}else if(imbalance >=50) {
-                document.getElementById('outputImbalance').style.color = "red";
-                document.getElementById('balance').style.color = "red";
-    			balance.innerHTML = "DTR's Load is Highly Unbalanced";
-		
-            }else if(imbalance >= 20) {
-                document.getElementById('outputImbalance').style.color = "brown";
-                document.getElementById('balance').style.color = "brown";
-		 		balance.innerHTML = "DTR's Load is Moderately Balanced";
-					} 
-	
-			outputImbalance.innerHTML = imbalance.toFixed(0) + "%";
-	
+		function calculatePercentageImbalance(xx, yy, zz) {
+    // Calculate the average current
+    let avgCurrent = (xx + yy + zz) / 3;
+
+    // Calculate the deviations
+    let redDeviation = Math.abs(xx - avgCurrent);
+    let yellowDeviation = Math.abs(yy - avgCurrent);
+    let blueDeviation = Math.abs(zz - avgCurrent);
+
+    // Find the maximum deviation
+    let maxDeviation = Math.max(redDeviation, yellowDeviation, blueDeviation);
+
+    // Calculate the percentage imbalance
+    let percentageImbalance = (maxDeviation / avgCurrent) * 100;
+			percentageImbalance = percentageImbalance || 0;
+			
+			if(percentageImbalance === 0) {
+    balance.innerHTML = "";
+    document.getElementById('outputImbalance').style.color = "black";
+} else if(percentageImbalance <= 4) {
+    document.getElementById('outputImbalance').style.color = "green";
+    document.getElementById('balance').style.color = "green";
+    balance.innerHTML = "DTR's Load is Balanced";
+} else if(percentageImbalance > 4 && percentageImbalance <= 10) {
+    document.getElementById('outputImbalance').style.color = "brown";
+    document.getElementById('balance').style.color = "brown";
+    balance.innerHTML = "DTR's Load is Moderately Balanced";
+} else if(percentageImbalance > 10) {
+    document.getElementById('outputImbalance').style.color = "red";
+    document.getElementById('balance').style.color = "red";
+    balance.innerHTML = "DTR's Load is Highly Unbalanced";
+}
+    return percentageImbalance;
+			
+			
+}
+
+let percentageImbalance = calculatePercentageImbalance(xx, yy, zz);
+
+
+outputImbalance.innerHTML = (percentageImbalance.toFixed(0) + "%");
+
+
 }
 
 	$( ".btnReset" ).click(function() {
@@ -428,82 +479,114 @@ document.getElementById("btnStart3").addEventListener('click', doMath);
 	document.querySelector('#blue').value ='';
 	document.querySelector('#neutral').value ='';
 	document.querySelector('#inputKVA').value ='';
-});	
+});		
 
 
 	
 	
 //                    TARIFF TICKER
 
-const news = ["Current Non-MD Tariff  &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; Band A - \u20a6 206.8/kWh  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;      Band B - \u20a6 69.96/kWh   &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; Band C - \u20a6 56.38/kWh  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;      Band D - \u20a6 39.67/kWh   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Band E - \u20a6 39.44/kWh &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Designed by: &nbsp; &nbsp; &nbsp;Obot   &nbsp; Akpan ",
-"&nbsp; &nbsp;" ]
+// Update your news string to use these variables
+//const news = `Current Non-MD Tariff | Band A - \u20a6${tariffs['600']}kWh  Band B - \u20a6${tariffs['480']}  Band C - \u20a6${tariffs['360']}    Band D - \u20a6${tariffs['240']}  Band E - \u20a6${tariffs['120']} | Designed by: Obot Akpan `;
+
+
+
 
 //logo
 
-const logo = "<img src  width='25px' style='margin:0 8px'/>";
-let tickerText = "";
-for(let i=0; i<news.length; i++){
-  tickerText+=news[i];
-  if(i!=news.length-1){
-    tickerText+=logo;
+//const logo = "<img src  width='25px' style='margin:0 8px'/>";
+//let tickerText = "";
+//for(let i=0; i<news.length; i++){
+//  tickerText+=news[i];
+//  if(i!=news.length-1){
+//    tickerText+=logo;
+//  }
+//	
+//}
+//
+//document.querySelector("#scroll").innerHTML = tickerText;
+
+// Get the current date
+function formatDate(date) {
+  const day = date.getDate();
+  const month = date.toLocaleString('en-NG', { month: 'long' });
+  const year = date.getFullYear();
+
+  // Function to add the ordinal suffix to the day
+  function getOrdinalSuffix(day) {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+      case 1:  return "st";
+      case 2:  return "nd";
+      case 3:  return "rd";
+      default: return "th";
+    }
   }
-	
-};
 
-document.querySelector("#scroll").innerHTML = tickerText;
+  return `${day}${getOrdinalSuffix(day)} ${month}, ${year}`;
+}
 
-	
-//	$( ".btnResetSingle" ).click(function() {
-//  $( ".clearSingle" ).empty();
-//	document.querySelector('#singlePhaseAmps').value ='';
-//	
-//});	
-//
-//$( ".btnReset8" ).click(function() {
-//  $( ".clear3phase" ).empty();
-//	document.querySelector('#rAmp').value ='';
-//	document.querySelector('#yAmp').value ='';
-//	document.querySelector('#bAmp').value ='';
-//	document.querySelector('#nAmp').value ='';
-//	
-//});	
-//	
+// Usage
+const currentDate = new Date();
+const formattedDate = formatDate(currentDate); // "21st May, 2024"
 
 
+const news = `&nbsp Current Non-MD Tariff as at ${formattedDate} &nbsp | &nbsp
+  Band A - <span class="green-text">₦${tariffs['600']}kWh</span> &nbsp &nbsp
+  Band B - <span class="green-text">₦${tariffs['480']}</span>  &nbsp &nbsp
+  Band C - <span class="green-text">₦${tariffs['360']}</span> &nbsp &nbsp   
+  Band D - <span class="green-text">₦${tariffs['240']}</span>  &nbsp &nbsp
+  Band E - <span class="green-text">₦${tariffs['120']}</span> &nbsp &nbsp | &nbsp 
+  Designed by: Obot Akpan &nbsp`;
 
-//   
-//		
-//		document.getElementById("btnStart3").addEventListener('click', doCalc);
-//		
-//		
-//		function doCalc() {
-//   // Assign user inputs to variables
-//			
-//   let loadR = parseFloat(document.querySelector("#rAmp").value);
-//   let loadY = parseFloat(document.querySelector("#yAmp").value);
-//   let loadB = parseFloat(document.querySelector("#bAmp").value);
-//   let loadN = parseFloat(document.querySelector("#nAmp").value);
-//
-////   // Call the average function
-//   getAverage(loadR,loadY,loadB,loadN);
-//}
-//
-//function getAverage(x,y,z,n) {
-//   // Calculate the average
-//   let average = ((loadR,loadY,loadB,loadN) / 3);
-//   // Display result to user 
-//	average = average || 0;
-//
-//	console.log(average);
-//	outputLoading.innerHTML = average.toFixed(0);
-////	loading = loading || 0;
-//
-////	 if(loading >= 80) {
-////                document.getElementById('outputLoading').style.color = "red";
-////
-////            }
-//
-////	console.log(loading);
-////	outputLoading.innerHTML = loading.toFixed(0) + "%";
-//
-//}
+// Select the container div by its class
+const container = document.querySelector('.logo');
+container.style.overflow = 'hidden'; // Ensure overflow content is not visible
+container.style.position = 'relative'; // Needed for absolute positioning of children
+
+// Create a ticker container with a new unique ID
+const tickerContainer = document.createElement('div');
+tickerContainer.id = 'tariffScroll';
+tickerContainer.style.position = 'absolute';
+tickerContainer.style.boxShadow = '5px 2px 6px rgba(0, 0, 0, 0.2)';
+
+tickerContainer.style.bottom = '0';
+tickerContainer.style.left = '0';
+tickerContainer.style.whiteSpace = 'nowrap';
+tickerContainer.innerHTML = news;
+
+// Append the ticker container to the selected container div
+container.appendChild(tickerContainer);
+
+// Animate the ticker
+let position = container.offsetWidth; // Use the container's width for initial position
+let tickerPaused = false; // A flag to determine if the ticker is paused
+
+function scrollTicker() {
+  if (!tickerPaused) {
+    position--;
+    // Reset position based on the container's width
+    if (position < -tickerContainer.offsetWidth) {
+      position = container.offsetWidth;
+    }
+    tickerContainer.style.transform = 'translateX(' + position + 'px)';
+  }
+  requestAnimationFrame(scrollTicker);
+}
+
+// Event listener to pause the ticker on mouse enter
+tickerContainer.addEventListener('mouseenter', () => {
+  tickerPaused = true;
+});
+
+// Event listener to resume the ticker on mouse leave
+tickerContainer.addEventListener('mouseleave', () => {
+  tickerPaused = false;
+});
+
+// Start the scrolling
+scrollTicker();
+
+
+
+
