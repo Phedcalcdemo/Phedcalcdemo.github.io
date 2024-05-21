@@ -8,6 +8,9 @@ html {
   margin: 0;
   padding: 0;
 }
+.green-text {
+  color: green;
+}
 .form-container .btn-primary, .output .btn-primary {
   background-color: #008ECC;
   outline: none !important;
@@ -71,22 +74,38 @@ input[type=number]:focus {
 }
 .container {
   width: 100vw;
+/*	overflow: hidden!important*/
 }
 .logo {
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 15px;
   min-height: 100vh;
   padding-bottom: 8em;
   background: #F0F1D5;
   color: #105187;
+/*	position: relative*/
+	overflow: hidden
 }
 .calc-container {
   min-height: 50vh;
 }
 .cont-wrapper {
+	
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-bottom: 2em;
+	overflow: hidden;
+}
+.ticker{
+	font-size: 15px;
+/*	position:fixed;*/
+
+/*
+  display: flex;
+  align-items: center;  This will vertically center the items in the container 
+*/
 }
 div .phed {
   width: 70vw;
@@ -241,6 +260,7 @@ input, label {
 #marquee-cont marquee {
   margin-top: 5px;
 }
+/*
 #marquee-news {
   background: #1174A8;
   padding: 5px;
@@ -255,6 +275,7 @@ input, label {
 #ticker-title:focus {
   outline: none;
 }
+*/
 .btn:focus {
   outline: none !important
 }
@@ -268,7 +289,7 @@ input, label {
   position: relative;
   /*	max-width: 980px;*/
   margin: 0 auto;
-  /*	padding: 0 20px 40px;*/
+
 }
 /**/
 /* main styles */
@@ -579,6 +600,7 @@ input, label {
     height: 30px;
     font-size: 16px;
   }
+/*
   #marquee-cont {
     position: sticky;
     bottom: 0px;
@@ -587,10 +609,13 @@ input, label {
     text-align: center;
     font-size: 16px
   }
+*/
+/*
   table img {
     width: 80px;
     height: auto;
   }
+*/
   .pcss3t > ul {
     width: 100%;
       margin-top: 8px;
