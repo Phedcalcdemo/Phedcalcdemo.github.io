@@ -78,7 +78,7 @@ input[type=number]:focus {
 }
 .logo {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-	font-size: 15px;
+	
   min-height: 100vh;
   padding-bottom: 8em;
   background: #F0F1D5;
@@ -96,9 +96,9 @@ input[type=number]:focus {
   align-items: center;
   flex-direction: column;
   padding-bottom: 2em;
-	overflow: hidden;
+/*	overflow: hidden;*/
 }
-.ticker{
+.logo #tariffScroll{
 	font-size: 15px;
 /*	position:fixed;*/
 
