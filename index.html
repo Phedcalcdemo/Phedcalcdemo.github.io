@@ -14,14 +14,17 @@
 
 <body>
 <div class="container">
-  <div class="logo" >
+  <div class="logo">
     <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED">
       <h2 style="margin-top: -18px">CALCULATOR</h2>
     </div>
     <div class="cont-wrapper">
+		
+		
+		
       <div class="billing-button-container clearfix" style="" >
         <div>
-          <button class="btn billing__button active"> Billing (Amp) </button>
+          <button class="btn billing__button active"> Billing(Amp) </button>
         </div>
         <div>
           <button class="btn billingKW__button"> Billing (Watt) </button>
@@ -41,13 +44,13 @@
           <button class="btn DTRloading__button"> DTR Loading </button>
         </div>
       </div>
-      <div class="calc-container">
+      <div class="calc-container" >
         <div class="billing__form" style="display: block;">
           <form class="form-container">
             <div class="info">
               <p>Calculate customer's bill using captured Load(Amps)</p>
             </div>
-            <div class="page"> 
+            <div class="page" > 
               
               <!-- tabs -->
               <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
@@ -88,13 +91,13 @@
               </div>
               <!--/ tabs --> 
             </div>
-            <select id="selectBand" class="form-control input select-input drop-down-caret">
+             <select id="selectBand" class="form-control input select-input drop-down-caret">
               <option value="" disabled selected="selected">Select a Band *</option>
-              <option value="124080">Band A</option>
-              <option value="33100.8">Band B</option>
-              <option value="20296.8">Band C</option>
-              <option value="9520.8">Band D</option>
-              <option value="4732.8">Band E</option>
+              <option value="600">Band A</option>
+              <option value="480">Band B</option>
+              <option value="360">Band C</option>
+              <option value="240">Band D</option>
+              <option value="120">Band E</option>
             </select>
             
             <!--	                        PHASE-->
@@ -102,9 +105,9 @@
             <button id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
           </form>
           <div class="output">
-            <h1 class="b-display">Your Monthly Bill is:</h1>
+            <h1 class="b-display singleClear"><span id="outputKilowattHr"></span> </h1>
             <div id="outputCost" class="form-control bill"></div>
-            <button id="btnRefresh" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
+            <button id="btnRefresh" class=" btn btn2 btn-lg btn-primary btn-block">Reset</button>
           </div>
         </div>
         
@@ -121,7 +124,7 @@
               <select id="selectBandW" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
-                <option value="124080">Band A</option>
+                <option value="43602">Band A</option>
                 <option value="33100.8">Band B</option>
                 <option value="20296.8">Band C</option>
                 <option value="9520.8">Band D</option>
@@ -202,7 +205,7 @@
               <select id="selectBand1" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
-                <option value="124080">Band A</option>
+                <option value="43602">Band A</option>
                 <option value="33100.8">Band B</option>
                 <option value="20296.8">Band C</option>
                 <option value="9520.8">Band D</option>
@@ -233,7 +236,7 @@
               <select id="selectBand2" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select Band *</option>
-                <option value="206.8">Band A</option>
+                <option value="71.62">Band A</option>
                 <option value="68.96">Band B</option>
                 <option value="56.38">Band C</option>
                 <option value="39.67">Band D</option>
@@ -335,16 +338,13 @@
       </div>
     </div>
   </div>
-  <div id="marquee-cont">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="50px" style="background:#1174A8;"><button id="ticker-title"><img src="PHED-logo-transparent.png"  alt=""></button></td>
-        <td id="marquee"><marquee onmouseover="this.stop();" onmouseout="this.start();" id="scroll">
-          <img src="PHED logo.png" alt="PHED" width="25px" />
-          </marquee></td>
-      </tr>
-    </table>
-  </div>
+	
+	<div class="ticker">
+<!--  <img src="PHED-logo-transparent.png" width="50px" alt="">-->
+  <div id="tariffScroll"></div>
+</div>
+	
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
