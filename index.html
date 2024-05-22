@@ -18,7 +18,7 @@
     <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED">
       <h2 style="margin-top: -18px">CALCULATOR</h2>
     </div>
-    <div class="cont-wrapper">
+    <div class="cont-wrapper" >
 		
 		
 		
@@ -30,7 +30,8 @@
           <button class="btn billingKW__button"> Billing (Watt) </button>
         </div>
         <div>
-          <button class="btn fuse__button"> Debt Promo </button>
+			<button class="btn lorH__button"> Billing (kWh) </button>
+          
         </div>
       </div>
       <div class="billing-button-container clearfix" >
@@ -38,19 +39,19 @@
           <button class="btn lor__button"> LOR (RPD) </button>
         </div>
         <div>
-          <button class="btn lorH__button"> LOR (Haulage) </button>
+         <button class="btn fuse__button"> Debt Promo </button>
         </div>
         <div>
           <button class="btn DTRloading__button"> DTR Loading </button>
         </div>
       </div>
-      <div class="calc-container" >
+      <div class="calc-container" style="background-color: greenyellow;" >
         <div class="billing__form" style="display: block;">
-          <form class="form-container">
+          <form class="form-container" >
             <div class="info">
               <p>Calculate customer's bill using captured Load(Amps)</p>
             </div>
-            <div class="page" > 
+            <div class="page"  > 
               
               <!-- tabs -->
               <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
@@ -151,52 +152,7 @@
               <div class="info">
                 <p> Calculate Loss of Revenue for Energy Theft </p>
               </div>
-				
-				
-<!--
-				   <div class="page"> 
-            
-              <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
-                <input type="radio" name="pcss3t" checked  id="tab11" class="tab-content-first  btnReset8">
-                <label for="tab1">Single Phase</label>
-                <input type="radio" name="pcss3t" id="tab21" class="tab-content-2 btnResetSingle">
-                <label for="tab2">Three Phase</label>
-                <ul style="">
-                  <li class="tab-content tab-content-first typography">
-                    <div class="form-inline" style=" text-align: center;">
-                      <div class="form-group singleA" >
-                        <label for="singlePhaseAmps">&nbsp;</label>
-                        <input type="number" placeholder="Single Phase Load (Amp*)" class="form-control loadA clearSingle" id="singlePhaseAmps1" style="">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="tab-content tab-content-2 typography">
-                    <div class="form-inline" style=" text-align: center; ">
-                      <div class="form-group w-5 phaseAmp ">
-                        <label for="rAmp">Red Phase:</label>
-                        <input type="number" placeholder="R" class="clear3phase form-control  formInline2" id="rAmp1" >
-                      </div>
-                      <div class="form-group phaseAmp">
-                        <label for="yAmp">Yellow Phase:</label>
-                        <input type="number" placeholder="Y" class="clear3phase form-control formInline2" id="yAmp1" >
-                      </div>
-                      <div class="form-group phaseAmp">
-                        <label for="bAmp">Blue Phase:</label>
-                        <input type="number" placeholder="B" class="clear3phase form-control formInline2" id="bAmp1" >
-                      </div>
-                      <div class="form-group phaseAmp">
-                        <label for="nAmp">Neutral:</label>
-                        <input type="number" placeholder="N" class="clear3phase form-control formInline2" id="nAmp1">
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-				
--->
-                
-                
+				    
 				
               <label for="inputAmps1" class="sr-only">Total Load(Amp)</label>
               <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
@@ -230,9 +186,11 @@
                 <p>Calculate Loss of Revenue for Haulage/Relocation</p>
               </div>
               <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
-              <input type="number" id="inputMW" class="form-control load" placeholder="Load (MW) *" required>
+              <input type="number" id="inputMW" class="form-control load" placeholder="Consumption (kWh) *" required>
+<!--
               <label for="inputHrs2" class="sr-only">Duration</label>
               <input minlength="1"  type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *"  >
+-->
               <select id="selectBand2" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select Band *</option>
@@ -241,7 +199,6 @@
                 <option value="56.38">Band C</option>
                 <option value="39.67">Band D</option>
                 <option value="39.44">Band E</option>
-                <option value="61.4">Myto Aggregate</option>
               </select>
               <button  id="btnStart2" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
