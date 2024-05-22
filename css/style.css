@@ -159,6 +159,13 @@ select {
 /*  padding: 30px;*/
 	
 }
+.select-input {
+  font-size: 35px!important;
+	text-align: center
+/*  padding: 30px;*/
+	
+}
+
 .btn {
   width: 70vw;
   height: 12rem;
@@ -472,6 +479,7 @@ input, label {
   margin-top: -7px;
   overflow: hidden;
   font-size: 30px;
+	text-align: center;
 	margin-left: auto;
   margin-right: auto;
 }
@@ -495,6 +503,11 @@ input, label {
   }
 	.logo #tariffScroll{
 	font-size: 15px;
+}
+	.select-input {
+  font-size: 15px!important;
+/*  padding: 30px;*/
+	
 }
   .btn2 {
     font-size: 24px !important;
