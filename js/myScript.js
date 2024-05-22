@@ -2,7 +2,7 @@
 
 const tariffs = {
   '600': 206.8, // Tariff for Band A
-  '480': 69.96, // Tariff for Band B
+  '480': 68.96, // Tariff for Band B
   '360': 56.38, // Tariff for Band C
   '240': 39.67, // Tariff for Band D
   '120': 39.44  // Tariff for Band E
@@ -11,21 +11,21 @@ const tariffs = {
 
 //$('.lor__form').hide();
 
-$('.lorH__form').hide();
-//$('.lorH__form').hide();
+$('.billingKwh__form').hide();
+//$('.billingKwh__form').hide();
 
 $('.billing__button').click(function (e) {
    e.preventDefault();
    $(this).addClass('active');
    $('.lor__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
+   $('.billingKwh__button').removeClass('active');
    $('.billingKW__button').removeClass('active');
    $('.DTRloading__button').removeClass('active');
    $('.fuse__button').removeClass('active');
    $('.billing__form').show();
    $('.billingKW__form').hide();
    $('.lor__form').hide();
-   $('.lorH__form').hide();
+   $('.billingKwh__form').hide();
    $('.DTRloading__form').hide();
    $('.fuse__form').hide();
 
@@ -36,11 +36,11 @@ $('.lor__button').click(function (e) {
    $(this).addClass('active');
    $('.billing__button').removeClass('active');
    $('.billingKW__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
+   $('.billingKwh__button').removeClass('active');
    $('.DTRloading__button').removeClass('active');
    $('.fuse__button').removeClass('active');
    $('.lor__form').show();
-   $('.lorH__form').hide();
+   $('.billingKwh__form').hide();
    $('.billingKW__form').hide();
    $('.billing__form').hide();
    //   $('.fuse__form').hide();
@@ -50,7 +50,7 @@ $('.lor__button').click(function (e) {
 });
 
 
-$('.lorH__button').click(function (e) {
+$('.billingKwh__button').click(function (e) {
    e.preventDefault();
    $(this).addClass('active');
    $('.billing__button').removeClass('active');
@@ -58,7 +58,7 @@ $('.lorH__button').click(function (e) {
    $('.lor__button').removeClass('active');
    $('.DTRloading__button').removeClass('active');
    $('.fuse__button').removeClass('active');
-   $('.lorH__form').show();
+   $('.billingKwh__form').show();
    $('.lor__form').hide();
    $('.billingKW__form').hide();
    $('.billing__form').hide();
@@ -70,13 +70,13 @@ $('.DTRloading__button').click(function (e) {
    e.preventDefault();
    $(this).addClass('active');
    $('.billing__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
+   $('.billingKwh__button').removeClass('active');
    $('.billingKW__button').removeClass('active');
    $('.lor__button').removeClass('active');
    $('.fuse__button').removeClass('active');
    $('.DTRloading__form').show();
    $('.billingKW__form').hide();
-   $('.lorH__form').hide();
+   $('.billingKwh__form').hide();
    $('.lor__form').hide();
    $('.billing__form').hide();
    $('.fuse__form').hide();
@@ -87,11 +87,11 @@ $('.fuse__button').click(function (e) {
    $(this).addClass('active');
    $('.billing__button').removeClass('active');
    $('.billingKW__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
+   $('.billingKwh__button').removeClass('active');
    $('.lor__button').removeClass('active');
    $('.DTRloading__button').removeClass('active');
    $('.fuse__form').show();
-   $('.lorH__form').hide();
+   $('.billingKwh__form').hide();
    $('.lor__form').hide();
    $('.billingKW__form').hide();
    $('.billing__form').hide();
@@ -102,12 +102,12 @@ $('.billingKW__button').click(function (e) {
    e.preventDefault();
    $(this).addClass('active');
    $('.billing__button').removeClass('active');
-   $('.lorH__button').removeClass('active');
+   $('.billingKwh__button').removeClass('active');
    $('.lor__button').removeClass('active');
    $('.fuse__button').removeClass('active');
    $('.DTRloading__button').removeClass('active');
    $('.billingKW__form').show();
-   $('.lorH__form').hide();
+   $('.billingKwh__form').hide();
    $('.lor__form').hide();
    $('.fuse__form').hide();
    $('.billing__form').hide();
@@ -157,9 +157,9 @@ function calculate(e) {
 	
   let kWh;
   if (isAvgProvided) {
-    kWh = avg * 0.85 * multiplier;
+    kWh = avg * Number(Band.value) * multiplier * 0.6 * 0.85;
   } else {
-    kWh = Number(loadAmps.value) * multiplier * 0.85;
+    kWh = Number(loadAmps.value) * Number(Band.value) * multiplier * 0.6 * 0.85;
   }
 	totalCost = totalCost || 0;
 	outputkWh.innerHTML = "Your bill for " + kWh.toFixed(1) + "kWh consumption is:";
@@ -261,35 +261,32 @@ refresh1.addEventListener("click", emptyLorRPDInput);
 //              LOR (HAULAGE)
 
 const loadMW = document.querySelector("#inputMW");
-const billHrs2 = document.querySelector("#inputHrs2");
+
 const Band2 = document.querySelector("#selectBand2");
 const output2 = document.querySelector("#outputCost2");
 const start2 = document.getElementById("btnStart2");
 const refresh2 = document.getElementById("btnRefresh2");
 
-function calcLorH(e) {
+function calcbillingKwh(e) {
    total = total || 0;
    e.preventDefault();
   
-   var total = ((40000) + ((loadMW.value * 1000) * billHrs2.value * Band2.value * 1.075));
+     var total = loadMW.value  * tariffs[Band2.value] * 1.075;
   
-   if (total === 40000) {
-      output2.innerHTML = "\u20a6" + "0";
-   } else {
-
-      output2.innerHTML = "\u20a6" + total.toLocaleString('en-US');
-   }
+  output2.innerHTML = "\u20a6" + total.toLocaleString('en-US');
 }
+   
 
-function emptyLorHInput() {
+
+function emptybillingKwhInput() {
    output2.innerHTML = "";
    loadMW.value = "";
-   billHrs2.value = "";
+//   billHrs2.value = "";
    Band2.value = "";
    //  Phase1.value = "";
 }
-start2.addEventListener("click", calcLorH);
-refresh2.addEventListener("click", emptyLorHInput);
+start2.addEventListener("click", calcbillingKwh);
+refresh2.addEventListener("click", emptybillingKwhInput);
 
 //       BILL DISCOUNT
 document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
