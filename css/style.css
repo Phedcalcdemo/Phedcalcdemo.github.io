@@ -41,7 +41,7 @@ input[type=number]:focus {
   outline: 2px solid #9999FF !important
 }
 .b-display {
-  font-size: 40px;
+  font-size: 30px;
 }
 .phase input {
   width: 170px !important;
