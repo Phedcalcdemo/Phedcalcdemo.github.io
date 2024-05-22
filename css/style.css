@@ -45,8 +45,9 @@ input[type=number]:focus {
 }
 .phase input {
   width: 170px !important;
+	padding: 30px;
   height: 80px;
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 24px !important
 }
 
@@ -82,7 +83,7 @@ input[type=number]:focus {
 .logo {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	
-  min-height: 90vh;
+  min-height: 95vh;
   padding-bottom: 8em;
   background: #F0F1D5;
   color: #105187;
@@ -146,23 +147,27 @@ div .phed {
 }
 .form-control {
   margin-bottom: 20px;
-  width: 100%;
+  width: 80%;
 /*	padding: 50px;*/
   border: 1px solid #1174A8;
   text-align: left;
 }
 .load{
   padding: 50px 20px;
-  font-size: 50px;
+  font-size: 30px;
 }
 .loadA {
   padding: 50px 20px;
-  font-size: 50px !important;
-	color: blue
+	
+/*	EDITED*/
+	
+  font-size: 35px !important;     
+/*	color: blue*/
 }
 select {
-  font-size: 40px;
-  padding: 30px;
+  font-size: 35px;
+/*  padding: 30px;*/
+	
 }
 .btn {
   width: 80vw;
@@ -477,6 +482,8 @@ input, label {
   margin-top: -7px;
   overflow: hidden;
   font-size: 30px;
+	margin-left: auto;
+  margin-right: auto;
 }
 
 
