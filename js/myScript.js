@@ -193,8 +193,8 @@ function emptyInput() {
 
 start.addEventListener("click", calculate);
 refresh.addEventListener("click", emptyInput);
-//tab1.addEventListener("click", emptyInput);
-//tab2.addEventListener("click", emptyInput);
+tab1.addEventListener("click", emptyInput);
+tab2.addEventListener("click", emptyInput);
 
 
 //      BILLING (WATT)
