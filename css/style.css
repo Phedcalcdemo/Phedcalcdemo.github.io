@@ -28,7 +28,7 @@ input:focus::placeholder {
 }
 body {
   background: #F0F1D5;
-/*	padding: 0!important;*/
+	padding: 0!important;
 }
 .logo-txt h2 {
   font-size: 40px
