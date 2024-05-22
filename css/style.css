@@ -586,6 +586,7 @@ input, label {
   .container {
     width: 65%;
 	  background-color: gray;
+	  box-shadow: 1px 3px 10px 12px rgba(0, 0, 0, .2);
   }
   .form-control {
     text-align: center;
