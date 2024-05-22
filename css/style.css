@@ -73,7 +73,7 @@ input[type=number]:focus {
 .logo {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	
-  min-height: 95vh;
+  min-height: 90vh;
   padding-bottom: 8em;
   background: #F0F1D5;
   color: #105187;
