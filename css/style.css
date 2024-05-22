@@ -134,7 +134,7 @@ div .phed {
   font-size: 22px
 }
 .form-container, .output {
-  width: 80vw;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   margin: 1em;
@@ -147,6 +147,7 @@ div .phed {
 .form-control {
   margin-bottom: 20px;
   width: 100%;
+/*	padding: 50px;*/
   border: 1px solid #1174A8;
   text-align: left;
 }
