@@ -29,7 +29,8 @@ input:focus::placeholder {
 body {
   background: #F0F1D5;
 	padding: 0!important;
-	background-color:black
+	background-color:black;
+	width: 100vw;
 	
 }
 .logo-txt h2 {
