@@ -65,7 +65,7 @@ input[type=number]:focus {
   text-align: center
 }
 .container {
-  width: 100%;
+  width: 100vw;
 	display: flex;
 	background-color: #F0F1D5;
 /*	overflow: hidden!important*/
