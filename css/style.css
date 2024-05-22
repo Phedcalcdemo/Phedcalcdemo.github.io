@@ -213,7 +213,7 @@ select {
   float: right;
   font-size: 50px
 }
-.billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
+.billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
   background-color: #008ECC;
   border: 1px solid #008ECC;
   border-radius: 50px;
@@ -241,17 +241,17 @@ select {
 .status {
   font-size: 40px;
 }
-.billing__button:hover, .billingKW__button:hover, .lor__button:hover, .lorH__button:hover, .fuse__button:hover, .DTRloading__button:hover {
+.billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
   background: A4BE7B;
   border: 2px solid white !important;
   color: white;
   box-shadow: none;
 }
-.billing__button:focus, .billing__button.focus, .billingKW__button:focus, .billingKW__button.focus, .lor__button:focus, .lor__button.focus, .lorH__button:focus, .lorH__button.focus, .fuse__button:focus, .fuse__button.focus, .DTRloading__button:focus, .DTRloading__button.focus {
+.billing__button:focus, .billing__button.focus, .billingKW__button:focus, .billingKW__button.focus, .lor__button:focus, .lor__button.focus, .billingKwh__button:focus, .billingKwh__button.focus, .fuse__button:focus, .fuse__button.focus, .DTRloading__button:focus, .DTRloading__button.focus {
   outline: none !important;
   border-: 1px solid white;
 }
-.billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .lorH__button:active, .lorH__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
+.billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .billingKwh__button:active, .billingKwh__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
   background-color: white;
   color: #008ECC;
   box-shadow: none;
@@ -594,7 +594,7 @@ input, label {
     width: 60%;
     border: 1px solid #AE5AD3;
   }
-  .billing__button, .billingKW__button, .lor__button, .lorH__button, .fuse__button, .DTRloading__button {
+  .billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
     font-size: 14px;
     margin: 0 auto;
     width: 11rem;
