@@ -538,7 +538,7 @@ const news = `&nbsp Current Non-MD Tariff as at ${formattedDate} &nbsp | &nbsp
 
 // Select the container div by its class
 const container = document.querySelector('.logo');
-container.style.overflow = 'hidden'; // Ensure overflow content is not visible
+container.style.overflow = '' ; // Ensure overflow content is not visible
 container.style.position = 'relative'; // Needed for absolute positioning of children
 
 // Create a ticker container with a new unique ID
