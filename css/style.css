@@ -52,7 +52,7 @@ input[type=number]:focus {
 }
 
 .phaseAmp input {
-  width: 170px !important;
+  width: 150px !important;
   height: 80px;
   font-size: 30px;
   text-align: center !important;
