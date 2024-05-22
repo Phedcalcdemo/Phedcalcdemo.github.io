@@ -164,7 +164,7 @@ function calculate(e) {
 	totalCost = totalCost || 0;
 	outputkWh.innerHTML = "Your bill for " + kWh.toFixed(1) + "kWh consumption is:";
   
-  output.innerHTML = "\u20a6" + totalCost.toLocaleString('en-US');
+  output.innerHTML = "\u20a6" + totalCost.toLocaleString(undefined,{maximumFractionDigits:2});
 }
 
 // Event listeners for buttons
@@ -211,7 +211,7 @@ function calcBillWatt(e) {
   
    var total = (((loadW.value) / 1000) * BandW.value * 1.075 * 0.6);
  
-   outputW.innerHTML = "\u20a6" + total.toLocaleString('en-US');
+   outputW.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
 
 function emptyBillWattInput() {
@@ -241,7 +241,7 @@ function calcLorRPD(e) {
   
    var total = loadAmps1.value * billHrs.value * Band1.value * 0.240 * 0.6 * 0.85 * 1.075;
   
-   output1.innerHTML = "\u20a6" + total.toLocaleString('en-US');
+   output1.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
 
 function emptyLorRPDInput() {
@@ -273,7 +273,7 @@ function calcbillingKwh(e) {
   
      var total = loadMW.value  * tariffs[Band2.value] * 1.075;
   
-  output2.innerHTML = "\u20a6" + total.toLocaleString('en-US');
+  output2.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
    
 
