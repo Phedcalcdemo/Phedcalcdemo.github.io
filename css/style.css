@@ -140,7 +140,7 @@ div .phed {
   width: 70%;
 /*	padding: 50px;*/
   border: 1px solid #1174A8;
-  text-align: left;
+  text-align: center;
 }
 .load{
   padding: 50px 20px;
@@ -196,10 +196,14 @@ select {
 }
 .discDiv {
   display: flex;
-  width: 80vw;
+  width: 70vw;
 }
 .discDiv div {
-  width: 96%;
+  width: 100%;
+/*
+	margin-left: 5%;
+	margin-right: 5%
+*/
 }
 .pay {
   margin-right: 1px;
