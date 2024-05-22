@@ -45,7 +45,7 @@ input[type=number]:focus {
 }
 .phase input {
   width: 170px !important;
-	padding: 30px;
+/*	padding: 30px;*/
   height: 80px;
   font-size: 25px;
   margin-bottom: 24px !important
@@ -147,7 +147,7 @@ div .phed {
 }
 .form-control {
   margin-bottom: 20px;
-  width: 80%;
+  width: 70%;
 /*	padding: 50px;*/
   border: 1px solid #1174A8;
   text-align: left;
@@ -170,7 +170,7 @@ select {
 	
 }
 .btn {
-  width: 80vw;
+  width: 70vw;
   height: 12rem;
   box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
   display: flex;
@@ -477,7 +477,7 @@ input, label {
   overflow: hidden 
 }
 .pcss3t .singleA input {
-  width: 80vw;
+  width: 70vw;
   height: 80px;
   margin-top: -7px;
   overflow: hidden;
