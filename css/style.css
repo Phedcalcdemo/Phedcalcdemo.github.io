@@ -78,7 +78,7 @@ input[type=number]:focus {
   background: #F0F1D5;
   color: #105187;
 /*	position: relative*/
-	overflow: hidden;
+/*	overflow: hidden; */
 		width: 100vw;
 /*	  background-color: blueviolet;*/
 	
