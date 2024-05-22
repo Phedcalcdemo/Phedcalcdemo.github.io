@@ -114,11 +114,11 @@ input[type=number]:focus {
   align-items: center;
   flex-direction: column;
   padding-bottom: 2em;
-/*	overflow: hidden;
+	overflow: hidden;
 }
 .logo #tariffScroll{
-	font-size: 15px;
-/*	position:fixed;*/
+	font-size: 30px;
+/*	position:fixed;
 
 /*
   display: flex;
@@ -483,6 +483,9 @@ input, label {
   body {
     background: #534484;
   }
+	.logo #tariffScroll{
+	font-size: 15px;
+}
   .btn2 {
     font-size: 24px !important;
   }
