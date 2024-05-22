@@ -82,7 +82,7 @@ input[type=number]:focus {
 .logo {
 	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
 	
-  min-height: 100vh;
+  min-height: 80vh;
   padding-bottom: 8em;
   background: #F0F1D5;
   color: #105187;
@@ -553,6 +553,7 @@ input, label {
     box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
     padding-bottom: 0px;
 	  width: 100%;
+	  min-height: 100vh;
 	  
   }
   .container {
