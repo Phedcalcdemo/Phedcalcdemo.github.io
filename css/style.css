@@ -28,6 +28,7 @@ input:focus::placeholder {
 }
 body {
   background: #F0F1D5;
+/*	padding: 0!important;*/
 }
 .logo-txt h2 {
   font-size: 40px
@@ -73,7 +74,9 @@ input[type=number]:focus {
   text-align: center
 }
 .container {
-  width: 100vw;
+  width: 100%;
+	display: flex;
+	background-color: #F0F1D5;
 /*	overflow: hidden!important*/
 }
 .logo {
@@ -84,7 +87,22 @@ input[type=number]:focus {
   background: #F0F1D5;
   color: #105187;
 /*	position: relative*/
-	overflow: hidden
+	overflow: hidden;
+		width: 100vw;
+/*	  background-color: blueviolet;*/
+	
+/*
+	  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+*/
+	 /* Centering styles */
+/*	position: absolute;*/
+/*
+   margin-left: auto;
+  margin-right: auto;
+*/
 }
 .calc-container {
   min-height: 50vh;
@@ -96,7 +114,7 @@ input[type=number]:focus {
   align-items: center;
   flex-direction: column;
   padding-bottom: 2em;
-/*	overflow: hidden;*/
+/*	overflow: hidden;
 }
 .logo #tariffScroll{
 	font-size: 15px;
@@ -110,7 +128,7 @@ input[type=number]:focus {
 div .phed {
   width: 70vw;
   height: auto;
-  margin-right: 30px;
+/*  margin-right: 30px;*/
 }
 .phase label {
   font-size: 22px
@@ -211,19 +229,8 @@ select {
   font-size: 40px !important;
   color: white !important;
 }
-#marquee-cont {
-  background: #f4f4f4;
-  margin-top: 10px;
-  font-size: 26px;
-  position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100vw;
-}
-table img {
-  width: 130px;
-  height: auto;
-}
+
+
 .status {
   font-size: 40px;
 }
@@ -260,22 +267,7 @@ input, label {
 #marquee-cont marquee {
   margin-top: 5px;
 }
-/*
-#marquee-news {
-  background: #1174A8;
-  padding: 5px;
-  font-color: red !important
-}
-#ticker-title {
-  border: none;
-  padding: 5px 20px;
-  background: #1174A8;
-  color: white;
-}
-#ticker-title:focus {
-  outline: none;
-}
-*/
+
 .btn:focus {
   outline: none !important
 }
@@ -558,9 +550,11 @@ input, label {
     box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
     padding-bottom: 0px;
 	  width: 100%;
+	  
   }
   .container {
     width: 65%;
+	  background-color: gray;
   }
   .form-control {
     text-align: center;
