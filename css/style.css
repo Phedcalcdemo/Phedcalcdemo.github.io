@@ -51,16 +51,6 @@ input[type=number]:focus {
   margin-bottom: 24px !important
 }
 
-.phaseAmp input {
-  width: 150px !important;
-  height: 80px;
-  font-size: 30px;
-  text-align: center !important;
-}
-.phaseAmp label {
-  font-size: 22px;
-  margin-bottom: -6px;
-}
 .info {
   border-top: 2px solid #5F8D4E;
   border-bottom: 2px solid #5F8D4E;
@@ -487,6 +477,18 @@ input, label {
 }
 
 
+.phaseAmp input {
+  width: 155px!important ;
+  height: 80px;
+  font-size: 30px;
+  text-align: center !important;
+}
+.phaseAmp label {
+  font-size: 22px;
+  margin-bottom: -6px;
+}
+
+
 @media screen and (min-width: 1024px) {
   body {
     background: #534484;
@@ -533,7 +535,7 @@ input, label {
     font-size: 12px
   }
   .phaseAmp input {
-    width: 80px !important;
+    width: 80px !important ;
     height: auto;
     font-size: 16px;
     margin-top: -7px !important;
