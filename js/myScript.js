@@ -209,7 +209,7 @@ function calcBillWatt(e) {
  
    e.preventDefault();
   
-   var total = (((loadW.value) / 1000) * BandW.value * 1.075 * 0.6);
+   var total = (((loadW.value) / 1000) * Number(BandW.value)  * tariffs[BandW.value] * 1.075 * 0.6);
  
    outputW.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
@@ -239,7 +239,7 @@ function calcLorRPD(e) {
 
    e.preventDefault();
   
-   var total = loadAmps1.value * billHrs.value * Band1.value * 0.240 * 0.6 * 0.85 * 1.075;
+   var total = Number(loadAmps1.value) * Number(billHrs.value) * Number(Band1.value) * tariffs[Band1.value] * 0.240 * 0.6 * 0.85 * 1.075;
   
    output1.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
@@ -258,7 +258,7 @@ start1.addEventListener("click", calcLorRPD);
 refresh1.addEventListener("click", emptyLorRPDInput);
 
 
-//              LOR (HAULAGE)
+//              BILLING (kWh)
 
 const loadMW = document.querySelector("#inputMW");
 
