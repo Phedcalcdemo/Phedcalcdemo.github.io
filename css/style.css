@@ -68,7 +68,10 @@ input[type=number]:focus {
 }
 .tips {
   font-size: 30px;
-  text-align: center
+  text-align: center;
+	padding-left: 10%;
+	padding-right: 10%;
+	
 }
 .container {
 /*  width:  100%;*/
