@@ -27,8 +27,8 @@ input:focus::placeholder {
   color: transparent;
 }
 body {
-/*  background: #F0F1D5;*/
-  background:rgba(77,66,66,1.00);
+  background: #F0F1D5;
+/*  background:rgba(77,66,66,1.00);*/
 /*
 	width: 100vw !important;
 	padding: 0;
