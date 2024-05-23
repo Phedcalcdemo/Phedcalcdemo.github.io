@@ -38,6 +38,7 @@ body {
 }
 .logo-txt h2 {
   font-size: 40px;
+	color: green;
 	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
 }
 .DTRloading__form ::placeholder {
