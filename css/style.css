@@ -37,7 +37,8 @@ body {
 /*	padding: 0!important;*/
 }
 .logo-txt h2 {
-  font-size: 40px
+  font-size: 40px;
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
 }
 .DTRloading__form ::placeholder {
   text-align: center
@@ -531,7 +532,7 @@ input, label {
     font-size: 24px !important;
   }
   .logo-txt h2 {
-    font-size: 20px
+    font-size: 25px
   }
   .status {
     font-size: 18px;
@@ -579,6 +580,8 @@ input, label {
   div .phed {
     width: 24vw;
     height: auto;
+	  margin-left: -15px;
+	  
   }
   .form-container, .output {
     width: 50vw;
