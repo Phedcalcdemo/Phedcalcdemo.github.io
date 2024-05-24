@@ -15,8 +15,8 @@
 <body>
 <div class="container" >
   <div class="logo">
-    <div class="logo-txt" style="position: relative; top: 0px; text-align: center "> <img class="phed"  src="PHED logo.png" alt="PHED">
-      <h2 style="margin-top: -18px">CALCULATOR</h2>
+    <div class="logo-txt" style="position: relative; top: 0px; text-align: center;"> <img class="phed"  src="PHED logo.png" alt="PHED">
+      <h2 style="margin-top: -18px;">CALCULATOR</h2>
     </div>
     <div class="cont-wrapper" >
 		
@@ -115,10 +115,13 @@
             <div id="outputCost" class="form-control bill"></div>
             <button id="btnRefresh" class=" btn btn2 btn-lg btn-primary btn-block">Reset</button>
           </div>
-			
-			
-        </div>
-        
+		<div style="margin-left: 10vw; margin-right: 10vw;position: absolute;">
+							
+			<button class="toggleButton" style="padding-left: 10px; padding-right: 10px; outline: none; border: none; font-size: 12px; box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);">Tips!</button>
+<div class="displayText" style="font-size: 12px; margin-top: 5px; display: none; word-wrap: break-word; width: 80%;"><p>Use a <a href="https://www.hioki.com/themes/hioki/images/global/learning/how-to/u-clamp-meters-img-04.jpg" target="_blank">Clamp meter </a> to determine the electrical load from your service drop. Enter the load, measured in amperes (A), into the calculator for an accurate calculation. If you’re dealing with a 3-phase supply, remember to measure the load on all three phases, and click on the 3Phase tab for your calculation. </p></div>
+</div>
+</div>
+		  	
         <!--	  BILLING W-->
         
         <div class="billingKW__form" style="display: none;">
@@ -145,10 +148,14 @@
               <div id="outputCostW" class="form-control bill"></div>
               <button id="btnRefreshW" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
             </div>
-            <div class="tips">
-              <p>Note: If an appliance is rated in kW, multiply the kw value by 1000 to get the rating in watts </p>
-            </div>
+            
           </div>
+			
+		<div style="margin-left: 10vw; margin-right: 10vw; position: absolute;">
+							
+			<button class="toggleButton" style="padding-left: 10px; padding-right: 10px; outline: none; border: none; font-size: 12px; box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);">Tips!</button>
+<div class="displayText" style="font-size: 12px; margin-top: 5px; display: none; word-wrap: break-word; width: 80%;"><p>Add up the power ratings (in Watts) of all your appliances to perform this calculation. For example, you might have a 300W electric iron, a 200W TV, and a 2000W air conditioner, totalling 2500 watts. If any appliance is rated in kilowatts (kW), convert it to watts by multiplying the kW value by 1000. This will give you the equivalent value in watts.  </p></div>
+</div>
         </div>
         
         <!--	  LOSS OF REVENUE-->
