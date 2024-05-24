@@ -17,14 +17,14 @@ html {
 	display: none; 
 	word-wrap: break-word; 
 	width: 100%;
-	background-color: greenyellow;
+/*	background-color: greenyellow;*/
 	text-align: center
 }
 .tipsCont{
 	margin-left: 10%; 
 	margin-right: 10%;
 	position: absolute;
-	background-color: red;
+/*	background-color: red;*/
 /*	margin-bottom: 50%*/
 		
 }
