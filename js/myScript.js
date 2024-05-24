@@ -1,11 +1,21 @@
 // JavaScript Document
 
 const tariffs = {
-  '600': 206.8, // Tariff for Band A
-  '480': 68.96, // Tariff for Band B
-  '360': 56.38, // Tariff for Band C
-  '240': 39.67, // Tariff for Band D
-  '120': 39.44  // Tariff for Band E
+  'Band A-Non MD': 206.8, 
+  'Band A-MD1': 206.8, 
+  'Band A-MD2': 206.8, 
+  'Band B-Non MD': 68.96,
+  'Band B-MD1': 68.96,
+  'Band B-MD2': 68.96,
+  'Band C-Non MD': 56.38,
+  'Band C-MD1': 56.38,
+  'Band C-MD2': 56.38,
+  'Band D-Non MD': 39.67,
+  'Band D-MD1': 39.67,
+  'Band D-MD2': 39.67,
+  'Band E-Non MD': 39.44,
+  'Band E-MD1': 39.44,
+  'Band E-MD2': 39.44
 };
 
 
@@ -147,12 +157,15 @@ function calculate(e) {
   // Use 0.415 x root 3 if avg is provided, otherwise use 0.240
   let multiplier = isAvgProvided ? 0.719 : 0.240;
   
+  // Get the selected band and category
+  let selectedBand = Band.options[Band.selectedIndex].text;
+  
   // Calculate total cost based on whether avg or loadAmps.value is used
   let totalCost;
   if (isAvgProvided) {
-    totalCost = avg * Number(Band.value) * tariffs[Band.value] * multiplier * 0.6 * 0.85 * 1.075;
+    totalCost = avg * Number(Band.value) * tariffs[selectedBand] * multiplier * 0.6 * 0.85 * 1.075;
   } else {
-    totalCost = Number(loadAmps.value) * Number(Band.value) * tariffs[Band.value] * multiplier * 0.85 * 0.6 * 1.075;
+    totalCost = Number(loadAmps.value) * Number(Band.value) * tariffs[selectedBand] * multiplier * 0.85 * 0.6 * 1.075;
   }
 	
   let kWh;
@@ -167,16 +180,9 @@ function calculate(e) {
   output.innerHTML = "\u20a6" + totalCost.toLocaleString(undefined,{maximumFractionDigits:2});
 }
 
-// Event listeners for buttons
-start.addEventListener('click', calculate);
-refresh.addEventListener('click', () => {
-  // Reset code for refresh button
-});
-//// Event listeners for buttons
-//start.addEventListener('click', calculate);
-//refresh.addEventListener('click', () => {
-//  // Reset code for refresh button
-//});
+
+
+
 
 function emptyInput() {
    output.innerHTML = "";
@@ -206,14 +212,16 @@ const startW = document.getElementById("btnStartW");
 const refreshW = document.getElementById("btnRefreshW");
 
 function calcBillWatt(e) {
- 
-   e.preventDefault();
+  e.preventDefault();
   
-   var total = (((loadW.value) / 1000) * Number(BandW.value)  * tariffs[BandW.value] * 1.075 * 0.6);
+  // Get the selected band
+  let selectedBand = BandW.options[BandW.selectedIndex].text;
+  
+  // Calculate the total cost
+  var total = (((loadW.value) / 1000) * Number(BandW.value) * tariffs[selectedBand] * 1.075 * 0.6);
  
-   outputW.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
+  outputW.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
-
 function emptyBillWattInput() {
  
    outputW.innerHTML = "";
@@ -236,12 +244,15 @@ const start1 = document.getElementById("btnStart1");
 const refresh1 = document.getElementById("btnRefresh1");
 
 function calcLorRPD(e) {
-
-   e.preventDefault();
+  e.preventDefault();
   
-   var total = Number(loadAmps1.value) * Number(billHrs.value) * Number(Band1.value) * tariffs[Band1.value] * 0.240 * 0.6 * 0.85 * 1.075;
+  // Get the selected band
+  let selectedBand = Band1.options[Band1.selectedIndex].text;
   
-   output1.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
+  // Calculate the total cost
+  var total = Number(loadAmps1.value) * Number(billHrs.value) * Number(Band1.value) * tariffs[selectedBand] * 0.240 * 0.6 * 0.85 * 1.075;
+  
+  output1.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
 
 function emptyLorRPDInput() {
@@ -268,22 +279,21 @@ const start2 = document.getElementById("btnStart2");
 const refresh2 = document.getElementById("btnRefresh2");
 
 function calcbillingKwh(e) {
-   total = total || 0;
-   e.preventDefault();
+  e.preventDefault();
   
-     var total = loadMW.value  * tariffs[Band2.value] * 1.075;
+  // Get the selected band
+  let selectedBand = Band2.options[Band2.selectedIndex].text;
+  
+  // Calculate the total cost
+  var total = loadMW.value * tariffs[selectedBand] * 1.075;
   
   output2.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
-   
-
 
 function emptybillingKwhInput() {
-   output2.innerHTML = "";
-   loadMW.value = "";
-//   billHrs2.value = "";
-   Band2.value = "";
-   //  Phase1.value = "";
+  output2.innerHTML = "";
+  loadMW.value = "";
+  Band2.value = "";
 }
 start2.addEventListener("click", calcbillingKwh);
 refresh2.addEventListener("click", emptybillingKwhInput);
@@ -480,6 +490,29 @@ outputImbalance.innerHTML = (percentageImbalance.toFixed(0) + "%");
 
 
 	
+
+
+
+
+$(document).ready(function(){
+  $(".toggleButton").click(function(){
+    var button = $(this);
+    var text = button.next(".displayText");
+
+    if (text.is(":hidden")) {
+        text.slideDown("fast");
+        button.text("X");
+        button.css({"padding-left": "10px", "padding-right": "10px"});
+    } else {
+        text.slideUp("fast");
+        button.text("Helpful Tips!");
+        button.css({"padding-left": "5px", "padding-right": "5px"});
+    }
+  });
+});
+
+
+
 	
 //                    TARIFF TICKER
 
@@ -528,12 +561,22 @@ const currentDate = new Date();
 const formattedDate = formatDate(currentDate); // "21st May, 2024"
 
 
-const news = `&nbsp Current Non-MD Tariff as at ${formattedDate} &nbsp | &nbsp
-  Band A - <span class="green-text">₦${tariffs['600']}kWh</span> &nbsp &nbsp
-  Band B - <span class="green-text">₦${tariffs['480']}</span>  &nbsp &nbsp
-  Band C - <span class="green-text">₦${tariffs['360']}</span> &nbsp &nbsp   
-  Band D - <span class="green-text">₦${tariffs['240']}</span>  &nbsp &nbsp
-  Band E - <span class="green-text">₦${tariffs['120']}</span> &nbsp &nbsp | &nbsp 
+const news = `&nbsp Electricity Tariff as at <span class="brown-text">${formattedDate}</span> &nbsp | &nbsp
+  Band A-Non MD - <span class="green-text">₦${tariffs['Band A-Non MD']}kWh</span> &nbsp &nbsp
+  Band A-MD1 - <span class="green-text">₦${tariffs['Band A-MD1']}kWh</span> &nbsp &nbsp
+  Band A-MD2 - <span class="green-text">₦${tariffs['Band A-MD2']}kWh</span> &nbsp &nbsp
+  Band B-Non MD- <span class="green-text">₦${tariffs['Band B-Non MD']}</span>  &nbsp &nbsp
+  Band B-MD1- <span class="green-text">₦${tariffs['Band B-MD1']}</span>  &nbsp &nbsp
+  Band B-MD2 <span class="green-text">₦${tariffs['Band B-MD2']}</span>  &nbsp &nbsp
+  Band C-Non MD - <span class="green-text">₦${tariffs['Band C-Non MD']}</span> &nbsp &nbsp   
+  Band C-MD1- <span class="green-text">₦${tariffs['Band C-MD1']}</span> &nbsp &nbsp   
+  Band C-MD2 - <span class="green-text">₦${tariffs['Band C-MD2']}</span> &nbsp &nbsp   
+  Band D-Non MD - <span class="green-text">₦${tariffs['Band D-Non MD']}</span>  &nbsp &nbsp
+  Band D-MD1 - <span class="green-text">₦${tariffs['Band D-MD1']}</span>  &nbsp &nbsp
+  Band D-MD2 - <span class="green-text">₦${tariffs['Band D-MD2']}</span>  &nbsp &nbsp
+  Band E-Non MD - <span class="green-text">₦${tariffs['Band E-Non MD']}</span> &nbsp &nbsp | &nbsp 
+  Band E-MD1 - <span class="green-text">₦${tariffs['Band E-MD1']}</span> &nbsp &nbsp | &nbsp 
+  Band E-MD2 - <span class="green-text">₦${tariffs['Band E-MD2']}</span> &nbsp &nbsp | &nbsp 
   Designed by: Obot Akpan &nbsp`;
 
 // Select the container div by its class
@@ -584,23 +627,3 @@ tickerContainer.addEventListener('mouseleave', () => {
 // Start the scrolling
 scrollTicker();
 
-
-
-
-
-$(document).ready(function(){
-  $(".toggleButton").click(function(){
-    var button = $(this);
-    var text = button.next(".displayText");
-
-    if (text.is(":hidden")) {
-        text.slideDown("fast");
-        button.text("X");
-        button.css({"padding-left": "10px", "padding-right": "10px"});
-    } else {
-        text.slideUp("fast");
-        button.text("Tips!");
-        button.css({"padding-left": "5px", "padding-right": "5px"});
-    }
-  });
-});
