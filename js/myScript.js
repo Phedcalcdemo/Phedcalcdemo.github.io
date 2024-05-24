@@ -587,3 +587,20 @@ scrollTicker();
 
 
 
+
+$(document).ready(function(){
+  $(".toggleButton").click(function(){
+    var button = $(this);
+    var text = button.next(".displayText");
+
+    if (text.is(":hidden")) {
+        text.slideDown("fast");
+        button.text("X");
+        button.css({"padding-left": "10px", "padding-right": "10px"});
+    } else {
+        text.slideUp("fast");
+        button.text("Tips!");
+        button.css({"padding-left": "5px", "padding-right": "5px"});
+    }
+  });
+});
