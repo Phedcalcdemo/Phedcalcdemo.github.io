@@ -11,6 +11,9 @@ html {
 .green-text {
   color: green;
 }
+.brown-text {
+  color: brown;
+}
 .form-container .btn-primary, .output .btn-primary .toggleButton {
   background-color: #008ECC;
   outline: none !important;
