@@ -3,7 +3,7 @@
 <head>
 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <meta charset="utf-8">
-<title>PROPOSED PHED CALCULATOR APP</title>
+<title>PHED CALCULATOR APP</title>
 <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
 </head>
@@ -99,11 +99,21 @@
             </div>
              <select id="selectBand" class="form-control input select-input drop-down-caret">
               <option value="" disabled selected="selected">Select a Band *</option>
-              <option value="600">Band A</option>
-              <option value="480">Band B</option>
-              <option value="360">Band C</option>
-              <option value="240">Band D</option>
-              <option value="120">Band E</option>
+              <option value="600">Band A-Non MD</option>
+              <option value="600">Band A-MD1</option>
+              <option value="600">Band A-MD2</option>
+              <option value="480">Band B-Non MD</option>
+              <option value="480">Band B-MD1</option>
+              <option value="480">Band B-MD2</option>
+              <option value="360">Band C-Non MD</option>
+              <option value="360">Band C-MD1</option>
+              <option value="360">Band C-MD2</option>
+              <option value="240">Band D-Non MD</option>
+              <option value="240">Band D-MD1</option>
+              <option value="240">Band D-MD2</option>
+              <option value="120">Band E-Non MD</option>
+              <option value="120">Band E-MD1</option>
+              <option value="120">Band E-MD2</option>
             </select>
             
             <!--	                        PHASE-->
@@ -117,7 +127,7 @@
           </div>
 		<div style="margin-left: 10vw; margin-right: 10vw;position: absolute;">
 							
-			<button class="toggleButton" style="padding-left: 10px; padding-right: 10px; outline: none; border: none; font-size: 12px; box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);">Tips!</button>
+			<button class="toggleButton" style="padding-left: 10px; padding-right: 10px; outline: none; border: none; font-size: 12px; box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);">Helpful Tips!</button>
 <div class="displayText" style="font-size: 12px; margin-top: 5px; display: none; word-wrap: break-word; width: 80%;"><p>Use a <a href="https://www.hioki.com/themes/hioki/images/global/learning/how-to/u-clamp-meters-img-04.jpg" target="_blank">Clamp meter </a> to determine the electrical load from your service drop. Enter the load, measured in amperes (A), into the calculator for an accurate calculation. If you’re dealing with a 3-phase supply, remember to measure the load on all three phases, and click on the 3Phase tab for your calculation. </p></div>
 </div>
 </div>
@@ -135,11 +145,21 @@
               <select id="selectBandW" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
-                <option value="600">Band A</option>
-              <option value="480">Band B</option>
-              <option value="360">Band C</option>
-              <option value="240">Band D</option>
-              <option value="120">Band E</option>
+                <option value="600">Band A-Non MD</option>
+              <option value="600">Band A-MD1</option>
+              <option value="600">Band A-MD2</option>
+              <option value="480">Band B-Non MD</option>
+              <option value="480">Band B-MD1</option>
+              <option value="480">Band B-MD2</option>
+              <option value="360">Band C-Non MD</option>
+              <option value="360">Band C-MD1</option>
+              <option value="360">Band C-MD2</option>
+              <option value="240">Band D-Non MD</option>
+              <option value="240">Band D-MD1</option>
+              <option value="240">Band D-MD2</option>
+              <option value="120">Band E-Non MD</option>
+              <option value="120">Band E-MD1</option>
+              <option value="120">Band E-MD2</option>
               </select>
               <button id="btnStartW" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
@@ -153,7 +173,7 @@
 			
 		<div style="margin-left: 10vw; margin-right: 10vw; position: absolute;">
 							
-			<button class="toggleButton" style="padding-left: 10px; padding-right: 10px; outline: none; border: none; font-size: 12px; box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);">Tips!</button>
+			<button class="toggleButton" style="padding-left: 10px; padding-right: 10px; outline: none; border: none; font-size: 12px; box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);">Helpful Tips!</button>
 <div class="displayText" style="font-size: 12px; margin-top: 5px; display: none; word-wrap: break-word; width: 80%;"><p>Add up the power ratings (in Watts) of all your appliances to perform this calculation. For example, you might have a 300W electric iron, a 200W TV, and a 2000W air conditioner, totalling 2500 watts. If any appliance is rated in kilowatts (kW), convert it to watts by multiplying the kW value by 1000. This will give you the equivalent value in watts.  </p></div>
 </div>
         </div>
@@ -175,11 +195,21 @@
               <select id="selectBand1" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
-                 <option value="600">Band A</option>
-              <option value="480">Band B</option>
-              <option value="360">Band C</option>
-              <option value="240">Band D</option>
-              <option value="120">Band E</option>
+                   <option value="600">Band A-Non MD</option>
+              <option value="600">Band A-MD1</option>
+              <option value="600">Band A-MD2</option>
+              <option value="480">Band B-Non MD</option>
+              <option value="480">Band B-MD1</option>
+              <option value="480">Band B-MD2</option>
+              <option value="360">Band C-Non MD</option>
+              <option value="360">Band C-MD1</option>
+              <option value="360">Band C-MD2</option>
+              <option value="240">Band D-Non MD</option>
+              <option value="240">Band D-MD1</option>
+              <option value="240">Band D-MD2</option>
+              <option value="120">Band E-Non MD</option>
+              <option value="120">Band E-MD1</option>
+              <option value="120">Band E-MD2</option>
               </select>
               <button id="btnStart1" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
@@ -201,18 +231,25 @@
               </div>
               <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
               <input type="number" id="inputMW" class="form-control load" placeholder="Consumption (kWh) *" required>
-<!--
-              <label for="inputHrs2" class="sr-only">Duration</label>
-              <input minlength="1"  type="number" id="inputHrs2" class="form-control load" placeholder="Duration (Hours) *"  >
--->
+
               <select id="selectBand2" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select Band *</option>
-                 <option value="600">Band A</option>
-              <option value="480">Band B</option>
-              <option value="360">Band C</option>
-              <option value="240">Band D</option>
-              <option value="120">Band E</option>
+                   <option value="600">Band A-Non MD</option>
+              <option value="600">Band A-MD1</option>
+              <option value="600">Band A-MD2</option>
+              <option value="480">Band B-Non MD</option>
+              <option value="480">Band B-MD1</option>
+              <option value="480">Band B-MD2</option>
+              <option value="360">Band C-Non MD</option>
+              <option value="360">Band C-MD1</option>
+              <option value="360">Band C-MD2</option>
+              <option value="240">Band D-Non MD</option>
+              <option value="240">Band D-MD1</option>
+              <option value="240">Band D-MD2</option>
+              <option value="120">Band E-Non MD</option>
+              <option value="120">Band E-MD1</option>
+              <option value="120">Band E-MD2</option>
               </select>
               <button  id="btnStart2" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
