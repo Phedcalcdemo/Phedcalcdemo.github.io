@@ -11,7 +11,7 @@ html {
 .green-text {
   color: green;
 }
-.form-container .btn-primary, .output .btn-primary {
+.form-container .btn-primary, .output .btn-primary .toggleButton {
   background-color: #008ECC;
   outline: none !important;
   border: none !important
@@ -96,21 +96,16 @@ input[type=number]:focus {
 /*	position: relative*/
 	overflow: hidden;
 		width: 100vw;
-/*	  background-color: blueviolet;*/
-	
-/*
-	  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-*/
-	 /* Centering styles */
-/*	position: absolute;*/
-/*
-   margin-left: auto;
-  margin-right: auto;
-*/
 }
+
+/*
+#myButton{
+	padding: 10px
+}
+*/
+
+
+
 .calc-container {
   min-height: 50vh;
 }
