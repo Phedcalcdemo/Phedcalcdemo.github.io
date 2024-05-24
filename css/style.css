@@ -4,9 +4,40 @@ html {
   -webkit-appearance: button;
   -webkit-appearance: pushbutton;
 }
+
 *, *:before, *:after {
   margin: 0;
   padding: 0;
+}
+.displayText{
+	font-size: 25px; 
+	margin-top: 5px;
+	padding-left: 5%; 
+/*	padding-right: 5%;*/
+	display: none; 
+	word-wrap: break-word; 
+	width: 100%;
+	background-color: greenyellow;
+	text-align: center
+}
+.tipsCont{
+	margin-left: 10%; 
+	margin-right: 10%;
+	position: absolute;
+	background-color: red;
+/*	margin-bottom: 50%*/
+		
+}
+.toggleButton{
+	padding-left: 10px; 
+	padding-right: 10px; 
+/*
+	position: relative;
+	left: 30%;
+*/
+	outline: none; 
+	border: none; 
+	box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
 }
 .green-text {
   color: green;
@@ -679,6 +710,12 @@ input, label {
     margin-top: -7px;
     height: 30px;
     font-size: 16px;
+  }
+	.displayText{
+	font-size: 13px; 
+	width: 85%;
+	padding-left: 5%; 
+	padding-right: 5%;
   }
 }
 
