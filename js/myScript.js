@@ -5,17 +5,17 @@ const tariffs = {
   'Band A-MD1': 206.8, 
   'Band A-MD2': 206.8, 
   'Band B-Non MD': 68.96,
-  'Band B-MD1': 68.96,
-  'Band B-MD2': 68.96,
+  'Band B-MD1': 67.18,
+  'Band B-MD2': 67.12,
   'Band C-Non MD': 56.38,
-  'Band C-MD1': 56.38,
-  'Band C-MD2': 56.38,
+  'Band C-MD1': 54.64,
+  'Band C-MD2': 54.64,
   'Band D-Non MD': 39.67,
-  'Band D-MD1': 39.67,
-  'Band D-MD2': 39.67,
+  'Band D-MD1': 55.43,
+  'Band D-MD2': 55.43,
   'Band E-Non MD': 39.44,
-  'Band E-MD1': 39.44,
-  'Band E-MD2': 39.44
+  'Band E-MD1': 55.43,
+  'Band E-MD2': 55.43
 };
 
 
@@ -489,10 +489,34 @@ outputImbalance.innerHTML = (percentageImbalance.toFixed(0) + "%");
 });		
 
 
+
+
+document.getElementById("lbRecord").addEventListener('click', extractValues);
+
+function extractValues() {
+    const red = parseFloat(document.querySelector("#red").value);
+    const yellow = parseFloat(document.querySelector("#yellow").value);
+    const blue = parseFloat(document.querySelector("#blue").value);
+    const neutral = parseFloat(document.querySelector("#neutral").value);
+    const capacity = parseFloat(document.querySelector("#inputKVA").value);
+
+    // Calculate loading percentage
+    const loading = ((Math.max(red, yellow, blue) / (capacity * 1.4)) * 100) || 0;
+
+    // Calculate percentage imbalance
+    const avgCurrent = (red + yellow + blue) / 3;
+    const maxDeviation = Math.max(Math.abs(red - avgCurrent), Math.abs(yellow - avgCurrent), Math.abs(blue - avgCurrent));
+    const imbalance = (maxDeviation / avgCurrent) * 100 || 0;
+
+
+const url = `LB Report.html?red=${red}&yellow=${yellow}&blue=${blue}&neutral=${neutral}&capacity=${capacity}&loading=${loading.toFixed(2)}&imbalance=${imbalance.toFixed(2)}`;
+
+    // Open the result page in a new tab
+    window.open(url, '_blank');
+}
+
 	
-
-
-
+	
 
 $(document).ready(function(){
   $(".toggleButton").click(function(){
@@ -516,25 +540,7 @@ $(document).ready(function(){
 	
 //                    TARIFF TICKER
 
-// Update your news string to use these variables
-//const news = `Current Non-MD Tariff | Band A - \u20a6${tariffs['600']}kWh  Band B - \u20a6${tariffs['480']}  Band C - \u20a6${tariffs['360']}    Band D - \u20a6${tariffs['240']}  Band E - \u20a6${tariffs['120']} | Designed by: Obot Akpan `;
 
-
-
-
-//logo
-
-//const logo = "<img src  width='25px' style='margin:0 8px'/>";
-//let tickerText = "";
-//for(let i=0; i<news.length; i++){
-//  tickerText+=news[i];
-//  if(i!=news.length-1){
-//    tickerText+=logo;
-//  }
-//	
-//}
-//
-//document.querySelector("#scroll").innerHTML = tickerText;
 
 // Get the current date
 function formatDate(date) {
@@ -626,4 +632,7 @@ tickerContainer.addEventListener('mouseleave', () => {
 
 // Start the scrolling
 scrollTicker();
+
+
+
 
