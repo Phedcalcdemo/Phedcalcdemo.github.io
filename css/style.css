@@ -28,17 +28,21 @@ html {
 /*	margin-bottom: 50%*/
 		
 }
-.toggleButton{
+.toggleButton, .lbSub{
 	padding-left: 10px; 
 	padding-right: 10px; 
 	font-size: 30px;
-/*
-	position: relative;
-	left: 30%;
-*/
+
 	outline: none; 
 	border: none; 
 	box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+}
+.lbSub{
+	margin-top: 10px;
+	margin-right: 30px;
+	float: right;
+	border-radius: 10px;
+/*	background-color: green;*/
 }
 .green-text {
   color: green;
@@ -718,7 +722,7 @@ input, label {
 	padding-left: 5%; 
 	padding-right: 5%;
   }
-	.toggleButton{
+	.toggleButton, .lbSub{
 	padding-left: 10px; 
 	padding-right: 10px; 
 	font-size: 16px;
