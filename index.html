@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/style.css">
 
 <body>
-	
+
 <!--	<div id="loader"></div>-->
 <div class="container" >
   <div class="logo">
@@ -21,9 +21,6 @@
       <h2 style="margin-top: -18px;">CALCULATOR</h2>
     </div>
     <div class="cont-wrapper" >
-		
-		
-		
       <div class="billing-button-container clearfix" style="" >
         <div>
           <button class="btn billing__button active"> Billing(Amp) </button>
@@ -32,8 +29,7 @@
           <button class="btn billingKW__button"> Billing (Watt) </button>
         </div>
         <div>
-			<button class="btn billingKwh__button"> Billing (kWh) </button>
-          
+          <button class="btn billingKwh__button"> Billing (kWh) </button>
         </div>
       </div>
       <div class="billing-button-container clearfix" >
@@ -41,17 +37,15 @@
           <button class="btn lor__button"> LOR (RPD) </button>
         </div>
         <div>
-         <button class="btn fuse__button"> Debt Promo </button>
+          <button class="btn fuse__button"> Debt Promo </button>
         </div>
         <div>
           <button class="btn DTRloading__button"> DTR Loading </button>
         </div>
       </div>
-		
-		
-<!--		Calccontainer-->
-		
-		
+      
+      <!--		Calccontainer-->
+      
       <div class="calc-container"  >
         <div class="billing__form" style="display: block;">
           <form class="form-container" >
@@ -99,7 +93,7 @@
               </div>
               <!--/ tabs --> 
             </div>
-             <select id="selectBand" class="form-control input select-input drop-down-caret">
+            <select id="selectBand" class="form-control input select-input drop-down-caret">
               <option value="" disabled selected="selected">Select a Band *</option>
               <option value="600">Band A-Non MD</option>
               <option value="600">Band A-MD1</option>
@@ -127,13 +121,14 @@
             <div id="outputCost" class="form-control bill"></div>
             <button id="btnRefresh" class=" btn btn2 btn-lg btn-primary btn-block">Reset</button>
           </div>
-		<div class="tipsCont">
-							
-			<button class="toggleButton" >Helpful Tips!</button>
-<div class="displayText"><p>Use a <a href="https://www.hioki.com/themes/hioki/images/global/learning/how-to/u-clamp-meters-img-04.jpg" target="_blank">Clamp meter </a> to determine the electrical load from your service drop. Enter the load, measured in amperes (A), into the calculator for an accurate calculation. If you’re dealing with a 3-phase supply, remember to measure the load on all three phases, and click on the 3Phase tab for your calculation. </p></div>
-</div>
-</div>
-		  	
+          <div class="tipsCont">
+            <button class="toggleButton" >Helpful Tips!</button>
+            <div class="displayText">
+              <p>Use a <a href="https://www.hioki.com/themes/hioki/images/global/learning/how-to/u-clamp-meters-img-04.jpg" target="_blank">Clamp meter </a> to determine the electrical load from your service drop. Enter the load, measured in amperes (A), into the calculator for an accurate calculation. If you’re dealing with a 3-phase supply, remember to measure the load on all three phases, and click on the 3Phase tab for your calculation. </p>
+            </div>
+          </div>
+        </div>
+        
         <!--	  BILLING W-->
         
         <div class="billingKW__form" style="display: none;">
@@ -145,23 +140,22 @@
               <label for="inputW" class="sr-only">Total Load(W)</label>
               <input type="number" id="inputW" class="form-control load" placeholder="Total Load (Watts) *" required>
               <select id="selectBandW" class="form-control input select-input drop-down-caret">
-                <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
                 <option value="600">Band A-Non MD</option>
-              <option value="600">Band A-MD1</option>
-              <option value="600">Band A-MD2</option>
-              <option value="480">Band B-Non MD</option>
-              <option value="480">Band B-MD1</option>
-              <option value="480">Band B-MD2</option>
-              <option value="360">Band C-Non MD</option>
-              <option value="360">Band C-MD1</option>
-              <option value="360">Band C-MD2</option>
-              <option value="240">Band D-Non MD</option>
-              <option value="240">Band D-MD1</option>
-              <option value="240">Band D-MD2</option>
-              <option value="120">Band E-Non MD</option>
-              <option value="120">Band E-MD1</option>
-              <option value="120">Band E-MD2</option>
+                <option value="600">Band A-MD1</option>
+                <option value="600">Band A-MD2</option>
+                <option value="480">Band B-Non MD</option>
+                <option value="480">Band B-MD1</option>
+                <option value="480">Band B-MD2</option>
+                <option value="360">Band C-Non MD</option>
+                <option value="360">Band C-MD1</option>
+                <option value="360">Band C-MD2</option>
+                <option value="240">Band D-Non MD</option>
+                <option value="240">Band D-MD1</option>
+                <option value="240">Band D-MD2</option>
+                <option value="120">Band E-Non MD</option>
+                <option value="120">Band E-MD1</option>
+                <option value="120">Band E-MD2</option>
               </select>
               <button id="btnStartW" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
@@ -170,14 +164,13 @@
               <div id="outputCostW" class="form-control bill"></div>
               <button id="btnRefreshW" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
             </div>
-            
           </div>
-			
-		<div class="tipsCont" >
-							
-			<button class="toggleButton" >Helpful Tips!</button>
-<div class="displayText" ><p>Add up the power ratings (in Watts) of all your appliances to perform this calculation. For example, you might have a 300W electric iron, a 200W TV, and a 2000W air conditioner, totalling 2500 watts. If any appliance is rated in kilowatts (kW), convert it to watts by multiplying the kW value by 1000. This will give you the equivalent value in watts.  </p></div>
-</div>
+          <div class="tipsCont" >
+            <button class="toggleButton" >Helpful Tips!</button>
+            <div class="displayText" >
+              <p>Add up the power ratings (in Watts) of all your appliances to perform this calculation. For example, you might have a 300W electric iron, a 200W TV, and a 2000W air conditioner, totalling 2500 watts. If any appliance is rated in kilowatts (kW), convert it to watts by multiplying the kW value by 1000. This will give you the equivalent value in watts. </p>
+            </div>
+          </div>
         </div>
         
         <!--	  LOSS OF REVENUE-->
@@ -188,8 +181,6 @@
               <div class="info">
                 <p> Calculate Loss of Revenue for Energy Theft </p>
               </div>
-				    
-				
               <label for="inputAmps1" class="sr-only">Total Load (Amp)</label>
               <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
               <label for="inputHrs" class="sr-only">Duration</label>
@@ -197,21 +188,21 @@
               <select id="selectBand1" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
-                   <option value="600">Band A-Non MD</option>
-              <option value="600">Band A-MD1</option>
-              <option value="600">Band A-MD2</option>
-              <option value="480">Band B-Non MD</option>
-              <option value="480">Band B-MD1</option>
-              <option value="480">Band B-MD2</option>
-              <option value="360">Band C-Non MD</option>
-              <option value="360">Band C-MD1</option>
-              <option value="360">Band C-MD2</option>
-              <option value="240">Band D-Non MD</option>
-              <option value="240">Band D-MD1</option>
-              <option value="240">Band D-MD2</option>
-              <option value="120">Band E-Non MD</option>
-              <option value="120">Band E-MD1</option>
-              <option value="120">Band E-MD2</option>
+                <option value="600">Band A-Non MD</option>
+                <option value="600">Band A-MD1</option>
+                <option value="600">Band A-MD2</option>
+                <option value="480">Band B-Non MD</option>
+                <option value="480">Band B-MD1</option>
+                <option value="480">Band B-MD2</option>
+                <option value="360">Band C-Non MD</option>
+                <option value="360">Band C-MD1</option>
+                <option value="360">Band C-MD2</option>
+                <option value="240">Band D-Non MD</option>
+                <option value="240">Band D-MD1</option>
+                <option value="240">Band D-MD2</option>
+                <option value="120">Band E-Non MD</option>
+                <option value="120">Band E-MD1</option>
+                <option value="120">Band E-MD2</option>
               </select>
               <button id="btnStart1" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
@@ -233,25 +224,24 @@
               </div>
               <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
               <input type="number" id="inputMW" class="form-control load" placeholder="Consumption (kWh) *" required>
-
               <select id="selectBand2" class="form-control input select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select Band *</option>
-                   <option value="600">Band A-Non MD</option>
-              <option value="600">Band A-MD1</option>
-              <option value="600">Band A-MD2</option>
-              <option value="480">Band B-Non MD</option>
-              <option value="480">Band B-MD1</option>
-              <option value="480">Band B-MD2</option>
-              <option value="360">Band C-Non MD</option>
-              <option value="360">Band C-MD1</option>
-              <option value="360">Band C-MD2</option>
-              <option value="240">Band D-Non MD</option>
-              <option value="240">Band D-MD1</option>
-              <option value="240">Band D-MD2</option>
-              <option value="120">Band E-Non MD</option>
-              <option value="120">Band E-MD1</option>
-              <option value="120">Band E-MD2</option>
+                <option value="600">Band A-Non MD</option>
+                <option value="600">Band A-MD1</option>
+                <option value="600">Band A-MD2</option>
+                <option value="480">Band B-Non MD</option>
+                <option value="480">Band B-MD1</option>
+                <option value="480">Band B-MD2</option>
+                <option value="360">Band C-Non MD</option>
+                <option value="360">Band C-MD1</option>
+                <option value="360">Band C-MD2</option>
+                <option value="240">Band D-Non MD</option>
+                <option value="240">Band D-MD1</option>
+                <option value="240">Band D-MD2</option>
+                <option value="120">Band E-Non MD</option>
+                <option value="120">Band E-MD1</option>
+                <option value="120">Band E-MD2</option>
               </select>
               <button  id="btnStart2" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </form>
@@ -261,6 +251,8 @@
               <button id="btnRefresh2" class="btn btn2 btn-lg btn-primary btn-block">Reset</button>
             </div>
           </div>
+			
+			
         </div>
         
         <!--	  BILL DISCOUNT-->
@@ -275,12 +267,6 @@
               <input type="number" id="inputBill" class="form-control load" placeholder="Total Arrears*" style="text-align: center" required>
               <label for="currentCharge" class="sr-only">Current Charge</label>
               <input type="number" id="currentCharge" class="form-control load" placeholder="Current Charge*" style="text-align: center" required>
-              
-              <!--
-                     <label for="inputRate" class="sr-only">Duration</label>
-                     <input type="number" id="inputRate" class="form-control load" placeholder="Discount Rate (%) *" required>
--->
-              
               <button id="btnStartDiscount" style="margin-top: 12px" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
             </div>
             <div class="output">
@@ -297,9 +283,6 @@
                   <div id="discountDiv"  class="clear2 bill disc  form-control" style="color:green"></div>
                 </div>
               </div>
-              <!--                  <div id="outputSave" class="status clear"></div>--> 
-              <!--    <div id="outputSum" class="form-control bill"></div>-->
-              
               <button id="btnRefreshDisc" class="btnReset2 btn btn2 btn-lg btn-primary btn-block">Reset</button>
             </div>
           </div>
@@ -340,21 +323,18 @@
             <h1 class="b-display">The Percentage Imbalance of this DTR is:</h1>
             <div id="outputImbalance" class="clear form-control bill"></div>
             <div id="balance" class="status clear"></div>
-            <!--    <div id="outputSum" class="form-control bill"></div>-->
-            
             <button id="btnRefresh3" class="btnReset btn btn2 btn-lg btn-primary btn-block">Reset</button>
           </div>
+			<button id="lbRecord" class="lbSub">Submit Load Balancing Report</button>
+			
         </div>
       </div>
     </div>
   </div>
-	
-	<div class="ticker">
-<!--  <img src="PHED-logo-transparent.png" width="50px" alt="">-->
-  <div id="tariffScroll" ></div>
-</div>
-	
-
+  <div class="ticker"> 
+    <!--  <img src="PHED-logo-transparent.png" width="50px" alt="">-->
+    <div id="tariffScroll" ></div>
+  </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
