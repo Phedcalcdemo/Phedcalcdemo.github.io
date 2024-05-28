@@ -502,7 +502,8 @@ function extractValues() {
 
     // Check if any value is empty
     if (isNaN(red) || isNaN(yellow) || isNaN(blue) || isNaN(neutral) || isNaN(capacity)) {
-        alert("Please fill in all the required values.");
+        const errorMessageDiv = document.getElementById("errorMessage");
+        errorMessageDiv.textContent = "Please fill in all the required values.";
         return; // Stop execution
     }
 
@@ -519,6 +520,7 @@ function extractValues() {
     // Open the result page in a new tab
     window.open(url, '_blank');
 }
+
 	
 
 $(document).ready(function(){
