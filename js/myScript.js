@@ -500,6 +500,12 @@ function extractValues() {
     const neutral = parseFloat(document.querySelector("#neutral").value);
     const capacity = parseFloat(document.querySelector("#inputKVA").value);
 
+    // Check if any value is empty
+    if (isNaN(red) || isNaN(yellow) || isNaN(blue) || isNaN(neutral) || isNaN(capacity)) {
+        alert("Please fill in all the required values.");
+        return; // Stop execution
+    }
+
     // Calculate loading percentage
     const loading = ((Math.max(red, yellow, blue) / (capacity * 1.4)) * 100) || 0;
 
@@ -508,14 +514,11 @@ function extractValues() {
     const maxDeviation = Math.max(Math.abs(red - avgCurrent), Math.abs(yellow - avgCurrent), Math.abs(blue - avgCurrent));
     const imbalance = (maxDeviation / avgCurrent) * 100 || 0;
 
-
-const url = `LB Report.html?red=${red}&yellow=${yellow}&blue=${blue}&neutral=${neutral}&capacity=${capacity}&loading=${loading.toFixed(2)}&imbalance=${imbalance.toFixed(2)}`;
+    const url = `LB Report.html?red=${red}&yellow=${yellow}&blue=${blue}&neutral=${neutral}&capacity=${capacity}&loading=${loading.toFixed(2)}&imbalance=${imbalance.toFixed(2)}`;
 
     // Open the result page in a new tab
     window.open(url, '_blank');
 }
-
-	
 	
 
 $(document).ready(function(){
