@@ -504,6 +504,12 @@ function extractValues() {
     if (isNaN(red) || isNaN(yellow) || isNaN(blue) || isNaN(neutral) || isNaN(capacity)) {
         const errorMessageDiv = document.getElementById("errorMessage");
         errorMessageDiv.textContent = "Please fill in all the required values.";
+
+        // Hide the error message after 5 seconds
+        setTimeout(() => {
+            errorMessageDiv.textContent = "";
+        }, 5000); // 5000 milliseconds = 5 seconds
+
         return; // Stop execution
     }
 
@@ -520,6 +526,7 @@ function extractValues() {
     // Open the result page in a new tab
     window.open(url, '_blank');
 }
+
 
 	
 
