@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DTR Load Balancing Report</title>
-
 </head>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -13,6 +12,10 @@
 <style>
 body {
 /*    background:rgba(143,65,67,1.00);*/
+}
+#errorMessage {
+	color: red;
+	font-size: 18px;/*  margin-top: 10px*/
 }
 .thumbnail {
 	width: 80px;
@@ -51,10 +54,9 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-/*	height: 100vh;*/
+	/*	height: 100vh;*/
 	margin: 0;
 	background-color: #534484;
-	
 }
 .wrapper {
 	/* Add any other styling you need for the parent container */
@@ -76,8 +78,7 @@ font-size: 18px
 	background-color: #008ECC;
 	outline: none !important;
 	border: none !important;
-	font-size: 25px;
-	/*	padding: 0px 10px;*/
+	font-size: 20px;/*	padding: 0px 10px;*/
 /*	border-radius: 14px*/
 }
 .form-container .btn-primary:focus, .output .btn-primary:focus {
@@ -128,26 +129,24 @@ font-size: 18px
     <!--  <input type="text" id="feederName" class="form-control load" placeholder="Feeder name *" required>-->
     <input type="text" id="dtrName" class="form-control " placeholder="DTR SS Name *" required>
     <input type="number" id="dtrId" class="form-control " placeholder="DTR-ID*" required>
-	  <hr>
-	  
+    <hr>
     <div style="text-align: left; margin-bottom: 10px">
       <button type="button" class="pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button>
       <span style="color: green; font-size: 12px">[Use this if you are at the DTR SS]</span> <br>
       <h5 style="text-align: left; color: gray">Acceptable Format is Decimal degrees. (Lat,Long)</h5>
       <input type="text" id="gpsResult" class="form-control gpsResult" placeholder="7.123423,9.365221*" required>
     </div>
-	  <hr>
-	  
-  <div style="text-align: left">
-	  <h4 style="color: gray; word-wrap: break-word; max-width: 400px"> Please upload photos of the clamp meter showing the neutral values captured before and after load balancing </h4>
-    <input type="file" accept="image/*" id="uploadImage" name="imageFile" class="file_input" multiple="2" />
-    <div id="picView" class="uploadPreview"></div>
-	  </div>
-   <hr>
-   <div >
-    <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button">Back</a>
-    <button type="submit" class="btn btn-primary rounded-pill" formaction="#"  id="lbSubmit" style="float: right" >Submit</button>
-	   </div>
+    <hr>
+    <div style="text-align: left">
+      <h4 style="color: gray; word-wrap: break-word; max-width: 400px"> Please upload photos of the clamp meter showing the neutral values captured before and after load balancing </h4>
+      <input type="file" accept="image/*" id="uploadImage" name="imageFile" class="file_input" multiple="2" />
+      <div id="picView" class="uploadPreview"></div>
+    </div>
+    <hr>
+    <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button">Back</a>
+      <button type="submit" class="btn btn-primary rounded-pill" formaction="#"  id="lbSubmit" style="float: right" >Submit</button>
+    </div>
+    <div id="errorMessage" style="width: 100%; "></div>
   </form>
 </div>
 <script>
@@ -319,6 +318,42 @@ $('.pure-button').on('click', function() {
   getLocation();
 });
 </script> 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector(".form-container");
+        const submitButton = document.getElementById("lbSubmit");
+        const errorMessage = document.getElementById("errorMessage");
+        const uploadImageInput = document.getElementById("uploadImage");
+
+        submitButton.addEventListener("click", function (event) {
+            const requiredFields = form.querySelectorAll("[required]");
+
+            for (const field of requiredFields) {
+                if (!field.value.trim()) {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please fill in all required fields.";
+                    return;
+                }
+            }
+
+            if (!uploadImageInput.files.length) {
+                event.preventDefault(); // Prevent form submission
+                errorMessage.textContent = "Please upload picture evidence";
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const redPhase = parseFloat(urlParams.get("red"));
+
+            if (isNaN(redPhase)) {
+                errorMessage.textContent = "Please go back and provide the DTR loading data";
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
+</script> 
+<script>
+	
+	</script> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>
