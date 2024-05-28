@@ -9,9 +9,19 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <style>
 body {
 /*    background:rgba(143,65,67,1.00);*/
+}
+.thumbnail {
+	width: 80px;
+	height: 50px;
+	margin-right: 10px;
+}
+.uploadPreview {
+	max-height: 80px;
+	display: flex
 }
 #result {
 	/*			background-color: antiquewhite;*/
@@ -31,23 +41,20 @@ input, select {
 	margin-bottom: 5px;
 	font-size: 18px
 }
-
 button {
 	background-color: #008ECC;
 	outline: none !important;
 	border: none !important;
 	box-shadow: 3px 2px 8px rgba(0, 0, 0, .2);
-	
 }
-
-		
 body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+/*	height: 100vh;*/
 	margin: 0;
-	background-color: #534484
+	background-color: #534484;
+	padding-bottom: 50px
 }
 .wrapper {
 	/* Add any other styling you need for the parent container */
@@ -56,8 +63,7 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-	background-color: #fff;
-/*	margin-top: 20px*/
+	background-color: #fff;/*	margin-top: 20px*/
 }
 		::placeholder {
 font-size: 18px
@@ -70,17 +76,16 @@ font-size: 18px
 	outline: none !important;
 	border: none !important;
 	font-size: 25px;
-/*	padding: 0px 10px;*/
-	border-radius: 14px
-	
+	/*	padding: 0px 10px;*/
+/*	border-radius: 14px*/
 }
 .form-container .btn-primary:focus, .output .btn-primary:focus {
 	outline: none !important;
 	border: none !important
 }
-	.form-control{
-		font-size: 18px
-	}
+.form-control {
+	font-size: 18px
+}
 </style>
 <body style="text-align: center">
 <div class="wrapper">
@@ -122,11 +127,26 @@ font-size: 18px
     <!--  <input type="text" id="feederName" class="form-control load" placeholder="Feeder name *" required>-->
     <input type="text" id="dtrName" class="form-control " placeholder="DTR SS Name *" required>
     <input type="number" id="dtrId" class="form-control " placeholder="DTR-ID*" required>
-    <br>
-    <!-- Add more input fields as needed -->
-   <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button">Back</a>
-<!--    <button type="reset" class="btn btn-primary" formaction="index.html"  id="back" style="float: left; background-color: green" >Back</button>-->
-	   <button type="submit" class="btn btn-primary" formaction="#"  id="lbSubmit" style="float: right" >Submit</button>
+	  <hr>
+	  
+    <div style="text-align: left; margin-bottom: 10px">
+      <button class="pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button>
+      <span style="color: green; font-size: 12px">[Use this if you are at the DTR SS]</span> <br>
+      <h5 style="text-align: left; color: gray">Acceptable Format is Decimal degrees (DD) (Lat,Long)</h5>
+      <input type="text" id="gpsResult" class="form-control gpsResult" placeholder="7.123423,9.365221*" required>
+    </div>
+	  <hr>
+	  
+  <div style="text-align: left">
+	  <h4 style="color: gray; word-wrap: break-word; max-width: 400px"> Please upload photos of the clamp meter showing the neutral values captured before and after load balancing </h4>
+    <input type="file" accept="image/*" id="uploadImage" name="imageFile" class="file_input" multiple="2" />
+    <div id="picView" class="uploadPreview"></div>
+	  </div>
+   <hr>
+   <div >
+    <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button">Back</a>
+    <button type="submit" class="btn btn-primary rounded-pill" formaction="#"  id="lbSubmit" style="float: right" >Submit</button>
+	   </div>
   </form>
 </div>
 <script>
@@ -174,10 +194,6 @@ font-size: 18px
             });
         </script> 
 <script>
-
-	
-    </script> 
-<script>
     // Retrieve values from query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const redPhase = urlParams.get("red");
@@ -217,6 +233,91 @@ font-size: 18px
         <p> <span class="purple-text">${balanceStatus}</span></p>
     `;
     </script> 
+<script type="text/javascript">
+  window.onload = function() {
+    if (window.File && window.FileList && window.FileReader) {
+      var filesInput = document.getElementById("uploadImage");
+      filesInput.addEventListener("change", function(event) {
+        var files = event.target.files;
+        var output = document.getElementById("picView");
+        for (var i = 0; i < files.length; i++) {
+          var file = files[i];
+          if (!file.type.match('image')) {
+            continue;
+          }
+          var picReader = new FileReader();
+          picReader.addEventListener("load", function(event) {
+            var picFile = event.target;
+            var img = new Image();
+            img.src = picFile.result;
+            img.onload = function() {
+              var canvas = document.createElement("canvas");
+              var ctx = canvas.getContext("2d");
+              canvas.width = 50;
+              canvas.height = 50;
+              ctx.drawImage(img, 0, 0, 50, 50);
+              var resizedDataUrl = canvas.toDataURL("image/jpeg");
+              var div = document.createElement("div");
+              div.innerHTML = "<img class='thumbnail' src='" + resizedDataUrl + "'" +
+                "title='" + file.name + "'/>";
+              output.appendChild(div); // Append images horizontally
+            };
+          });
+          picReader.readAsDataURL(file);
+        }
+      });
+    }
+  };
+</script> 
+<script>
+function getLocation() {
+  var msg;
+
+  if ('geolocation' in navigator) {
+    requestLocation();
+  } else {
+    msg = "Sorry, looks like your browser doesn't support geolocation";
+    outputResult(msg);
+    $('.pure-button').removeClass('pure-button-primary').addClass('pure-button-success');
+  }
+
+  function requestLocation() {
+    var options = {
+      enableHighAccuracy: false,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
+    function success(pos) {
+      var lng = pos.coords.longitude;
+      var lat = pos.coords.latitude;
+      msg =  lat +','+ lng;
+      outputResult(msg);
+      $('.pure-button').removeClass('pure-button-primary').addClass('pure-button-success');
+
+      // Set the value of the input with ID "gpsResult"
+      $('#gpsResult').val(lat+','+lng);
+    }
+
+    function error(err) {
+      msg = 'Error: ' + err + ' :(';
+      outputResult(msg);
+      $('.pure-button').removeClass('pure-button-primary').addClass('pure-button-error');
+    }
+  }
+
+  function outputResult(msg) {
+    $('.gpsResult').addClass('gpsResult').html(msg);
+  }
+}
+
+$('.pure-button').on('click', function() {
+  $('.gpsRresult').html('<i class="fa fa-spinner fa-spin"></i>');
+  getLocation();
+});
+</script> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>
