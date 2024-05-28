@@ -91,7 +91,7 @@ font-size: 18px
 	background-color: #008ECC;
 	outline: none !important;
 	border: none !important;
-	font-size: 20px;/*	padding: 0px 10px;*/
+	font-size: 20px;	padding: 0px 10px;
 /*	border-radius: 14px*/
 }
 .form-container .btn-primary:focus, .output .btn-primary:focus {
@@ -196,8 +196,8 @@ font-size: 18px
       <div id="picView" class="uploadPreview"></div>
     </div>
     <hr>
-    <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button rounded-3">Back</a>
-      <button type="submit" class="btn btn-primary rounded-pill" formaction="#"  id="lbSubmit" style="float: right" >Submit</button>
+    <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px; width: 45%" class="btn-primary button rounded-3">Back</a>
+      <button type="submit" class="btn btn-primary rounded-3" formaction="#"  id="lbSubmit" style="float: right; width: 45%" >Submit</button>
     </div>
    
   </form>
@@ -375,7 +375,7 @@ $('.pure-button').on('click', function() {
 });
 </script> 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".form-container");
     const submitButton = document.getElementById("lbSubmit");
     const errorMessage = document.getElementById("errorMessage");
@@ -388,6 +388,9 @@ $('.pure-button').on('click', function() {
             if (!field.value.trim()) {
                 event.preventDefault(); // Prevent form submission
                 errorMessage.textContent = "Please fill in all required fields.";
+                setTimeout(() => {
+                    errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                }, 5000);
                 return;
             }
         }
@@ -395,6 +398,9 @@ $('.pure-button').on('click', function() {
         if (!uploadImageInput.files.length) {
             event.preventDefault(); // Prevent form submission
             errorMessage.textContent = "Please upload picture evidence.";
+            setTimeout(() => {
+                errorMessage.textContent = ""; // Clear the error message after 5 seconds
+            }, 5000);
             return;
         }
 
@@ -402,18 +408,29 @@ $('.pure-button').on('click', function() {
         if (selectRegion.value === "") {
             event.preventDefault(); // Prevent form submission
             errorMessage.textContent = "Please select a region.";
+            setTimeout(() => {
+                errorMessage.textContent = ""; // Clear the error message after 5 seconds
+            }, 5000);
             return;
         }
-		 const selectFeeder = document.getElementById("selectFeeder");
+
+        const selectFeeder = document.getElementById("selectFeeder");
         if (selectFeeder.value === "") {
             event.preventDefault(); // Prevent form submission
             errorMessage.textContent = "Please select a Feeder.";
+            setTimeout(() => {
+                errorMessage.textContent = ""; // Clear the error message after 5 seconds
+            }, 5000);
             return;
-        } 
-		const vL = document.getElementById("vL");
+        }
+
+        const vL = document.getElementById("vL");
         if (vL.value === "") {
             event.preventDefault(); // Prevent form submission
             errorMessage.textContent = "Please select the Voltage level.";
+            setTimeout(() => {
+                errorMessage.textContent = ""; // Clear the error message after 5 seconds
+            }, 5000);
             return;
         }
 
@@ -422,10 +439,14 @@ $('.pure-button').on('click', function() {
 
         if (isNaN(redPhase)) {
             errorMessage.textContent = "Please go back to the PHED Calculator and provide the DTR loading data.";
+            setTimeout(() => {
+                errorMessage.textContent = ""; // Clear the error message after 5 seconds
+            }, 5000);
             event.preventDefault(); // Prevent form submission
         }
     });
 });
+
 
 </script> 
 <script>
