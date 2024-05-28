@@ -4,51 +4,53 @@ html {
   -webkit-appearance: button;
   -webkit-appearance: pushbutton;
 }
-
 *, *:before, *:after {
   margin: 0;
   padding: 0;
 }
-#btnRefresh3, #lbRecord{
-	width: 48%
+#btnRefresh3, #lbRecord {
+  width: 48%
 }
-.btnWrapper{
-	width: 70%
+.btnWrapper {
+  width: 70%
 }
-.displayText{
-	font-size: 25px; 
-	margin-top: 5px;
-	padding-left: 5%; 
-/*	padding-right: 5%;*/
-	display: none; 
-	word-wrap: break-word; 
-	width: 100%;
-/*	background-color: greenyellow;*/
-	text-align: center
+#errorMessage {
+  color: red;
+  font-size: 30px;
+  margin-top: 10px
 }
-.tipsCont{
-	margin-left: 10%; 
-	margin-right: 10%;
-	position: absolute;
-/*	background-color: red;*/
-/*	margin-bottom: 50%*/
-		
+.displayText {
+  font-size: 25px;
+  margin-top: 5px;
+  padding-left: 5%;
+  /*	padding-right: 5%;*/
+  display: none;
+  word-wrap: break-word;
+  width: 100%;
+  /*	background-color: greenyellow;*/
+  text-align: center
 }
-.toggleButton, .lbSub{
-	padding-left: 10px; 
-	padding-right: 10px; 
-	font-size: 30px;
-
-	outline: none; 
-	border: none; 
-	box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+.tipsCont {
+  margin-left: 10%;
+  margin-right: 10%;
+  position: absolute;
+  /*	background-color: red;*/
+  /*	margin-bottom: 50%*/
 }
-.lbSub{
-	margin-top: 10px;
-	margin-right: 30px;
-	float: right;
-	border-radius: 10px;
-/*	background-color: green;*/
+.toggleButton, .lbSub {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 30px;
+  outline: none;
+  border: none;
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+}
+.lbSub {
+  margin-top: 10px;
+  margin-right: 30px;
+  float: right;
+  border-radius: 10px;
+  /*	background-color: green;*/
 }
 .green-text {
   color: green;
@@ -73,18 +75,18 @@ input:focus::placeholder {
 }
 body {
   background: #F0F1D5;
-/*  background:rgba(77,66,66,1.00);*/
-/*
+  /*  background:rgba(77,66,66,1.00);*/
+  /*
 	width: 100vw !important;
 	padding: 0;
 	margin: 0;
 */
-/*	padding: 0!important;*/
+  /*	padding: 0!important;*/
 }
 .logo-txt h2 {
   font-size: 40px;
-	color: green;
-	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
+  color: green;
+  font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
 }
 .DTRloading__form ::placeholder {
   text-align: center
@@ -98,12 +100,11 @@ input[type=number]:focus {
 }
 .phase input {
   width: 170px !important;
-/*	padding: 30px;*/
+  /*	padding: 30px;*/
   height: 80px;
   font-size: 25px;
   margin-bottom: 24px !important
 }
-
 .info {
   border-top: 2px solid #5F8D4E;
   border-bottom: 2px solid #5F8D4E;
@@ -116,56 +117,47 @@ input[type=number]:focus {
 .tips {
   font-size: 30px;
   text-align: center;
-	padding-left: 10%;
-	padding-right: 10%;
-	
+  padding-left: 10%;
+  padding-right: 10%;
 }
 .container {
-/*  width:  100%;*/
-/*  min-width:  100%;*/
-	display: flex;
-	background-color: #F0F1D5;
-	
-/*	background-color: darkorange;*/
-
-/*	overflow: hidden!important*/
+  /*  width:  100%;*/
+  /*  min-width:  100%;*/
+  display: flex;
+  background-color: #F0F1D5;
+  /*	background-color: darkorange;*/
+  /*	overflow: hidden!important*/
 }
 .logo {
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
-	
+  font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
   min-height: 92vh;
   padding-bottom: 8em;
   background: #F0F1D5;
-/*	background-color: lightcoral;*/
+  /*	background-color: lightcoral;*/
   color: #105187;
-/*	position: relative*/
-	overflow: hidden;
-		width: 100vw;
+  /*	position: relative*/
+  overflow: hidden;
+  width: 100vw;
 }
-
 /*
 #myButton{
 	padding: 10px
 }
 */
-
-
-
 .calc-container {
   min-height: 50vh;
 }
 .cont-wrapper {
-	
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   padding-bottom: 2em;
-	overflow: hidden;
+  overflow: hidden;
 }
-.logo #tariffScroll{
-	font-size: 30px;
-/*	position:fixed;
+.logo #tariffScroll {
+  font-size: 30px;
+  /*	position:fixed;
 
 /*
   display: flex;
@@ -175,7 +167,7 @@ input[type=number]:focus {
 div .phed {
   width: 70vw;
   height: auto;
-/*  margin-right: 30px;*/
+  /*  margin-right: 30px;*/
 }
 .phase label {
   font-size: 22px
@@ -194,34 +186,28 @@ div .phed {
 .form-control {
   margin-bottom: 20px;
   width: 70%;
-/*	padding: 50px;*/
+  /*	padding: 50px;*/
   border: 1px solid #1174A8;
   text-align: center;
 }
-.load{
+.load {
   padding: 50px 20px;
   font-size: 30px;
 }
 .loadA {
   padding: 50px 20px;
-	
-/*	EDITED*/
-	
-  font-size: 35px !important;     
-/*	color: blue*/
+  /*	EDITED*/
+  font-size: 35px !important;
+  /*	color: blue*/
 }
 select {
   font-size: 35px;
-/*  padding: 30px;*/
-	
+  /*  padding: 30px;*/
 }
 .select-input {
-  font-size: 35px!important;
-	text-align: center
-/*  padding: 30px;*/
-	
+  font-size: 35px !important;
+  text-align: center /*  padding: 30px;*/
 }
-
 .btn {
   width: 70vw;
   height: 12rem;
@@ -256,7 +242,7 @@ select {
 }
 .discDiv div {
   width: 100%;
-/*
+  /*
 	margin-left: 5%;
 	margin-right: 5%
 */
@@ -292,8 +278,6 @@ select {
   font-size: 40px !important;
   color: white !important;
 }
-
-
 .status {
   font-size: 40px;
 }
@@ -330,7 +314,6 @@ input, label {
 #marquee-cont marquee {
   margin-top: 5px;
 }
-
 .btn:focus {
   outline: none !important
 }
@@ -344,7 +327,6 @@ input, label {
   position: relative;
   /*	max-width: 980px;*/
   margin: 0 auto;
-
 }
 /**/
 /* main styles */
@@ -414,7 +396,6 @@ input, label {
 /*----------------------------------------------------------------------------*/
 /*                                 EXTENSIONS                                 */
 /*----------------------------------------------------------------------------*/
-
 .pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2 {
   display: block;
 }
@@ -456,24 +437,17 @@ input, label {
 /*----------------------------------------------------------------------------*/
 /*                                   LAYOUTS                                  */
 /*----------------------------------------------------------------------------*/
-
 .pcss3t-layout-top-right {
   text-align: right;
 }
-
 .pcss3t-layout-top-center {
   text-align: center;
 }
-
 /*----------------------------------------------------------------------------*/
 /*                                   THEMES                                   */
 /*----------------------------------------------------------------------------*/
-
-.pcss3t > label {
-  
-}
-.pcss3t > label:hover {
-}
+.pcss3t > label {}
+.pcss3t > label:hover {}
 .pcss3t > input:checked + label {
   background: #fff;
 }
@@ -486,7 +460,6 @@ input, label {
 .pcss3t-steps > label:hover {
   /*	background: #e5e5e5;	*/
 }
-
 .pcss3t-theme-1 > label:hover {
   /*	background: #fff;*/
   opacity: 1;
@@ -506,15 +479,12 @@ input, label {
 }
 .pcss3t-theme-1 > ul {
   border-radius: 5px;
-  
-  width: 80vw 
+  width: 80vw
 }
 .pcss3t-theme-1 > .tab-content-first:checked ~ ul {
   border-top-left-radius: 0;
 }
-
 .pcss3t > ul, .pcss3t > ul > li {
- 
   margin-top: 2px;
   /*	margin-bottom: 5px;*/
   overflow: hidden
@@ -531,7 +501,7 @@ input, label {
   background: #008ECC;
   color: #fff;
   opacity: 0.8;
-  overflow: hidden 
+  overflow: hidden
 }
 .pcss3t .singleA input {
   width: 70vw;
@@ -539,14 +509,12 @@ input, label {
   margin-top: -7px;
   overflow: hidden;
   font-size: 30px;
-	text-align: center;
-	margin-left: auto;
+  text-align: center;
+  margin-left: auto;
   margin-right: auto;
 }
-
-
 .phaseAmp input {
-  width: 155px!important ;
+  width: 155px !important;
   height: 80px;
   font-size: 30px;
   text-align: center !important;
@@ -555,20 +523,17 @@ input, label {
   font-size: 22px;
   margin-bottom: -6px;
 }
-
-
 @media screen and (min-width: 1024px) {
   body {
     background: #534484;
   }
-	.logo #tariffScroll{
-	font-size: 15px;
-}
-	.select-input {
-  font-size: 15px!important;
-/*  padding: 30px;*/
-	
-}
+  .logo #tariffScroll {
+    font-size: 15px;
+  }
+  .select-input {
+    font-size: 15px !important;
+    /*  padding: 30px;*/
+  }
   .btn2 {
     font-size: 24px !important;
   }
@@ -591,9 +556,9 @@ input, label {
     padding: 5px 10px;
     margin: 0px;
   }
-	.loadA{
-		font-size: 16px !important;
-	}
+  .loadA {
+    font-size: 16px !important;
+  }
   .b-display {
     font-size: 16px;
   }
@@ -608,12 +573,11 @@ input, label {
     font-size: 12px
   }
   .phaseAmp input {
-    width: 80px !important ;
+    width: 80px !important;
     height: auto;
     font-size: 16px;
     margin-top: -7px !important;
-	}
-	
+  }
   .phaseAmp label {
     font-size: 12px;
     margin-bottom: 5px;
@@ -621,8 +585,7 @@ input, label {
   div .phed {
     width: 24vw;
     height: auto;
-	  margin-left: -15px;
-	  
+    margin-left: -15px;
   }
   .form-container, .output {
     width: 50vw;
@@ -637,15 +600,14 @@ input, label {
   .logo {
     box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
     padding-bottom: 0px;
-	  width: 100%;
-	  min-height: 100vh;
-	  
+    width: 100%;
+    min-height: 100vh;
   }
   .container {
-/*    min-width: 50%;*/
+    /*    min-width: 50%;*/
     width: 65%;
-	  background-color: gray;
-	  box-shadow: 1px 3px 10px 12px rgba(0, 0, 0, .2);
+    background-color: gray;
+    box-shadow: 1px 3px 10px 12px rgba(0, 0, 0, .2);
   }
   .form-control {
     text-align: center;
@@ -686,7 +648,7 @@ input, label {
     height: 30px;
     font-size: 16px;
   }
-/*
+  /*
   #marquee-cont {
     position: sticky;
     bottom: 0px;
@@ -696,7 +658,7 @@ input, label {
     font-size: 16px
   }
 */
-/*
+  /*
   table img {
     width: 80px;
     height: auto;
@@ -704,7 +666,7 @@ input, label {
 */
   .pcss3t > ul {
     width: 100%;
-      margin-top: 8px;
+    margin-top: 8px;
     padding-bottom: 65px;
     /*	background-color:*/
     text-align: left;
@@ -722,25 +684,26 @@ input, label {
     height: 30px;
     font-size: 16px;
   }
-	.displayText{
-	font-size: 13px; 
-	width: 85%;
-	padding-left: 5%; 
-	padding-right: 5%;
+  .displayText {
+    font-size: 13px;
+    width: 85%;
+    padding-left: 5%;
+    padding-right: 5%;
   }
-	.toggleButton, .lbSub{
-	padding-left: 10px; 
-	padding-right: 10px; 
-	font-size: 16px;
-	}
-	.btnWrapper{
-	width: 60%
+  .toggleButton, .lbSub {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+  }
+  .btnWrapper {
+    width: 60%
+  }
+  #errorMessage {
+    font-size: 18px;
+  }
 }
-}
-
 @media screen and (max-width: 1024px) {
-	.container{
-		min-width: 100%
-	}
-	
+  .container {
+    min-width: 100%
+  }
 }
