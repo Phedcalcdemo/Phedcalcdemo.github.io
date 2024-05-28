@@ -14,8 +14,18 @@ body {
 /*    background:rgba(143,65,67,1.00);*/
 }
 #errorMessage {
+/*	display: flex;*/
+	position: relative;
+	bottom: 0px;
+	margin-top: 50px;
 	color: red;
 	font-size: 18px;/*  margin-top: 10px*/
+	width: 420px;
+	height: 60px;
+/*	background-color: burlywood;*/
+	word-wrap: break-word
+		
+		
 }
 .thumbnail {
 	width: 80px;
@@ -35,6 +45,9 @@ body {
 }
 .green-text {
 	color: green
+}
+	.blue-text {
+	color: blue
 }
 .purple-text {
 	color: rebeccapurple
@@ -65,7 +78,7 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-	background-color: #fff;/*	margin-top: 20px*/
+	background: #F0F1D5;
 	padding-bottom: 50px
 }
 		::placeholder {
@@ -88,13 +101,53 @@ font-size: 18px
 .form-control {
 	font-size: 18px
 }
+	.capture{
+		 position: relative;
+  background-color: #04AA6D;
+  border: none;
+/*  font-size: 28px;*/
+  color: #FFFFFF;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+	}
+	.capture:after {
+  content: "";
+  background: #90EE90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.capture:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+	
 </style>
+	
+	
 <body style="text-align: center">
+	
+	
 <div class="wrapper">
   <div style="margin-top: 10px; text-align: center;"> <img class="phed"  src="PHED logo.png" width="150px" height="auto" alt="PHED">
     <h3>DTR LOAD BALANCING REPORTING PAGE</h3>
   </div>
-  <div id="result" style="font-size: 16px; color:black"></div>
+	
+  <div id="result" style="font-size: 16px; color:black; background-color: white"></div>
   <form class="form-container" required>
     <div class="info">
       <h3>Provide Additional Information</h3>
@@ -131,7 +184,7 @@ font-size: 18px
     <input type="number" id="dtrId" class="form-control " placeholder="DTR-ID*" required>
     <hr>
     <div style="text-align: left; margin-bottom: 10px">
-      <button type="button" class="pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button>
+      <button type="button" class="capture pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button>
       <span style="color: green; font-size: 12px">[Use this if you are at the DTR SS]</span> <br>
       <h5 style="text-align: left; color: gray">Acceptable Format is Decimal degrees. (Lat,Long)</h5>
       <input type="text" id="gpsResult" class="form-control gpsResult" placeholder="7.123423,9.365221*" required>
@@ -143,11 +196,12 @@ font-size: 18px
       <div id="picView" class="uploadPreview"></div>
     </div>
     <hr>
-    <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button">Back</a>
+    <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px" class="btn-primary button rounded-3">Back</a>
       <button type="submit" class="btn btn-primary rounded-pill" formaction="#"  id="lbSubmit" style="float: right" >Submit</button>
     </div>
-    <div id="errorMessage" style="width: 100%; "></div>
+   
   </form>
+	 <div id="errorMessage"></div>
 </div>
 <script>
             const selectRegion = document.getElementById('selectRegion');
@@ -222,6 +276,8 @@ font-size: 18px
     // Display the extracted values in the "result" div
     const resultDiv = document.getElementById("result");
     resultDiv.innerHTML = `
+			<h3 class="blue-text">DTR Loading Data</h3>
+<hr>
         <p>Red Phase (A): <span class="green-text">${redPhase}</span></p>
         <p>Yellow Phase (A): <span class="green-text">${yellowPhase}</span></p>
         <p>Blue Phase (A): <span class="green-text">${bluePhase}</span></p>
@@ -320,36 +376,57 @@ $('.pure-button').on('click', function() {
 </script> 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector(".form-container");
-        const submitButton = document.getElementById("lbSubmit");
-        const errorMessage = document.getElementById("errorMessage");
-        const uploadImageInput = document.getElementById("uploadImage");
+    const form = document.querySelector(".form-container");
+    const submitButton = document.getElementById("lbSubmit");
+    const errorMessage = document.getElementById("errorMessage");
+    const uploadImageInput = document.getElementById("uploadImage");
 
-        submitButton.addEventListener("click", function (event) {
-            const requiredFields = form.querySelectorAll("[required]");
+    submitButton.addEventListener("click", function (event) {
+        const requiredFields = form.querySelectorAll("[required]");
 
-            for (const field of requiredFields) {
-                if (!field.value.trim()) {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please fill in all required fields.";
-                    return;
-                }
-            }
-
-            if (!uploadImageInput.files.length) {
+        for (const field of requiredFields) {
+            if (!field.value.trim()) {
                 event.preventDefault(); // Prevent form submission
-                errorMessage.textContent = "Please upload picture evidence";
+                errorMessage.textContent = "Please fill in all required fields.";
+                return;
             }
+        }
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const redPhase = parseFloat(urlParams.get("red"));
+        if (!uploadImageInput.files.length) {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = "Please upload picture evidence.";
+            return;
+        }
 
-            if (isNaN(redPhase)) {
-                errorMessage.textContent = "Please go back and provide the DTR loading data";
-                event.preventDefault(); // Prevent form submission
-            }
-        });
+        const selectRegion = document.getElementById("selectRegion");
+        if (selectRegion.value === "") {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = "Please select a region.";
+            return;
+        }
+		 const selectFeeder = document.getElementById("selectFeeder");
+        if (selectFeeder.value === "") {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = "Please select a Feeder.";
+            return;
+        } 
+		const vL = document.getElementById("vL");
+        if (vL.value === "") {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = "Please select the Voltage level.";
+            return;
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const redPhase = parseFloat(urlParams.get("red"));
+
+        if (isNaN(redPhase)) {
+            errorMessage.textContent = "Please go back to the PHED Calculator and provide the DTR loading data.";
+            event.preventDefault(); // Prevent form submission
+        }
     });
+});
+
 </script> 
 <script>
 	
