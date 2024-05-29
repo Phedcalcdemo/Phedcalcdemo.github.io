@@ -144,7 +144,7 @@ font-size: 18px
 	
 <div class="wrapper">
   <div style="margin-top: 10px; text-align: center;"> <img class="phed"  src="PHED logo.png" width="150px" height="auto" alt="PHED">
-    <h3>DTR LOAD BALANCING REPORTING PAGE</h3>
+    <h3>DTR LOAD BALANCING REPORT</h3>
   </div>
 	
   <div id="result" style="font-size: 16px; color:black; background-color: white"></div>
@@ -172,6 +172,8 @@ font-size: 18px
       <option value="" disabled Selected>Select Feeder *</option>
       <!-- Placeholder option for "Select Feeder" -->
     </select>
+	  
+	 
     <select id="vL" class="form-control input select-input drop-down-caret">
       <option value="" disabled selected>Voltage Level *</option>
       <option>11/0.415KV</option>
@@ -185,9 +187,9 @@ font-size: 18px
     <hr>
     <div style="text-align: left; margin-bottom: 10px">
       <button type="button" class="capture pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button> <br>
-      <span style="color: green; font-size: 12px">[only use the capture button if you are at the DTR Substation]</span> <br>
+      <span style="color: green; font-size: 12px">[Only use the capture button if you are at the DTR Substation]</span> <br>
       <h5 style="text-align: left; color: gray">Acceptable Format is Decimal degrees. (Lat,Long)</h5>
-      <input type="text" id="gpsResult" class="form-control gpsResult" placeholder="7.123423,9.365221*" required>
+      <input type="text" id="gpsResult" class="form-control gpsResult" placeholder=" E.g: 7.123423,9.365221 " required>
     </div>
     <hr>
     <div style="text-align: left">
@@ -438,7 +440,7 @@ $('.pure-button').on('click', function() {
         const redPhase = parseFloat(urlParams.get("red"));
 
         if (isNaN(redPhase)) {
-            errorMessage.textContent = "Please go back to the PHED Calculator and provide the DTR loading data.";
+            errorMessage.textContent = "Please go back to PHED Calculator and provide the DTR loading data.";
             setTimeout(() => {
                 errorMessage.textContent = ""; // Clear the error message after 5 seconds
             }, 5000);
