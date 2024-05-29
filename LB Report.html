@@ -74,7 +74,7 @@ body {
 }
 .wrapper {
 	/* Add any other styling you need for the parent container */
-	width: 90%;
+/*	width: 90%;*/
 	max-width: 800px;
 	padding: 20px;
 	border: 1px solid #ccc;
@@ -199,7 +199,7 @@ font-size: 18px
     <input type="number" id="dtrId" class="form-control " placeholder="DTR-ID*" required>
 		
 		
-</fieldset>
+<hr>
 
   
     <div style="text-align: left; margin-bottom: 10px">
@@ -215,10 +215,13 @@ font-size: 18px
       <input type="file" accept="image/*" id="uploadImage" name="imageFile" class="file_input" multiple="2" />
       <div id="picView" class="uploadPreview"></div>
     </div>
+	  </fieldset>
     <hr>
     <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px; width: 45%" class="btn-primary button rounded-3">Back</a>
       <button type="submit" class="btn btn-primary rounded-3" formaction="#"  id="lbSubmit" style="float: right; width: 45%" >Submit</button>
     </div>
+	 
+	
   </form>
   <div id="errorMessage"></div>
 </div>
@@ -367,13 +370,13 @@ font-size: 18px
     resultDiv.innerHTML = `
 			<h5 class="green-text">DTR Loading Data</h5>
 <hr>
-        <p>Red Phase (A): <span class="green-text">${redPhase}</span></p>
-        <p>Yellow Phase (A): <span class="green-text">${yellowPhase}</span></p>
-        <p>Blue Phase (A): <span class="green-text">${bluePhase}</span></p>
-        <p>Neutral Phase (A): <span class="green-text">${neutralPhase}</span></p>
-        <p>DTR Capacity (KVA): <span class="green-text">${dtrCapacity}</span></p>
-        <p>Percentage Loading: <span class="green-text">${loadingValue}</span></p>
-        <p>Percentage Imbalance: <span class="green-text">${imbalanceValue}%</span></p>
+        <strong><p>Red Phase (A): <span class="green-text">${redPhase}</span></p></strong>
+        <strong><p>Yellow Phase (A): <span class="green-text">${yellowPhase}</span></p></strong>
+        <strong><p>Blue Phase (A): <span class="green-text">${bluePhase}</span></p></strong>
+        <strong><p>Neutral Phase (A): <span class="green-text">${neutralPhase}</span></p></strong>
+        <strong><p>DTR Capacity (KVA): <span class="green-text">${dtrCapacity}</span></p></strong>
+       <strong> <p>Percentage Loading: <span class="green-text">${loadingValue}</span></p></strong>
+       <strong> <p>Percentage Imbalance: <span class="green-text">${imbalanceValue}%</span></p></strong>
         
         <p> <span class="purple-text">${balanceStatus}</span></p>
     `;
