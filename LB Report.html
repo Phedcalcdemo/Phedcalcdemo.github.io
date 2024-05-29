@@ -14,7 +14,7 @@ body {
 /*    background:rgba(143,65,67,1.00);*/
 }
 #errorMessage {
-/*	display: flex;*/
+	/*	display: flex;*/
 	position: relative;
 	bottom: 0px;
 	margin-top: 50px;
@@ -22,10 +22,8 @@ body {
 	font-size: 18px;/*  margin-top: 10px*/
 	width: 350px;
 	height: 60px;
-/*	background-color: burlywood;*/
+	/*	background-color: burlywood;*/
 	word-wrap: break-word
-		
-		
 }
 .thumbnail {
 	width: 80px;
@@ -46,7 +44,7 @@ body {
 .green-text {
 	color: green
 }
-	.blue-text {
+.blue-text {
 	color: blue
 }
 .purple-text {
@@ -91,8 +89,8 @@ font-size: 18px
 	background-color: #008ECC;
 	outline: none !important;
 	border: none !important;
-	font-size: 20px;	padding: 0px 10px;
-/*	border-radius: 14px*/
+	font-size: 20px;
+	padding: 0px 10px;/*	border-radius: 14px*/
 }
 .form-container .btn-primary:focus, .output .btn-primary:focus {
 	outline: none !important;
@@ -101,56 +99,51 @@ font-size: 18px
 .form-control {
 	font-size: 18px
 }
-	.capture{
-		 position: relative;
-  background-color: #04AA6D;
-  border: none;
-/*  font-size: 28px;*/
-  color: #FFFFFF;
-  padding: 20px;
-  width: 200px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-	}
-	.capture:after {
-  content: "";
-  background: #90EE90;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
+.capture {
+	position: relative;
+	background-color: #04AA6D;
+	border: none;
+	/*  font-size: 28px;*/
+	color: #FFFFFF;
+	padding: 20px;
+	width: 200px;
+	text-align: center;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
 }
-
+.capture:after {
+	content: "";
+	background: #90EE90;
+	display: block;
+	position: absolute;
+	padding-top: 300%;
+	padding-left: 350%;
+	margin-left: -20px!important;
+	margin-top: -120%;
+	opacity: 0;
+	transition: all 0.8s
+}
 .capture:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
+	padding: 0;
+	margin: 0;
+	opacity: 1;
+	transition: 0s
 }
-	
 </style>
-	
-	
+
 <body style="text-align: center">
-	
-	
 <div class="wrapper">
   <div style="margin-top: 10px; text-align: center;"> <img class="phed"  src="PHED logo.png" width="150px" height="auto" alt="PHED">
     <h3>DTR LOAD BALANCING REPORT</h3>
   </div>
-	
   <div id="result" style="font-size: 16px; color:black; background-color: white"></div>
   <form class="form-container" required>
     <div class="info">
-      <h3>Provide Additional Information</h3>
+		
+      <h3>Additional Information</h3>
     </div>
     <select id="selectRegion" class="form-control input select-input drop-down-caret" style="margin-top: 10px">
       <option value="" disabled selected>Select Region *</option>
@@ -168,17 +161,17 @@ font-size: 18px
       <option>Eket</option>
       <option>Ikot Ekpene</option>
     </select>
+	    <select id="vL" class="form-control input select-input drop-down-caret">
+      <option value="" disabled selected>Voltage Level *</option>
+      <option>11KV</option>
+      <option>33KV</option>
+    </select>
+	  
     <select id="selectFeeder" class="form-control input select-input drop-down-caret">
       <option value="" disabled Selected>Select Feeder *</option>
       <!-- Placeholder option for "Select Feeder" -->
     </select>
-	  
-	 
-    <select id="vL" class="form-control input select-input drop-down-caret">
-      <option value="" disabled selected>Voltage Level *</option>
-      <option>11/0.415KV</option>
-      <option>33/0.415KV</option>
-    </select>
+  
     
     <!-- Additional input fields --> 
     <!--  <input type="text" id="feederName" class="form-control load" placeholder="Feeder name *" required>-->
@@ -186,7 +179,8 @@ font-size: 18px
     <input type="number" id="dtrId" class="form-control " placeholder="DTR-ID*" required>
     <hr>
     <div style="text-align: left; margin-bottom: 10px">
-      <button type="button" class="capture pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button> <br>
+      <button type="button" class="capture pure-button pure-button-primary rounded-pill" style="color: white; font-size: 14px; padding:4px 10px">Capture GPS coordinates</button>
+      <br>
       <span style="color: green; font-size: 12px">[Only use the capture button if you are at the DTR Substation]</span> <br>
       <h5 style="text-align: left; color: gray">Acceptable Format is Decimal degrees. (Lat,Long)</h5>
       <input type="text" id="gpsResult" class="form-control gpsResult" placeholder=" E.g: 7.123423,9.365221 " required>
@@ -201,54 +195,123 @@ font-size: 18px
     <div > <a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px; width: 45%" class="btn-primary button rounded-3">Back</a>
       <button type="submit" class="btn btn-primary rounded-3" formaction="#"  id="lbSubmit" style="float: right; width: 45%" >Submit</button>
     </div>
-   
   </form>
-	 <div id="errorMessage"></div>
+  <div id="errorMessage"></div>
 </div>
-<script>
-            const selectRegion = document.getElementById('selectRegion');
-            const selectFeeder = document.getElementById('selectFeeder');
+ 
+	
+   <script>
+        // Function to populate feeders based on region and voltage level
+        function populateFeeders() {
+            const regionSelect = document.getElementById('selectRegion');
+            const voltageSelect = document.getElementById('vL');
+            const feederSelect = document.getElementById('selectFeeder');
 
-            // Event listener for region selection
-            selectRegion.addEventListener('change', function () {
-                if (selectRegion.value === 'Alpha 1') {
-                    // Show only Abuloma and Jetty feeders
-                    selectFeeder.innerHTML = `
-                        <option value="Amadi">Amadi</option>
-                        <option value="Rumuola">Rumuola</option>
-                    `;
-                } else if (selectRegion.value === 'Alpha 2') {
-                    // Show only Amadi and Marine Base feeders
-                    selectFeeder.innerHTML = `
-                        <option value="Jetty">Jetty</option>
-                        <option value="Abuloma">Abuloma</option>
-                    `;
-                } else if (selectRegion.value === 'Calabar') {
-                    // Show only Amadi and Marine Base feeders
-                    selectFeeder.innerHTML = `
-                        <option value="Amika">Amika</option>
-                        <option value="MCC">MCC</option>
-                    `;
-                }else if (selectRegion.value === 'Uyo') {
-                    // Show only Amadi and Marine Base feeders
-                    selectFeeder.innerHTML = `
-                        <option value="Fourtowns">Fourtowns</option>
-                        <option value="Aka Rd">Aka Rd</option>
-                    `;
-                }else if (selectRegion.value === 'Ikot Ekpene') {
-                    // Show only Amadi and Marine Base feeders
-                    selectFeeder.innerHTML = `
-                        <option value="Abak">Abak</option>
-                        <option value="4points">4points</option>
-                    `;
+            // Define feeder options based on region and voltage
+            const feeders = {
+                'Alpha 1': {
+                    '11KV': ['Amadi', 'Shell Industrial', 'Barracks', 'Rumuomoi', 'Water Lines', 'Bori Camp', 'Rumuokwuta', 'Omerelu', 'New Gra', 'Elekahia Estate', 'Elekahia Village', 'Niger Cat', 'Nkpogu', 'Amadi Ama', 'Rumukalagbo', 'Old Aba Road', 'Rumuogba', 'Rumuorolu', 'Rumuibekwe', 'RIVOC', 'NDABROS', 'Water Works', 'Fimie'].sort(),
+					'33KV': ['Industrial(T/A)', 'Stadium(T/A)', 'Ordinance', 'Rumuola', 'Refinery Line 2', 'Rainbow', 'Akani', 'Trans Amadi'].sort()
+                },
+                'Alpha 2': {
+                    '11KV': ['Jetty', 'Ozuboko', 'Odili Road', 'Okuru', 'Gulf Estate', 'Azuabie', 'Glass Factory', 'Circular Road', 'Nvuigwe', 'Ogbatai', 'Npa', 'Churchill', 'Station Road', 'Amadi North', 'Harold Wilson', 'New Road', 'Marine Base', 'Eastern Bypass'].sort(),
+                    '33KV': ['NLNG', 'Abuloma', 'RSPUB 1', 'Secretariat', 'Borokiri'].sort()
+                },
+               'Beta 1': {
+                    '11KV': ['Akpajo', 'Palace Road', 'Chairman’s Lodge', 'TTC', 'COT Gas', 'Okrika', 'PPMC Refinery', 'Ebubu', 'Ogali', 'Okoh Road', 'Okporo Road', 'R-D Road', 'Obi Wali', 'FGC', 'Eliogbolo', 'Omachi'].sort(),
+                    '33KV': ['RSTV', 'Bori', 'Igbo Etche', 'Rumuodumaya'].sort()
+                },
+				
+               'Beta 2': {
+                    '11KV': ['Elelenwo', 'Bristol', 'Tap', 'Olu Obasanjo', 'Zenith', 'Railway', 'Afam Road', 'First Bank', 'Mbano Junction'].sort(),
+                    '33KV': ['Onne', 'Ndoki', 'Komkom', 'Timber', 'Oyigbo', 'EPCL'].sort()
+				 },
+				
+				 'Gamma 1': {
+                    '11KV': ['UST', 'Ojoto', 'Rumueme', 'Wokoma', 'Eagle Island', 'Ikwerre Road', 'Nsukka',	'Udi', 'Navy',	'Habour Road', 'Azikiwe', 'Abonnema Wharf', 'Owerri Road', 'Amadi South', 'Amadi Residential', 'Mile One', 'Old Diobu', 'Ohakwe', 'Ozuoba', 'Mgbuoba', 'Location Road', 'akery Road', 'Egbelu', 'Agip Road', 'Abacha Road', 'School Of Nursing', 'Aker Road', 'Iwofe', 'Elioparanwo', 'Kala'].sort(),
+                    '33KV': ['UST', 'Silverbird', 'UTC', 'T1B', 'NTA', 'Rumuepirikom', 'Rumuolumini'].sort()
+				 },
+//              
+               'Gamma 2': {
+                    '11KV': ['Aluu', 'Choba', 'Rumuekini', 'Sars Road', 'ADP', 'Market Road', 'OPM', 'Shell Estate', 'Pipe Line', 'Airport Complex', 'Igwuruta', 'Igwuruta Road', 'Elimgbu'].sort(),
+                    '33KV': ['Airport', 'Refinery Line 1', 'UPTH', 'Rukpokwu', 'Greater Ph'].sort()
+                },
+				
+				 'Calabar': {
+                    '11KV': ['8Miles', 'Esukutan', 'Federal Housing', 'Industrial', 'Essien Town', 'MCC', 'Leopard', 'Essien I/Mariana', 'Cameroun', 'Unical', 'Goldie', 'Target', 'Crutech', 'Anantigha', 'Ikot Eneobong', 'Bacoco'].sort(),
+                    '33KV': ['BaoYao', 'Akamkpa', 'EPZ1', 'EPZ2', 'Waterboard', 'Olam', 'Flour Mill', 'Niger Mills', 'Diamond Hills', 'State Housing', 'Amika', 'Adiabo', 'Transcorp'].sort()
+                },
+				
+				'Ogoja': {
+                    '11KV': ['Ikom Town', 'Four corner'].sort(),
+                    '33KV': ['Itigidi', 'Yahe', 'Katsina Ala'].sort()
+                },
+				
+				'Uyo': {
+                    '11KV': ['Aka Road', 'Ibb Avenue', 'Indongesit Nkanga', 'Sir Udo Udoma', 'Uyo Road', 'Edebom', 'Wellington Bassey', 'Nsasak', 'Ikpa Road', 'Brooks', 'Aka Itiam', 'Ewet', 'Shelter Afrique', 'Nwaniba', 'Osong Ama'].sort(),
+                    '33KV': ['Champions Breweries', 'Le Meridian', 'Fourlane', 'Ibesikpo', 'Oron Road'].sort()
+                },
+				
+				
+				'Ikot Ekpene': {
+                    '11KV': ['Town Feeder', 'GRA', 'Ukana', '4point Sheraton', 'Mbak', 'Idoro Road'].sort(),
+                    '33KV': ['Abak', 'Oku Iboku', 'Ikot Ekpene', 'Obot Akara', 'Afaha Ube'].sort()
+                },
+				
+				'Eket': {
+                    '11KV': ['Ikot Ibiok', 'Okon', 'Qua River', 'RCC', 'Afaha Uqua', 'Maritime', 'Mary Harney', 'Ikot Akan', 'ALSCON', 'Ibekwe', 'Port Harcourt Road', 'Ette Urban'].sort(),
+                    '33KV': ['Eket', 'Etinan', 'Ekpenukpa', 'Mbo, Ibeno', 'Industrial', 'Ikot Abasi', 'Ekim'].sort()
+                },
+				'Bayelsa': {
+                    '11KV': ['Local Government', 'NDU', 'Amasoma II', 'Ofoni', 'Sagbama', 'Polaku', 'Agbia', 'Okotiama', 'Kolobiri'].sort(),
+                    '33KV': ['Imiringi', 'Agudama', 'Opolo', 'Amasoma', 'Tungbo', 'Govt House', 'Gbarain'].sort()
+                },
+				'Ahoada': {
+                    '11KV': [''],
+                    '33KV': ['Abonema', 'Buguma', 'Isiokpo', 'Ahoada', 'Emohua'].sort()
+                },
+				
+                // Add other regions and voltage levels as needed...
+            };
+
+            // Event listener for region and voltage changes
+            regionSelect.addEventListener('change', updateFeeders);
+            voltageSelect.addEventListener('change', updateFeeders);
+
+            // Initial population
+            updateFeeders();
+
+            function updateFeeders() {
+                const selectedRegion = regionSelect.value;
+                const selectedVoltage = voltageSelect.value;
+
+                // Clear existing options
+                feederSelect.innerHTML = '';
+
+                if (selectedRegion && selectedVoltage) {
+                    const selectedFeeders = feeders[selectedRegion][selectedVoltage];
+                    selectedFeeders.forEach(feeder => {
+                        const option = document.createElement('option');
+                        option.value = feeder;
+                        option.textContent = feeder;
+                        feederSelect.appendChild(option);
+                    });
                 } else {
-                    // Reset feeder options for other regions
-                    selectFeeder.innerHTML = `
-                        <option value="" disabled>Select Feeder *</option>
-                    `;
+                    // Show placeholder option
+                    const placeholderOption = document.createElement('option');
+                    placeholderOption.value = '';
+                    placeholderOption.textContent = 'Select Feeder *';
+                    placeholderOption.disabled = true;
+                    placeholderOption.selected = true;
+                    feederSelect.appendChild(placeholderOption);
                 }
-            });
-        </script> 
+            }
+        }
+
+        // Call the function to initialize
+        populateFeeders();
+    </script>
+	
 <script>
     // Retrieve values from query parameters
     const urlParams = new URLSearchParams(window.location.search);
@@ -415,6 +478,15 @@ $('.pure-button').on('click', function() {
             }, 5000);
             return;
         }
+		 const vL = document.getElementById("vL");
+        if (vL.value === "") {
+            event.preventDefault(); // Prevent form submission
+            errorMessage.textContent = "Please select the Voltage level.";
+            setTimeout(() => {
+                errorMessage.textContent = ""; // Clear the error message after 5 seconds
+            }, 5000);
+            return;
+        }
 
         const selectFeeder = document.getElementById("selectFeeder");
         if (selectFeeder.value === "") {
@@ -426,15 +498,7 @@ $('.pure-button').on('click', function() {
             return;
         }
 
-        const vL = document.getElementById("vL");
-        if (vL.value === "") {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = "Please select the Voltage level.";
-            setTimeout(() => {
-                errorMessage.textContent = ""; // Clear the error message after 5 seconds
-            }, 5000);
-            return;
-        }
+       
 
         const urlParams = new URLSearchParams(window.location.search);
         const redPhase = parseFloat(urlParams.get("red"));
