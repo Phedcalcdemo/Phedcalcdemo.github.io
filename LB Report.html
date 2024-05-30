@@ -90,7 +90,7 @@
     <div> 
 <!--		<a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px; width: 45%" class="btn-primary button rounded-3">Back</a>-->
 		 <button type="button" onclick="window.location.href = 'index.html';" class="btn btn-primary rounded-3"  id="backLB" style="float: left; width: 45%; background-color: darkolivegreen" >Back</button>
-      <button type="submit" class="btn btn-primary rounded-3" formaction="#"  id="lbSubmit" style="float: right; width: 45%" >Submit</button>
+      <button type="button" class="btn btn-primary rounded-3" form-action="#"  id="lbSubmit" style="float: right; width: 45%" >Submit</button>
     </div>
 	 
 <!--	<hr>-->
@@ -339,82 +339,8 @@ $('.pure-button').on('click', function() {
   getLocation();
 });
 </script> 
-<script>
- document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector(".form-container");
-    const submitButton = document.getElementById("lbSubmit");
-    const errorMessage = document.getElementById("errorMessage");
-    const uploadImageInput = document.getElementById("uploadImage");
+	
 
-    submitButton.addEventListener("click", function (event) {
-        const requiredFields = form.querySelectorAll("[required]");
-
-        for (const field of requiredFields) {
-            if (!field.value.trim()) {
-                event.preventDefault(); // Prevent form submission
-                errorMessage.textContent = "Please fill in all required fields.";
-                setTimeout(() => {
-                    errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                }, 5000);
-                return;
-            }
-        }
-
-        if (!uploadImageInput.files.length) {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = "Please upload picture evidence.";
-            setTimeout(() => {
-                errorMessage.textContent = ""; // Clear the error message after 5 seconds
-            }, 5000);
-            return;
-        }
-
-        const selectRegion = document.getElementById("selectRegion");
-        if (selectRegion.value === "") {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = "Please select a region.";
-            setTimeout(() => {
-                errorMessage.textContent = ""; // Clear the error message after 5 seconds
-            }, 5000);
-            return;
-        }
-		 const vL = document.getElementById("vL");
-        if (vL.value === "") {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = "Please select the Voltage level.";
-            setTimeout(() => {
-                errorMessage.textContent = ""; // Clear the error message after 5 seconds
-            }, 5000);
-            return;
-        }
-
-        const selectFeeder = document.getElementById("selectFeeder");
-        if (selectFeeder.value === "") {
-            event.preventDefault(); // Prevent form submission
-            errorMessage.textContent = "Please select a Feeder.";
-            setTimeout(() => {
-                errorMessage.textContent = ""; // Clear the error message after 5 seconds
-            }, 5000);
-            return;
-        }
-
-       
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const redPhase = parseFloat(urlParams.get("red"));
-
-        if (isNaN(redPhase)) {
-            errorMessage.textContent = "Please go back to PHED Calculator and provide the DTR loading data.";
-            setTimeout(() => {
-                errorMessage.textContent = ""; // Clear the error message after 5 seconds
-            }, 5000);
-            event.preventDefault(); // Prevent form submission
-        }
-    });
-});
-
-
-</script> 
 <script>
 	
 	</script>
@@ -425,6 +351,96 @@ $('.pure-button').on('click', function() {
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>-->
 	<script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> 
+	
+		
+ <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector(".form-container");
+            const submitButton = document.getElementById("lbSubmit");
+            const errorMessage = document.getElementById("errorMessage");
+            const uploadImageInput = document.getElementById("uploadImage");
+
+            submitButton.addEventListener("click", function (event) {
+                const requiredFields = form.querySelectorAll("[required]");
+
+                for (const field of requiredFields) {
+                    if (!field.value.trim()) {
+                        event.preventDefault(); // Prevent form submission
+                        errorMessage.textContent = "Please fill in all required fields.";
+                        setTimeout(() => {
+                            errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                        }, 5000);
+                        return;
+                    }
+                }
+
+                if (!uploadImageInput.files.length) {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please upload picture evidence.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    return;
+                }
+
+                const selectRegion = document.getElementById("selectRegion");
+                if (selectRegion.value === "") {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please select a region.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    return;
+                }
+
+                const vL = document.getElementById("vL");
+                if (vL.value === "") {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please select the Voltage level.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    return;
+                }
+
+                const selectFeeder = document.getElementById("selectFeeder");
+                if (selectFeeder.value === "") {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please select a Feeder.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    return;
+                }
+
+                // Assuming you have a way to get the redPhase value
+                const urlParams = new URLSearchParams(window.location.search);
+                const redPhase = parseFloat(urlParams.get("red"));
+
+                if (isNaN(redPhase)) {
+                    errorMessage.textContent = "Please go back to PHED Calculator and provide the DTR loading data.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    event.preventDefault(); // Prevent form submission
+                } else {
+                    // Show SweetAlert success message
+                    swal.fire({
+			'title': 'Submitted Successfully',
+			'text': 'Click on OK to submit another report',
+			'type': 'success',
+                        timer: 9999, // Automatically close after 5 seconds
+                        showConfirmButton: true, // Show the "OK" button
+                    }).then(() => {
+                        // Redirect to index.html
+                        window.location.href = 'index.html';
+                    });
+                }
+            });
+        });
+    </script>
+	
+<!--
 <script type="text/javascript">
 	$(function(){
 		$('#lbSubmit').click(function(){
@@ -437,6 +453,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 	});
 	
 	</script>
+-->
 	
 </body>
 </html>
