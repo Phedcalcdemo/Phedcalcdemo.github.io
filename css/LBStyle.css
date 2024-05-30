@@ -40,8 +40,8 @@ h5 {
 }
 .uploadPreview {
   max-height: 80px;
-/*  max-width: 350px;*/
-  max-width: 100vw;
+  max-width: 350px;
+/*  max-width: 100vw;*/
   display: flex;
   overflow: hidden;
 }
