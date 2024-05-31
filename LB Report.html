@@ -361,28 +361,22 @@ https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
             const uploadImageInput = document.getElementById("uploadImage");
 
             submitButton.addEventListener("click", function (event) {
-                const requiredFields = form.querySelectorAll("[required]");
 
-                for (const field of requiredFields) {
-                    if (!field.value.trim()) {
-                        event.preventDefault(); // Prevent form submission
-                        errorMessage.textContent = "Please fill in all required fields.";
-                        setTimeout(() => {
-                            errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                        }, 5000);
-                        return;
-                    }
-                }
 
-                if (!uploadImageInput.files.length) {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please upload picture evidence.";
+                 // Assuming you have a way to get the redPhase value
+                const urlParams = new URLSearchParams(window.location.search);
+                const redPhase = parseFloat(urlParams.get("red"));
+
+                if (isNaN(redPhase)) {
+                    errorMessage.textContent = "Please go back to PHED Calculator and provide the DTR loading data.";
                     setTimeout(() => {
                         errorMessage.textContent = ""; // Clear the error message after 5 seconds
                     }, 5000);
-                    return;
+					return;
+					
+                    event.preventDefault(); // Prevent form submission
                 }
-
+				
                 const selectRegion = document.getElementById("selectRegion");
                 if (selectRegion.value === "") {
                     event.preventDefault(); // Prevent form submission
@@ -412,22 +406,52 @@ https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
                     }, 5000);
                     return;
                 }
-
-                // Assuming you have a way to get the redPhase value
-                const urlParams = new URLSearchParams(window.location.search);
-                const redPhase = parseFloat(urlParams.get("red"));
-
-                if (isNaN(redPhase)) {
-                    errorMessage.textContent = "Please go back to PHED Calculator and provide the DTR loading data.";
+				
+				 const selectDtrName = document.getElementById("dtrName");
+                if (selectDtrName.value === "") {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please enter name of Substation.";
                     setTimeout(() => {
                         errorMessage.textContent = ""; // Clear the error message after 5 seconds
                     }, 5000);
+                    return;
+                }
+				const selectvL = document.getElementById("dtrId");
+                if (selectvL.value === "") {
                     event.preventDefault(); // Prevent form submission
-                } else {
+                    errorMessage.textContent = "Please enter DTR ID.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    return;
+                }
+				
+				const gpsResultInput = document.getElementById("gpsResult");
+                if (gpsResultInput.value === "") {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please enter DTR's GPS Coordinate";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+                    return;
+                }
+
+				if (!uploadImageInput.files.length) {
+                    event.preventDefault(); // Prevent form submission
+                    errorMessage.textContent = "Please upload picture evidence.";
+                    setTimeout(() => {
+                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
+                    }, 5000);
+//                    return;
+                }
+
+
+
+                else {
                     // Show SweetAlert success message
                     swal.fire({
 			'title': 'Submitted Successfully',
-			'text': 'Click on OK to submit another report',
+			'text': 'Submit another report',
 			'type': 'success',
 //                        timer: 9999, // Automatically close after 5 seconds
 //                        showConfirmButton: true, // Show the "OK" button
@@ -440,20 +464,6 @@ https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         });
     </script>
 	
-<!--
-<script type="text/javascript">
-	$(function(){
-		$('#lbSubmit').click(function(){
-		swal.fire({
-			'title': 'Submitted Successfully',
-			'text': 'Click on OK to submit another report',
-			'type': 'success'
-		})
-	});
-	});
-	
-	</script>
--->
-	
+
 </body>
 </html>
