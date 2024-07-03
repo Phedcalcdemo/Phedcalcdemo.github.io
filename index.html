@@ -416,8 +416,8 @@ navigator.mediaDevices
 
 captureButton.addEventListener('click', () => {
   // Get the real size of the picture
-  const imageWidth = player.videoWidth; // Use videoWidth for the actual video frame size
-  const imageHeight = player.videoHeight; // Use videoHeight for the actual video frame size
+  const imageWidth = player.videoWidth;
+  const imageHeight = player.videoHeight;
   
   // Make our hidden canvas the same size
   outputCanvas.width = imageWidth;
@@ -430,20 +430,25 @@ captureButton.addEventListener('click', () => {
   const downloadLink = document.createElement('a');
   downloadLink.setAttribute('download', `capture-${new Date().getTime()}.png`);
   
-  // Attempt to limit the image size to 100KB by adjusting the quality
+  // Check the image size and adjust the quality if needed
   outputCanvas.toBlob((blob) => {
-    if (blob.size <= 100 * 1024) {
+    if (blob.size >= 50 * 1024) { // Check if the blob is at least 50KB
       downloadLink.setAttribute('href', URL.createObjectURL(blob));
       downloadLink.click();
     } else {
-      // If the blob is too large, reduce the quality and try again
-      outputCanvas.toBlob((blobLowerQuality) => {
-        downloadLink.setAttribute('href', URL.createObjectURL(blobLowerQuality));
-        downloadLink.click();
-      }, 'image/jpeg', 0.7); // Adjust the quality as needed
+      // If the blob is too small, increase the quality and try again
+      outputCanvas.toBlob((blobHigherQuality) => {
+        if (blobHigherQuality.size >= 50 * 1024) {
+          downloadLink.setAttribute('href', URL.createObjectURL(blobHigherQuality));
+          downloadLink.click();
+        } else {
+          console.log('Unable to reach the minimum size of 50KB with the current settings.');
+        }
+      }, 'image/jpeg', 0.9); // Adjust the quality to increase the size
     }
-  }, 'image/jpeg', 1.0); // Start with the best quality
+  }, 'image/jpeg', 0.7); // Start with a reasonable quality
 });
+
 </script>
 
 
