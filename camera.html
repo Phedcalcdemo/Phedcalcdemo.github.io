@@ -8,7 +8,7 @@
 <style>
   /* Fullscreen container */
   #container {
-    width: 80vw; /* 100% of the viewport width */
+    width: 100vw; /* 100% of the viewport width */
     height: 100vh; /* 100% of the viewport height */
     position: fixed; /* Fixed position to cover the entire screen */
     top: 0;
@@ -27,7 +27,7 @@
     width: 180px;
     height: 180px;
     bottom: 30vh;
-    left: calc(50% - 50px); /* Center the button */
+    left: 40% /* Center the button */
     border-radius: 50%;
     background-color: #ff0000;
     border: 2px solid #fff;
@@ -88,7 +88,7 @@ captureButton.addEventListener('click', () => {
   
   // Attempt to limit the image size to 100KB by adjusting the quality
   outputCanvas.toBlob((blob) => {
-    if (blob.size <= 100 * 1024) {
+    if (blob.size <= 150 * 1024) {
       downloadLink.setAttribute('href', URL.createObjectURL(blob));
       downloadLink.click();
     } else {
@@ -96,7 +96,7 @@ captureButton.addEventListener('click', () => {
       outputCanvas.toBlob((blobLowerQuality) => {
         downloadLink.setAttribute('href', URL.createObjectURL(blobLowerQuality));
         downloadLink.click();
-      }, 'image/jpeg', 0.7); // Adjust the quality as needed
+      }, 'image/jpeg', 0.8); // Adjust the quality as needed
     }
   }, 'image/jpeg', 1.0); // Start with the best quality
 });
