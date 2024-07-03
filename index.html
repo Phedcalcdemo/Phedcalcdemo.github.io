@@ -69,7 +69,19 @@
                       </div>
                     </div>
                   </li>
+
                   <li class="tab-content tab-content-2 typography">
+
+
+			<div id="container">
+  <h1>Save the camera's picture to a file</h1>
+  <video id="player" autoplay></video>
+  <button id="capture-button" title="Take a picture"></button>
+</div>
+
+
+
+			  
                     <div class="form-inline" style=" text-align: center; ">
                       <div class="form-group w-5 phaseAmp ">
                         <label for="rAmp">Red Phase:</label>
@@ -340,9 +352,47 @@
     <div id="tariffScroll" ></div>
   </div>
 </div>
-</body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/myScript.js"></script>
+
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script>
+const player = document.getElementById('player');
+const captureButton = document.getElementById('capture-button');
+const outputCanvas = document.getElementById('output');
+const context = outputCanvas.getContext('2d');
+
+navigator.mediaDevices
+  .getUserMedia({ video: true })
+  .then((stream) => {
+    player.srcObject = stream;
+  }).catch(error => {
+    console.error('Can not get an access to a camera...', error);
+  });
+
+captureButton.addEventListener('click', () => {
+  // Get the real size of the picture
+  const imageWidth = player.offsetWidth;
+  const imageHeight = player.offsetHeight;
+  
+  // Make our hidden canvas the same size
+  outputCanvas.width = imageWidth;
+  outputCanvas.height = imageHeight;
+  
+  // Draw captured image to the hidden canvas
+  context.drawImage(player, 0, 0, imageWidth, imageHeight);
+  
+  // A bit of magic to save the image to a file
+  const downloadLink = document.createElement('a');
+  downloadLink.setAttribute('download', `capture-${new Date().getTime()}.png`);
+  outputCanvas.toBlob((blob) => {
+    downloadLink.setAttribute('href', URL.createObjectURL(blob));
+    downloadLink.click();
+  });
+});
+</script>
+</body>
+
 </html>
