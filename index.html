@@ -404,17 +404,19 @@ const outputCanvas = document.getElementById('output');
 const context = outputCanvas.getContext('2d');
 
 navigator.mediaDevices
-  .getUserMedia({ video: true })
+  .getUserMedia({ 
+    video: { facingMode: 'environment' } // Request the back camera
+  })
   .then((stream) => {
     player.srcObject = stream;
   }).catch(error => {
-    console.error('Can not get an access to a camera...', error);
+    console.error('Cannot get access to a camera...', error);
   });
 
 captureButton.addEventListener('click', () => {
   // Get the real size of the picture
-  const imageWidth = player.offsetWidth;
-  const imageHeight = player.offsetHeight;
+  const imageWidth = player.videoWidth; // Use videoWidth for the actual video frame size
+  const imageHeight = player.videoHeight; // Use videoHeight for the actual video frame size
   
   // Make our hidden canvas the same size
   outputCanvas.width = imageWidth;
@@ -432,6 +434,7 @@ captureButton.addEventListener('click', () => {
   });
 });
 </script>
+
 </body>
 
 </html>
