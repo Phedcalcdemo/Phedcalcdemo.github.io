@@ -36,11 +36,14 @@
     transition: all 0.15s ease-in-out;
     opacity: 0.5;
     outline: none;
+&:hover {
+    transform: scale(1.1);
   }
-  #capture-button:active {
+  
+  &:active {
     background-color: #00ff00;
   }
-  /* Hide the output canvas */
+}
   #output {
     display: none;
   }
