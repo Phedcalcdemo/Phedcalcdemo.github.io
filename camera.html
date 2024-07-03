@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PHED CALCULATOR APP</title>
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+<style>
+  /* Fullscreen container */
+  #container {
+    width: 100vw; /* 100% of the viewport width */
+    height: 100vh; /* 100% of the viewport height */
+    position: fixed; /* Fixed position to cover the entire screen */
+    top: 0;
+    left: 0;
+  }
+  /* Fullscreen video player */
+  #player {
+    width: 100%;
+    height: 100%;
+    border: none;
+    box-shadow: none;
+  }
+  /* Adjusted capture button */
+  #capture-button {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    bottom: 20px;
+    left: calc(50% - 50px); /* Center the button */
+    border-radius: 50%;
+    background-color: #ff0000;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    opacity: 0.5;
+    outline: none;
+  }
+  #capture-button:active {
+    background-color: #00ff00;
+  }
+  /* Hide the output canvas */
+  #output {
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <video id="player" autoplay></video>
+  <button id="capture-button" title="Take a picture"></button>
+</div>
+<canvas id="output"></canvas>
+	
+	
+			
+<script>
+const player = document.getElementById('player');
+const captureButton = document.getElementById('capture-button');
+const outputCanvas = document.getElementById('output');
+const context = outputCanvas.getContext('2d');
+
+navigator.mediaDevices
+  .getUserMedia({ 
+    video: { facingMode: 'environment' } // Request the back camera
+  })
+  .then((stream) => {
+    player.srcObject = stream;
+  }).catch(error => {
+    console.error('Cannot get access to a camera...', error);
+  });
+
+captureButton.addEventListener('click', () => {
+  // Get the real size of the picture
+  const imageWidth = player.videoWidth; // Use videoWidth for the actual video frame size
+  const imageHeight = player.videoHeight; // Use videoHeight for the actual video frame size
+  
+  // Make our hidden canvas the same size
+  outputCanvas.width = imageWidth;
+  outputCanvas.height = imageHeight;
+  
+  // Draw captured image to the hidden canvas
+  context.drawImage(player, 0, 0, imageWidth, imageHeight);
+  
+  // A bit of magic to save the image to a file
+  const downloadLink = document.createElement('a');
+  downloadLink.setAttribute('download', `capture-${new Date().getTime()}.png`);
+  
+  // Attempt to limit the image size to 100KB by adjusting the quality
+  outputCanvas.toBlob((blob) => {
+    if (blob.size <= 100 * 1024) {
+      downloadLink.setAttribute('href', URL.createObjectURL(blob));
+      downloadLink.click();
+    } else {
+      // If the blob is too large, reduce the quality and try again
+      outputCanvas.toBlob((blobLowerQuality) => {
+        downloadLink.setAttribute('href', URL.createObjectURL(blobLowerQuality));
+        downloadLink.click();
+      }, 'image/jpeg', 0.7); // Adjust the quality as needed
+    }
+  }, 'image/jpeg', 1.0); // Start with the best quality
+});
+</script>
+</body>
+	
+
+</html>
