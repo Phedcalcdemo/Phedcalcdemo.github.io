@@ -85,14 +85,14 @@
       
       <!--		Calccontainer-->
       
-<div id="container">
+id="container">
   <h1>Save the camera's picture to a file</h1>
   <video id="player" autoplay></video>
-  <button id="capture-button" title="Take a picture">Capture</button>
-  <!-- Add an image element for previewing -->
-  <img id="preview" src="" alt="Image preview" style="display:none;">
+  <button id="capture-button" title="Take a picture"></button>
 </div>
-<canvas id="output" style="display:none;"></canvas> <!-- Hide the canvas -->
+<canvas id="output"></canvas>
+
+
 
 	      
         <div class="billing__form" style="display: block;">
@@ -401,7 +401,6 @@ const player = document.getElementById('player');
 const captureButton = document.getElementById('capture-button');
 const outputCanvas = document.getElementById('output');
 const context = outputCanvas.getContext('2d');
-const preview = document.getElementById('preview'); // Get the preview image element
 
 navigator.mediaDevices
   .getUserMedia({ 
@@ -425,10 +424,6 @@ captureButton.addEventListener('click', () => {
   // Draw captured image to the hidden canvas
   context.drawImage(player, 0, 0, imageWidth, imageHeight);
   
-  // Convert canvas content to data URL and set it as the source of the preview image
-  preview.src = outputCanvas.toDataURL();
-  preview.style.display = 'block'; // Show the preview image
-  
   // A bit of magic to save the image to a file
   const downloadLink = document.createElement('a');
   downloadLink.setAttribute('download', `capture-${new Date().getTime()}.png`);
@@ -436,25 +431,19 @@ captureButton.addEventListener('click', () => {
   // Attempt to limit the image size to 100KB by adjusting the quality
   outputCanvas.toBlob((blob) => {
     if (blob.size <= 100 * 1024) {
-      // If the blob is under 100KB, set the href and download the image
       downloadLink.setAttribute('href', URL.createObjectURL(blob));
       downloadLink.click();
     } else {
       // If the blob is too large, reduce the quality and try again
       outputCanvas.toBlob((blobLowerQuality) => {
-        if (blobLowerQuality.size <= 100 * 1024) {
-          // Check again if the new blob is under 100KB
-          downloadLink.setAttribute('href', URL.createObjectURL(blobLowerQuality));
-          downloadLink.click();
-        } else {
-          // If it's still too large, you can alert the user or handle as needed
-          alert('Unable to reduce image size to under 100KB.');
-        }
+        downloadLink.setAttribute('href', URL.createObjectURL(blobLowerQuality));
+        downloadLink.click();
       }, 'image/jpeg', 0.7); // Adjust the quality as needed
     }
   }, 'image/jpeg', 1.0); // Start with the best quality
 });
 </script>
+
 
 
 
