@@ -428,12 +428,23 @@ captureButton.addEventListener('click', () => {
   // A bit of magic to save the image to a file
   const downloadLink = document.createElement('a');
   downloadLink.setAttribute('download', `capture-${new Date().getTime()}.png`);
+  
+  // Attempt to limit the image size to 100KB by adjusting the quality
   outputCanvas.toBlob((blob) => {
-    downloadLink.setAttribute('href', URL.createObjectURL(blob));
-    downloadLink.click();
-  });
+    if (blob.size <= 100 * 1024) {
+      downloadLink.setAttribute('href', URL.createObjectURL(blob));
+      downloadLink.click();
+    } else {
+      // If the blob is too large, reduce the quality and try again
+      outputCanvas.toBlob((blobLowerQuality) => {
+        downloadLink.setAttribute('href', URL.createObjectURL(blobLowerQuality));
+        downloadLink.click();
+      }, 'image/jpeg', 0.7); // Adjust the quality as needed
+    }
+  }, 'image/jpeg', 1.0); // Start with the best quality
 });
 </script>
+
 
 </body>
 
