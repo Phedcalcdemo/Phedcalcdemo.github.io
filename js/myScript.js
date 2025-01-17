@@ -1,9 +1,9 @@
 // JavaScript Document
 
 const tariffs = {
-  'Band A-Non MD': 206.8, 
-  'Band A-MD1': 206.8, 
-  'Band A-MD2': 206.8, 
+  'Band A-Non MD': 209.5, 
+  'Band A-MD1': 209.5, 
+  'Band A-MD2': 209.5, 
   'Band B-Non MD': 68.96,
   'Band B-MD1': 67.18,
   'Band B-MD2': 67.12,
