@@ -172,6 +172,10 @@ div .phed {
 .phase label {
   font-size: 22px
 }
+
+.kvaLabel {
+  font-size: 22px
+}
 .form-container, .output {
   width: 100vw;
   display: flex;
@@ -572,6 +576,9 @@ input, label {
   .phase label {
     font-size: 12px
   }
+	.kvaLabel {
+  font-size: 12px
+}
   .phaseAmp input {
     width: 80px !important;
     height: auto;
