@@ -618,15 +618,15 @@ function calculateResult() {
   const debtYearText = document.getElementById('debtYear').options[document.getElementById('debtYear').selectedIndex].text;
 
   result.innerHTML = `
-    <table>
-      <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
- <tr><th>Selected Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-      <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-      <tr><th>Original Debt</th><td>₦${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-      <tr><th>Customer Pays</th><td>₦${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-<tr><th>Discount Applied</th><td>₦${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-      <tr><th>Staff Incentive</th><td>₦${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
-    </table>
+     <table>
+    <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
+    <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
+    <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
+    <tr><th>Original Debt</th><td>₦${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+    <tr><th>Customer Pays</th><td>₦${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+    <tr><th>Customer Saves</th><td>₦${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
+    <tr><th>Staff Incentive</th><td>₦${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
+  </table>
   `;
 
   result.classList.add('show');
