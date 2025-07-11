@@ -280,7 +280,7 @@ select {
   font-size: 40px;
 }
 #result, table td, table th {
-  font-size: 80px;
+  font-size: 30px;
   
 }
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
