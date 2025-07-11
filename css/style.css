@@ -8,6 +8,7 @@ html {
   margin: 0;
   padding: 0;
 }
+
 #btnRefresh3, #lbRecord {
   width: 48%
 }
@@ -282,7 +283,7 @@ select {
   font-size: 40px !important;
   color: white !important;
 }
-.status {
+.status, #result {
   font-size: 40px;
 }
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
@@ -544,9 +545,10 @@ input, label {
   .logo-txt h2 {
     font-size: 25px
   }
-  .status {
+  .status, #result {
     font-size: 18px;
   }
+	
   .bill {
     height: 40px;
     font-size: 20px;
