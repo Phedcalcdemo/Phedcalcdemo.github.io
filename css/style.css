@@ -276,8 +276,11 @@ select {
   font-size: 40px !important;
   color: white !important;
 }
-.status, #result {
+.status{
   font-size: 40px;
+}
+#result {
+  font-size: 80px;
 }
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
   background: A4BE7B;
@@ -708,7 +711,4 @@ input, label {
   .container {
     min-width: 100%
   }
-	#result {
-  font-size: 40px;
-	}
 }
