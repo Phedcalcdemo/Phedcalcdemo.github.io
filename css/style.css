@@ -76,13 +76,6 @@ input:focus::placeholder {
 }
 body {
   background: #F0F1D5;
-  /*  background:rgba(77,66,66,1.00);*/
-  /*
-	width: 100vw !important;
-	padding: 0;
-	margin: 0;
-*/
-  /*	padding: 0!important;*/
 }
 .logo-txt h2 {
   font-size: 40px;
@@ -715,4 +708,7 @@ input, label {
   .container {
     min-width: 100%
   }
+	#result {
+  font-size: 40px;
+	}
 }
