@@ -298,99 +298,7 @@ function emptybillingKwhInput() {
 start2.addEventListener("click", calcbillingKwh);
 refresh2.addEventListener("click", emptybillingKwhInput);
 
-//       BILL DISCOUNT
-document.getElementById("btnStartDiscount").addEventListener('click', doDisc);
-
-   function doDisc() {
-      var totalArrears = parseFloat(document.querySelector("#inputBill").value);
-      var currentBill = parseFloat(document.querySelector("#currentCharge").value);
-      let rate = 0;
-//      let tax = 1.06;
-	  currentBill = currentBill || 0;
-	  totalArrears = totalArrears || 0;
-      let total = totalArrears
-      if (total ==="") {
-      rate = "";
-	  discGiven = "null"; 
-      } else if (total > 9999 && total <50000){
-        rate = 0.2;
-	  } else if (total > 49999 && total <200000){
-        rate = 0.22;
-	  } else if (total > 199999 && total <300000){
-        rate = 0.25;
-	  } else if (total > 299999 && total <400000){
-        rate = 0.3;
-	  }  else if (total > 399999 && total <500000){
-        rate = 0.35;
-	  }  else if (total >= 500000){
-        rate = 0.4;
-	  }  else if (total >0 && total <10000){
-        rate = "0";
-      } else{
-        rate = 0;
-      }
-      let discount = total * rate;
-      if (rate == 0.2) {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Congrats, you are eligible for 20% discount.";
-      }else if (rate == 0.22) {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Congrats, you are eligible for 22% discount.";
-	  }else if (rate == 0.25) {
-        disctotal = "\u20a6" +discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Congrats, you are eligible for 25% discount.";
-	  }else if (rate == 0.3) {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Congrats, you are eligible for 30% discount.";
-	  }else if (rate == 0.35) {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Congrats, you are eligible for 35% discount.";
-	  }else if (rate == 0.4) {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Congrats, you are eligible for 40% discount.";
-	  }else if (rate =="") {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "";
-      } else {
-        if (rate == 0) {
-        disctotal = "\u20a6" + discount.toLocaleString(undefined,{maximumFractionDigits:2});
-		discGiven = "Sorry, you are not eligible for this promo.";
-        } else {
-          disctotal = "";
-        }
-      }
-//      taxtotal = tax;
-      finaltotal = ((total - discount)+(currentBill));
-      
-      document.getElementById('discountDiv').innerHTML = disctotal;
-      document.getElementById('discountGiven').innerHTML = discGiven;
-      document.getElementById('totalDebt').innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
-//      document.getElementById('taxDiv').innerHTML = "Tax: $".toFixed(2);
-      document.getElementById('totalDiv').innerHTML = "\u20a6" + finaltotal.toLocaleString(undefined,{maximumFractionDigits:2});
-    }
-
-$( ".btnReset2" ).click(function() {
-  $( ".clear2" ).empty();
-	document.querySelector('#totalArrears').value ='';
-	document.querySelector('#inputBill').value ='';
-	document.querySelector('#discountDiv').value ='';
-	document.querySelector('#totalDiv').value ='';
-	document.querySelector('#discountGiven').value ='';
-//	document.querySelector('#inputKVA1').value ='';
-});	
-
-document.getElementById("btnRefreshDisc").addEventListener('click', emptyArrears);
- const Arrears = document.querySelector("#inputBill");
- const currentB = document.querySelector("#currentCharge");
-function emptyArrears() {
-  console.log("emptied!");
-  
-  Arrears.value = "";
-  currentB.value = "";
-  
-//  Phase1.value = "";
-};
-
+//      
 
 
 //        DTR LOADING
@@ -645,6 +553,137 @@ tickerContainer.addEventListener('mouseleave', () => {
 // Start the scrolling
 scrollTicker();
 
+
+function calculateResult() { 
+  const customerType = document.getElementById('customerType').value;
+  const amount = parseFloat(document.getElementById('debtAmount').value);
+  const yearValue = document.getElementById('debtYear').value;
+  const paymentOption = document.getElementById('paymentOption').value;
+  const result = document.getElementById('result');
+
+  // ✅ Check one missing field at a time
+  if (customerType === "") {
+    result.innerHTML = "❌ Please select a Customer Type.";
+    result.classList.add('show');
+    return;
+  }
+
+  if (yearValue === "") {
+    result.innerHTML = "❌ Please select a Debt Year.";
+    result.classList.add('show');
+    return;
+  }
+
+  if (paymentOption === "") {
+    result.innerHTML = "❌ Please select a Payment Option.";
+    result.classList.add('show');
+    return;
+  }
+
+  // ✅ Validate amount
+  const minAmount = customerType === 'bulk' ? 500000 : 100000;
+
+  if (isNaN(amount)) {
+    result.innerHTML = "❌ Please enter a valid debt amount.";
+    result.classList.add('show');
+    return;
+  }
+
+  if (amount < minAmount) {
+    result.innerHTML = `❌ Amount must be at least ₦${minAmount.toLocaleString()} for selected customer type.`;
+    result.classList.add('show');
+    return;
+  }
+
+  // ✅ Compute discount and staff incentive
+  let discountRate = 0;
+  let staffIncentiveRate = 0;
+
+  if (yearValue === "2025") {
+    staffIncentiveRate = 0.025;
+    discountRate = paymentOption === "oneOff" ? 0.10 : 0.05;
+  } else if (yearValue === "2024") {
+    staffIncentiveRate = 0.05;
+    discountRate = paymentOption === "oneOff" ? 0.20 : 0.15;
+  } else if (yearValue === "before2024") {
+    staffIncentiveRate = 0.10;
+    discountRate = paymentOption === "oneOff" ? 0.30 : 0.25;
+  }
+
+  const discountAmount = amount * discountRate;
+  const customerPays = amount - discountAmount;
+  const staffEarns = amount * staffIncentiveRate;
+
+  const customerTypeText = document.getElementById('customerType').options[document.getElementById('customerType').selectedIndex].text;
+  const debtYearText = document.getElementById('debtYear').options[document.getElementById('debtYear').selectedIndex].text;
+
+  result.innerHTML = `
+    <table>
+      <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
+ <tr><th>Selected Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
+      <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
+      <tr><th>Original Debt</th><td>₦${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+      <tr><th>Customer Pays</th><td>₦${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+<tr><th>Discount Applied</th><td>₦${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+      <tr><th>Staff Incentive</th><td>₦${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
+    </table>
+  `;
+
+  result.classList.add('show');
+}
+
+
+
+// Placeholder color logic
+function updatePlaceholderColor(select) {
+  if (select.value === "") {
+    select.classList.add("placeholder-red");
+  } else {
+    select.classList.remove("placeholder-red");
+  }
+}
+
+function updateInputPlaceholderColor(input) {
+  if (input.value === "") {
+    input.classList.add("red-placeholder");
+  } else {
+    input.classList.remove("red-placeholder");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const selects = document.querySelectorAll("select");
+  const debtAmountInput = document.getElementById("debtAmount");
+  const result = document.getElementById("result");
+
+  // Attach change listener to selects
+  selects.forEach(select => {
+    updatePlaceholderColor(select); // Initial state
+    select.addEventListener("change", function () {
+      updatePlaceholderColor(select);
+    });
+  });
+
+  // Input placeholder color for number input
+  updateInputPlaceholderColor(debtAmountInput);
+  debtAmountInput.addEventListener("input", function () {
+    updateInputPlaceholderColor(debtAmountInput);
+  });
+
+  // Reset button logic
+  document.getElementById('btnRefreshDp').addEventListener('click', function () {
+    document.getElementById('debtAmount').value = '';
+    document.getElementById('customerType').selectedIndex = 0;
+    document.getElementById('debtYear').selectedIndex = 0;
+    document.getElementById('paymentOption').selectedIndex = 0;
+
+    result.innerHTML = '';
+    result.classList.remove('show');
+
+    updateInputPlaceholderColor(debtAmountInput);
+    selects.forEach(updatePlaceholderColor);
+  });
+});
 
 
 
