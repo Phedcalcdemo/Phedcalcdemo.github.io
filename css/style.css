@@ -279,7 +279,7 @@ select {
 .status{
   font-size: 40px;
 }
-#result, th, td {
+#result, table td, table th {
   font-size: 80px;
   
 }
@@ -542,7 +542,7 @@ input, label {
   .logo-txt h2 {
     font-size: 25px
   }
-  .status, #result, th, td {
+  .status, #result, table td, table th {
     font-size: 18px;
   }
 	
