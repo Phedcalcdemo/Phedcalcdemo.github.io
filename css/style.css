@@ -279,8 +279,9 @@ select {
 .status{
   font-size: 40px;
 }
-#result {
+#result, th, td {
   font-size: 80px;
+  
 }
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
   background: A4BE7B;
@@ -541,7 +542,7 @@ input, label {
   .logo-txt h2 {
     font-size: 25px
   }
-  .status, #result {
+  .status, #result, th, td {
     font-size: 18px;
   }
 	
