@@ -399,7 +399,10 @@ outputImbalance.innerHTML = (percentageImbalance.toFixed(0) + "%");
 
 
 
-document.getElementById("lbRecord").addEventListener('click', extractValues);
+const lbRecordBtn = document.getElementById("lbRecord");
+if (lbRecordBtn) {
+  lbRecordBtn.addEventListener('click', extractValues);
+}
 
 function extractValues() {
     const red = parseFloat(document.querySelector("#red").value);
@@ -606,7 +609,7 @@ function calculateResult() {
     staffIncentiveRate = 0.05;
     discountRate = paymentOption === "oneOff" ? 0.20 : 0.15;
   } else if (yearValue === "before2024") {
-    staffIncentiveRate = 0.05;
+    staffIncentiveRate = 0.10;
     discountRate = paymentOption === "oneOff" ? 0.25 : 0.20;
   }
 
