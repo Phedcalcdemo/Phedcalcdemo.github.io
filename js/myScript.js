@@ -606,8 +606,8 @@ function calculateResult() {
     staffIncentiveRate = 0.05;
     discountRate = paymentOption === "oneOff" ? 0.20 : 0.15;
   } else if (yearValue === "before2024") {
-    staffIncentiveRate = 0.10;
-    discountRate = paymentOption === "oneOff" ? 0.30 : 0.25;
+    staffIncentiveRate = 0.05;
+    discountRate = paymentOption === "oneOff" ? 0.25 : 0.20;
   }
 
   const discountAmount = amount * discountRate;
