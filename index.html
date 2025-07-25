@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 <meta charset="utf-8">
 <title>PHED CALCULATOR APP</title>
 <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
@@ -36,7 +36,7 @@
     bottom: 0px;
     border: 1px solid white;
     z-index: 100000;
-    background-color: #105187;
+    background-color: #008ECC;
     margin-top: 20px;
     margin-right: 20px;
   }
@@ -44,6 +44,8 @@
   .ref a {
     display: inline-block;
     padding: 4px 8px;
+	border: 1px solid white;
+	margin:2px;
     color: #ffffff;
     text-decoration: none;
     border-radius: 4px;
@@ -146,14 +148,14 @@
                     <div class="form-inline" style=" text-align: center;">
                       <div class="form-group singleA" >
                         <label for="singlePhaseAmps">&nbsp;</label>
-                        <input type="number" placeholder="Single Phase Load (Amp*)" class="form-control loadA clearSingle" id="singlePhaseAmps" style="">
+                        <input type="number" placeholder="Single Phase Load (Amp*)" class="form-control loadA clearSingle" id="singlePhaseAmps">
                       </div>
                     </div>
                   </li>
 
                   <li class="tab-content tab-content-2 typography">
 
-                    <div class="form-inline" style=" text-align: center; ">
+                    <div class="form-inline" style="text-align: center">
                       <div class="form-group w-5 phaseAmp ">
                         <label for="rAmp">Red Phase:</label>
                         <input type="number" placeholder="R" class="clear3phase form-control  formInline2" id="rAmp" >
@@ -176,7 +178,9 @@
               </div>
               <!--/ tabs --> 
             </div>
-            <select id="selectBand" class="form-control input select-input drop-down-caret">
+			 
+            <select style="text-align-last: center;
+    text-align: center; -moz-text-align-last: center;-webkit-appearance: none; appearance: none" id="selectBand" class="form-control input select-input drop-down-caret">
               <option value="" disabled selected="selected">Select a Band *</option>
               <option value="600">Band A-Non MD</option>
               <option value="600">Band A-MD1</option>
@@ -194,7 +198,7 @@
               <option value="120">Band E-MD1</option>
               <option value="120">Band E-MD2</option>
             </select>
-            
+           
             <!--	                        PHASE-->
             
             <button id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
