@@ -201,20 +201,28 @@ div .phed {
   /*	color: blue*/
 }
 select {
-  font-size: 35px;
+font-size: 35px;
+text-align-last: center;
+text-align: center; 
+-moz-text-align-last: center;
+-webkit-appearance: none; 
+appearance: none
   /*  padding: 30px;*/
 }
 .select-input {
   font-size: 35px !important;
-  text-align: center /*  padding: 30px;*/
+  text-align: center 
 }
 .btn {
   width: 70vw;
   height: 12rem;
-  box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  white-space: normal; /* Allows wrapping inside button */
+  line-height: 1.2;    /* Improves vertical centering */
 }
 .drop-down-caret {
   height: 100px;
@@ -259,11 +267,13 @@ select {
   background-color: #008ECC;
   border: 1px solid #008ECC;
   border-radius: 50px;
-  width: 20rem;
-  padding: 28px;
-  max-height: 45px;
-  font-size: 22px;
+  width: 30rem;
+  /*padding: 8px;*/
+  max-height: 55px;
+  font-size: 30px;
   color: white;
+  text-align: center;
+
 }
 .billing-button-container {
   width: 100%;
@@ -397,9 +407,7 @@ input, label {
   -webkit-transform: scale(1, 1);
   -webkit-transform: rotate(0deg);
 }
-/*----------------------------------------------------------------------------*/
-/*                                 EXTENSIONS                                 */
-/*----------------------------------------------------------------------------*/
+
 .pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2 {
   display: block;
 }
@@ -495,12 +503,10 @@ input, label {
 }
 .pcss3t-theme-1 > label {
   margin: 0px 40px;
-  /*	width: 40%;*/
   padding: 10px 0px;
-  font-size: 22px;
+  font-size: 30px;
   width: 30vw;
   height: 60px;
-  /*	height: auto;*/
   border-radius: 5px;
   background: #008ECC;
   color: #fff;
@@ -509,6 +515,7 @@ input, label {
 }
 .pcss3t .singleA input {
   width: 70vw;
+  
   height: 80px;
   margin-top: -7px;
   overflow: hidden;
