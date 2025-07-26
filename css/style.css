@@ -1,737 +1,788 @@
-// JavaScript Document
+html {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -webkit-appearance: button;
+  -webkit-appearance: pushbutton;
+}
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+}
 
-const tariffs = {
-  'Band A-Non MD': 209.5, 
-  'Band A-MD1': 209.5, 
-  'Band A-MD2': 209.5, 
-  'Band B-Non MD': 68.96,
-  'Band B-MD1': 67.18,
-  'Band B-MD2': 67.12,
-  'Band C-Non MD': 56.38,
-  'Band C-MD1': 54.64,
-  'Band C-MD2': 54.64,
-  'Band D-Non MD': 39.67,
-  'Band D-MD1': 55.43,
-  'Band D-MD2': 55.43,
-  'Band E-Non MD': 39.44,
-  'Band E-MD1': 55.43,
-  'Band E-MD2': 55.43
-};
+/*
+#btnRefresh3, #lbRecord {
+  width: 48%
+}
+*/
+.btnWrapper {
+  width: 70%
+}
+#errorMessage {
+  color: red;
+  font-size: 35px;
+  margin-top: 10px
+}
+.displayText {
+  font-size: 25px;
+  margin-top: 5px;
+  padding-left: 5%;
+  /*	padding-right: 5%;*/
+  display: none;
+  word-wrap: break-word;
+  width: 100%;
+  /*	background-color: greenyellow;*/
+  text-align: center
+}
+.tipsCont {
+  margin-left: 10%;
+  margin-right: 10%;
+  position: absolute;
+  /*	background-color: red;*/
+  /*	margin-bottom: 50%*/
+}
+.toggleButton, .lbSub {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 30px;
+  outline: none;
+  border: none;
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+}
+.lbSub {
+  margin-top: 10px;
+  margin-right: 30px;
+  float: right;
+  border-radius: 10px;
+  /*	background-color: green;*/
+}
+.green-text {
+  color: green;
+}
+.brown-text {
+  color: brown;
+}
+.ticker-text {
+  font-size: 35px;
+}
+.form-container .btn-primary, .output .btn-primary .toggleButton {
+  background-color: #008ECC;
+  outline: none !important;
+  border: none !important
+}
+.form-container .btn-primary:focus, .output .btn-primary:focus {
+  outline: none !important;
+  border: none !important
+}
+.output .bill {
+  background-color: lightblue
+}
+input:focus::placeholder {
+  color: transparent;
+}
+body {
+  background: #F0F1D5;
+}
+.logo-txt h2 {
+  font-size: 40px;
+  color: green;
+  font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
+}
+.DTRloading__form ::placeholder {
+  text-align: center
+}
+input[type=number]:focus {
+  background-color: white;
+  outline: 2px solid #9999FF !important
+}
+.b-display {
+  font-size: 30px;
+}
+.phase input {
+  width: 170px !important;
+  /*	padding: 30px;*/
+  height: 80px;
+  font-size: 25px;
+  margin-bottom: 24px !important
+}
+.info {
+  border-top: 2px solid #5F8D4E;
+  border-bottom: 2px solid #5F8D4E;
+  height: 50px;
+  margin-bottom: 30px;
+  margin-top: 28px;
+  font-size: 30px;
+  padding: 0px
+}
+.tips {
+  font-size: 30px;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.container {
+  /*  width:  100%;*/
+  /*  min-width:  100%;*/
+  display: flex;
+  background-color: #F0F1D5;
+  /*	background-color: darkorange;*/
+  /*	overflow: hidden!important*/
+}
+.logo {
+  font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+  min-height: 92vh;
+  padding-bottom: 8em;
+  background: #F0F1D5;
+  /*	background-color: lightcoral;*/
+  color: #105187;
+  /*	position: relative*/
+  overflow: hidden;
+  width: 100vw;
+}
+/*
+#myButton{
+	padding: 10px
+}
+*/
+.calc-container {
+  min-height: 50vh;
+}
+.cont-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 2em;
+  overflow: hidden;
+}
+.logo #tariffScroll {
+  font-size: 30px;
+  /*	position:fixed;
 
+/*
+  display: flex;
+  align-items: center;  This will vertically center the items in the container 
+*/
+}
+div .phed {
+  width: 70vw;
+  height: auto;
+  /*  margin-right: 30px;*/
+}
+.phase label {
+  font-size: 22px
+}
 
-//$('.lor__form').hide();
+.kvaLabel {
+  font-size: 22px
+}
+.form-container, .output {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  justify-content: center;
+  align-items: center;
+}
+.output {
+  display: content;
+}
+.form-control {
+  margin-bottom: 20px;
+  width: 70%;
+  /*	padding: 50px;*/
+  border: 1px solid #1174A8;
+  text-align: center;
+}
+.load {
+  padding: 50px 20px;
+  font-size: 30px;
+}
+.loadA {
+  padding: 50px 20px;
+  /*	EDITED*/
+  font-size: 35px !important;
+  /*	color: blue*/
+}
+select {
+font-size: 35px;
+text-align-last: center;
+text-align: center; 
+-moz-text-align-last: center;
+-webkit-appearance: none; 
+appearance: none
+  /*  padding: 30px;*/
+}
+.select-input {
+  font-size: 35px !important;
+  text-align: center 
+}
+.btn {
+  width: 70vw;
+  height: 10rem;
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: normal; /* Allows wrapping inside button */
+  line-height: 1.2;    /* Improves vertical centering */
+}
+.drop-down-caret {
+  height: 100px;
+  font-size: 60px;
+}
+.btn:hover {
+  box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
+  color: whitesmoke;
+}
+.btn:active, .btn:visited {
+  outline: 0 none !important;
+}
+.btn2:focus {
+  outline: none !important;
+}
+.bill {
+  text-align: center;
+  height: 100px;
+  font-size: 60px;
+  padding: 10px;
+}
+.discDiv {
+  display: flex;
+  width: 70vw;
+}
+.discDiv div {
+  width: 100%;
+  /*
+	margin-left: 5%;
+	margin-right: 5%
+*/
+}
+.pay {
+  margin-right: 1px;
+  font-size: 50px
+}
+.disc {
+  float: right;
+  font-size: 50px
+}
+.billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
+  background-color: #008ECC;
+  border: 1px solid #008ECC;
+  border-radius: 50px;
+  width: 30rem;
+  /*padding: 8px;*/
+  max-height: 55px;
+  font-size: 30px;
+  color: white;
+  text-align: center;
 
-$('.billingKwh__form').hide();
-//$('.billingKwh__form').hide();
-
-$('.billing__button').click(function (e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.lor__button').removeClass('active');
-   $('.billingKwh__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.billing__form').show();
-   $('.billingKW__form').hide();
-   $('.lor__form').hide();
-   $('.billingKwh__form').hide();
-   $('.DTRloading__form').hide();
-   $('.fuse__form').hide();
-
-});
-
-$('.lor__button').click(function (e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.billingKwh__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.lor__form').show();
-   $('.billingKwh__form').hide();
-   $('.billingKW__form').hide();
-   $('.billing__form').hide();
-   //   $('.fuse__form').hide();
-   $('.DTRloading__form').hide();
-   $('.fuse__form').hide();
-
-});
-
-
-$('.billingKwh__button').click(function (e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.billingKwh__form').show();
-   $('.lor__form').hide();
-   $('.billingKW__form').hide();
-   $('.billing__form').hide();
-   $('.DTRloading__form').hide();
-   $('.fuse__form').hide();
-})
-
-$('.DTRloading__button').click(function (e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKwh__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.DTRloading__form').show();
-   $('.billingKW__form').hide();
-   $('.billingKwh__form').hide();
-   $('.lor__form').hide();
-   $('.billing__form').hide();
-   $('.fuse__form').hide();
-});
-
-$('.fuse__button').click(function (e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKW__button').removeClass('active');
-   $('.billingKwh__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.fuse__form').show();
-   $('.billingKwh__form').hide();
-   $('.lor__form').hide();
-   $('.billingKW__form').hide();
-   $('.billing__form').hide();
-   $('.DTRloading__form').hide();
-});
-
-$('.billingKW__button').click(function (e) {
-   e.preventDefault();
-   $(this).addClass('active');
-   $('.billing__button').removeClass('active');
-   $('.billingKwh__button').removeClass('active');
-   $('.lor__button').removeClass('active');
-   $('.fuse__button').removeClass('active');
-   $('.DTRloading__button').removeClass('active');
-   $('.billingKW__form').show();
-   $('.billingKwh__form').hide();
-   $('.lor__form').hide();
-   $('.fuse__form').hide();
-   $('.billing__form').hide();
-   $('.DTRloading__form').hide();
-
-
-});
-
-
-//  BILLING (AMP)
-
-//  BILLING (AMP)
-
-
-const loadAmps = document.querySelector("#singlePhaseAmps");
-const Band = document.querySelector("#selectBand");
-const output = document.querySelector("#outputCost");
-const outputkWh = document.querySelector("#outputKilowattHr");
-const start = document.getElementById("btnStart");
-const refresh = document.getElementById("btnRefresh");
-const a = document.getElementById("rAmp");
-const b = document.getElementById("yAmp");
-const c = document.getElementById("bAmp");
-const neutral = document.getElementById("nAmp");
-
-
-
-function calculate(e) {
-  e.preventDefault();
+}
+.billing-button-container {
+  width: 100%;
+  margin-top: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+.btn2 {
+  font-size: 40px !important;
+  color: white !important;
+}
+.status{
+  font-size: 40px;
+}
+#result, table td, table th {
+  font-size: 30px;
   
-  // Calculate the average current if phase values are provided
-  let avg = (Number(a.value) + Number(b.value) + Number(c.value) + Number(neutral.value)) / 3;
-  
-  // Check if any of the phase values are provided
-  let isAvgProvided = a.value || b.value || c.value || neutral.value;
-  
-  // Use 0.415 x root 3 if avg is provided, otherwise use 0.240
-  let multiplier = isAvgProvided ? 0.719 : 0.240;
-  
-  // Get the selected band and category
-  let selectedBand = Band.options[Band.selectedIndex].text;
-  
-  // Calculate total cost based on whether avg or loadAmps.value is used
-  let totalCost;
-  if (isAvgProvided) {
-    totalCost = avg * Number(Band.value) * tariffs[selectedBand] * multiplier * 0.6 * 0.85 * 1.075;
-  } else {
-    totalCost = Number(loadAmps.value) * Number(Band.value) * tariffs[selectedBand] * multiplier * 0.85 * 0.6 * 1.075;
-  }
+}
+.billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
+  background: A4BE7B;
+  border: 2px solid white !important;
+  color: white;
+  box-shadow: none;
+}
+.billing__button:focus, .billing__button.focus, .billingKW__button:focus, .billingKW__button.focus, .lor__button:focus, .lor__button.focus, .billingKwh__button:focus, .billingKwh__button.focus, .fuse__button:focus, .fuse__button.focus, .DTRloading__button:focus, .DTRloading__button.focus {
+  outline: none !important;
+  border-: 1px solid white;
+}
+.billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .billingKwh__button:active, .billingKwh__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
+  background-color: white;
+  color: #008ECC;
+  box-shadow: none;
+}
+.hidden_clip {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+}
+input, label {
+  display: block;
+  text-align: center
+}
+.formInline {
+  margin: 0px 10px 10px
+}
+.formInline2 {
+  margin: 10px 5px
+}
+#marquee-cont marquee {
+  margin-top: 5px;
+}
+.btn:focus {
+  outline: none !important
+}
+.btn:hover {
+  outline: none !important
+}
+#yellow, #red, #blue, #neutral {
+  font-weight: 400
+}
+.page {
+  position: relative;
+  /*	max-width: 980px;*/
+  margin: 0 auto;
+}
+/**/
+/* main styles */
+/**/
+.pcss3t {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 0;
+  text-align: center;
+}
+.pcss3t > input {
+  position: absolute;
+  left: -9999px;
+}
+.pcss3t > label {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+.pcss3t > input:checked + label {
+  cursor: default;
+}
+.pcss3t > ul {
+  list-style: none;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 13px;
+}
+.pcss3t > ul > li {
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+/*  	padding: 30px 40px 40px;*/
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  opacity: 0;
+  transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+.pcss3t > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t > .tab-content-2:checked ~ ul .tab-content-2 {
+  /*	z-index: 1;*/
+  top: 0;
+  left: 0;
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -webkit-transform: rotate(0deg);
+}
+
+
+
+.pcss3t > .tab-content-3:checked ~ ul .tab-content-3, .pcss3t > .tab-content-4:checked ~ ul .tab-content-4 {
+  /*	z-index: 1;*/
+  top: 0;
+  left: 0;
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -webkit-transform: rotate(0deg);
+}
+
+
+
+.pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2 {
+  display: block;
+}
+/*
+.pcss3t .grid-row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+*/
+
+.pcss3t-height-auto > .tab-content-3:checked ~ ul .tab-content-3, .pcss3t-height-auto > .tab-content-4:checked ~ ul .tab-content-4 {
+  display: block;
+}
+/*
+.pcss3t .grid-row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+*/
+
+
+/*
+.pcss3t .grid-row:first-child {
+  margin-top: 0;
+}
+.pcss3t .grid-col:first-child {
+  	margin-left: 0;
+}
+*/
+.pcss3t-steps > label {
+  cursor: default;
+}
+/**/
+/* animation effects */
+/**/
+.pcss3t-effect-scale > ul > li {
+  -webkit-transform: scale(0.1, 0.1);
+}
+.pcss3t-effect-rotate > ul > li {
+  -webkit-transform: rotate(180deg);
+}
+/*
+.pcss3t-effect-slide-top > ul > li {
+  top: -40px;
+}
+*/
+/*
+.pcss3t-effect-slide-right > ul > li {
+  left: 80px;
+}
+.pcss3t-effect-slide-bottom > ul > li {
+  top: 40px;
+}
+.pcss3t-effect-slide-left > ul > li {
+  left: -80px;
+}
+*/
+/*----------------------------------------------------------------------------*/
+/*                                   LAYOUTS                                  */
+/*----------------------------------------------------------------------------*/
+/*
+.pcss3t-layout-top-right {
+  text-align: right;
+}
+.pcss3t-layout-top-center {
+  text-align: center;
+}
+*/
+/*----------------------------------------------------------------------------*/
+/*                                   THEMES                                   */
+/*----------------------------------------------------------------------------*/
+.pcss3t > label {}
+.pcss3t > label:hover {}
+.pcss3t > input:checked + label {
+  background: #fff;
+}
+.billingTab > ul {
+  width: 100%;
+  padding-bottom: 160px;
+  /*	background-color:*/
+  text-align: left;
+}
+.debtTab > ul {
+  width: 100%;
+
+/*  padding-bottom: 165px;*/
+  /*	background-color:*/
+  text-align: left;
 	
-  let kWh;
-  if (isAvgProvided) {
-    kWh = avg * Number(Band.value) * multiplier * 0.6 * 0.85;
-  } else {
-    kWh = Number(loadAmps.value) * Number(Band.value) * multiplier * 0.6 * 0.85;
-  }
-	totalCost = totalCost || 0;
-	outputkWh.innerHTML = "Your bill for " + kWh.toFixed(1) + "kWh consumption is:";
-  
-  output.innerHTML = "\u20a6" + totalCost.toLocaleString(undefined,{maximumFractionDigits:2});
-}
-
-function emptyInput() {
-   output.innerHTML = "";
-   outputkWh.innerHTML = "";
-   loadAmps.value = "";
-   Band.value = "";
-   a.value = "";
-   b.value = "";
-   c.value = "";
-   neutral.value = "";
-   //  Phase.value = "";
-}
-
-
-start.addEventListener("click", calculate);
-refresh.addEventListener("click", emptyInput);
-tab1.addEventListener("click", emptyInput);
-tab2.addEventListener("click", emptyInput);
-
-
-//      BILLING (WATT)
-
-const loadW = document.querySelector("#inputW");
-const BandW = document.querySelector("#selectBandW");
-const outputW = document.querySelector("#outputCostW");
-const startW = document.getElementById("btnStartW");
-const refreshW = document.getElementById("btnRefreshW");
-
-function calcBillWatt(e) {
-  e.preventDefault();
-  
-  // Get the selected band
-  let selectedBand = BandW.options[BandW.selectedIndex].text;
-  
-  // Calculate the total cost
-  var total = (((loadW.value) / 1000) * Number(BandW.value) * tariffs[selectedBand] * 1.075 * 0.6);
  
-  outputW.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
 }
-function emptyBillWattInput() {
- 
-   outputW.innerHTML = "";
-   loadW.value = "";
-   BandW.value = "";
-   //  Phase.value = "";
+.pcss3t-steps > label:hover {
+  /*	background: #e5e5e5;	*/
 }
-
-
-startW.addEventListener("click", calcBillWatt);
-refreshW.addEventListener("click", emptyBillWattInput);
-
-//       LOR (ENERGY THEFT)
-
-const loadAmps1 = document.querySelector("#inputAmps1");
-const duration = document.querySelector("#inputHrs");
-const Band1 = document.querySelector("#selectBand1");
-const output1 = document.querySelector("#outputCost1");
-const start1 = document.getElementById("btnStart1");
-const refresh1 = document.getElementById("btnRefresh1");
-
-function calcLorRPD(e) {
-  e.preventDefault();
-  
-  // Get the selected band
-  let selectedBand = Band1.options[Band1.selectedIndex].text;
-  
-  // Calculate the total cost
-  var total = Number(loadAmps1.value) * Number(duration.value) * Number(Band1.value) * tariffs[selectedBand] * 0.240 * 0.6 * 0.85 * 1.075;
-  
-  output1.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
+.pcss3t-theme-1 > label:hover {
+  /*	background: #fff;*/
+  opacity: 1;
 }
-
-function emptyLorRPDInput() {
-   
-   output1.innerHTML = "";
-   loadAmps1.value = "";
-   duration.value = "";
-   Band1.value = "";
-   //  Phase1.value = "";
+.pcss3t-theme-1 > label:active {
+  background: #fff;
+  /*	opacity: 1;*/
 }
-
-
-start1.addEventListener("click", calcLorRPD);
-refresh1.addEventListener("click", emptyLorRPDInput);
-
-
-//              BILLING (kWh)
-
-const loadMW = document.querySelector("#inputMW");
-
-const Band2 = document.querySelector("#selectBand2");
-const output2 = document.querySelector("#outputCost2");
-const start2 = document.getElementById("btnStart2");
-const refresh2 = document.getElementById("btnRefresh2");
-
-function calcbillingKwh(e) {
-  e.preventDefault();
+.pcss3t-theme-1 > input:checked + label {
+  margin-bottom: 0;
+  padding-bottom: 2px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 1px solid #008ECC;
+  color: #2b82d9;
+  opacity: 1;
+}
+.pcss3t-theme-1 > ul {
+  border-radius: 5px;
+  width: 80vw
+}
+.pcss3t-theme-1 > .tab-content-first:checked ~ ul {
+  border-top-left-radius: 0;
+}
+.pcss3t > ul, .pcss3t > ul > li {
+  margin-top: 2px;
+  /*	margin-bottom: 5px;*/
+  overflow: hidden
+}
+.pcss3t-theme-1 > label {
+  margin: 0px 40px;
+  padding: 10px 0px;
+  font-size: 30px;
+  width: 30vw;
+  height: 60px;
+  border-radius: 5px;
+  background: #008ECC;
+  color: #fff;
+  opacity: 0.8;
+  overflow: hidden
+}
+.pcss3t .singleA input {
+  width: 70vw;
   
-  // Get the selected band
-  let selectedBand = Band2.options[Band2.selectedIndex].text;
-  
-  // Calculate the total cost
-  var total = loadMW.value * tariffs[selectedBand] * 1.075;
-  
-  output2.innerHTML = "\u20a6" + total.toLocaleString(undefined,{maximumFractionDigits:2});
+  height: 80px;
+  margin-top: -7px;
+  overflow: hidden;
+  font-size: 30px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-function emptybillingKwhInput() {
-  output2.innerHTML = "";
-  loadMW.value = "";
-  Band2.value = "";
+
+.phaseAmp input {
+  width: 155px !important;
+  height: 80px;
+  font-size: 30px;
+  text-align: center !important;
 }
-start2.addEventListener("click", calcbillingKwh);
-refresh2.addEventListener("click", emptybillingKwhInput);
+.phaseAmp label {
+  font-size: 22px;
+  margin-bottom: -6px;
+}
 
-//      
+.fetchDiv{
+	display: flex; 
+	gap:6px; 
+	align-content: center; 
+	justify-content: center
+}
 
-
-//        DTR LOADING
-
-document.getElementById("btnStart3").addEventListener('click', doCalc);
-
-function doCalc() {
-
-   let x = parseFloat(document.querySelector("#red").value);
-   let y = parseFloat(document.querySelector("#yellow").value);
-   let z = parseFloat(document.querySelector("#blue").value);
-	let n = parseFloat(document.querySelector("#neutral").value);
-   const outputLoad = document.querySelector("#outputLoading");
-   const capacity = document.querySelector("#inputKVA");
+.fetchDiv input{
+	width: 73%
+}
+.fetchDiv button{
+	width: 20%
+}
+@media screen and (min-width: 1024px) {
 	
-//  const refresh3 = document.getElementById("btnRefresh3");
-   let avgCurrent1 = (x + y + z + n) / 3;
-let loading = (avgCurrent1 / (capacity.value * 1.4)) * 100;
-
-   loading = loading || 0;
-	if(loading === 0) {
-	document.getElementById('outputLoading').style.color = "black";
-		
-    }else if(loading < 50) {
-	document.getElementById('outputLoading').style.color = "green";
-		
-    }else if(loading >= 50) {
-                document.getElementById('outputLoading').style.color = "red";
-	}
-	
-   outputLoad.innerHTML = loading.toFixed(0) + "%";
+	.fetchDiv input{
+	width: 80%
 }
-
-document.getElementById("btnStart3").addEventListener('click', doMath);
-
-		
-	function doMath() {
-//function calculatePercentageImbalance(xx, yy, zz) {
-   let xx = parseFloat(document.querySelector("#red").value);
-   let yy = parseFloat(document.querySelector("#yellow").value);
-   let zz = parseFloat(document.querySelector("#blue").value);
-   let nn = parseFloat(document.querySelector("#neutral").value);
-	
-		
-		function calculatePercentageImbalance(xx, yy, zz) {
-    // Calculate the average current
-    let avgCurrent = (xx + yy + zz + nn) / 3;
-
-    // Calculate the deviations
-    let redDeviation = Math.abs(xx - avgCurrent);
-    let yellowDeviation = Math.abs(yy - avgCurrent);
-    let blueDeviation = Math.abs(zz - avgCurrent);
-
-    // Find the maximum deviation
-    let maxDeviation = Math.max(redDeviation, yellowDeviation, blueDeviation);
-
-    // Calculate the percentage imbalance
-    let percentageImbalance = (maxDeviation / avgCurrent) * 100;
-			percentageImbalance = percentageImbalance || 0;
-			
-			if(percentageImbalance === 0) {
-    balance.innerHTML = "";
-    document.getElementById('outputImbalance').style.color = "black";
-} else if(percentageImbalance <= 4) {
-    document.getElementById('outputImbalance').style.color = "green";
-    document.getElementById('balance').style.color = "green";
-    balance.innerHTML = "DTR's Load is Balanced";
-} else if(percentageImbalance > 4 && percentageImbalance <= 10) {
-    document.getElementById('outputImbalance').style.color = "brown";
-    document.getElementById('balance').style.color = "brown";
-    balance.innerHTML = "DTR's Load is Moderately Balanced";
-} else if(percentageImbalance > 10) {
-    document.getElementById('outputImbalance').style.color = "red";
-    document.getElementById('balance').style.color = "red";
-    balance.innerHTML = "DTR's Load is Highly Unbalanced";
-}
-    return percentageImbalance;
-			
-			
-}
-
-let percentageImbalance = calculatePercentageImbalance(xx, yy, zz);
-
-
-outputImbalance.innerHTML = (percentageImbalance.toFixed(0) + "%");
-
-
-}
-
-	$( ".btnReset" ).click(function() {
-  $( ".clear" ).empty();
-	document.querySelector('#red').value ='';
-	document.querySelector('#yellow').value ='';
-	document.querySelector('#blue').value ='';
-	document.querySelector('#neutral').value ='';
-	document.querySelector('#inputKVA').value ='';
-});		
-
-
-
-
-const lbRecordBtn = document.getElementById("lbRecord");
-if (lbRecordBtn) {
-  lbRecordBtn.addEventListener('click', extractValues);
-}
-
-function extractValues() {
-    const red = parseFloat(document.querySelector("#red").value);
-    const yellow = parseFloat(document.querySelector("#yellow").value);
-    const blue = parseFloat(document.querySelector("#blue").value);
-    const neutral = parseFloat(document.querySelector("#neutral").value);
-    const capacity = parseFloat(document.querySelector("#inputKVA").value);
-
-    // Check if any value is empty
-    if (isNaN(red) || isNaN(yellow) || isNaN(blue) || isNaN(neutral) || isNaN(capacity)) {
-        const errorMessageDiv = document.getElementById("errorMessage");
-        errorMessageDiv.textContent = "Please fill in all the required values.";
-        setTimeout(() => {
-            errorMessageDiv.textContent = "";
-        }, 5000); 
-
-        return; 
-    }
-
-    // Calculate loading percentage
-    const loading = ((Math.max(red, yellow, blue) / (capacity * 1.4)) * 100) || 0;
-
-    // Calculate percentage imbalance
-    const avgCurrent = (red + yellow + blue) / 3;
-    const maxDeviation = Math.max(Math.abs(red - avgCurrent), Math.abs(yellow - avgCurrent), Math.abs(blue - avgCurrent));
-    const imbalance = (maxDeviation / avgCurrent) * 100 || 0;
-
-    const url = `LB Report.html?red=${red}&yellow=${yellow}&blue=${blue}&neutral=${neutral}&capacity=${capacity}&loading=${loading.toFixed(2)}&imbalance=${imbalance.toFixed(2)}`;
-
-    // Open the result page in a new tab
-    window.open(url, '_blank');
-}
-
 
 	
-
-$(document).ready(function(){
-  $(".toggleButton").click(function(){
-    var button = $(this);
-    var text = button.next(".displayText");
-
-    if (text.is(":hidden")) {
-        text.slideDown("fast");
-        button.text("X");
-        button.css({"padding-left": "10px", "padding-right": "10px"});
-    } else {
-        text.slideUp("fast");
-        button.text("Helpful Tips!");
-        button.css({"padding-left": "5px", "padding-right": "5px"});
-    }
-  });
-});
-
-
-
+  body {
+    background: #534484;
+  }
+  .logo #tariffScroll {
+    font-size: 15px;
+  }
+  .select-input {
+    font-size: 15px !important;
+    /*  padding: 30px;*/
+  }
+  .btn2 {
+    font-size: 24px !important;
+  }
+	.ticker-text {
+  font-size: 22px;
+}
+  .logo-txt h2 {
+    font-size: 25px
+  }
+  .status, #result, table td, table th {
+    font-size: 18px;
+  }
 	
-//                    TARIFF TICKER
-
-
-
-// Get the current date
-function formatDate(date) {
-  const day = date.getDate();
-  const month = date.toLocaleString('en-NG', { month: 'long' });
-  const year = date.getFullYear();
-
-  function getOrdinalSuffix(day) {
-    if (day > 3 && day < 21) return 'th';
-    switch (day % 10) {
-      case 1:  return "st";
-      case 2:  return "nd";
-      case 3:  return "rd";
-      default: return "th";
-    }
+  .bill {
+    height: 40px;
+    font-size: 20px;
+    padding: 2px;
+    font-weight: bold;
   }
-
-  return `${day}${getOrdinalSuffix(day)} ${month}, ${year}`;
+  .discDiv {
+    width: 60%;
+  }
+  .load, .loadA {
+    padding: 5px 10px;
+    margin: 0px;
+  }
+  .loadA {
+    font-size: 16px !important;
+  }
+  .b-display {
+    font-size: 16px;
+  }
+  .phase input {
+    width: 80px !important;
+    height: auto;
+    font-size: 16px;
+    margin-bottom: 12px !important;
+    margin-top: -5px !important
+  }
+  .phase label {
+    font-size: 12px
+  }
+	.kvaLabel {
+  font-size: 12px
 }
-
-// Usage
-const currentDate = new Date();
-const formattedDate = formatDate(currentDate); // "21st May, 2024"
-
-
-const news = `<span class="ticker-text">&nbsp Electricity Tariff as at <span class="brown-text">${formattedDate}</span> &nbsp | &nbsp
-  Band A-Non MD <span class="green-text">&#8358;${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
-  Band A-MD1 <span class="green-text">&#8358;${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
-  Band A-MD2 <span class="green-text">&#8358;${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
-  Band B-Non MD <span class="green-text">&#8358;${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band B-MD1 <span class="green-text">&#8358;${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
-  Band B-MD2 <span class="green-text">&#8358;${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
-  Band C-Non MD <span class="green-text">&#8358;${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
-  Band C-MD1 <span class="green-text">&#8358;${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
-  Band C-MD2 <span class="green-text">&#8358;${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
-  Band D-Non MD <span class="green-text">&#8358;${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band D-MD1 <span class="green-text">&#8358;${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
-  Band D-MD2 <span class="green-text">&#8358;${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
-  Band E-Non MD <span class="green-text">&#8358;${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD1 <span class="green-text">&#8358;${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD2 <span class="green-text">&#8358;${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Designed by: Obot Akpan &nbsp</span>`;
-
-// Select the container div by its class
-const container = document.querySelector('.logo');
-container.style.overflow = 'hidden'; 
-container.style.position = 'relative'; 
-
-// Create a ticker container with a new unique ID
-const tickerContainer = document.createElement('div');
-tickerContainer.id = 'tariffScroll';
-tickerContainer.style.position = 'absolute';
-tickerContainer.style.boxShadow = '5px 2px 6px rgba(0, 0, 0, 0.2)';
-
-tickerContainer.style.bottom = '0';
-tickerContainer.style.left = '0';
-tickerContainer.style.whiteSpace = 'nowrap';
-tickerContainer.innerHTML = news;
-
-// Append the ticker container to the selected container div
-container.appendChild(tickerContainer);
-
-// Animate the ticker
-let position = container.offsetWidth; 
-let tickerPaused = false; 
-
-function scrollTicker() {
-  if (!tickerPaused) {
-    position--;
-    if (position < -tickerContainer.offsetWidth) {
-      position = container.offsetWidth;
-    }
-    tickerContainer.style.transform = 'translateX(' + position + 'px)';
+  .phaseAmp input {
+    width: 80px !important;
+    height: auto;
+    font-size: 16px;
+    margin-top: -7px !important;
   }
-  requestAnimationFrame(scrollTicker);
-}
-
-// Event listener to pause the ticker on mouse enter
-tickerContainer.addEventListener('mouseenter', () => {
-  tickerPaused = true;
-});
-
-// Event listener to resume the ticker on mouse leave
-tickerContainer.addEventListener('mouseleave', () => {
-  tickerPaused = false;
-});
-
-// Start the scrolling
-scrollTicker();
-
-// Discount rates
-const discountRates = {
-  regular: {
-    "2025": { oneOff: 0.1, installment: 0.05 },
-    "2024": { oneOff: 0.15, installment: 0.1 },
-    "before2024": { oneOff: 0.2, installment: 0.12 }
-  },
-  bulk: {
-    "2025": { oneOff: 0.08, installment: 0.04 },
-    "2024": { oneOff: 0.12, installment: 0.08 },
-    "before2024": { oneOff: 0.18, installment: 0.1 }
+  .phaseAmp label {
+    font-size: 12px;
+    margin-bottom: 5px;
   }
-};
-
-// Toggle manual / fetch input
-function toggleInputMode() {
-  const mode = document.querySelector('input[name="debtInputType"]:checked').value;
-  const accountSection = document.getElementById('accountSection');
-  const debtAmount = document.getElementById('debtAmount');
-  const fetchStatus = document.getElementById('fetchStatus');
-  const resultBox = document.getElementById('result');
-
-  if (mode === 'fetch') {
-    accountSection.style.display = 'block';
-    debtAmount.readOnly = true;
-    debtAmount.value = '';
-    fetchStatus.innerHTML = '';
-    resultBox.innerHTML = '';
-  } else {
-    accountSection.style.display = 'none';
-    debtAmount.readOnly = false;
-    debtAmount.value = '';
-    fetchStatus.innerHTML = '';
-    resultBox.innerHTML = '';
+  div .phed {
+    width: 24vw;
+    height: auto;
+    margin-left: -15px;
   }
-}
-
-// Fetch debt from JSON
-async function fetchArrears() {
-  const acct = document.getElementById('accountNo').value.trim();
-  const fetchStatus = document.getElementById('fetchStatus');
-  const debtField = document.getElementById('debtAmount');
-
-  fetchStatus.innerHTML = '';
-  debtField.value = '';
-
- if (!acct) {
-  fetchStatus.innerHTML = "&#9888;&#65039; Please enter an account number."; 
-  return;
-}
-
-fetchStatus.innerHTML = "&#128295; Checking account..."; 
-
-try {
-  const response = await fetch("https://phedfeeders.github.io/customers.json");
-  if (!response.ok) throw new Error("Network error");
-
-  const data = await response.json();
-  const customer = data.find(c => c.accountNumber === acct);
-
-  if (customer) {
-    fetchStatus.innerHTML = `&#10004;&#65039; Name: ${customer.name} &nbsp;&nbsp; Total Debt: &#8358;${customer.debtAmount.toLocaleString()}`; // 
-    debtField.value = customer.debtAmount;
-  } else {
-    fetchStatus.innerHTML = "&#10060; Customer not found."; // 
+  .form-container, .output {
+    width: 50vw;
   }
-
-} catch (error) {
-  console.error(error);
-  fetchStatus.innerHTML = "&#10060; Error contacting the database."; // 
-}
-
-// Calculate result
-function calculateResult() { 
-  console.log("&#129518; Calculate button clicked"); // 
-
-  const amount = parseFloat(document.getElementById("debtAmount").value);
-  const customerType = document.getElementById("customerType").value;
-  const debtYear = document.getElementById("debtYear").value;
-  const paymentOption = document.getElementById("paymentOption").value;
-  const result = document.getElementById("result");
-
-  if (isNaN(amount) || amount <= 0) {
-    result.innerHTML = "&#9888;&#65039; Please enter a valid debt amount."; // 
-    return;
+  .btn {
+    width: 60%;
+    height: 3rem;
   }
-
-  if (!customerType || !debtYear || !paymentOption) {
-    result.innerHTML = "&#9888;&#65039; Please select all required fields."; // 
-    return;
+  .btn2 {
+    font-size: 18px !important;
   }
-
-  const discountRate = discountRates[customerType]?.[debtYear]?.[paymentOption];
-  if (discountRate === undefined) {
-    result.innerHTML = "&#10060; No discount available for selected options."; // 
-    return;
+  .logo {
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
+    padding-bottom: 0px;
+    width: 100%;
+    min-height: 100vh;
+  }
+  .container {
+    /*    min-width: 50%;*/
+    width: 65%;
+    background-color: gray;
+    box-shadow: 1px 3px 10px 12px rgba(0, 0, 0, .2);
+  }
+  .form-control {
+    text-align: center;
+    margin-bottom: 6px;
+    width: 60%;
+    border: 1px solid #AE5AD3;
+  }
+  .billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
+    font-size: 14px;
+    margin: 0 auto;
+    width: 11rem;
+    max-height: 30px;
+    color: white;
+    padding: 10px
+  }
+  .billing-button-container {
+    width: 65%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
+  .info {
+    border-top: 1px solid #5F8D4E;
+    border-bottom: 1px solid #5F8D4E;
+    margin-bottom: 10px;
+    height: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+    padding: 1px;
+  }
+  .tips {
+    font-size: 16px
+  }
+  .drop-down-caret, .load, .form-control {
+    height: 30px;
+    font-size: 16px;
+  }
+  .billingTab > ul {
+    width: 100%;
+    margin-top: 8px;
+    padding-bottom: 65px;
+    /*	background-color:*/
+    text-align: left;
+  }
+	.debtTab > ul {
+    width: 100%;
+    margin-top: 8px;
+/*    padding-bottom: 55px;*/
+    /*	background-color:*/
+    text-align: left;
+  }
+  .pcss3t-theme-1 > label {
+    width: 14vw;
+    margin: 0px 10px;
+    font-size: 13px;
+    padding: 4px 0px;
+    height: 30px;
+  }
+  .pcss3t .singleA input {
+    width: 30vw;
+    margin-top: -7px;
+    height: 30px;
+    font-size: 16px;
+  }
+  .displayText {
+    font-size: 13px;
+    width: 85%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .toggleButton, .lbSub {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+  }
+  .btnWrapper {
+    width: 60%
+  }
+  #errorMessage {
+    font-size: 18px;
   }
 }
-
-  const discountAmount = amount * discountRate;
-  const customerPays = amount - discountAmount;
-  const staffIncentiveRate = 0.05;
-  const staffEarns = customerPays * staffIncentiveRate;
-
-  const customerTypeText = customerType === "regular" ? "Regular Customer" : "Unmetered MD/CBB";
-  const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
-
-  result.innerHTML = `
-  <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
-    <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
-    <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-    <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-    <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-    <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-    <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-    <tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
-  </table>
-`;
-  result.classList.add('show');
-}
-
-// Input styling helpers
-function updatePlaceholderColor(select) {
-  if (select.value === "") {
-    select.classList.add("placeholder-red");
-  } else {
-    select.classList.remove("placeholder-red");
+@media screen and (max-width: 1024px) {
+  .container {
+    min-width: 100%
   }
 }
-
-function updateInputPlaceholderColor(input) {
-  if (input.value === "") {
-    input.classList.add("red-placeholder");
-  } else {
-    input.classList.remove("red-placeholder");
-  }
-}
-
-// Init events
-document.addEventListener("DOMContentLoaded", function () {
-  const selects = document.querySelectorAll("select");
-  const debtAmountInput = document.getElementById("debtAmount");
-  const result = document.getElementById("result");
-
-  // Dropdown changes (no auto-calculate)
-  selects.forEach(select => {
-    updatePlaceholderColor(select);
-    select.addEventListener("change", function () {
-      updatePlaceholderColor(select);
-    });
-  });
-
-  // Debt input styling
-  updateInputPlaceholderColor(debtAmountInput);
-  debtAmountInput.addEventListener("input", function () {
-    updateInputPlaceholderColor(debtAmountInput);
-  });
-
-  // Reset button
-  document.getElementById('btnRefreshDp').addEventListener('click', function () {
-    document.getElementById('debtAmount').value = '';
-    document.getElementById('accountNo').value = '';
-    document.getElementById('customerType').selectedIndex = 0;
-    document.getElementById('debtYear').selectedIndex = 0;
-    document.getElementById('paymentOption').selectedIndex = 0;
-    document.getElementById('fetchStatus').innerHTML = '';
-    result.innerHTML = '';
-    result.classList.remove('show');
-
-    updateInputPlaceholderColor(debtAmountInput);
-    selects.forEach(updatePlaceholderColor);
-  });
-
-  // Calculate button
-  document.getElementById("btnCalculate").addEventListener("click", function (e) {
-    e.preventDefault();
-    calculateResult();
-  });
-
-  // Initialize input mode
-  toggleInputMode();
-});
-
-
-
-
