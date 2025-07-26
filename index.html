@@ -99,7 +99,6 @@
       width: auto;
     }
 	
-	
 
 
 
@@ -150,12 +149,12 @@
             <div class="page"  > 
               
               <!-- tabs -->
-              <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
+              <div class="billingTab pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
                 <input type="radio" name="pcss3t" checked  id="tab1" class="tab-content-first  btnReset8">
                 <label for="tab1">Single Phase</label>
                 <input type="radio" name="pcss3t" id="tab2" class="tab-content-2 btnResetSingle">
                 <label for="tab2">Three Phase</label>
-                <ul style="">
+                <ul>
                   <li class="tab-content tab-content-first typography">
                     <div class="form-inline" style=" text-align: center;">
                       <div class="form-group singleA" >
@@ -190,13 +189,7 @@
               </div>
               <!--/ tabs --> 
             </div>
-			 
-			  
-			   
-			  
-			  
-			  
-			  
+			 	  
 			  
             <select style="text-align-last: center;
     text-align: center; -moz-text-align-last: center;-webkit-appearance: none; appearance: none" id="selectBand" class="form-control input select-input drop-down-caret">
@@ -385,20 +378,18 @@
                 <input type="radio" name="pcss3t" id="tab4" class="tab-content-4 btnResetSingle">
                 <label for="tab4">From Database</label>
 				  
-                <ul style="width: 100%; ">
-					 <li style="margin-right: 100px" class="tab-content tab-content-3 typography">
+                <ul style="width: 100%; margin-top: 10px; margin-bottom: auto ">
+					 <li style="" class="tab-content tab-content-3 typography">
  					
                     
                   </li>
 					
-                  <li style="padding-right: 7px; padding-left: 7px" class="tab-content tab-content-4 typography">
-                    <div style="display: flex; gap:6px">
-                      <input style="width: 80%" class="form-control placeholder-red" type="text" id="accountNo" placeholder="Enter Account Number" />
-                  <button onclick="fetchArrears()" class="btn btn-secondary" style="width: 20%" >Fetch Debt</button>    
+                  <li style="padding-right: 5px; padding-left: 5px;" class="tab-content tab-content-4 typography">
+                    <div class="fetchDiv">
+                      <input class="form-control loadA placeholder-red" type="text" id="accountNo" placeholder="Enter Account or Meter Number" />
+                  <button onclick="fetchArrears()" class="btn btn2 btn-secondary" >Fetch</button>    
                     </div>
-					  
-					  
-						<div id="fetchStatus" class="result" style=" color: black;"></div>
+		          <div id="fetchStatus" class="result b-display" style="color: black;"></div>
 
                   </li>
 
@@ -407,13 +398,7 @@
               </div>
               <!--/ tabs --> 
             </div>
-		
-		
-		
-		
-		
-		
-		
+			
 
       <!-- Dropdowns -->
 		
@@ -430,7 +415,7 @@
         <option value="2025">2025</option>
         <option value="2024">2024</option>
         <option value="before2024">Before 2024</option>
-        <option value="multi-year" disabled>Cumulative Debt (Spanning Years)</option>
+        <option value="multi-year" disabled>Cumulative (Spanning Years)</option>
       </select>
 
       <select class="form-control input select-input drop-down-caret" id="paymentOption">
@@ -544,11 +529,14 @@
     function updateUI() {
       resetFields();
 
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
+
       if (tab3.checked) {
-        debtTab.style.height = "40px";
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
         debtAmountInput.disabled = false;
       } else if (tab4.checked) {
-        debtTab.style.height = "80px";
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "130px" : "40px";
         debtAmountInput.disabled = true;
       }
     }
@@ -562,10 +550,18 @@
 
     // Fetch button click listener
     fetchButton.addEventListener("click", function () {
-      debtTab.style.height = "100px";
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
+
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "190px" : "70px";
     });
+
+    // Optional: Re-run updateUI when window resizes
+    window.addEventListener("resize", updateUI);
   });
 </script>
+
+
 
 
 
