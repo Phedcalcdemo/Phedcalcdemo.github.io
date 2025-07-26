@@ -218,7 +218,7 @@ appearance: none
 }
 .btn {
   width: 70vw;
-  height: 12rem;
+  height: 10rem;
   box-shadow: 2px 3px 1px rgba(16, 81, 135, 0.2);
   display: flex;
   justify-content: center;
@@ -392,7 +392,7 @@ input, label {
   position: absolute;
   width: 100%;
   overflow: auto;
-  /*	padding: 30px 40px 40px;*/
+/*  	padding: 30px 40px 40px;*/
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   opacity: 0;
@@ -427,28 +427,34 @@ input, label {
 .pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2 {
   display: block;
 }
+/*
 .pcss3t .grid-row:after {
   content: '';
   display: table;
   clear: both;
 }
+*/
 
 .pcss3t-height-auto > .tab-content-3:checked ~ ul .tab-content-3, .pcss3t-height-auto > .tab-content-4:checked ~ ul .tab-content-4 {
   display: block;
 }
+/*
 .pcss3t .grid-row:after {
   content: '';
   display: table;
   clear: both;
 }
+*/
 
 
+/*
 .pcss3t .grid-row:first-child {
   margin-top: 0;
 }
 .pcss3t .grid-col:first-child {
-  /*	margin-left: 0;*/
+  	margin-left: 0;
 }
+*/
 .pcss3t-steps > label {
   cursor: default;
 }
@@ -461,9 +467,12 @@ input, label {
 .pcss3t-effect-rotate > ul > li {
   -webkit-transform: rotate(180deg);
 }
+/*
 .pcss3t-effect-slide-top > ul > li {
   top: -40px;
 }
+*/
+/*
 .pcss3t-effect-slide-right > ul > li {
   left: 80px;
 }
@@ -473,15 +482,18 @@ input, label {
 .pcss3t-effect-slide-left > ul > li {
   left: -80px;
 }
+*/
 /*----------------------------------------------------------------------------*/
 /*                                   LAYOUTS                                  */
 /*----------------------------------------------------------------------------*/
+/*
 .pcss3t-layout-top-right {
   text-align: right;
 }
 .pcss3t-layout-top-center {
   text-align: center;
 }
+*/
 /*----------------------------------------------------------------------------*/
 /*                                   THEMES                                   */
 /*----------------------------------------------------------------------------*/
@@ -490,11 +502,20 @@ input, label {
 .pcss3t > input:checked + label {
   background: #fff;
 }
-.pcss3t > ul {
+.billingTab > ul {
   width: 100%;
   padding-bottom: 160px;
   /*	background-color:*/
   text-align: left;
+}
+.debtTab > ul {
+  width: 100%;
+
+/*  padding-bottom: 165px;*/
+  /*	background-color:*/
+  text-align: left;
+	
+ 
 }
 .pcss3t-steps > label:hover {
   /*	background: #e5e5e5;	*/
@@ -551,6 +572,8 @@ input, label {
   margin-left: auto;
   margin-right: auto;
 }
+
+
 .phaseAmp input {
   width: 155px !important;
   height: 80px;
@@ -561,7 +584,27 @@ input, label {
   font-size: 22px;
   margin-bottom: -6px;
 }
+
+.fetchDiv{
+	display: flex; 
+	gap:6px; 
+	align-content: center; 
+	justify-content: center
+}
+
+.fetchDiv input{
+	width: 73%
+}
+.fetchDiv button{
+	width: 20%
+}
 @media screen and (min-width: 1024px) {
+	
+	.fetchDiv input{
+	width: 80%
+}
+
+	
   body {
     background: #534484;
   }
@@ -693,10 +736,17 @@ input, label {
     height: 30px;
     font-size: 16px;
   }
-  .pcss3t > ul {
+  .billingTab > ul {
     width: 100%;
     margin-top: 8px;
     padding-bottom: 65px;
+    /*	background-color:*/
+    text-align: left;
+  }
+	.debtTab > ul {
+    width: 100%;
+    margin-top: 8px;
+/*    padding-bottom: 55px;*/
     /*	background-color:*/
     text-align: left;
   }
