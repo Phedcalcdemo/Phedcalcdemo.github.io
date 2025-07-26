@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Jane Emeka",
+    "accountNumber": "012412345678",
+    "debtAmount": 1584600.75
+  },
+  {
+    "name": "John Amadi",
+    "accountNumber": "271112345678",
+    "debtAmount": 32059958.0
+  },
+  {
+    "name": "Ada Umeh",
+    "accountNumber": "841212345678",
+    "debtAmount": 980000.5
+  }
+]
