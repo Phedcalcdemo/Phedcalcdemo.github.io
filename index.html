@@ -6,7 +6,6 @@
 <title>PHED CALCULATOR APP</title>
 <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
 <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
@@ -44,7 +43,7 @@
   .ref a {
     display: inline-block;
     padding: 4px 8px;
-	border: 1px solid white;
+	border: 1px solid #fff;
 	margin:2px;
     color: #ffffff;
     text-decoration: none;
@@ -83,6 +82,7 @@
     font-size: 14px;
     transition: color 0.3s, font-size 0.3s;
   }
+  
 
   .ref:hover a {
     color: yellow;
@@ -91,6 +91,18 @@
 	  
   }
 	}
+	
+	 .radio-group {
+      margin-top: 15px;
+    }
+    .radio-group input {
+      width: auto;
+    }
+	
+	
+
+
+
 </style>
 </head>
 
@@ -179,6 +191,13 @@
               <!--/ tabs --> 
             </div>
 			 
+			  
+			   
+			  
+			  
+			  
+			  
+			  
             <select style="text-align-last: center;
     text-align: center; -moz-text-align-last: center;-webkit-appearance: none; appearance: none" id="selectBand" class="form-control input select-input drop-down-caret">
               <option value="" disabled selected="selected">Select a Band *</option>
@@ -342,41 +361,52 @@
 			
         </div>
         
-        <!--	  BILL DISCOUNT-->
-        
-        <div class="fuse__form" style="display: none; margin-bottom:50px">
-        <div id="fuse-form-wrapper">
-            <div class="form-container">
-            <div class="info">
-                <p> Calculate Discount for Debt Recovery Promo </p>
-              </div>
-            <select class="form-control placeholder-red input select-input drop-down-caret" id="customerType" name="customerType" >
-                <option value="" disabled selected="selected">Select Customer Type *</option>
-                <option value="regular">Regular Customer</option>
-                <option value="bulk">Unmetered MD/CBB</option>
-              </select>
-            <select class="form-control input select-input drop-down-caret" id="debtYear">
-                <option value="" disabled selected="selected">Select Debt Year *</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-                <option value="before2024">Before 2024</option>
-              </select>
-            <select class="form-control input select-input drop-down-caret" id="paymentOption">
-                <option value="" disabled selected="selected">Select Payment Option *</option>
-                <option value="oneOff">One-Off Payment</option>
-                <option value="installment">3-Month Installment</option>
-              </select>
-
-            <input class="form-control placeholder-red load" type="number" id="debtAmount" placeholder="Enter Debt Amount (₦)" />
-            <div class="btnWrapper mt-2">
-                <button class="btn btn2 btn-lg btn-primary btn-block" style="float:left;  width:48%" onclick="calculateResult()">Calculate</button>
-                <button id="btnRefreshDp" class="btnResetDp btn btn2 btn-lg  btn-block btn-danger" style="float:right; margin: auto; width:48%" >Reset</button>
-              </div>
-            <div style="width: 70%; text-align: center;" id="result"></div>
-          </div>
-          </div>
+      <!-- BILL DISCOUNT -->
+<div class="fuse__form" style="display: none; margin-bottom:50px">
+  <div id="fuse-form-wrapper">
+    <div class="form-container">
+      <div class="info">
+        <p>Calculate Discount for Debt Recovery Promo</p>
       </div>
 
+   
+
+		
+		
+		
+		
+		 <div class="page"> 
+              
+              <!-- tabs -->
+              <div class=" debtTab pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%;">
+                <input type="radio" name="pcss3t" checked  id="tab3" class="tab-content-3  btnReset8">
+                <label for="tab3">Manual</label>
+				  
+                <input type="radio" name="pcss3t" id="tab4" class="tab-content-4 btnResetSingle">
+                <label for="tab4">From Database</label>
+				  
+                <ul style="width: 100%; ">
+					 <li style="margin-right: 100px" class="tab-content tab-content-3 typography">
+ 					
+                    
+                  </li>
+					
+                  <li style="padding-right: 7px; padding-left: 7px" class="tab-content tab-content-4 typography">
+                    <div style="display: flex; gap:6px">
+                      <input style="width: 80%" class="form-control placeholder-red" type="text" id="accountNo" placeholder="Enter Account Number" />
+                  <button onclick="fetchArrears()" class="btn btn-secondary" style="width: 20%" >Fetch Debt</button>    
+                    </div>
+					  
+					  
+						<div id="fetchStatus" class="result" style=" color: black;"></div>
+
+                  </li>
+
+                 
+                </ul>
+              </div>
+              <!--/ tabs --> 
+            </div>
 		
 		
 		
@@ -384,15 +414,43 @@
 		
 		
 		
+
+      <!-- Dropdowns -->
 		
+		 <input style="z-index: 10000" type="number" placeholder="Enter Debt Ammount" class="form-control loadA clearSingle" id="debtAmount">
 		
-		
-		
-		
-		
-		
-		
-        
+      <select style="z-index: 1000" class="form-control placeholder-red input select-input drop-down-caret" id="customerType" name="customerType">
+        <option value="" disabled selected>Select Customer Type *</option>
+        <option value="regular">Regular Customer</option>
+        <option value="bulk">Unmetered MD/CBB</option>
+      </select>
+
+      <select class="form-control input select-input drop-down-caret" id="debtYear">
+        <option value="" disabled selected>Select Debt Year *</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="before2024">Before 2024</option>
+        <option value="multi-year" disabled>Cumulative Debt (Spanning Years)</option>
+      </select>
+
+      <select class="form-control input select-input drop-down-caret" id="paymentOption">
+        <option value="" disabled selected>Select Payment Option *</option>
+        <option value="oneOff">One-Off Payment</option>
+        <option value="installment">3-Month Installment</option>
+      </select>
+
+      <!-- Buttons -->
+      <div class="btnWrapper mt-2">
+        <button id="btnCalculate" class="btn btn2 btn-lg btn-primary btn-block" style="float:left; width:48%">Calculate</button>
+        <button id="btnRefreshDp" class="btnResetDp btn btn2 btn-lg btn-block btn-danger" style="float:right; margin: auto; width:48%">Reset</button>
+      </div>
+
+      <div style="width: 70%; text-align: center;" id="result"></div>
+    </div>
+  </div>
+</div>
+
+    
         <!--	  TRANSFORMER LOADING-->
         
         <div class=" DTRloading__form" style="display: none;">
@@ -457,6 +515,62 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/myScript.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tab3 = document.getElementById("tab3");
+    const tab4 = document.getElementById("tab4");
+    const debtTab = document.querySelector(".debtTab");
+    const fetchButton = document.querySelector("button[onclick='fetchArrears()']");
+    const debtAmountInput = document.getElementById("debtAmount");
+
+    // Fields to reset
+    const accountNoInput = document.getElementById("accountNo");
+    const customerTypeSelect = document.getElementById("customerType");
+    const debtYearSelect = document.getElementById("debtYear");
+    const paymentOptionSelect = document.getElementById("paymentOption");
+    const fetchStatus = document.getElementById("fetchStatus");
+    const result = document.getElementById("result");
+
+    function resetFields() {
+      if (accountNoInput) accountNoInput.value = "";
+      if (debtAmountInput) debtAmountInput.value = "";
+      if (customerTypeSelect) customerTypeSelect.selectedIndex = 0;
+      if (debtYearSelect) debtYearSelect.selectedIndex = 0;
+      if (paymentOptionSelect) paymentOptionSelect.selectedIndex = 0;
+      if (fetchStatus) fetchStatus.innerHTML = "";
+      if (result) result.innerHTML = "";
+    }
+
+    function updateUI() {
+      resetFields();
+
+      if (tab3.checked) {
+        debtTab.style.height = "40px";
+        debtAmountInput.disabled = false;
+      } else if (tab4.checked) {
+        debtTab.style.height = "80px";
+        debtAmountInput.disabled = true;
+      }
+    }
+
+    // Initial setup
+    updateUI();
+
+    // Tab change listeners
+    tab3.addEventListener("change", updateUI);
+    tab4.addEventListener("change", updateUI);
+
+    // Fetch button click listener
+    fetchButton.addEventListener("click", function () {
+      debtTab.style.height = "100px";
+    });
+  });
+</script>
+
+
+
+
+
 
 </body>
 
