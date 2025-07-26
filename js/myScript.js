@@ -657,17 +657,16 @@ function calculateResult() {
   const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
 
   result.innerHTML = `
-    <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
-      <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
-      <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-      <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-      <tr><th>Original Debt</th><td>â‚¦${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-      <tr><th>Customer Pays</th><td>â‚¦${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-      <tr><th>Customer Saves</th><td>â‚¦${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-      <tr><th>Staff Incentive</th><td>â‚¦${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
-    </table>
-  `;
-
+  <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
+    <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
+    <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
+    <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
+    <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+    <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+    <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
+    <tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
+  </table>
+`;
   result.classList.add('show');
 }
 
