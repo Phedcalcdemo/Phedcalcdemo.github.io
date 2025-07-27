@@ -528,6 +528,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const fetchStatus = document.getElementById("fetchStatus");
   const accountNoInput = document.getElementById("accountNo");
   const result = document.getElementById("result");
+  const exportContainer = document.getElementById("exportContainer");
   const resetBtn = document.getElementById("btnRefreshDp");
   const calcBtn = document.getElementById("btnCalculate");
   const selects = document.querySelectorAll("select");
@@ -536,12 +537,12 @@ document.addEventListener("DOMContentLoaded", function () {
   let customerName = "";
   let customerAccount = "";
 
- // Dynamically create the export button
+  // Dynamically create the export button
   const exportBtn = document.createElement("button");
   exportBtn.id = "btnExportPdf";
   exportBtn.style.marginTop = "15px";
   exportBtn.style.padding = "10px 20px";
-  exportBtn.style.backgroundColor = "#0066cc";
+  exportBtn.style.backgroundColor = "#808000";
   exportBtn.style.color = "white";
   exportBtn.style.border = "none";
   exportBtn.style.borderRadius = "6px";
@@ -549,7 +550,8 @@ document.addEventListener("DOMContentLoaded", function () {
   exportBtn.style.cursor = "pointer";
   exportBtn.style.display = "none";
   exportBtn.textContent = "📄 Export to PDF";
-  result.insertAdjacentElement("afterend", exportBtn);
+  exportContainer.insertAdjacentElement("afterend", exportBtn);
+
   function updateUI() {
     const ul = debtTab.querySelector("ul");
     const isSmallScreen = window.innerWidth <= 1024;
@@ -575,11 +577,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const ul = debtTab.querySelector("ul");
     const isSmallScreen = window.innerWidth <= 1024;
 
-    // Always apply padding if tab4 is selected
     if (tab4.checked && ul) {
       ul.style.paddingBottom = isSmallScreen ? "100px" : "100px";
       paddingApplied = true;
     }
+
     fetchStatus.innerHTML = "";
     debtAmountInput.value = "";
     customerName = "";
@@ -616,7 +618,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Reset button
   if (resetBtn) {
     resetBtn.addEventListener("click", function () {
       accountNoInput.value = "";
@@ -642,7 +643,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Calculate result
   if (calcBtn) {
     calcBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -650,7 +650,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function calculateResult() {
+  function calculateResult(forExport = false) {
     const amount = parseFloat(debtAmountInput.value);
     const customerType = document.getElementById("customerType").value;
     const debtYear = document.getElementById("debtYear").value;
@@ -684,46 +684,130 @@ document.addEventListener("DOMContentLoaded", function () {
     const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
 
     result.innerHTML = `
-      <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
-        ${tab4.checked ? `<tr><th>Account Number</th><td>${customerAccount}</td></tr>` : ""}
-        ${tab4.checked ? `<tr><th>Account Name</th><td>${customerName}</td></tr>` : ""}
-        <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
-        <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-        <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-        <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-        <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-        <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-        <tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
-      </table>
+        <h3 style="text-align:center;">Debt Discount Result</h3>
+        <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
+            ${tab4.checked ? `<tr><th>Account Number</th><td>${customerAccount}</td></tr>` : ""}
+            ${tab4.checked ? `<tr><th>Account Name</th><td>${customerName}</td></tr>` : ""}
+            <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
+            <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
+            <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
+            <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+            <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+            <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
+            ${!forExport ? `<tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>` : ""}
+        </table>
     `;
     result.classList.add("show");
     exportBtn.style.display = "inline-block";
   }
 
-  // Export PDF
-  exportBtn.addEventListener("click", function () {
-    if (!result || !result.innerHTML.trim()) {
-      alert("⚠️ No result to export.");
-      return;
+  // ✅ Export PDF Button - fixed to export visible content
+	
+	
+exportBtn.addEventListener("click", async function () {
+    const resultElement = document.getElementById("result");
+    
+    if (!resultElement || !resultElement.innerHTML.trim()) {
+        alert("⚠️ Please calculate results before exporting.");
+        return;
     }
 
-    const clone = result.cloneNode(true);
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = `<h3 style="text-align: center;">Debt Discount Result</h3>`;
-    wrapper.appendChild(clone);
+    // Create a clone to prevent UI flickering during export
+    const element = resultElement.cloneNode(true);
+    element.style.width = "100%";
+    element.style.padding = "20px";
+    
+    // Remove the "Staff Incentive" row from the clone before exporting
+    const rows = element.querySelectorAll("tr");
+    rows.forEach(row => {
+        if (row.textContent.includes("Staff Incentive")) {
+            row.remove();
+        }
+    });
 
-    const opt = {
-      margin: 0.5,
-      filename: `Discount_Result_${new Date().toISOString().slice(0, 10)}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
+    document.body.appendChild(element);
+    
+    try {
+        const opt = {
+            margin: 10,
+            filename: `Discount_Result_${customerAccount || "unknown"}_${new Date().toISOString().slice(0, 10)}.pdf`,
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { 
+                scale: 2,
+                logging: true,
+                scrollX: 0,
+                scrollY: 0,
+                useCORS: true,
+                allowTaint: true
+            },
+            jsPDF: { 
+                unit: 'mm',
+                format: 'a5',
+                orientation: 'portrait'
+            }
+        };
 
-    html2pdf().set(opt).from(wrapper).save();
-  });
-
-  // Helpers
+        console.log("Starting PDF generation...");
+        await html2pdf().set(opt).from(element).save();
+        console.log("PDF generated successfully");
+    } catch (error) {
+        console.error("PDF generation failed:", error);
+        alert("Failed to generate PDF: " + error.message);
+    } finally {
+        // Clean up
+        document.body.removeChild(element);
+    }
+});
+	
+//	
+//	
+//	
+//exportBtn.addEventListener("click", async function () {
+//    const resultElement = document.getElementById("result");
+//    
+//    if (!resultElement || !resultElement.innerHTML.trim()) {
+//        alert("⚠️ Please calculate results before exporting.");
+//        return;
+//    }
+//
+//    // Create a clone to prevent UI flickering during export
+//    const element = resultElement.cloneNode(true);
+//    element.style.width = "100%";
+//    element.style.padding = "20px";
+//    document.body.appendChild(element);
+//    
+//    try {
+//        const opt = {
+//            margin: 10,
+//            filename: `Discount_Result_${customerAccount || "unknown"}_${new Date().toISOString().slice(0, 10)}.pdf`,
+//            image: { type: 'jpeg', quality: 1 },
+//            html2canvas: { 
+//                scale: 2,
+//                logging: true,
+//                scrollX: 0,
+//                scrollY: 0,
+//                useCORS: true,
+//                allowTaint: true
+//            },
+//            jsPDF: { 
+//                unit: 'mm',
+//                format: 'a5',
+//                orientation: 'portrait'
+//            }
+//        };
+//
+//        console.log("Starting PDF generation...");
+//        await html2pdf().set(opt).from(element).save();
+//        console.log("PDF generated successfully");
+//    } catch (error) {
+//        console.error("PDF generation failed:", error);
+//        alert("Failed to generate PDF: " + error.message);
+//    } finally {
+//        // Clean up
+//        document.body.removeChild(element);
+//    }
+//});
+  // Placeholder helpers
   function updatePlaceholderColor(select) {
     select.classList.toggle("placeholder-red", select.value === "");
   }
@@ -742,5 +826,3 @@ document.addEventListener("DOMContentLoaded", function () {
     debtAmountInput.addEventListener("input", () => updateInputPlaceholderColor(debtAmountInput));
   }
 });
-
-
