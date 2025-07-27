@@ -387,7 +387,7 @@
                   <li style="padding-right: 5px; padding-left: 5px;" class="tab-content tab-content-4 typography">
                     <div class="fetchDiv">
                       <input class="form-control loadA placeholder-red" type="text" id="accountNo" placeholder="Enter Account or Meter Number" />
-                  <button onclick="fetchArrears()" class="btn btn2 btn-secondary" >Fetch</button>    
+                  <button id="fetchButton" onclick="fetchArrears()" class="btn btn2 btn-secondary" >Fetch</button>    
                     </div>
 		          <div id="fetchStatus" class="result b-display" style="color: black;"></div>
 
@@ -505,7 +505,7 @@
     const tab3 = document.getElementById("tab3");
     const tab4 = document.getElementById("tab4");
     const debtTab = document.querySelector(".debtTab");
-    const fetchButton = document.querySelector("button[onclick='fetchArrears()']");
+   const fetchButton = document.getElementById("fetchButton");
     const debtAmountInput = document.getElementById("debtAmount");
 
     // Fields to reset
@@ -560,6 +560,14 @@
     window.addEventListener("resize", updateUI);
   });
 </script>
+
+
+
+
+
+
+
+
 </body>
 
 </html>
