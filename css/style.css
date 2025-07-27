@@ -74,7 +74,12 @@ html {
   border: none !important
 }
 .output .bill {
-  background-color: lightblue
+  background-color: lightblue;
+/*
+  font-size: 20px!important;
+  align-content: center;
+	justify-content: center;
+*/
 }
 input:focus::placeholder {
   color: transparent;
@@ -197,6 +202,7 @@ div .phed {
   margin: 1em;
   justify-content: center;
   align-items: center;
+  
 }
 .output {
   display: content;
@@ -256,12 +262,22 @@ appearance: none
 .btn2:focus {
   outline: none !important;
 }
+/*
 .bill {
   text-align: center;
   height: 5vh;
-  font-size: 60px;
+  font-size: 18px;
   padding: 10px;
 }
+*/
+ .bill {
+    height: 5vh;
+    font-size: 20px;
+    padding: 2px;
+    font-weight: bold;
+  }
+
+
 .discDiv {
   display: flex;
   width: 70vw;
@@ -570,7 +586,8 @@ input, label {
 }
 
 .fetchDiv input{
-	width: 70%
+	width: 70%;
+	height: 5vh
 }
 .fetchDiv button{
 	width: 20%
@@ -585,7 +602,8 @@ input, label {
 @media screen and (min-width: 1024px) {
 	
 	.fetchDiv input{
-	width: 80%
+	width: 80%;
+	height: 40px;
 }
 
 	
@@ -611,7 +629,7 @@ input, label {
   }
 	
   .bill {
-    height: 40px;
+    height: 38px;
     font-size: 20px;
     padding: 2px;
     font-weight: bold;
@@ -662,7 +680,7 @@ input, label {
   }
   .btn {
     width: 60%;
-    height: 3rem;
+    height: 40px;
   }
   .btn2 {
     font-size: 18px !important;
@@ -689,7 +707,7 @@ input, label {
     font-size: 14px;
     margin: 0 auto;
     width: 18rem;
-    max-height: 30px;
+    max-height: 40px;
     color: white;
     padding: 10px
   }
@@ -714,10 +732,12 @@ input, label {
   .tips {
     font-size: 16px
   }
+/*
   .drop-down-caret, .load, .form-control {
     height: 30px;
     font-size: 16px;
   }
+*/
   .billingTab > ul {
     width: 100%;
     margin-top: 8px;
@@ -742,7 +762,7 @@ input, label {
   .pcss3t .singleA input {
     width: 30vw;
     margin-top: -7px;
-    height: 30px;
+    height: 40px;
     font-size: 16px;
   }
   .displayText {
