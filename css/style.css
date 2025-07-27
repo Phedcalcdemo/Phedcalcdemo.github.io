@@ -105,13 +105,13 @@ input[type=number]:focus {
   margin-bottom: 24px !important
 }
 .info {
+/*  width: 80%;*/
   border-top: 2px solid #5F8D4E;
   border-bottom: 2px solid #5F8D4E;
-  height: 50px;
-  margin-bottom: 20px;
-  margin-top: 20px;
-  font-size: 16px;
-  padding: 0px
+/*  height: 50px;*/
+  margin: 20px 10px;
+  font-size: 14px;
+/*  padding: 0px*/
 }
 .tips {
   font-size: 10px;
