@@ -504,6 +504,7 @@ tickerContainer.addEventListener('mouseleave', () => {
 scrollTicker();
 
 // Discount rates
+// Discount rates
 const discountRates = {
   regular: {
     "2025": { oneOff: 0.1, installment: 0.05 },
@@ -624,7 +625,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const debtAmountInput = document.getElementById("debtAmount");
   const result = document.getElementById("result");
 
-  // Dropdown changes (no auto-calculate)
+  // Dropdown changes
   selects.forEach(select => {
     updatePlaceholderColor(select);
     select.addEventListener("change", function () {
@@ -633,31 +634,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Debt input styling
-  updateInputPlaceholderColor(debtAmountInput);
-  debtAmountInput.addEventListener("input", function () {
+  if (debtAmountInput) {
     updateInputPlaceholderColor(debtAmountInput);
-  });
+    debtAmountInput.addEventListener("input", function () {
+      updateInputPlaceholderColor(debtAmountInput);
+    });
+  }
 
-  // Reset button
-  document.getElementById('btnRefreshDp').addEventListener('click', function () {
-    document.getElementById('debtAmount').value = '';
-    document.getElementById('accountNo').value = '';
-    document.getElementById('customerType').selectedIndex = 0;
-    document.getElementById('debtYear').selectedIndex = 0;
-    document.getElementById('paymentOption').selectedIndex = 0;
-    document.getElementById('fetchStatus').innerHTML = '';
-    result.innerHTML = '';
-    result.classList.remove('show');
+  // Reset button (with null check)
+  const resetBtn = document.getElementById('btnRefreshDp');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      const acctInput = document.getElementById('accountNo');
+      const fetchStatus = document.getElementById('fetchStatus');
 
-    updateInputPlaceholderColor(debtAmountInput);
-    selects.forEach(updatePlaceholderColor);
-  });
+      if (debtAmountInput) debtAmountInput.value = '';
+      if (acctInput) acctInput.value = '';
+      if (fetchStatus) fetchStatus.innerHTML = '';
+      if (result) {
+        result.innerHTML = '';
+        result.classList.remove('show');
+      }
 
-  // Calculate button
-  document.getElementById("btnCalculate").addEventListener("click", function (e) {
-    e.preventDefault();
-    calculateResult();
-  });
+      document.getElementById('customerType').selectedIndex = 0;
+      document.getElementById('debtYear').selectedIndex = 0;
+      document.getElementById('paymentOption').selectedIndex = 0;
+
+      selects.forEach(updatePlaceholderColor);
+      updateInputPlaceholderColor(debtAmountInput);
+    });
+  }
+
+  // Calculate button (with null check)
+  const calcBtn = document.getElementById("btnCalculate");
+  if (calcBtn) {
+    calcBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      calculateResult();
+    });
+  }
 });
 
 
