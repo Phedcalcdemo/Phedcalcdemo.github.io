@@ -505,7 +505,6 @@ scrollTicker();
 
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
   // Discount rates
   const discountRates = {
@@ -534,7 +533,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const calcBtn = document.getElementById("btnCalculate");
   const selects = document.querySelectorAll("select");
 
-  let paddingApplied = false; // Prevents updateUI from overriding padding
+  let paddingApplied = false;
 
   function updateUI() {
     const ul = debtTab.querySelector("ul");
@@ -553,7 +552,7 @@ document.addEventListener("DOMContentLoaded", function () {
   tab3.addEventListener("change", updateUI);
   tab4.addEventListener("change", updateUI);
   window.addEventListener("resize", updateUI);
-  updateUI(); // Initial call
+  updateUI();
 
   fetchButton.addEventListener("click", async function (event) {
     event.preventDefault();
@@ -561,18 +560,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const ul = debtTab.querySelector("ul");
     const isSmallScreen = window.innerWidth <= 1024;
 
+    // Always apply padding if tab4 is selected
+    if (tab4.checked && ul) {
+      ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
+      paddingApplied = true;
+    }
+
     fetchStatus.innerHTML = "";
     debtAmountInput.value = "";
 
     if (!acct) {
       fetchStatus.innerHTML = "⚠️ Please enter an account number.";
       return;
-    }
-
-    // Apply persistent padding on fetch
-    if (tab4.checked && ul) {
-      ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
-      paddingApplied = true;
     }
 
     fetchStatus.innerHTML = "🔄 Checking account...";
@@ -615,7 +614,6 @@ document.addEventListener("DOMContentLoaded", function () {
       selects.forEach(updatePlaceholderColor);
       updateInputPlaceholderColor(debtAmountInput);
 
-      // Reset padding logic
       paddingApplied = false;
       updateUI();
     });
@@ -682,7 +680,6 @@ document.addEventListener("DOMContentLoaded", function () {
     input.classList.toggle("red-placeholder", input.value === "");
   }
 
-  // Init dropdown styles
   selects.forEach(select => {
     updatePlaceholderColor(select);
     select.addEventListener("change", () => updatePlaceholderColor(select));
@@ -693,6 +690,7 @@ document.addEventListener("DOMContentLoaded", function () {
     debtAmountInput.addEventListener("input", () => updateInputPlaceholderColor(debtAmountInput));
   }
 });
+
 
 
 
