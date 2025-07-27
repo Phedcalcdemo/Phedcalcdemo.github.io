@@ -83,7 +83,7 @@ body {
   background: #F0F1D5;
 }
 .logo-txt h2 {
-  font-size: 40px;
+  font-size: 25px;
   color: green;
   font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
 }
@@ -100,7 +100,7 @@ input[type=number]:focus {
 .phase input {
   width: 80px !important;
   /*	padding: 30px;*/
-  height: 6vh;
+  height: 5vh;
   font-size: 20px;
   margin-bottom: 24px !important
 }
@@ -109,7 +109,7 @@ input[type=number]:focus {
   border-top: 2px solid #5F8D4E;
   border-bottom: 2px solid #5F8D4E;
 /*  height: 50px;*/
-  margin: 20px 10px;
+  margin: 10px;
   font-size: 14px;
 /*  padding: 0px*/
 }
@@ -197,7 +197,7 @@ div .phed {
 }
 select {
 font-size: 20px;
-/*height: 10em;*/
+/*height: 5vh;*/
 text-align-last: center;
 text-align: center; 
 -moz-text-align-last: center;
@@ -208,7 +208,7 @@ appearance: none
 
 .btn {
   width: 70vw;
-  height: 8rem;
+  height: 5vh;
   box-shadow: 2px 3px 1px rgba(16, 81, 135, 0.2);
   display: flex;
   justify-content: center;
@@ -235,7 +235,7 @@ appearance: none
 }
 .bill {
   text-align: center;
-  height: 8vh;
+  height: 5vh;
   font-size: 60px;
   padding: 10px;
 }
@@ -262,7 +262,7 @@ appearance: none
   background-color: #008ECC;
   border: 1px solid #008ECC;
   border-radius: 50px;
-  width: 10rem;
+  width: 11rem;
   /*padding: 8px;*/
   max-height: 35px;
   font-size: 14px;
@@ -503,7 +503,7 @@ input, label {
 }
 .pcss3t-theme-1 > ul {
   border-radius: 5px;
-  width: 80vw
+  width: 100%;
 }
 .pcss3t-theme-1 > .tab-content-first:checked ~ ul {
   border-top-left-radius: 0;
@@ -528,7 +528,7 @@ input, label {
 .pcss3t .singleA input {
   width: 70vw;
   
-  height: 8vh;
+  height: 5vh;
   margin-top: -14px;
   overflow: hidden;
   font-size: 20px;
@@ -539,8 +539,8 @@ input, label {
 
 
 .phaseAmp input {
-  width: 75px !important;
-  height: 6vh;
+  width: 70px !important;
+  height: 5vh;
   font-size: 20px;
   text-align: center !important;
 
@@ -558,7 +558,7 @@ input, label {
 }
 
 .fetchDiv input{
-	width: 73%
+	width: 70%
 }
 .fetchDiv button{
 	width: 20%
@@ -566,7 +566,7 @@ input, label {
 .select-input {
   font-size: 20px !important;
   text-align: center;
-	height: 3em
+	height: 5vh
 
 }
 
@@ -676,7 +676,7 @@ input, label {
   .billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
     font-size: 14px;
     margin: 0 auto;
-    width: 11rem;
+    width: 18rem;
     max-height: 30px;
     color: white;
     padding: 10px
