@@ -328,8 +328,41 @@ appearance: none
   font-size: 20px;
 }
 #result, table td, table th {
-  font-size: 30px;
+  font-size: 18px;
   
+}
+
+#result { 
+	margin-top: 20px; 
+	font-weight: bold; 
+	background: #f9f9f9; 
+	padding: 10px; 
+	border-radius: 5px; 
+	}
+	
+table { 
+	width: 100%; 
+	border-collapse: collapse; 
+	margin-top: 10px; 
+	}
+th, td { 
+	border: 1px solid #ccc; 
+	padding: 8px; text-align: center; 
+	}
+    th { 
+	background-color: #eee; 
+	}
+
+ #result {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+#result.show {
+  max-height: 500px; 
+  opacity: 1;
 }
 .billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
   background: A4BE7B;
@@ -784,6 +817,8 @@ input, label {
   #errorMessage {
     font-size: 18px;
   }
+	
+ 
 }
 @media screen and (max-width: 1024px) {
   .container {
