@@ -1,528 +1,566 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DTR Load Balancing Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<meta charset="utf-8">
+<title>PHED CALCULATOR APP</title>
+<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link rel="stylesheet" href="css/style.css">
+<style>
+#result { margin-top: 20px; font-weight: bold; background: #f9f9f9; padding: 10px; border-radius: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #eee; }	
+	
+  #result {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+#result.show {
+  max-height: 500px; /* big enough to contain result */
+  opacity: 1;
+}
+.placeholder-red {
+  color: red;
+}
+	
+	.ref {
+    position: absolute;
+    bottom: 0px;
+    border: 1px solid white;
+    z-index: 100000;
+    background-color: #008ECC;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  .ref a {
+    display: inline-block;
+    padding: 4px 8px;
+	border: 1px solid #fff;
+	margin:2px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: color 0.3s, font-size 0.3s;
+  }
+
+  .ref:hover a {
+    color: yellow;
+    font-size: 18px;
+	  
+	  
+  }
+	
+	@media screen and (min-width: 1024px) {
+		
+		.ref {
+    position: absolute;
+    bottom: 0px;
+    border: 1px solid white;
+    z-index: 100000;
+    background-color: #105187;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  .ref a {
+    display: inline-block;
+    padding: 4px 8px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    transition: color 0.3s, font-size 0.3s;
+  }
+  
+
+  .ref:hover a {
+    color: yellow;
+    font-size: 16px;
+	  
+	  
+  }
+	}
+	
+	 .radio-group {
+      margin-top: 15px;
+    }
+    .radio-group input {
+      width: auto;
+    }
+	
+
+/*
+@media screen and (max-width: 768px) {
+  .form-container {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .tab-content {
+    overflow-y: auto;
+    max-height: 500px;
+  }
+}
+*/
+
+
+</style>
 </head>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-	
-<!--	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">-->
 
+<body>
 
-	<link rel="stylesheet" href="css/LBStyle.css">
-<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<body style="text-align: center">
-<div class="wrapper">
-  <div class="logoCont" > <img class="phed"  src="PHED logo.png" width="200px" height="auto" alt="PHED">
-    <h5>DTR LOAD BALANCING REPORT</h5>
+<!--	<div id="loader"></div>-->
+<div class="container">
+  <div class="logo" style="">
+    <div class="logo-txt" style="position: relative; top: 0px; text-align: center;"> <img class="phed"  src="PHED logo.png" alt="PHED">
+      <h2 style="margin-top: -5px;">CALCULATOR</h2>
+    </div>
+    <div class="cont-wrapper" style="" >
+      <div class="billing-button-container clearfix" style="" >
+        <div>
+          <button class="btn billing__button active"> Billing(Amp) </button>
+        </div>
+        <div>
+          <button class="btn billingKW__button"> Billing (Watt) </button>
+        </div>
+        <div>
+          <button class="btn billingKwh__button"> Billing (kWh) </button>
+        </div>
+      </div>
+      <div class="billing-button-container clearfix" >
+        <div>
+          <button class="btn lor__button"> LOR (RPD) </button>
+        </div>
+        <div>
+          <button class="btn fuse__button"> Debt Promo </button>
+        </div>
+        <div>
+          <button class="btn DTRloading__button"> DTR Loading </button>
+        </div>
+      </div>
+      
+      <!--		Calccontainer-->
+      
+     
+        <div class="billing__form" style="display: block;">
+          <form class="form-container" >
+            <div class="info">
+              <p>Calculate customer's bill using captured Load (Amps)</p>
+            </div>
+            <div class="page"  style="align-content: center; justify-content: center"> 
+              
+              <!-- tabs -->
+              <div class="billingTab pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
+                <input type="radio" name="pcss3t" checked  id="tab1" class="tab-content-first  btnReset8">
+                <label for="tab1">Single Phase</label>
+                <input type="radio" name="pcss3t" id="tab2" class="tab-content-2 btnResetSingle">
+                <label for="tab2">Three Phase</label>
+                <ul style=" width:100%;   ">
+                  <li class="tab-content tab-content-first typography">
+                    <div class="form-inline" style=" text-align: center;">
+                      <div class="form-group singleA" >
+                        <label for="singlePhaseAmps">&nbsp;</label>
+                        <input type="number" placeholder="Single Phase Load (Amp*)" class="form-control loadA clearSingle" id="singlePhaseAmps">
+                      </div>
+                    </div>
+                  </li>
+
+                  <li class="tab-content tab-content-2 typography" style="text-align: center;">
+
+                    <div class="form-inline" style="text-align: center; ">
+                      <div class="form-group w-5 phaseAmp ">
+                        <label for="rAmp">Red Phase:</label>
+                        <input type="number" placeholder="R" class="clear3phase form-control  formInline2" id="rAmp" >
+                      </div>
+                      <div class="form-group phaseAmp">
+                        <label for="yAmp">Yellow Phase:</label>
+                        <input type="number" placeholder="Y" class="clear3phase form-control formInline2" id="yAmp" >
+                      </div>
+                      <div class="form-group phaseAmp">
+                        <label for="bAmp">Blue Phase:</label>
+                        <input type="number" placeholder="B" class="clear3phase form-control formInline2" id="bAmp" >
+                      </div>
+                      <div class="form-group phaseAmp">
+                        <label for="nAmp">Neutral:</label>
+                        <input type="number" placeholder="N" class="clear3phase form-control formInline2" id="nAmp">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!--/ tabs --> 
+            </div>
+			 	  
+			  
+            <select style="text-align-last: center;
+    text-align: center; -moz-text-align-last: center;-webkit-appearance: none; appearance: none" id="selectBand" class="form-control select-input drop-down-caret">
+              <option value="" disabled selected="selected">Select a Band *</option>
+              <option value="600">Band A-Non MD</option>
+              <option value="600">Band A-MD1</option>
+              <option value="600">Band A-MD2</option>
+              <option value="480">Band B-Non MD</option>
+              <option value="480">Band B-MD1</option>
+              <option value="480">Band B-MD2</option>
+              <option value="360">Band C-Non MD</option>
+              <option value="360">Band C-MD1</option>
+              <option value="360">Band C-MD2</option>
+              <option value="240">Band D-Non MD</option>
+              <option value="240">Band D-MD1</option>
+              <option value="240">Band D-MD2</option>
+              <option value="120">Band E-Non MD</option>
+              <option value="120">Band E-MD1</option>
+              <option value="120">Band E-MD2</option>
+            </select>
+           
+            <!--	                        PHASE-->
+            
+            <button id="btnStart" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
+          </form>
+          <div class="output">
+            <h1 class="b-display singleClear"><span id="outputKilowattHr"></span> </h1>
+            <div id="outputCost" class="form-control bill"></div>
+            <button id="btnRefresh" class=" btn btn2 btn-lg btn-danger btn-block">Reset</button>
+          </div>
+          <div class="tipsCont">
+            <button class="toggleButton" >Helpful Tips!</button>
+            <div class="displayText">
+              <p>Use a <a href="https://www.hioki.com/themes/hioki/images/global/learning/how-to/u-clamp-meters-img-04.jpg" target="_blank">Clamp meter </a> to determine the electrical load from your service drop. Enter the load, measured in amperes (A), into the calculator for an accurate calculation. If you’re dealing with a 3-phase supply, remember to measure the load on all three phases, and click on the 3Phase tab for your calculation. </p>
+            </div>
+          </div>
+        </div>
+        
+        <!--	  BILLING W-->
+        
+        <div class="billingKW__form" style="display: none;">
+          <div id="billingKW-form-wrapper">
+            <form class="form-container">
+              <div class="info">
+                <p> Calculate customer's bill using Assessed Load (Watt) </p>
+              </div>
+              <label for="inputW" class="sr-only">Total Load(W)</label>
+              <input type="number" id="inputW" class="form-control load" placeholder="Total Load (Watts) *" required>
+              <select id="selectBandW" class="form-control select-input drop-down-caret">
+                <option value="" disabled selected="selected">Select a Band *</option>
+                <option value="600">Band A-Non MD</option>
+                <option value="600">Band A-MD1</option>
+                <option value="600">Band A-MD2</option>
+                <option value="480">Band B-Non MD</option>
+                <option value="480">Band B-MD1</option>
+                <option value="480">Band B-MD2</option>
+                <option value="360">Band C-Non MD</option>
+                <option value="360">Band C-MD1</option>
+                <option value="360">Band C-MD2</option>
+                <option value="240">Band D-Non MD</option>
+                <option value="240">Band D-MD1</option>
+                <option value="240">Band D-MD2</option>
+                <option value="120">Band E-Non MD</option>
+                <option value="120">Band E-MD1</option>
+                <option value="120">Band E-MD2</option>
+              </select>
+              <button id="btnStartW" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+            </form>
+            <div class="output">
+              <h1 class="b-display">Your Monthly Bill is:</h1>
+              <div id="outputCostW" class="form-control bill"></div>
+              <button id="btnRefreshW" class="btn btn2 btn-lg btn-danger btn-block">Reset</button>
+            </div>
+          </div>
+          <div class="tipsCont" >
+            <button class="toggleButton" >Helpful Tips!</button>
+            <div class="displayText" >
+              <p>Add up the power ratings (in Watts) of all your appliances to perform this calculation. For example, you might have a 300W electric iron, a 200W TV, and a 2000W air conditioner, totalling 2500 watts. If any appliance is rated in kilowatts (kW), convert it to watts by multiplying the kW value by 1000. This will give you the equivalent value in watts. </p>
+            </div>
+          </div>
+        </div>
+        
+        <!--	  LOSS OF REVENUE-->
+        
+        <div class="lor__form" style="display: none;">
+          <div id="lor-form-wrapper">
+            <form class="form-container">
+              <div class="info">
+                <p> Calculate Loss of Revenue for Energy Theft </p>
+              </div>
+              <label for="inputAmps1" class="sr-only">Total Load (Amp)</label>
+              <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
+              <label for="inputHrs" class="sr-only">Duration</label>
+              <input type="number" id="inputHrs" class="form-control load" placeholder="Duration (Number of Months) *" required>
+              <select id="selectBand1" class="form-control select-input drop-down-caret">
+                <!--          <option disabled selected>Customer's Band...</option>       -->
+                <option value="" disabled selected="selected">Select a Band *</option>
+                <option value="600">Band A-Non MD</option>
+                <option value="600">Band A-MD1</option>
+                <option value="600">Band A-MD2</option>
+                <option value="480">Band B-Non MD</option>
+                <option value="480">Band B-MD1</option>
+                <option value="480">Band B-MD2</option>
+                <option value="360">Band C-Non MD</option>
+                <option value="360">Band C-MD1</option>
+                <option value="360">Band C-MD2</option>
+                <option value="240">Band D-Non MD</option>
+                <option value="240">Band D-MD1</option>
+                <option value="240">Band D-MD2</option>
+                <option value="120">Band E-Non MD</option>
+                <option value="120">Band E-MD1</option>
+                <option value="120">Band E-MD2</option>
+              </select>
+              <button id="btnStart1" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+            </form>
+            <div class="output">
+              <h1 class="b-display">Your LOR is:</h1>
+              <div id="outputCost1" class="form-control bill"></div>
+              <button id="btnRefresh1" class="btn btn2 btn-lg btn-danger btn-block">Reset</button>
+            </div>
+          </div>
+        </div>
+        
+        <!--	  LOSS OF REVENUE HAULAGE-->
+        
+        <div class="billingKwh__form" style="display: none;">
+          <div id="billingKwh-form-wrapper">
+            <form class="form-container" required>
+              <div class="info">
+                <p>Calculate customer's bill using consumption (kWh)</p>
+              </div>
+              <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
+              <input type="number" id="inputMW" class="form-control load" placeholder="Consumption (kWh) *" required>
+              <select id="selectBand2" class="form-control select-input drop-down-caret">
+                <!--          <option disabled selected>Customer's Band...</option>       -->
+                <option value="" disabled selected="selected">Select Band *</option>
+                <option value="600">Band A-Non MD</option>
+                <option value="600">Band A-MD1</option>
+                <option value="600">Band A-MD2</option>
+                <option value="480">Band B-Non MD</option>
+                <option value="480">Band B-MD1</option>
+                <option value="480">Band B-MD2</option>
+                <option value="360">Band C-Non MD</option>
+                <option value="360">Band C-MD1</option>
+                <option value="360">Band C-MD2</option>
+                <option value="240">Band D-Non MD</option>
+                <option value="240">Band D-MD1</option>
+                <option value="240">Band D-MD2</option>
+                <option value="120">Band E-Non MD</option>
+                <option value="120">Band E-MD1</option>
+                <option value="120">Band E-MD2</option>
+              </select>
+              <button  id="btnStart2" class="btn btn2 btn-lg btn-primary btn-block">Calculate</button>
+            </form>
+            <div class="output">
+              <h1 class="b-display">Your Bill is:</h1>
+              <div id="outputCost2" class="form-control bill"></div>
+              <button id="btnRefresh2" class="btn btn2 btn-lg btn-danger btn-block">Reset</button>
+            </div>
+          </div>
+			
+			
+        </div>
+        
+      <!-- BILL DISCOUNT -->
+<div class="fuse__form" style="display: none; margin-bottom:50px">
+  <div id="fuse-form-wrapper">
+    <div class="form-container">
+      <div class="info">
+        <p>Calculate Discount for Debt Recovery Promo</p>
+      </div>
+
+   
+
+		
+		
+		
+		
+		 <div class="page"> 
+              
+              <!-- tabs -->
+              <div class=" debtTab pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%;">
+                <input type="radio" name="pcss3t" checked  id="tab3" class="tab-content-3  btnReset8">
+                <label for="tab3">Manual</label>
+				  
+                <input type="radio" name="pcss3t" id="tab4" class="tab-content-4 btnResetSingle">
+                <label for="tab4">From Database</label>
+				  
+                <ul style="width: 100%; margin-top: 6px; margin-bottom: auto ">
+					 <li style="" class="tab-content tab-content-3 typography">
+ 					
+                    
+                  </li>
+					
+                  <li style="padding-right: 5px; padding-left: 5px;" class="tab-content tab-content-4 typography">
+                    <div class="fetchDiv">
+                      <input class="form-control load placeholder-red" type="text" id="accountNo" placeholder="Enter Account or Meter Number" />
+                  <button id="fetchButton" onclick="fetchArrears()" class="btn btn2 btn-secondary" >Fetch</button>    
+                    </div>
+		          <div id="fetchStatus" class="result b-display" style="color: black;"></div>
+
+                  </li>
+
+                 
+                </ul>
+              </div>
+              <!--/ tabs --> 
+            </div>
+			
+
+      <!-- Dropdowns -->
+		
+		 <input style="z-index: 10000" type="number" placeholder="Enter Debt Ammount" class="form-control loadA clearSingle" id="debtAmount">
+		
+      <select style="z-index: 1000" class="form-control placeholder-red input select-input drop-down-caret" id="customerType" name="customerType">
+        <option value="" disabled selected>Select Customer Type *</option>
+        <option value="regular">Regular Customer</option>
+        <option value="bulk">Unmetered MD/CBB</option>
+      </select>
+
+      <select class="form-control input select-input drop-down-caret" id="debtYear">
+        <option value="" disabled selected>Select Debt Year *</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="before2024">Before 2024</option>
+        <option value="multi-year" disabled>Cumulative (Spanning Years)</option>
+      </select>
+
+      <select class="form-control input select-input drop-down-caret" id="paymentOption">
+        <option value="" disabled selected>Select Payment Option *</option>
+        <option value="oneOff">One-Off Payment</option>
+        <option value="installment">3-Month Installment</option>
+      </select>
+
+      <!-- Buttons -->
+      <div class="btnWrapper mt-2">
+        <button id="btnCalculate" class="btn btn2 btn-lg btn-primary btn-block" style="float:left; width:48%">Calculate</button>
+        <button id="btnRefreshDp" class="btnResetDp btn btn2 btn-lg btn-block btn-danger" style="float:right; margin: auto; width:48%">Reset</button>
+      </div>
+
+      <div style="width: 70%; text-align: center;" id="result"></div>
+    </div>
+  </div>
+</div>
+
+    
+        <!--	  TRANSFORMER LOADING-->
+        
+        <div class=" DTRloading__form" style="display: none;">
+          <div class="form-container">
+            <div class="info">
+              <p>Calculate the Percentage Loading of a Transformer</p>
+            </div>
+            <form class="form-inline" style="width: 100%; text-align: center">
+              <div class="form-group w-5 phase ">
+                <label for="red">Red Phase:</label>
+                <input type="number" placeholder="R" class="form-control  formInline" id="red">
+              </div>
+              <div class="form-group phase">
+                <label for="yellow">Yellow Phase:</label>
+                <input type="number" placeholder="Y" class="form-control formInline" id="yellow">
+              </div>
+              <div class="form-group phase">
+                <label for="blue">Blue Phase:</label>
+                <input type="number" placeholder="B" class="form-control formInline" id="blue" >
+              </div>
+              <div class="form-group phase">
+                <label for="neutral">Neutral:</label>
+                <input type="number" placeholder="N" class="form-control formInline" id="neutral">
+              </div>
+            </form>
+            <label for="inputKVA" class="mb-0 kvaLabel">DTR CAPACITY(KVA) *</label>
+            <input type="number" style="text-align: center" id="inputKVA" class="form-control load" placeholder="Enter" required>
+            <button id="btnStart3" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
+          </div>
+          <div class="output">
+            <h1 class="b-display">The Percentage Loading of this DTR is:</h1>
+            <div id="outputLoading" class="clear form-control bill"></div>
+            <h1 class="b-display">The Percentage Imbalance of this DTR is:</h1>
+            <div id="outputImbalance" class="clear form-control bill"></div>
+            <div id="balance" class="status clear"></div>
+			
+	    
+            <button id="btnRefresh3" class="btnReset btn btn2 btn-lg btn-primary btn-block btn-danger" >Reset</button>
+	  
+			  <div id="errorMessage"></div>
+          </div>
+				
+		 	
+        </div>
+      </div>
+	<div class="ref">
+  <a href="https://phednetwork.github.io">
+    Explore PHED Network
+  </a>
+</div>
+    </div>
+
   </div>
 	
-  <div id="result"></div>
-	
-  <form class="form-container" required>
-	  
-<fieldset class="p-2">
-   <legend  class="float-none w-auto p-2">Load Reading (Before)</legend>
-	  <h5 style="text-align: left">Please enter the readings taken before load balancing was carried out</h5>
-	  <div class="form-group">
-        <div class="row">
-            <div class="col-md-3">
-                <label for="field1" class="label-left">Red-Phase</label>
-                <input type="number" id="redBefore" class="form-control" placeholder="Enter value">
-            </div>
-            <div class="col-md-3" >
-                <label for="field2" class="label-left" >Yellow-Phase</label>
-                <input type="number" id="yellowBefore" class="form-control" placeholder="Enter value">
-            </div>
-            <div class="col-md-3">
-                <label for="field3" class="label-left">Blue-Phase</label>
-                <input type="number" id="blueBefore" class="form-control" placeholder="Enter value">
-            </div>
-            <div class="col-md-3">
-                <label for="field4" class="label-left">Neutral</label>
-                <input type="number" id="neutralBefore" class="form-control" placeholder="Enter value">
-            </div>
-        </div>
-    </div>
-	</fieldset>	   
-<!--		   <fieldset/>-->
- <fieldset class="p-2">
-   <legend  class="float-none w-auto p-2">Additional Information</legend>
-
-	<div class="row">
-    <div class="col-md-4">
-        <select id="selectRegion" class="form-control">
-            <option value="" disabled selected>Select Region *</option>
-            <option>Alpha 1</option>
-			<option>Alpha 2</option>
-      <option>Beta 1</option>
-      <option>Beta 2</option>
-      <option>Gamma 1</option>
-      <option>Gamma 2</option>
-      <option>Calabar</option>
-      <option>Ogoja</option>
-      <option>Bayelsa</option>
-      <option>Ahoada</option>
-      <option>Uyo</option>
-      <option>Eket</option>
-      <option>Ikot Ekpene</option>
-            <!-- Add other region options here -->
-        </select>
-    </div>
-    <div class="col-md-4">
-        <select id="vL" class="form-control">
-            <option value="" disabled selected>Voltage Level *</option>
-            <option>11KV</option>
-      <option>33KV</option>
-        </select>
-    </div>
-    <div class="col-md-4">
-        <select id="selectFeeder" class="form-control">
-            <option value="" disabled selected>Select Feeder *</option>
-            <!-- Placeholder option for "Select Feeder" -->
-        </select>
-    </div>
-</div>
 	 
-	 
-	 <div class="row">
-    <div class="col-md-8">
-        <input type="text" id="dtrName" class="form-control" placeholder="DTR SS Name *" required>
-    </div>
-    <div class="col-md-4">
-        <input type="number" id="dtrId" class="form-control" placeholder="DTR-ID *" required>
-    </div>
-</div>
-		
-<hr>
+  <div class="ticker"> 
+    <!--  <img src="PHED-logo-transparent.png" width="50px" alt="">-->
+    <div id="tariffScroll" ></div>
+  </div>
 
-  
-    <div class="gpsCont">
-      <button type="button" class="capture pure-button pure-button-primary rounded-pill" >Capture GPS coordinates</button>
-      <br>
-      <span class="gpsInstruction" >[Only use the capture button if you are at the DTR Substation]</span> <br>
-      <h5>Acceptable Format is Decimal degrees. (Lat,Long)</h5>
-      <input type="text" id="gpsResult" class="form-control gpsResult" placeholder=" E.g: 7.123423,9.365221 " required>
-    </div>
-    <hr>
-    <div style="text-align: left">
-      <h5> Please upload photos of the clamp meter showing the neutral values captured before and after load balancing </h5>
-      <input type="file" accept="image/*" id="uploadImage" name="imageFile" class="file_input" multiple="2" />
-      <div id="picView" class="uploadPreview"></div>
-    </div>
-	  </fieldset>
-    <hr>
-	  
-    <div> 
-<!--		<a href="index.html" style="float: left; background-color: green; text-decoration: none; padding-left: 5px; padding-right: 5px; width: 45%" class="btn-primary button rounded-3">Back</a>-->
-		 <button type="button" onclick="window.location.href = 'index.html';" class="btn btn-primary rounded-3"  id="backLB" style="float: left; width: 45%; background-color: darkolivegreen" >Back</button>
-      <button type="button" class="btn btn-primary rounded-3" form-action="#"  id="lbSubmit" style="float: right; width: 45%" >Submit</button>
-    </div>
-	 
-<!--	<hr>-->
-  </form>
-	
-  <div id="errorMessage"></div>
-</div>
- 
-	
-   <script>
-        // Function to populate feeders based on region and voltage level
-        function populateFeeders() {
-            const regionSelect = document.getElementById('selectRegion');
-            const voltageSelect = document.getElementById('vL');
-            const feederSelect = document.getElementById('selectFeeder');
-
-            // Define feeder options based on region and voltage
-            const feeders = {
-                'Alpha 1': {
-                    '11KV': ['Shell Industrial', 'Barracks', 'Rumuomoi', 'Water Lines', 'Bori Camp', 'Rumuokwuta', 'Omerelu', 'New Gra', 'Elekahia Estate', 'Elekahia Village', 'Niger Cat', 'Nkpogu', 'Amadi Ama', 'Rumukalagbo', 'Old Aba Road', 'Rumuogba', 'Rumuorolu', 'Rumuibekwe', 'RIVOC', 'NDABROS', 'Water Works', 'Fimie'].sort(),
-					'33KV': ['Industrial(T/A)', 'Stadium(T/A)', 'Ordinance', 'Rumuola', 'Refinery Line 2', 'Rainbow', 'Akani', 'Trans Amadi'].sort()
-                },
-                'Alpha 2': {
-                    '11KV': ['Jetty', 'Ozuboko', 'Odili Road', 'Okuru', 'Gulf Estate', 'Azuabie', 'Glass Factory', 'Circular Road', 'Nvuigwe', 'Ogbatai', 'Npa', 'Churchill', 'Station Road', 'Amadi North', 'Harold Wilson', 'New Road', 'Marine Base', 'Eastern Bypass'].sort(),
-                    '33KV': ['NLNG', 'Abuloma', 'RSPUB 1', 'Secretariat', 'Borokiri'].sort()
-                },
-               'Beta 1': {
-                    '11KV': ['Akpajo', 'Palace Road', 'Chairman’s Lodge', 'TTC', 'COT Gas', 'Okrika', 'PPMC Refinery', 'Ebubu', 'Ogali', 'Okoh Road', 'Okporo Road', 'R-D Road', 'Obi Wali', 'FGC', 'Eliogbolo', 'Omachi'].sort(),
-                    '33KV': ['RSTV', 'Bori', 'Igbo Etche', 'Rumuodumaya'].sort()
-                },
-				
-               'Beta 2': {
-                    '11KV': ['Elelenwo', 'Bristol', 'Tap', 'Olu Obasanjo', 'Zenith', 'Railway', 'Afam Road', 'First Bank', 'Mbano Junction'].sort(),
-                    '33KV': ['Onne', 'Ndoki', 'Komkom', 'Timber', 'Oyigbo', 'EPCL'].sort()
-				 },
-				
-				 'Gamma 1': {
-                    '11KV': ['UST', 'Ojoto', 'Rumueme', 'Wokoma', 'Eagle Island', 'Ikwerre Road', 'Nsukka',	'Udi', 'Navy',	'Habour Road', 'Azikiwe', 'Abonnema Wharf', 'Owerri Road', 'Amadi South', 'Amadi Residential', 'Mile One', 'Old Diobu', 'Ohakwe', 'Ozuoba', 'Mgbuoba', 'Location Road', 'akery Road', 'Egbelu', 'Agip Road', 'Abacha Road', 'School Of Nursing', 'Aker Road', 'Iwofe', 'Elioparanwo', 'Kala'].sort(),
-                    '33KV': ['UST', 'Silverbird', 'UTC', 'T1B', 'NTA', 'Rumuepirikom', 'Rumuolumini'].sort()
-				 },
-//              
-               'Gamma 2': {
-                    '11KV': ['Aluu', 'Choba', 'Rumuekini', 'Sars Road', 'ADP', 'Market Road', 'OPM', 'Shell Estate', 'Pipe Line', 'Airport Complex', 'Igwuruta', 'Igwuruta Road', 'Elimgbu'].sort(),
-                    '33KV': ['Airport', 'Refinery Line 1', 'UPTH', 'Rukpokwu', 'Greater Ph'].sort()
-                },
-				
-				 'Calabar': {
-                    '11KV': ['8Miles', 'Esukutan', 'Federal Housing', 'Industrial', 'Essien Town', 'MCC', 'Leopard', 'Essien I/Mariana', 'Cameroun', 'Unical', 'Goldie', 'Target', 'Crutech', 'Anantigha', 'Ikot Eneobong', 'Bacoco'].sort(),
-                    '33KV': ['BaoYao', 'Akamkpa', 'EPZ1', 'EPZ2', 'Waterboard', 'Olam', 'Flour Mill', 'Niger Mills', 'Diamond Hills', 'State Housing', 'Amika', 'Adiabo', 'Transcorp'].sort()
-                },
-				
-				'Ogoja': {
-                    '11KV': ['Ikom Town', 'Four corner'].sort(),
-                    '33KV': ['Itigidi', 'Yahe', 'Katsina Ala'].sort()
-                },
-				
-				'Uyo': {
-                    '11KV': ['Aka Road', 'Ibb Avenue', 'Indongesit Nkanga', 'Sir Udo Udoma', 'Uyo Road', 'Edebom', 'Wellington Bassey', 'Nsasak', 'Ikpa Road', 'Brooks', 'Aka Itiam', 'Ewet', 'Shelter Afrique', 'Nwaniba', 'Osong Ama'].sort(),
-                    '33KV': ['Champions Breweries', 'Le Meridian', 'Fourlane', 'Ibesikpo', 'Oron Road'].sort()
-                },
-				
-				
-				'Ikot Ekpene': {
-                    '11KV': ['Town Feeder', 'GRA', 'Ukana', '4point Sheraton', 'Mbak', 'Idoro Road'].sort(),
-                    '33KV': ['Abak', 'Oku Iboku', 'Ikot Ekpene', 'Obot Akara', 'Afaha Ube'].sort()
-                },
-				
-				'Eket': {
-                    '11KV': ['Ikot Ibiok', 'Okon', 'Qua River', 'RCC', 'Afaha Uqua', 'Maritime', 'Mary Harney', 'Ikot Akan', 'ALSCON', 'Ibekwe', 'Port Harcourt Road', 'Ette Urban'].sort(),
-                    '33KV': ['Eket', 'Etinan', 'Ekpenukpa', 'Mbo, Ibeno', 'Industrial', 'Ikot Abasi', 'Ekim'].sort()
-                },
-				'Bayelsa': {
-                    '11KV': ['Local Government', 'NDU', 'Amasoma II', 'Ofoni', 'Sagbama', 'Polaku', 'Agbia', 'Okotiama', 'Kolobiri'].sort(),
-                    '33KV': ['Imiringi', 'Agudama', 'Opolo', 'Amasoma', 'Tungbo', 'Govt House', 'Gbarain'].sort()
-                },
-				'Ahoada': {
-                    '11KV': ['Nil'],
-                    '33KV': ['Abonema', 'Buguma', 'Isiokpo', 'Ahoada', 'Emohua'].sort()
-                },
-				
-                // Add other regions and voltage levels as needed...
-            };
-
-            // Event listener for region and voltage changes
-            regionSelect.addEventListener('change', updateFeeders);
-            voltageSelect.addEventListener('change', updateFeeders);
-
-            // Initial population
-            updateFeeders();
-
-            function updateFeeders() {
-                const selectedRegion = regionSelect.value;
-                const selectedVoltage = voltageSelect.value;
-
-                // Clear existing options
-                feederSelect.innerHTML = '';
-
-                if (selectedRegion && selectedVoltage) {
-                    const selectedFeeders = feeders[selectedRegion][selectedVoltage];
-                    selectedFeeders.forEach(feeder => {
-                        const option = document.createElement('option');
-                        option.value = feeder;
-                        option.textContent = feeder;
-                        feederSelect.appendChild(option);
-                    });
-                } else {
-                    // Show placeholder option
-                    const placeholderOption = document.createElement('option');
-                    placeholderOption.value = '';
-                    placeholderOption.textContent = 'Select Feeder *';
-                    placeholderOption.disabled = true;
-                    placeholderOption.selected = true;
-                    feederSelect.appendChild(placeholderOption);
-                }
-            }
-        }
-
-        // Call the function to initialize
-        populateFeeders();
-    </script>
-	
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/myScript.js"></script>
 <script>
-    // Retrieve values from query parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const redPhase = urlParams.get("red");
-    const yellowPhase = urlParams.get("yellow");
-    const bluePhase = urlParams.get("blue");
-    const neutralPhase = urlParams.get("neutral");
-    const dtrCapacity = urlParams.get("capacity");
-    const loadingValue = urlParams.get("loading")+ "%";
-    const imbalanceValue = parseFloat(urlParams.get("imbalance")); // Convert to a numeric value
+  document.addEventListener("DOMContentLoaded", function () {
+    const tab3 = document.getElementById("tab3");
+    const tab4 = document.getElementById("tab4");
+    const debtTab = document.querySelector(".debtTab");
+    const fetchButton = document.getElementById("fetchButton");
+    const debtAmountInput = document.getElementById("debtAmount");
 
-    // Determine the balance status based on the imbalance value
-    let balanceStatus;
-    if (imbalanceValue >= 1 && imbalanceValue <= 4) {
-        balanceStatus = "DTR is balanced";
-    } else if (imbalanceValue > 4 && imbalanceValue <= 9) {
-        balanceStatus = "DTR is moderately balanced";
-    } else if (imbalanceValue >= 10) {
-        balanceStatus = "DTR is highly unbalanced";
-//    } else {
-//        balanceStatus = "Invalid imbalance value"; // Handle other cases (optional)
-    }
-	        
-		 
-		 
+    function updateUI() {
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
 
-    // Display the extracted values in the "result" div
-    const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = `
-			<h4 class="green-text">Load Balancing Data</h4>
-<hr>
-       <p>Red Phase Current (A): <span class="green-text">${redPhase}</span></p>
-        <p>Yellow Phase Current (A): <span class="green-text">${yellowPhase}</span></p>
-        <p>Blue Phase Current (A): <span class="green-text">${bluePhase}</span></p>
-       <p>Neutral Current (A): <span class="green-text">${neutralPhase}</span></p>
-        <p>DTR Capacity (KVA): <span class="green-text">${dtrCapacity}</span></p>
-        <p>Percentage Loading: <span class="green-text">${loadingValue}</span></p>
-       <p>Percentage Imbalance: <span class="green-text">${imbalanceValue}%</span></p>
-        <hr>
-         <p> <span class="purple-text">${balanceStatus}</span></p> </strong>
-    `;
-	</script>
-    <script type="text/javascript">
-        window.onload = function() {
-            if (window.File && window.FileList && window.FileReader) {
-                var filesInput = document.getElementById("uploadImage");
-                var output = document.getElementById("picView");
-
-                filesInput.addEventListener("change", function(event) {
-                    var files = event.target.files;
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        if (!file.type.match('image')) {
-                            continue;
-                        }
-
-                        var picReader = new FileReader();
-                        picReader.addEventListener("load", function(event) {
-                            var picFile = event.target;
-                            var img = new Image();
-                            img.src = picFile.result;
-
-                            img.onload = function() {
-                                var canvas = document.createElement("canvas");
-                                var ctx = canvas.getContext("2d");
-                                canvas.width = 50;
-                                canvas.height = 50;
-                                ctx.drawImage(img, 0, 0, 50, 50);
-                                var resizedDataUrl = canvas.toDataURL("image/jpeg");
-
-                                var uniqueId = Date.now(); // Generate a unique ID
-                                var div = document.createElement("div");
-                                div.className = "thumbnail-container";
-                                div.innerHTML = `
-                                    <img class="thumbnail" src="${resizedDataUrl}" title="${file.name}" data-id="${uniqueId}">
-                                    <button class="remove-button" onclick="removeImage(${uniqueId})">X</button>
-                                `;
-                                output.appendChild(div); // Append images horizontally
-                            };
-                        });
-                        picReader.readAsDataURL(file);
-                    }
-                });
-            }
-        };
-
-        function removeImage(uniqueId) {
-            var imageDiv = document.querySelector(`[data-id="${uniqueId}"]`).parentNode;
-            imageDiv.parentNode.removeChild(imageDiv);
-        }
-    </script>
-<script>
-function getLocation() {
-  var msg;
-
-  if ('geolocation' in navigator) {
-    requestLocation();
-  } else {
-    msg = "Sorry, looks like your browser doesn't support geolocation";
-    outputResult(msg);
-    $('.pure-button').removeClass('pure-button-primary').addClass('pure-button-success');
-  }
-
-  function requestLocation() {
-    var options = {
-      enableHighAccuracy: false,
-      timeout: 5000,
-      maximumAge: 0
-    };
-
-    navigator.geolocation.getCurrentPosition(success, error, options);
-
-    function success(pos) {
-      var lng = pos.coords.longitude;
-      var lat = pos.coords.latitude;
-      msg =  lat +','+ lng;
-      outputResult(msg);
-      $('.pure-button').removeClass('pure-button-primary').addClass('pure-button-success');
-
-      // Set the value of the input with ID "gpsResult"
-      $('#gpsResult').val(lat+','+lng);
+      if (tab3.checked) {
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
+        debtAmountInput.disabled = false;
+      } else if (tab4.checked) {
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "60px" : "50px";
+        debtAmountInput.disabled = true;
+      }
     }
 
-    function error(err) {
-      msg = 'Error: ' + err + ' :(';
-      outputResult(msg);
-      $('.pure-button').removeClass('pure-button-primary').addClass('pure-button-error');
-    }
-  }
+    // Initial setup
+    updateUI();
 
-  function outputResult(msg) {
-    $('.gpsResult').addClass('gpsResult').html(msg);
-  }
-}
+    // Tab change listeners
+    tab3.addEventListener("change", updateUI);
+    tab4.addEventListener("change", updateUI);
 
-$('.pure-button').on('click', function() {
-  $('.gpsRresult').html('<i class="fa fa-spinner fa-spin"></i>');
-  getLocation();
-});
-</script> 
-	
+    // Fetch button click listener
+    fetchButton.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevents form refresh
 
-<script>
-	
-	</script>
-	
+      // Delay padding update to ensure DOM/UI state is settled
+      setTimeout(() => {
+        const ul = debtTab.querySelector("ul");
+        const isSmallScreen = window.innerWidth <= 1024;
 
-	
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
+      }, 0);
+    });
 
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script> 
-	
-		
- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector(".form-container");
-            const submitButton = document.getElementById("lbSubmit");
-            const errorMessage = document.getElementById("errorMessage");
-            const uploadImageInput = document.getElementById("uploadImage");
-
-            submitButton.addEventListener("click", function (event) {
-				
-                 // Assuming you have a way to get the redPhase value
-                const urlParams = new URLSearchParams(window.location.search);
-                const redPhase = parseFloat(urlParams.get("red"));
-
-                if (isNaN(redPhase)) {
-                    errorMessage.textContent = "Please go back to PHED Calculator and provide the DTR loading data.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-					return;
-					
-                    event.preventDefault(); // Prevent form submission
-                }
-				
-	const selectrB = document.getElementById("redBefore");
-const selectyB = document.getElementById("yellowBefore");
-const selectbB = document.getElementById("blueBefore");
-const selectnB = document.getElementById("neutralBefore");
-
-if (selectrB.value === "" || selectyB.value === "" || selectbB.value === "" || selectnB.value === "") {
-    event.preventDefault(); // Prevent form submission
-    errorMessage.textContent = "Please provide load reading (before)";
-    setTimeout(() => {
-        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-    }, 5000);
-    return;
-}
+    // Update layout on resize
+    window.addEventListener("resize", updateUI);
+  });
+</script>
 
 
 
-				
-                const selectRegion = document.getElementById("selectRegion");
-                if (selectRegion.value === "") {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please select a region.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-                    return;
-                }
-				
-				
-
-                const vL = document.getElementById("vL");
-                if (vL.value === "") {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please select the Voltage level.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-                    return;
-                }
-
-                const selectFeeder = document.getElementById("selectFeeder");
-                if (selectFeeder.value === "") {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please select a Feeder.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-                    return;
-                }
-				
-				 const selectDtrName = document.getElementById("dtrName");
-                if (selectDtrName.value === "") {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please enter name of Substation.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-                    return;
-                }
-				const selectvL = document.getElementById("dtrId");
-                if (selectvL.value === "") {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please enter DTR ID.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-                    return;
-                }
-				
-				const gpsResultInput = document.getElementById("gpsResult");
-                if (gpsResultInput.value === "") {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please enter DTR's GPS Coordinate";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-                    return;
-                }
-
-				if (!uploadImageInput.files.length) {
-                    event.preventDefault(); // Prevent form submission
-                    errorMessage.textContent = "Please upload picture evidence.";
-                    setTimeout(() => {
-                        errorMessage.textContent = ""; // Clear the error message after 5 seconds
-                    }, 5000);
-//                    return;
-                }
-
-
-
-                else {
-                    // Show SweetAlert success message
-                    swal.fire({
-			'title': 'Submitted Successfully',
-			'text': 'Submit another report',
-			'type': 'success',
-//                        timer: 9999, // Automatically close after 5 seconds
-//                        showConfirmButton: true, // Show the "OK" button
-                    }).then(() => {
-                        // Redirect to index.html
-                        window.location.href = 'index.html';
-                    });
-                }
-            });
-        });
-    </script>
-	
 
 </body>
+
 </html>
