@@ -548,7 +548,7 @@
         if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
         debtAmountInput.disabled = false;
       } else if (tab4.checked) {
-        if (ul) ul.style.paddingBottom = isSmallScreen ? "130px" : "40px";
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "60px" : "40px";
         debtAmountInput.disabled = true;
       }
     }
@@ -565,7 +565,7 @@
       const ul = debtTab.querySelector("ul");
       const isSmallScreen = window.innerWidth <= 1024;
 
-      if (ul) ul.style.paddingBottom = isSmallScreen ? "190px" : "70px";
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "100px" : "70px";
     });
 
     // Optional: Re-run updateUI when window resizes
