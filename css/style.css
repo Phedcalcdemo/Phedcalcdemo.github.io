@@ -122,7 +122,7 @@ input[type=number]:focus {
 
 .phaseAmp input {
   width: 65px !important;
-  height: 5vh;
+  height: 6vh;
   font-size: 20px;
   text-align: center !important;
 
@@ -219,16 +219,17 @@ div .phed {
 .load {
   padding: 20px 10px;
   font-size: 20px;
+  height: 6vh
 }
 .loadA {
   padding: 20px 10px;
-  /*	EDITED*/
   font-size: 20px !important;
+height: 6vh
   /*	color: blue*/
 }
 select {
 font-size: 20px;
-/*height: 5vh;*/
+/*height: 6vh;*/
 text-align-last: center;
 text-align: center; 
 -moz-text-align-last: center;
@@ -273,7 +274,7 @@ appearance: none
 }
 */
  .bill {
-    height: 5vh;
+    height: 6vh;
     font-size: 20px;
     padding: 2px;
     font-weight: bold;
@@ -603,7 +604,7 @@ input, label {
 .pcss3t .singleA input {
   width: 80vw;
   
-  height: 5vh;
+  height: 6vh;
   margin-top: -14px;
   overflow: hidden;
   font-size: 20px;
@@ -627,20 +628,29 @@ input, label {
 }
 .fetchDiv button{
 	width: 25%;
-	height: 6vh
+	height: auto;
+	max-height: 6vh
+	
 }
 .select-input {
   font-size: 20px !important;
   text-align: center;
-	height: 5vh
+	height: 6vh
 
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 800px) {
 	
 	.fetchDiv input{
 	width: 80%;
-	height: 40px;
+	max-height: 40px;
+}
+	
+	.fetchDiv button{
+	width: 25%;
+	height: auto;
+	max-height: 40px;
+	
 }
 
 	
@@ -684,6 +694,9 @@ input, label {
   }
   .loadA {
     font-size: 16px !important;
+  }
+	 .load {
+   height: 6vh
   }
   .b-display {
     font-size: 16px;
