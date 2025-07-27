@@ -49,13 +49,13 @@
     text-decoration: none;
     border-radius: 4px;
     font-family: Arial, sans-serif;
-    font-size: 30px;
+    font-size: 14px;
     transition: color 0.3s, font-size 0.3s;
   }
 
   .ref:hover a {
     color: yellow;
-    font-size: 35px;
+    font-size: 18px;
 	  
 	  
   }
@@ -100,6 +100,7 @@
     }
 	
 
+/*
 @media screen and (max-width: 768px) {
   .form-container {
     overflow-x: hidden;
@@ -110,6 +111,7 @@
     max-height: 500px;
   }
 }
+*/
 
 
 </style>
@@ -156,7 +158,7 @@
             <div class="info">
               <p>Calculate customer's bill using captured Load (Amps)</p>
             </div>
-            <div class="page"  > 
+            <div class="page"  style="align-content: center; justify-content: center"> 
               
               <!-- tabs -->
               <div class="billingTab pcss3t pcss3t-effect-scale pcss3t-theme-1" style="width: 100%">
@@ -164,7 +166,7 @@
                 <label for="tab1">Single Phase</label>
                 <input type="radio" name="pcss3t" id="tab2" class="tab-content-2 btnResetSingle">
                 <label for="tab2">Three Phase</label>
-                <ul>
+                <ul style=" width:100%; ">
                   <li class="tab-content tab-content-first typography">
                     <div class="form-inline" style=" text-align: center;">
                       <div class="form-group singleA" >
@@ -174,9 +176,9 @@
                     </div>
                   </li>
 
-                  <li class="tab-content tab-content-2 typography">
+                  <li class="tab-content tab-content-2 typography" style="text-align: center;">
 
-                    <div class="form-inline" style="text-align: center">
+                    <div class="form-inline" style="text-align: center; ">
                       <div class="form-group w-5 phaseAmp ">
                         <label for="rAmp">Red Phase:</label>
                         <input type="number" placeholder="R" class="clear3phase form-control  formInline2" id="rAmp" >
@@ -202,7 +204,7 @@
 			 	  
 			  
             <select style="text-align-last: center;
-    text-align: center; -moz-text-align-last: center;-webkit-appearance: none; appearance: none" id="selectBand" class="form-control input select-input drop-down-caret">
+    text-align: center; -moz-text-align-last: center;-webkit-appearance: none; appearance: none" id="selectBand" class="form-control select-input drop-down-caret">
               <option value="" disabled selected="selected">Select a Band *</option>
               <option value="600">Band A-Non MD</option>
               <option value="600">Band A-MD1</option>
@@ -223,7 +225,7 @@
            
             <!--	                        PHASE-->
             
-            <button type="button" id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
+            <button id="btnStart" style="margin-top: 8px" class="btn btn2 btn-lg btn-primary btn-block ">Calculate</button>
           </form>
           <div class="output">
             <h1 class="b-display singleClear"><span id="outputKilowattHr"></span> </h1>
@@ -248,7 +250,7 @@
               </div>
               <label for="inputW" class="sr-only">Total Load(W)</label>
               <input type="number" id="inputW" class="form-control load" placeholder="Total Load (Watts) *" required>
-              <select id="selectBandW" class="form-control input select-input drop-down-caret">
+              <select id="selectBandW" class="form-control select-input drop-down-caret">
                 <option value="" disabled selected="selected">Select a Band *</option>
                 <option value="600">Band A-Non MD</option>
                 <option value="600">Band A-MD1</option>
@@ -294,7 +296,7 @@
               <input type="number" id="inputAmps1" class="form-control load" placeholder="Load (Amps) *" required>
               <label for="inputHrs" class="sr-only">Duration</label>
               <input type="number" id="inputHrs" class="form-control load" placeholder="Duration (Number of Months) *" required>
-              <select id="selectBand1" class="form-control input select-input drop-down-caret">
+              <select id="selectBand1" class="form-control select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select a Band *</option>
                 <option value="600">Band A-Non MD</option>
@@ -333,7 +335,7 @@
               </div>
               <label for="inputAmps2" class="sr-only">Total Load(Amp)</label>
               <input type="number" id="inputMW" class="form-control load" placeholder="Consumption (kWh) *" required>
-              <select id="selectBand2" class="form-control input select-input drop-down-caret">
+              <select id="selectBand2" class="form-control select-input drop-down-caret">
                 <!--          <option disabled selected>Customer's Band...</option>       -->
                 <option value="" disabled selected="selected">Select Band *</option>
                 <option value="600">Band A-Non MD</option>
@@ -510,7 +512,66 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/myScript.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tab3 = document.getElementById("tab3");
+    const tab4 = document.getElementById("tab4");
+    const debtTab = document.querySelector(".debtTab");
+   const fetchButton = document.getElementById("fetchButton");
+    const debtAmountInput = document.getElementById("debtAmount");
 
+    // Fields to reset
+    const accountNoInput = document.getElementById("accountNo");
+    const customerTypeSelect = document.getElementById("customerType");
+    const debtYearSelect = document.getElementById("debtYear");
+    const paymentOptionSelect = document.getElementById("paymentOption");
+    const fetchStatus = document.getElementById("fetchStatus");
+    const result = document.getElementById("result");
+
+    function resetFields() {
+      if (accountNoInput) accountNoInput.value = "";
+      if (debtAmountInput) debtAmountInput.value = "";
+      if (customerTypeSelect) customerTypeSelect.selectedIndex = 0;
+      if (debtYearSelect) debtYearSelect.selectedIndex = 0;
+      if (paymentOptionSelect) paymentOptionSelect.selectedIndex = 0;
+      if (fetchStatus) fetchStatus.innerHTML = "";
+      if (result) result.innerHTML = "";
+    }
+
+    function updateUI() {
+      resetFields();
+
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
+
+      if (tab3.checked) {
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
+        debtAmountInput.disabled = false;
+      } else if (tab4.checked) {
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "130px" : "40px";
+        debtAmountInput.disabled = true;
+      }
+    }
+
+    // Initial setup
+    updateUI();
+
+    // Tab change listeners
+    tab3.addEventListener("change", updateUI);
+    tab4.addEventListener("change", updateUI);
+
+    // Fetch button click listener
+    fetchButton.addEventListener("click", function () {
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
+
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "190px" : "70px";
+    });
+
+    // Optional: Re-run updateUI when window resizes
+    window.addEventListener("resize", updateUI);
+  });
+</script>
 
 
 </body>
