@@ -684,7 +684,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
 
     result.innerHTML = `
-        <h3 style="text-align:center;">Debt Discount Result</h3>
+        <h1 style="text-align:center; font-weight:bold; font-size:22px">Debt Discount Payment Slip</h1>
         <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
             ${tab4.checked ? `<tr><th>Account Number</th><td>${customerAccount}</td></tr>` : ""}
             ${tab4.checked ? `<tr><th>Account Name</th><td>${customerName}</td></tr>` : ""}
