@@ -43,7 +43,7 @@ html {
 .toggleButton, .lbSub {
   padding-left: 10px;
   padding-right: 10px;
-  font-size: 20px;
+  font-size: 12px;
   outline: none;
   border: none;
   box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
@@ -146,10 +146,11 @@ input[type=number]:focus {
 /*  padding: 0px*/
 }
 .tips {
-  font-size: 10px;
+  font-size: 6px;
   text-align: center;
   padding-left: 10%;
   padding-right: 10%;
+  
 }
 .container {
   /*  width:  100%;*/
@@ -182,11 +183,12 @@ input[type=number]:focus {
   align-items: center;
   flex-direction: column;
   padding-bottom: 2em;
+  margin-top: -10px;
   overflow: hidden;
 }
 
 div .phed {
-  width: 100%;
+  width: 60%;
   height: auto;
   /*  margin-right: 30px;*/
 }
@@ -730,7 +732,7 @@ input, label {
     padding: 1px;
   }
   .tips {
-    font-size: 16px
+    font-size: 12px
   }
 /*
   .drop-down-caret, .load, .form-control {
@@ -774,7 +776,7 @@ input, label {
   .toggleButton, .lbSub {
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 16px;
+    font-size: 12px;
   }
   .btnWrapper {
     width: 60%
