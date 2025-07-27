@@ -496,6 +496,67 @@
     <div id="tariffScroll" ></div>
   </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const tab3 = document.getElementById("tab3");
+    const tab4 = document.getElementById("tab4");
+    const debtTab = document.querySelector(".debtTab");
+   const fetchButton = document.getElementById("fetchButton");
+    const debtAmountInput = document.getElementById("debtAmount");
+
+    // Fields to reset
+    const accountNoInput = document.getElementById("accountNo");
+    const customerTypeSelect = document.getElementById("customerType");
+    const debtYearSelect = document.getElementById("debtYear");
+    const paymentOptionSelect = document.getElementById("paymentOption");
+    const fetchStatus = document.getElementById("fetchStatus");
+    const result = document.getElementById("result");
+
+    function resetFields() {
+      if (accountNoInput) accountNoInput.value = "";
+      if (debtAmountInput) debtAmountInput.value = "";
+      if (customerTypeSelect) customerTypeSelect.selectedIndex = 0;
+      if (debtYearSelect) debtYearSelect.selectedIndex = 0;
+      if (paymentOptionSelect) paymentOptionSelect.selectedIndex = 0;
+      if (fetchStatus) fetchStatus.innerHTML = "";
+      if (result) result.innerHTML = "";
+    }
+
+    function updateUI() {
+      resetFields();
+
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
+
+      if (tab3.checked) {
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
+        debtAmountInput.disabled = false;
+      } else if (tab4.checked) {
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "130px" : "40px";
+        debtAmountInput.disabled = true;
+      }
+    }
+
+    // Initial setup
+    updateUI();
+
+    // Tab change listeners
+    tab3.addEventListener("change", updateUI);
+    tab4.addEventListener("change", updateUI);
+
+    // Fetch button click listener
+    fetchButton.addEventListener("click", function () {
+      const ul = debtTab.querySelector("ul");
+      const isSmallScreen = window.innerWidth <= 1024;
+
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "190px" : "70px";
+    });
+
+    // Optional: Re-run updateUI when window resizes
+    window.addEventListener("resize", updateUI);
+  });
+</script>
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
