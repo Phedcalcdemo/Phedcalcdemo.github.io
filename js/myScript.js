@@ -13,7 +13,7 @@ const tariffs = {
   'Band D-Non MD': 39.67,
   'Band D-MD1': 55.43,
   'Band D-MD2': 55.43,
-  'Band E-Non MD': 39.44,
+  'Band E-Non MD': 39.44, 
   'Band E-MD1': 55.43,
   'Band E-MD2': 55.43
 };
@@ -504,7 +504,6 @@ tickerContainer.addEventListener('mouseleave', () => {
 scrollTicker();
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
   // Discount rates
   const discountRates = {
@@ -534,7 +533,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const selects = document.querySelectorAll("select");
 
   let paddingApplied = false;
+  let customerName = "";
+  let customerAccount = "";
 
+ // Dynamically create the export button
+  const exportBtn = document.createElement("button");
+  exportBtn.id = "btnExportPdf";
+  exportBtn.style.marginTop = "15px";
+  exportBtn.style.padding = "10px 20px";
+  exportBtn.style.backgroundColor = "#0066cc";
+  exportBtn.style.color = "white";
+  exportBtn.style.border = "none";
+  exportBtn.style.borderRadius = "6px";
+  exportBtn.style.fontSize = "15px";
+  exportBtn.style.cursor = "pointer";
+  exportBtn.style.display = "none";
+  exportBtn.textContent = "📄 Export to PDF";
+  result.insertAdjacentElement("afterend", exportBtn);
   function updateUI() {
     const ul = debtTab.querySelector("ul");
     const isSmallScreen = window.innerWidth <= 1024;
@@ -562,12 +577,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Always apply padding if tab4 is selected
     if (tab4.checked && ul) {
-      ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
+      ul.style.paddingBottom = isSmallScreen ? "100px" : "100px";
       paddingApplied = true;
     }
-
     fetchStatus.innerHTML = "";
     debtAmountInput.value = "";
+    customerName = "";
+    customerAccount = "";
 
     if (!acct) {
       fetchStatus.innerHTML = "⚠️ Please enter an account number.";
@@ -585,7 +601,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const customer = data.find(c => c.accountNumber === acct);
       if (customer) {
-        fetchStatus.innerHTML = `✔️ Name: ${customer.name} &nbsp;&nbsp; Total Debt: ₦${customer.debtAmount.toLocaleString()}`;
+        customerName = customer.name;
+        customerAccount = customer.accountNumber;
+
+        fetchStatus.innerHTML = `<strong>✔️ Customer Name: ${customerName} <br> ✔️ Total Debt: ₦${customer.debtAmount.toLocaleString()}</strong>`;
         debtAmountInput.value = customer.debtAmount;
         updateInputPlaceholderColor(debtAmountInput);
       } else {
@@ -597,6 +616,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Reset button
   if (resetBtn) {
     resetBtn.addEventListener("click", function () {
       accountNoInput.value = "";
@@ -606,6 +626,7 @@ document.addEventListener("DOMContentLoaded", function () {
         result.innerHTML = "";
         result.classList.remove("show");
       }
+      exportBtn.style.display = "none";
 
       document.getElementById("customerType").selectedIndex = 0;
       document.getElementById("debtYear").selectedIndex = 0;
@@ -614,11 +635,14 @@ document.addEventListener("DOMContentLoaded", function () {
       selects.forEach(updatePlaceholderColor);
       updateInputPlaceholderColor(debtAmountInput);
 
+      customerName = "";
+      customerAccount = "";
       paddingApplied = false;
       updateUI();
     });
   }
 
+  // Calculate result
   if (calcBtn) {
     calcBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -627,8 +651,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function calculateResult() {
-    console.log("🧮 Calculate button clicked");
-
     const amount = parseFloat(debtAmountInput.value);
     const customerType = document.getElementById("customerType").value;
     const debtYear = document.getElementById("debtYear").value;
@@ -636,17 +658,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (isNaN(amount) || amount <= 0) {
       result.innerHTML = "⚠️ Please enter a valid debt amount.";
+      exportBtn.style.display = "none";
       return;
     }
 
     if (!customerType || !debtYear || !paymentOption) {
       result.innerHTML = "⚠️ Please select all required fields.";
+      exportBtn.style.display = "none";
       return;
     }
 
     const discountRate = discountRates[customerType]?.[debtYear]?.[paymentOption];
     if (discountRate === undefined) {
       result.innerHTML = "❌ No discount available for selected options.";
+      exportBtn.style.display = "none";
       return;
     }
 
@@ -660,6 +685,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     result.innerHTML = `
       <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
+        ${tab4.checked ? `<tr><th>Account Number</th><td>${customerAccount}</td></tr>` : ""}
+        ${tab4.checked ? `<tr><th>Account Name</th><td>${customerName}</td></tr>` : ""}
         <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
         <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
         <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
@@ -670,8 +697,33 @@ document.addEventListener("DOMContentLoaded", function () {
       </table>
     `;
     result.classList.add("show");
+    exportBtn.style.display = "inline-block";
   }
 
+  // Export PDF
+  exportBtn.addEventListener("click", function () {
+    if (!result || !result.innerHTML.trim()) {
+      alert("⚠️ No result to export.");
+      return;
+    }
+
+    const clone = result.cloneNode(true);
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = `<h3 style="text-align: center;">Debt Discount Result</h3>`;
+    wrapper.appendChild(clone);
+
+    const opt = {
+      margin: 0.5,
+      filename: `Discount_Result_${new Date().toISOString().slice(0, 10)}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(wrapper).save();
+  });
+
+  // Helpers
   function updatePlaceholderColor(select) {
     select.classList.toggle("placeholder-red", select.value === "");
   }
@@ -690,8 +742,5 @@ document.addEventListener("DOMContentLoaded", function () {
     debtAmountInput.addEventListener("input", () => updateInputPlaceholderColor(debtAmountInput));
   }
 });
-
-
-
 
 
