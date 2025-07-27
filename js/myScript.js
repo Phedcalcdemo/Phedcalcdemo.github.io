@@ -504,7 +504,6 @@ tickerContainer.addEventListener('mouseleave', () => {
 scrollTicker();
 
 // Discount rates
-// Discount rates
 const discountRates = {
   regular: {
     "2025": { oneOff: 0.1, installment: 0.05 },
