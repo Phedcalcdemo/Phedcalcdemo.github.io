@@ -262,10 +262,10 @@ appearance: none
   background-color: #008ECC;
   border: 1px solid #008ECC;
   border-radius: 50px;
-  width: 12rem;
+  width: 10rem;
   /*padding: 8px;*/
-  max-height: 40px;
-  font-size: 16px;
+  max-height: 35px;
+  font-size: 14px;
   color: white;
   text-align: center;
 
