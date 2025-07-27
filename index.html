@@ -124,7 +124,7 @@
 <div class="container">
   <div class="logo" style="">
     <div class="logo-txt" style="position: relative; top: 0px; text-align: center;"> <img class="phed"  src="PHED logo.png" alt="PHED">
-      <h2 style="margin-top: -18px;">CALCULATOR</h2>
+      <h2 style="margin-top: -5px;">CALCULATOR</h2>
     </div>
     <div class="cont-wrapper" style="" >
       <div class="billing-button-container clearfix" style="" >
@@ -517,30 +517,10 @@
     const tab3 = document.getElementById("tab3");
     const tab4 = document.getElementById("tab4");
     const debtTab = document.querySelector(".debtTab");
-   const fetchButton = document.getElementById("fetchButton");
+    const fetchButton = document.getElementById("fetchButton");
     const debtAmountInput = document.getElementById("debtAmount");
 
-    // Fields to reset
-    const accountNoInput = document.getElementById("accountNo");
-    const customerTypeSelect = document.getElementById("customerType");
-    const debtYearSelect = document.getElementById("debtYear");
-    const paymentOptionSelect = document.getElementById("paymentOption");
-    const fetchStatus = document.getElementById("fetchStatus");
-    const result = document.getElementById("result");
-
-    function resetFields() {
-      if (accountNoInput) accountNoInput.value = "";
-      if (debtAmountInput) debtAmountInput.value = "";
-      if (customerTypeSelect) customerTypeSelect.selectedIndex = 0;
-      if (debtYearSelect) debtYearSelect.selectedIndex = 0;
-      if (paymentOptionSelect) paymentOptionSelect.selectedIndex = 0;
-      if (fetchStatus) fetchStatus.innerHTML = "";
-      if (result) result.innerHTML = "";
-    }
-
     function updateUI() {
-      resetFields();
-
       const ul = debtTab.querySelector("ul");
       const isSmallScreen = window.innerWidth <= 1024;
 
@@ -561,17 +541,20 @@
     tab4.addEventListener("change", updateUI);
 
     // Fetch button click listener
-    fetchButton.addEventListener("click", function () {
+    fetchButton.addEventListener("click", function (event) {
+      event.preventDefault(); // 🛑 Prevents form refresh
+
       const ul = debtTab.querySelector("ul");
       const isSmallScreen = window.innerWidth <= 1024;
 
       if (ul) ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
     });
 
-    // Optional: Re-run updateUI when window resizes
+    // Re-run updateUI when window resizes
     window.addEventListener("resize", updateUI);
   });
 </script>
+
 
 
 </body>
