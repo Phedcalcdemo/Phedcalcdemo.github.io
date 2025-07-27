@@ -398,7 +398,7 @@
 					
                   <li style="padding-right: 5px; padding-left: 5px;" class="tab-content tab-content-4 typography">
                     <div class="fetchDiv">
-                      <input class="form-control loadA placeholder-red" type="text" id="accountNo" placeholder="Enter Account or Meter Number" />
+                      <input class="form-control load placeholder-red" type="text" id="accountNo" placeholder="Enter Account or Meter Number" />
                   <button id="fetchButton" onclick="fetchArrears()" class="btn btn2 btn-secondary" >Fetch</button>    
                     </div>
 		          <div id="fetchStatus" class="result b-display" style="color: black;"></div>
@@ -548,7 +548,7 @@
         if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
         debtAmountInput.disabled = false;
       } else if (tab4.checked) {
-        if (ul) ul.style.paddingBottom = isSmallScreen ? "60px" : "40px";
+        if (ul) ul.style.paddingBottom = isSmallScreen ? "60px" : "50px";
         debtAmountInput.disabled = true;
       }
     }
@@ -565,7 +565,7 @@
       const ul = debtTab.querySelector("ul");
       const isSmallScreen = window.innerWidth <= 1024;
 
-      if (ul) ul.style.paddingBottom = isSmallScreen ? "100px" : "70px";
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
     });
 
     // Optional: Re-run updateUI when window resizes
