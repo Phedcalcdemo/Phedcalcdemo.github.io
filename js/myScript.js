@@ -294,145 +294,99 @@ function emptybillingKwhInput() {
 start2.addEventListener("click", calcbillingKwh);
 refresh2.addEventListener("click", emptybillingKwhInput);
 
-//      
 
 
-//        DTR LOADING
 
-document.getElementById("btnStart3").addEventListener('click', doCalc);
 
-function doCalc() {
 
-   let x = parseFloat(document.querySelector("#red").value);
-   let y = parseFloat(document.querySelector("#yellow").value);
-   let z = parseFloat(document.querySelector("#blue").value);
-	let n = parseFloat(document.querySelector("#neutral").value);
-   const outputLoad = document.querySelector("#outputLoading");
-   const capacity = document.querySelector("#inputKVA");
-	
-//  const refresh3 = document.getElementById("btnRefresh3");
-   let avgCurrent1 = (x + y + z + n) / 3;
-let loading = (avgCurrent1 / (capacity.value * 1.4)) * 100;
 
-   loading = loading || 0;
-	if(loading === 0) {
-	document.getElementById('outputLoading').style.color = "black";
-		
-    }else if(loading < 50) {
-	document.getElementById('outputLoading').style.color = "green";
-		
-    }else if(loading >= 50) {
-                document.getElementById('outputLoading').style.color = "red";
-	}
-	
-   outputLoad.innerHTML = loading.toFixed(0) + "%";
-}
+//      DTR LOADING
 
+
+// MAIN WRAPPER FUNCTION
 document.getElementById("btnStart3").addEventListener('click', doMath);
 
-		
-	function doMath() {
-//function calculatePercentageImbalance(xx, yy, zz) {
-   let xx = parseFloat(document.querySelector("#red").value);
-   let yy = parseFloat(document.querySelector("#yellow").value);
-   let zz = parseFloat(document.querySelector("#blue").value);
-   let nn = parseFloat(document.querySelector("#neutral").value);
-	
-		
-		function calculatePercentageImbalance(xx, yy, zz) {
-    // Calculate the average current
-    let avgCurrent = (xx + yy + zz + nn) / 3;
-
-    // Calculate the deviations
-    let redDeviation = Math.abs(xx - avgCurrent);
-    let yellowDeviation = Math.abs(yy - avgCurrent);
-    let blueDeviation = Math.abs(zz - avgCurrent);
-
-    // Find the maximum deviation
-    let maxDeviation = Math.max(redDeviation, yellowDeviation, blueDeviation);
-
-    // Calculate the percentage imbalance
-    let percentageImbalance = (maxDeviation / avgCurrent) * 100;
-			percentageImbalance = percentageImbalance || 0;
-			
-			if(percentageImbalance === 0) {
-    balance.innerHTML = "";
-    document.getElementById('outputImbalance').style.color = "black";
-} else if(percentageImbalance <= 4) {
-    document.getElementById('outputImbalance').style.color = "green";
-    document.getElementById('balance').style.color = "green";
-    balance.innerHTML = "DTR's Load is Balanced";
-} else if(percentageImbalance > 4 && percentageImbalance <= 10) {
-    document.getElementById('outputImbalance').style.color = "brown";
-    document.getElementById('balance').style.color = "brown";
-    balance.innerHTML = "DTR's Load is Moderately Balanced";
-} else if(percentageImbalance > 10) {
-    document.getElementById('outputImbalance').style.color = "red";
-    document.getElementById('balance').style.color = "red";
-    balance.innerHTML = "DTR's Load is Highly Unbalanced";
-}
-    return percentageImbalance;
-			
-			
+function doMath() {
+    calculateLoading();
+    calculateImbalance();
 }
 
-let percentageImbalance = calculatePercentageImbalance(xx, yy, zz);
-
-
-outputImbalance.innerHTML = (percentageImbalance.toFixed(0) + "%");
-
-
-}
-
-	$( ".btnReset" ).click(function() {
-  $( ".clear" ).empty();
-	document.querySelector('#red').value ='';
-	document.querySelector('#yellow').value ='';
-	document.querySelector('#blue').value ='';
-	document.querySelector('#neutral').value ='';
-	document.querySelector('#inputKVA').value ='';
-});		
-
-
-
-
-const lbRecordBtn = document.getElementById("lbRecord");
-if (lbRecordBtn) {
-  lbRecordBtn.addEventListener('click', extractValues);
-}
-
-function extractValues() {
+// --- DTR LOADING CALCULATION ---
+function calculateLoading() {
     const red = parseFloat(document.querySelector("#red").value);
     const yellow = parseFloat(document.querySelector("#yellow").value);
     const blue = parseFloat(document.querySelector("#blue").value);
     const neutral = parseFloat(document.querySelector("#neutral").value);
     const capacity = parseFloat(document.querySelector("#inputKVA").value);
+    const outputLoad = document.querySelector("#outputLoading");
 
-    // Check if any value is empty
-    if (isNaN(red) || isNaN(yellow) || isNaN(blue) || isNaN(neutral) || isNaN(capacity)) {
-        const errorMessageDiv = document.getElementById("errorMessage");
-        errorMessageDiv.textContent = "Please fill in all the required values.";
-        setTimeout(() => {
-            errorMessageDiv.textContent = "";
-        }, 5000); 
+    const avgCurrent = (red + yellow + blue + neutral) / 3;
+    let loading = (avgCurrent / (capacity * 1.4)) * 100;
+    loading = loading || 0;
 
-        return; 
+    // Set color based on loading
+    if (loading === 0) {
+        outputLoad.style.color = "black";
+    } else if (loading < 50) {
+        outputLoad.style.color = "green";
+    } else {
+        outputLoad.style.color = "red";
     }
 
-    // Calculate loading percentage
-    const loading = ((Math.max(red, yellow, blue) / (capacity * 1.4)) * 100) || 0;
-
-    // Calculate percentage imbalance
-    const avgCurrent = (red + yellow + blue) / 3;
-    const maxDeviation = Math.max(Math.abs(red - avgCurrent), Math.abs(yellow - avgCurrent), Math.abs(blue - avgCurrent));
-    const imbalance = (maxDeviation / avgCurrent) * 100 || 0;
-
-    const url = `LB Report.html?red=${red}&yellow=${yellow}&blue=${blue}&neutral=${neutral}&capacity=${capacity}&loading=${loading.toFixed(2)}&imbalance=${imbalance.toFixed(2)}`;
-
-    // Open the result page in a new tab
-    window.open(url, '_blank');
+    outputLoad.innerHTML = loading.toFixed(0) + "%";
 }
 
+// --- IMBALANCE CALCULATION ---
+function calculateImbalance() {
+    const red = parseFloat(document.querySelector("#red").value);
+    const yellow = parseFloat(document.querySelector("#yellow").value);
+    const blue = parseFloat(document.querySelector("#blue").value);
+    const outputImbalance = document.getElementById("outputImbalance");
+    const balanceText = document.getElementById("balance");
+
+    const avgCurrent = (red + yellow + blue) / 3;
+    const maxDeviation = Math.max(
+        Math.abs(red - avgCurrent),
+        Math.abs(yellow - avgCurrent),
+        Math.abs(blue - avgCurrent)
+    );
+
+    let percentageImbalance = (maxDeviation / avgCurrent) * 100;
+    percentageImbalance = percentageImbalance || 0;
+
+    // Interpret imbalance
+    if (percentageImbalance === 0) {
+        outputImbalance.style.color = "black";
+        balanceText.innerHTML = "";
+    } else if (percentageImbalance <= 10) {
+        outputImbalance.style.color = "green";
+        balanceText.style.color = "green";
+        balanceText.innerHTML = "DTR's Load is Balanced";
+    } else if (percentageImbalance <= 20) {
+        outputImbalance.style.color = "brown";
+        balanceText.style.color = "brown";
+        balanceText.innerHTML = "DTR's Load is Moderately Balanced";
+    } else {
+        outputImbalance.style.color = "red";
+        balanceText.style.color = "red";
+        balanceText.innerHTML = "DTR's Load is Highly Unbalanced";
+    }
+
+    outputImbalance.innerHTML = percentageImbalance.toFixed(0) + "%";
+}
+
+// --- RESET BUTTON ---
+$(".btnReset").click(function () {
+    $(".clear").empty();
+    document.querySelector('#red').value = '';
+    document.querySelector('#yellow').value = '';
+    document.querySelector('#blue').value = '';
+    document.querySelector('#neutral').value = '';
+    document.querySelector('#inputKVA').value = '';
+    document.getElementById('outputLoading').innerHTML = '';
+    document.getElementById('outputImbalance').innerHTML = '';
+    document.getElementById('balance').innerHTML = '';
+});
 
 	
 
@@ -485,21 +439,21 @@ const formattedDate = formatDate(currentDate); // "21st May, 2024"
 
 
 const news = `<span class="ticker-text">&nbsp Electricity Tariff as at <span class="brown-text">${formattedDate}</span> &nbsp | &nbsp
-  Band A-Non MD <span class="green-text">&#8358;${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
-  Band A-MD1 <span class="green-text">&#8358;${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
-  Band A-MD2 <span class="green-text">&#8358;${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
-  Band B-Non MD <span class="green-text">&#8358;${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band B-MD1 <span class="green-text">&#8358;${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
-  Band B-MD2 <span class="green-text">&#8358;${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
-  Band C-Non MD <span class="green-text">&#8358;${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
-  Band C-MD1 <span class="green-text">&#8358;${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
-  Band C-MD2 <span class="green-text">&#8358;${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
-  Band D-Non MD <span class="green-text">&#8358;${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band D-MD1 <span class="green-text">&#8358;${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
-  Band D-MD2 <span class="green-text">&#8358;${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
-  Band E-Non MD <span class="green-text">&#8358;${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD1 <span class="green-text">&#8358;${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD2 <span class="green-text">&#8358;${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band A-Non MD <span class="green-text">₦${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
+  Band A-MD1 <span class="green-text">₦${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
+  Band A-MD2 <span class="green-text">₦${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
+  Band B-Non MD <span class="green-text">₦${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
+  Band B-MD1 <span class="green-text">₦${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
+  Band B-MD2 <span class="green-text">₦${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
+  Band C-Non MD <span class="green-text">₦${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
+  Band C-MD1 <span class="green-text">₦${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
+  Band C-MD2 <span class="green-text">₦${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
+  Band D-Non MD <span class="green-text">₦${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
+  Band D-MD1 <span class="green-text">₦${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
+  Band D-MD2 <span class="green-text">₦${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
+  Band E-Non MD <span class="green-text">₦${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band E-MD1 <span class="green-text">₦${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band E-MD2 <span class="green-text">₦${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
   Designed by: Obot Akpan &nbsp</span>`;
 
 // Select the container div by its class
@@ -601,7 +555,7 @@ async function fetchArrears() {
 
 // Calculate result
 function calculateResult() { 
-  console.log("🧮 Calculate button clicked");
+  console.log("Calculate button clicked");
 
   const amount = parseFloat(document.getElementById("debtAmount").value);
   const customerType = document.getElementById("customerType").value;
