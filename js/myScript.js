@@ -485,21 +485,21 @@ const formattedDate = formatDate(currentDate); // "21st May, 2024"
 
 
 const news = `<span class="ticker-text">&nbsp Electricity Tariff as at <span class="brown-text">${formattedDate}</span> &nbsp | &nbsp
-  Band A-Non MD <span class="green-text">₦${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
-  Band A-MD1 <span class="green-text">₦${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
-  Band A-MD2 <span class="green-text">₦${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
-  Band B-Non MD <span class="green-text">₦${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band B-MD1 <span class="green-text">₦${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
-  Band B-MD2 <span class="green-text">₦${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
-  Band C-Non MD <span class="green-text">₦${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
-  Band C-MD1 <span class="green-text">₦${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
-  Band C-MD2 <span class="green-text">₦${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
-  Band D-Non MD <span class="green-text">₦${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band D-MD1 <span class="green-text">₦${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
-  Band D-MD2 <span class="green-text">₦${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
-  Band E-Non MD <span class="green-text">₦${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD1 <span class="green-text">₦${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD2 <span class="green-text">₦${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band A-Non MD <span class="green-text">&#8358;${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
+  Band A-MD1 <span class="green-text">&#8358;${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
+  Band A-MD2 <span class="green-text">&#8358;${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
+  Band B-Non MD <span class="green-text">&#8358;${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
+  Band B-MD1 <span class="green-text">&#8358;${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
+  Band B-MD2 <span class="green-text">&#8358;${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
+  Band C-Non MD <span class="green-text">&#8358;${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
+  Band C-MD1 <span class="green-text">&#8358;${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
+  Band C-MD2 <span class="green-text">&#8358;${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
+  Band D-Non MD <span class="green-text">&#8358;${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
+  Band D-MD1 <span class="green-text">&#8358;${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
+  Band D-MD2 <span class="green-text">&#8358;${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
+  Band E-Non MD <span class="green-text">&#8358;${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band E-MD1 <span class="green-text">&#8358;${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band E-MD2 <span class="green-text">&#8358;${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
   Designed by: Obot Akpan &nbsp</span>`;
 
 // Select the container div by its class
@@ -548,191 +548,3 @@ tickerContainer.addEventListener('mouseleave', () => {
 
 // Start the scrolling
 scrollTicker();
-
-
-// Discount rates
-const discountRates = {
-  regular: {
-    "2025": { oneOff: 0.1, installment: 0.05 },
-    "2024": { oneOff: 0.15, installment: 0.1 },
-    "before2024": { oneOff: 0.2, installment: 0.12 }
-  },
-  bulk: {
-    "2025": { oneOff: 0.08, installment: 0.04 },
-    "2024": { oneOff: 0.12, installment: 0.08 },
-    "before2024": { oneOff: 0.18, installment: 0.1 }
-  }
-};
-
-// Toggle manual / fetch input
-function toggleInputMode() {
-  const mode = document.querySelector('input[name="debtInputType"]:checked').value;
-  const accountSection = document.getElementById('accountSection');
-  const debtAmount = document.getElementById('debtAmount');
-  const fetchStatus = document.getElementById('fetchStatus');
-  const resultBox = document.getElementById('result');
-
-  if (mode === 'fetch') {
-    accountSection.style.display = 'block';
-    debtAmount.readOnly = true;
-    debtAmount.value = '';
-    fetchStatus.innerHTML = '';
-    resultBox.innerHTML = '';
-  } else {
-    accountSection.style.display = 'none';
-    debtAmount.readOnly = false;
-    debtAmount.value = '';
-    fetchStatus.innerHTML = '';
-    resultBox.innerHTML = '';
-  }
-}
-
-// Fetch debt from JSON
-async function fetchArrears() {
-  const acct = document.getElementById('accountNo').value.trim();
-  const fetchStatus = document.getElementById('fetchStatus');
-  const debtField = document.getElementById('debtAmount');
-
-  fetchStatus.innerHTML = '';
-  debtField.value = '';
-
- if (!acct) {
-  fetchStatus.innerHTML = "&#9888;&#65039; Please enter an account number."; 
-  return;
-}
-
-fetchStatus.innerHTML = "&#128295; Checking account..."; 
-
-try {
-  const response = await fetch("https://phedfeeders.github.io/customers.json");
-  if (!response.ok) throw new Error("Network error");
-
-  const data = await response.json();
-  const customer = data.find(c => c.accountNumber === acct);
-
-  if (customer) {
-    fetchStatus.innerHTML = `&#10004;&#65039; Name: ${customer.name} &nbsp;&nbsp; Total Debt: &#8358;${customer.debtAmount.toLocaleString()}`; // 
-    debtField.value = customer.debtAmount;
-  } else {
-    fetchStatus.innerHTML = "&#10060; Customer not found."; // 
-  }
-
-} catch (error) {
-  console.error(error);
-  fetchStatus.innerHTML = "&#10060; Error contacting the database."; // 
-}
-
-// Calculate result
-function calculateResult() { 
-  console.log("&#129518; Calculate button clicked"); // 
-
-  const amount = parseFloat(document.getElementById("debtAmount").value);
-  const customerType = document.getElementById("customerType").value;
-  const debtYear = document.getElementById("debtYear").value;
-  const paymentOption = document.getElementById("paymentOption").value;
-  const result = document.getElementById("result");
-
-  if (isNaN(amount) || amount <= 0) {
-    result.innerHTML = "&#9888;&#65039; Please enter a valid debt amount."; // 
-    return;
-  }
-
-  if (!customerType || !debtYear || !paymentOption) {
-    result.innerHTML = "&#9888;&#65039; Please select all required fields."; // 
-    return;
-  }
-
-  const discountRate = discountRates[customerType]?.[debtYear]?.[paymentOption];
-  if (discountRate === undefined) {
-    result.innerHTML = "&#10060; No discount available for selected options."; // 
-    return;
-  }
-}
-
-  const discountAmount = amount * discountRate;
-  const customerPays = amount - discountAmount;
-  const staffIncentiveRate = 0.05;
-  const staffEarns = customerPays * staffIncentiveRate;
-
-  const customerTypeText = customerType === "regular" ? "Regular Customer" : "Unmetered MD/CBB";
-  const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
-
-  result.innerHTML = `
-  <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
-    <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
-    <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-    <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-    <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-    <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-    <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-    <tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
-  </table>
-`;
-  result.classList.add('show');
-}
-
-// Input styling helpers
-function updatePlaceholderColor(select) {
-  if (select.value === "") {
-    select.classList.add("placeholder-red");
-  } else {
-    select.classList.remove("placeholder-red");
-  }
-}
-
-function updateInputPlaceholderColor(input) {
-  if (input.value === "") {
-    input.classList.add("red-placeholder");
-  } else {
-    input.classList.remove("red-placeholder");
-  }
-}
-
-// Init events
-document.addEventListener("DOMContentLoaded", function () {
-  const selects = document.querySelectorAll("select");
-  const debtAmountInput = document.getElementById("debtAmount");
-  const result = document.getElementById("result");
-
-  // Dropdown changes (no auto-calculate)
-  selects.forEach(select => {
-    updatePlaceholderColor(select);
-    select.addEventListener("change", function () {
-      updatePlaceholderColor(select);
-    });
-  });
-
-  // Debt input styling
-  updateInputPlaceholderColor(debtAmountInput);
-  debtAmountInput.addEventListener("input", function () {
-    updateInputPlaceholderColor(debtAmountInput);
-  });
-
-  // Reset button
-  document.getElementById('btnRefreshDp').addEventListener('click', function () {
-    document.getElementById('debtAmount').value = '';
-    document.getElementById('accountNo').value = '';
-    document.getElementById('customerType').selectedIndex = 0;
-    document.getElementById('debtYear').selectedIndex = 0;
-    document.getElementById('paymentOption').selectedIndex = 0;
-    document.getElementById('fetchStatus').innerHTML = '';
-    result.innerHTML = '';
-    result.classList.remove('show');
-
-    updateInputPlaceholderColor(debtAmountInput);
-    selects.forEach(updatePlaceholderColor);
-  });
-
-  // Calculate button
-  document.getElementById("btnCalculate").addEventListener("click", function (e) {
-    e.preventDefault();
-    calculateResult();
-  });
-
-  // Initialize input mode
-  toggleInputMode();
-});
-
-
-
-
