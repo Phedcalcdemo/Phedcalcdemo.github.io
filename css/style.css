@@ -115,7 +115,7 @@ input[type=number]:focus {
  .phase input {
   width: 100%;  /* Adjust as needed */
   max-width: 65px;
-  font-size: 1rem;
+  font-size: 20px;
   margin-bottom: -8px !important;
 /*  margin-top: -0.3rem !important;*/
 }
