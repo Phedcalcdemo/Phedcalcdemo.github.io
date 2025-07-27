@@ -554,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateUI() {
     const ul = debtTab.querySelector("ul");
-    const isSmallScreen = window.innerWidth <= 1024;
+    const isSmallScreen = window.innerWidth <= 800;
 
     if (tab3.checked) {
       if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
@@ -575,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     const acct = accountNoInput.value.trim();
     const ul = debtTab.querySelector("ul");
-    const isSmallScreen = window.innerWidth <= 1024;
+    const isSmallScreen = window.innerWidth <= 800;
 
     if (tab4.checked && ul) {
       ul.style.paddingBottom = isSmallScreen ? "100px" : "100px";
