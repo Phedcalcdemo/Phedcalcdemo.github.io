@@ -503,176 +503,197 @@ tickerContainer.addEventListener('mouseleave', () => {
 // Start the scrolling
 scrollTicker();
 
-// Discount rates
-const discountRates = {
-  regular: {
-    "2025": { oneOff: 0.1, installment: 0.05 },
-    "2024": { oneOff: 0.15, installment: 0.1 },
-    "before2024": { oneOff: 0.2, installment: 0.12 }
-  },
-  bulk: {
-    "2025": { oneOff: 0.08, installment: 0.04 },
-    "2024": { oneOff: 0.12, installment: 0.08 },
-    "before2024": { oneOff: 0.18, installment: 0.1 }
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Discount rates
+  const discountRates = {
+    regular: {
+      "2025": { oneOff: 0.1, installment: 0.05 },
+      "2024": { oneOff: 0.15, installment: 0.1 },
+      "before2024": { oneOff: 0.2, installment: 0.12 }
+    },
+    bulk: {
+      "2025": { oneOff: 0.08, installment: 0.04 },
+      "2024": { oneOff: 0.12, installment: 0.08 },
+      "before2024": { oneOff: 0.18, installment: 0.1 }
+    }
+  };
+
+  // Elements
+  const tab3 = document.getElementById("tab3");
+  const tab4 = document.getElementById("tab4");
+  const debtTab = document.querySelector(".debtTab");
+  const fetchButton = document.getElementById("fetchButton");
+  const debtAmountInput = document.getElementById("debtAmount");
+  const fetchStatus = document.getElementById("fetchStatus");
+  const accountNoInput = document.getElementById("accountNo");
+  const result = document.getElementById("result");
+  const resetBtn = document.getElementById("btnRefreshDp");
+  const calcBtn = document.getElementById("btnCalculate");
+  const selects = document.querySelectorAll("select");
+
+  let paddingApplied = false; // Prevents updateUI from overriding padding
+
+  function updateUI() {
+    const ul = debtTab.querySelector("ul");
+    const isSmallScreen = window.innerWidth <= 1024;
+
+    if (tab3.checked) {
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "10px" : "10px";
+      paddingApplied = false;
+      debtAmountInput.disabled = false;
+    } else if (tab4.checked && !paddingApplied) {
+      if (ul) ul.style.paddingBottom = isSmallScreen ? "60px" : "50px";
+      debtAmountInput.disabled = true;
+    }
   }
-};
 
-// Fetch debt from JSON
-async function fetchArrears() {
-  const acct = document.getElementById('accountNo').value.trim();
-  const fetchStatus = document.getElementById('fetchStatus');
-  const debtField = document.getElementById('debtAmount');
+  tab3.addEventListener("change", updateUI);
+  tab4.addEventListener("change", updateUI);
+  window.addEventListener("resize", updateUI);
+  updateUI(); // Initial call
 
-  fetchStatus.innerHTML = '';
-  debtField.value = '';
+  fetchButton.addEventListener("click", async function (event) {
+    event.preventDefault();
+    const acct = accountNoInput.value.trim();
+    const ul = debtTab.querySelector("ul");
+    const isSmallScreen = window.innerWidth <= 1024;
 
-  if (!acct) {
-    fetchStatus.innerHTML = "&#9888;&#65039; Please enter an account number."; 
-    return;
-  }
+    fetchStatus.innerHTML = "";
+    debtAmountInput.value = "";
 
-  fetchStatus.innerHTML = "&#128295; Checking account..."; 
-
-  try {
-    const response = await fetch("https://phedfeeders.github.io/customers.json");
-    if (!response.ok) throw new Error("Network error");
-
-    const data = await response.json();
-    const customer = data.find(c => c.accountNumber === acct);
-
-    if (customer) {
-      fetchStatus.innerHTML = `&#10004;&#65039; Name: ${customer.name} &nbsp;&nbsp; Total Debt: &#8358;${customer.debtAmount.toLocaleString()}`;
-      debtField.value = customer.debtAmount;
-    } else {
-      fetchStatus.innerHTML = "&#10060; Customer not found.";
+    if (!acct) {
+      fetchStatus.innerHTML = "⚠️ Please enter an account number.";
+      return;
     }
 
-  } catch (error) {
-    console.error(error);
-    fetchStatus.innerHTML = "&#10060; Error contacting the database.";
-  }
-}
+    // Apply persistent padding on fetch
+    if (tab4.checked && ul) {
+      ul.style.paddingBottom = isSmallScreen ? "100px" : "80px";
+      paddingApplied = true;
+    }
 
-// Calculate result
-function calculateResult() { 
-  console.log("Calculate button clicked");
+    fetchStatus.innerHTML = "🔄 Checking account...";
 
-  const amount = parseFloat(document.getElementById("debtAmount").value);
-  const customerType = document.getElementById("customerType").value;
-  const debtYear = document.getElementById("debtYear").value;
-  const paymentOption = document.getElementById("paymentOption").value;
-  const result = document.getElementById("result");
+    try {
+      const response = await fetch("https://phedfeeders.github.io/customers.json");
+      if (!response.ok) throw new Error("Network error");
 
-  if (isNaN(amount) || amount <= 0) {
-    result.innerHTML = "&#9888;&#65039; Please enter a valid debt amount.";
-    return;
-  }
+      const data = await response.json();
+      if (!Array.isArray(data)) throw new Error("Invalid data");
 
-  if (!customerType || !debtYear || !paymentOption) {
-    result.innerHTML = "&#9888;&#65039; Please select all required fields.";
-    return;
-  }
-
-  const discountRate = discountRates[customerType]?.[debtYear]?.[paymentOption];
-  if (discountRate === undefined) {
-    result.innerHTML = "&#10060; No discount available for selected options.";
-    return;
-  }
-
-  const discountAmount = amount * discountRate;
-  const customerPays = amount - discountAmount;
-  const staffIncentiveRate = 0.05;
-  const staffEarns = customerPays * staffIncentiveRate;
-
-  const customerTypeText = customerType === "regular" ? "Regular Customer" : "Unmetered MD/CBB";
-  const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
-
-  result.innerHTML = `
-    <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
-      <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
-      <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-      <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-      <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-      <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-      <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-      <tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
-    </table>
-  `;
-  result.classList.add('show');
-}
-
-// Input styling helpers
-function updatePlaceholderColor(select) {
-  if (select.value === "") {
-    select.classList.add("placeholder-red");
-  } else {
-    select.classList.remove("placeholder-red");
-  }
-}
-
-function updateInputPlaceholderColor(input) {
-  if (input.value === "") {
-    input.classList.add("red-placeholder");
-  } else {
-    input.classList.remove("red-placeholder");
-  }
-}
-
-// Init events
-document.addEventListener("DOMContentLoaded", function () {
-  const selects = document.querySelectorAll("select");
-  const debtAmountInput = document.getElementById("debtAmount");
-  const result = document.getElementById("result");
-
-  // Dropdown changes
-  selects.forEach(select => {
-    updatePlaceholderColor(select);
-    select.addEventListener("change", function () {
-      updatePlaceholderColor(select);
-    });
+      const customer = data.find(c => c.accountNumber === acct);
+      if (customer) {
+        fetchStatus.innerHTML = `✔️ Name: ${customer.name} &nbsp;&nbsp; Total Debt: ₦${customer.debtAmount.toLocaleString()}`;
+        debtAmountInput.value = customer.debtAmount;
+        updateInputPlaceholderColor(debtAmountInput);
+      } else {
+        fetchStatus.innerHTML = "❌ Customer not found.";
+      }
+    } catch (err) {
+      console.error(err);
+      fetchStatus.innerHTML = "❌ Error contacting the database.";
+    }
   });
 
-  // Debt input styling
-  if (debtAmountInput) {
-    updateInputPlaceholderColor(debtAmountInput);
-    debtAmountInput.addEventListener("input", function () {
-      updateInputPlaceholderColor(debtAmountInput);
-    });
-  }
-
-  // Reset button (with null check)
-  const resetBtn = document.getElementById('btnRefreshDp');
   if (resetBtn) {
-    resetBtn.addEventListener('click', function () {
-      const acctInput = document.getElementById('accountNo');
-      const fetchStatus = document.getElementById('fetchStatus');
-
-      if (debtAmountInput) debtAmountInput.value = '';
-      if (acctInput) acctInput.value = '';
-      if (fetchStatus) fetchStatus.innerHTML = '';
+    resetBtn.addEventListener("click", function () {
+      accountNoInput.value = "";
+      fetchStatus.innerHTML = "";
+      if (debtAmountInput) debtAmountInput.value = "";
       if (result) {
-        result.innerHTML = '';
-        result.classList.remove('show');
+        result.innerHTML = "";
+        result.classList.remove("show");
       }
 
-      document.getElementById('customerType').selectedIndex = 0;
-      document.getElementById('debtYear').selectedIndex = 0;
-      document.getElementById('paymentOption').selectedIndex = 0;
+      document.getElementById("customerType").selectedIndex = 0;
+      document.getElementById("debtYear").selectedIndex = 0;
+      document.getElementById("paymentOption").selectedIndex = 0;
 
       selects.forEach(updatePlaceholderColor);
       updateInputPlaceholderColor(debtAmountInput);
+
+      // Reset padding logic
+      paddingApplied = false;
+      updateUI();
     });
   }
 
-  // Calculate button (with null check)
-  const calcBtn = document.getElementById("btnCalculate");
   if (calcBtn) {
     calcBtn.addEventListener("click", function (e) {
       e.preventDefault();
       calculateResult();
     });
   }
+
+  function calculateResult() {
+    console.log("🧮 Calculate button clicked");
+
+    const amount = parseFloat(debtAmountInput.value);
+    const customerType = document.getElementById("customerType").value;
+    const debtYear = document.getElementById("debtYear").value;
+    const paymentOption = document.getElementById("paymentOption").value;
+
+    if (isNaN(amount) || amount <= 0) {
+      result.innerHTML = "⚠️ Please enter a valid debt amount.";
+      return;
+    }
+
+    if (!customerType || !debtYear || !paymentOption) {
+      result.innerHTML = "⚠️ Please select all required fields.";
+      return;
+    }
+
+    const discountRate = discountRates[customerType]?.[debtYear]?.[paymentOption];
+    if (discountRate === undefined) {
+      result.innerHTML = "❌ No discount available for selected options.";
+      return;
+    }
+
+    const discountAmount = amount * discountRate;
+    const customerPays = amount - discountAmount;
+    const staffIncentiveRate = 0.05;
+    const staffEarns = customerPays * staffIncentiveRate;
+
+    const customerTypeText = customerType === "regular" ? "Regular Customer" : "Unmetered MD/CBB";
+    const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
+
+    result.innerHTML = `
+      <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
+        <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
+        <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
+        <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
+        <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+        <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+        <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
+        <tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>
+      </table>
+    `;
+    result.classList.add("show");
+  }
+
+  function updatePlaceholderColor(select) {
+    select.classList.toggle("placeholder-red", select.value === "");
+  }
+
+  function updateInputPlaceholderColor(input) {
+    input.classList.toggle("red-placeholder", input.value === "");
+  }
+
+  // Init dropdown styles
+  selects.forEach(select => {
+    updatePlaceholderColor(select);
+    select.addEventListener("change", () => updatePlaceholderColor(select));
+  });
+
+  if (debtAmountInput) {
+    updateInputPlaceholderColor(debtAmountInput);
+    debtAmountInput.addEventListener("input", () => updateInputPlaceholderColor(debtAmountInput));
+  }
 });
+
 
 
 
