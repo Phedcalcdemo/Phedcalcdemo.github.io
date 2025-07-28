@@ -505,20 +505,6 @@ scrollTicker();
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Discount rates
-  const discountRates = {
-    regular: {
-      "2025": { oneOff: 0.1, installment: 0.05 },
-      "2024": { oneOff: 0.15, installment: 0.1 },
-      "before2024": { oneOff: 0.2, installment: 0.12 }
-    },
-    bulk: {
-      "2025": { oneOff: 0.08, installment: 0.04 },
-      "2024": { oneOff: 0.12, installment: 0.08 },
-      "before2024": { oneOff: 0.18, installment: 0.1 }
-    }
-  };
-
   // Elements
   const tab3 = document.getElementById("tab3");
   const tab4 = document.getElementById("tab4");
@@ -668,8 +654,23 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const discountRate = discountRates[customerType]?.[debtYear]?.[paymentOption];
-    if (discountRate === undefined) {
+    // Determine discount & staff incentive
+    let discountRate = 0;
+    let staffIncentiveRate = 0;
+
+    if (debtYear === "multi-years") {
+      staffIncentiveRate = 0.025;
+      discountRate = paymentOption === "oneOff" ? 0.12 : 0.07;
+    } else if (debtYear === "2025") {
+      staffIncentiveRate = 0.025;
+      discountRate = paymentOption === "oneOff" ? 0.10 : 0.05;
+    } else if (debtYear === "2024") {
+      staffIncentiveRate = 0.05;
+      discountRate = paymentOption === "oneOff" ? 0.20 : 0.15;
+    } else if (debtYear === "before2024") {
+      staffIncentiveRate = 0.10;
+      discountRate = paymentOption === "oneOff" ? 0.25 : 0.20;
+    } else {
       result.innerHTML = "❌ No discount available for selected options.";
       exportBtn.style.display = "none";
       return;
@@ -677,25 +678,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const discountAmount = amount * discountRate;
     const customerPays = amount - discountAmount;
-    const staffIncentiveRate = 0.05;
     const staffEarns = customerPays * staffIncentiveRate;
 
     const customerTypeText = customerType === "regular" ? "Regular Customer" : "Unmetered MD/CBB";
-    const debtYearText = debtYear === "before2024" ? "Before 2024" : debtYear;
+    const debtYearText = debtYear === "before2024" ? "Before 2024" : (debtYear === "multi-years" ? "Multiple Years" : debtYear);
 
     result.innerHTML = `
-        <h1 style="text-align:center; font-weight:bold; font-size:22px">Debt Discount Payment Slip</h1>
-        <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
-            ${tab4.checked ? `<tr><th>Account Number</th><td>${customerAccount}</td></tr>` : ""}
-            ${tab4.checked ? `<tr><th>Account Name</th><td>${customerName}</td></tr>` : ""}
-            <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
-            <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
-            <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-            <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-            <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-            <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-            ${!forExport ? `<tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>` : ""}
-        </table>
+      <h1 style="text-align:center; font-weight:bold; font-size:22px">Debt Discount Payment Slip</h1>
+      <table border="1" cellpadding="8" cellspacing="0" style="margin: auto; border-collapse: collapse;">
+          ${tab4.checked ? `<tr><th>Account Number</th><td>${customerAccount}</td></tr>` : ""}
+          ${tab4.checked ? `<tr><th>Account Name</th><td>${customerName}</td></tr>` : ""}
+          <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
+          <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
+          <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
+          <tr><th>Original Debt</th><td>&#8358;${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+          <tr><th>Customer Pays</th><td>&#8358;${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+          ${paymentOption !== 'oneOff' ? `<tr><th>Payment Breakdown</th><td>&#8358;${(customerPays / 3).toLocaleString(undefined, { maximumFractionDigits: 2 })} x 3 months</td></tr>` : ""}
+          <tr><th>Customer Saves</th><td>&#8358;${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
+          ${!forExport ? `<tr><th>Staff Incentive</th><td>&#8358;${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>` : ""}
+      </table>
     `;
     result.classList.add("show");
     exportBtn.style.display = "inline-block";
@@ -759,54 +760,6 @@ exportBtn.addEventListener("click", async function () {
     }
 });
 	
-//	
-//	
-//	
-//exportBtn.addEventListener("click", async function () {
-//    const resultElement = document.getElementById("result");
-//    
-//    if (!resultElement || !resultElement.innerHTML.trim()) {
-//        alert("⚠️ Please calculate results before exporting.");
-//        return;
-//    }
-//
-//    // Create a clone to prevent UI flickering during export
-//    const element = resultElement.cloneNode(true);
-//    element.style.width = "100%";
-//    element.style.padding = "20px";
-//    document.body.appendChild(element);
-//    
-//    try {
-//        const opt = {
-//            margin: 10,
-//            filename: `Discount_Result_${customerAccount || "unknown"}_${new Date().toISOString().slice(0, 10)}.pdf`,
-//            image: { type: 'jpeg', quality: 1 },
-//            html2canvas: { 
-//                scale: 2,
-//                logging: true,
-//                scrollX: 0,
-//                scrollY: 0,
-//                useCORS: true,
-//                allowTaint: true
-//            },
-//            jsPDF: { 
-//                unit: 'mm',
-//                format: 'a5',
-//                orientation: 'portrait'
-//            }
-//        };
-//
-//        console.log("Starting PDF generation...");
-//        await html2pdf().set(opt).from(element).save();
-//        console.log("PDF generated successfully");
-//    } catch (error) {
-//        console.error("PDF generation failed:", error);
-//        alert("Failed to generate PDF: " + error.message);
-//    } finally {
-//        // Clean up
-//        document.body.removeChild(element);
-//    }
-//});
   // Placeholder helpers
   function updatePlaceholderColor(select) {
     select.classList.toggle("placeholder-red", select.value === "");
