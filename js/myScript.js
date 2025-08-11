@@ -252,7 +252,7 @@ function calcLorRPD(e) {
 	// Calculate the average current if phase values are provided
   let LorAvg = (Number(lorR.value) + Number(lorY.value) + Number(lorB.value) + Number(lorN.value)) / 3;
   
-  // Check if any of the phase values are provided
+  // Check if all the phase values are provided
 let isLorAvgProvided =
   lorR.value !== "" && lorY.value !== "" && lorB.value !== "" && lorN.value !== "" &&
   !isNaN(Number(lorR.value)) &&
@@ -505,21 +505,21 @@ const formattedDate = formatDate(currentDate); // "21st May, 2024"
 
 
 const news = `<span class="ticker-text">&nbsp Electricity Tariff as at <span class="brown-text">${formattedDate}</span> &nbsp | &nbsp
-  Band A-Non MD <span class="green-text">?${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
-  Band A-MD1 <span class="green-text">?${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
-  Band A-MD2 <span class="green-text">?${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
-  Band B-Non MD <span class="green-text">?${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band B-MD1 <span class="green-text">?${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
-  Band B-MD2 <span class="green-text">?${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
-  Band C-Non MD <span class="green-text">?${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
-  Band C-MD1 <span class="green-text">?${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
-  Band C-MD2 <span class="green-text">?${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
-  Band D-Non MD <span class="green-text">?${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
-  Band D-MD1 <span class="green-text">?${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
-  Band D-MD2 <span class="green-text">?${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
-  Band E-Non MD <span class="green-text">?${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD1 <span class="green-text">?${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
-  Band E-MD2 <span class="green-text">?${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band A-Non MD <span class="green-text">₦${tariffs['Band A-Non MD']}/kWh</span> &nbsp &nbsp
+  Band A-MD1 <span class="green-text">₦${tariffs['Band A-MD1']}/kWh</span> &nbsp &nbsp
+  Band A-MD2 <span class="green-text">₦${tariffs['Band A-MD2']}/kWh</span> &nbsp &nbsp
+  Band B-Non MD <span class="green-text">₦${tariffs['Band B-Non MD']}/kWh</span>  &nbsp &nbsp
+  Band B-MD1 <span class="green-text">₦${tariffs['Band B-MD1']}/kWh</span>  &nbsp &nbsp
+  Band B-MD2 <span class="green-text">₦${tariffs['Band B-MD2']}/kWh</span>  &nbsp &nbsp
+  Band C-Non MD <span class="green-text">₦${tariffs['Band C-Non MD']}/kWh</span> &nbsp &nbsp   
+  Band C-MD1 <span class="green-text">₦${tariffs['Band C-MD1']}/kWh</span> &nbsp &nbsp   
+  Band C-MD2 <span class="green-text">₦${tariffs['Band C-MD2']}/kWh</span> &nbsp &nbsp   
+  Band D-Non MD <span class="green-text">₦${tariffs['Band D-Non MD']}/kWh</span>  &nbsp &nbsp
+  Band D-MD1 <span class="green-text">₦${tariffs['Band D-MD1']}/kWh</span>  &nbsp &nbsp
+  Band D-MD2 <span class="green-text">₦${tariffs['Band D-MD2']}/kWh</span>  &nbsp &nbsp
+  Band E-Non MD <span class="green-text">₦${tariffs['Band E-Non MD']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band E-MD1 <span class="green-text">₦${tariffs['Band E-MD1']}/kWh</span> &nbsp &nbsp | &nbsp 
+  Band E-MD2 <span class="green-text">₦${tariffs['Band E-MD2']}/kWh</span> &nbsp &nbsp | &nbsp 
   Designed by: Obot Akpan &nbsp</span>`;
 // Select the container div by its class
 const container = document.querySelector('.logo');
@@ -590,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Export button
   const exportBtn = document.createElement("button");
   exportBtn.id = "btnExportPdf";
-  exportBtn.textContent = "?? Export to PDF";
+  exportBtn.textContent = "📄 Export to PDF";
   Object.assign(exportBtn.style, {
     marginTop: "15px",
     padding: "10px 20px",
@@ -640,21 +640,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const paymentOption = document.getElementById("paymentOption").value;
 
     if (customerType === "") {
-      result.innerHTML = "?? Please select a Customer Type.";
+      result.innerHTML = "⚠️ Please select a Customer Type.";
       result.classList.add("show");
       exportBtn.style.display = "none";
       return;
     }
 
     if (yearValue === "") {
-      result.innerHTML = "?? Please select a Debt Year.";
+      result.innerHTML = "⚠️ Please select a Debt Year.";
       result.classList.add("show");
       exportBtn.style.display = "none";
       return;
     }
 
     if (paymentOption === "") {
-      result.innerHTML = "?? Please select a Payment Option.";
+      result.innerHTML = "⚠️ Please select a Payment Option.";
       result.classList.add("show");
       exportBtn.style.display = "none";
       return;
@@ -663,14 +663,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const minAmount = customerType === "bulk" ? 500000 : 100000;
 
     if (isNaN(amount)) {
-      result.innerHTML = "?? Please enter a valid debt amount.";
+      result.innerHTML = "⚠️ Please enter a valid debt amount.";
       result.classList.add("show");
       exportBtn.style.display = "none";
       return;
     }
 
     if (amount < minAmount) {
-      result.innerHTML = `?? Amount must be at least ?${minAmount.toLocaleString()} for selected customer type.`;
+      result.innerHTML = `⚠️ Amount must be at least ₦${minAmount.toLocaleString()} for selected customer type.`;
       result.classList.add("show");
       exportBtn.style.display = "none";
       return;
@@ -692,7 +692,7 @@ document.addEventListener("DOMContentLoaded", function () {
       staffIncentiveRate = 0.10;
       discountRate = paymentOption === "oneOff" ? 0.25 : 0.20;
     } else {
-      result.innerHTML = "?? No discount available for selected options.";
+      result.innerHTML = "⚠️ No discount available for selected options.";
       result.classList.add("show");
       exportBtn.style.display = "none";
       return;
@@ -704,7 +704,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (customDecimal <= discountRate) {
         discountRate = customDecimal;
       } else {
-        result.innerHTML = `?? Your input (${customDiscountRate}%) exceeds the maximum allowed discount of ${(discountRate * 100).toFixed(1)}%. Please enter a lower rate.`;
+        result.innerHTML = `⚠️ Your input (${customDiscountRate}%) exceeds the allowed discount of ${(discountRate * 100).toFixed(1)}%. Please enter a lower rate.`;
         result.classList.add("show");
         exportBtn.style.display = "none";
         return;
@@ -724,11 +724,11 @@ document.addEventListener("DOMContentLoaded", function () {
           <tr><th>Customer Type</th><td>${customerTypeText}</td></tr>
           <tr><th>Payment Option</th><td>${paymentOption === 'oneOff' ? "One-Off Payment" : "3-Month Installment"}</td></tr>
           <tr><th>Debt Year</th><td>${debtYearText}</td></tr>
-          <tr><th>Original Debt</th><td>?${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-          <tr><th>Customer Pays</th><td>?${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
-          ${paymentOption !== 'oneOff' ? `<tr><th>Payment Breakdown</th><td>?${(customerPays / 3).toLocaleString(undefined, { maximumFractionDigits: 2 })} x 3 months</td></tr>` : ""}
-          <tr><th>Customer Saves</th><td>?${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
-          ${!forExport ? `<tr><th>Staff Incentive</th><td>?${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>` : ""}
+          <tr><th>Original Debt</th><td>₦${amount.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+          <tr><th>Customer Pays</th><td>₦${customerPays.toLocaleString(undefined, { maximumFractionDigits: 2 })}</td></tr>
+          ${paymentOption !== 'oneOff' ? `<tr><th>Payment Breakdown</th><td>₦${(customerPays / 3).toLocaleString(undefined, { maximumFractionDigits: 2 })} x 3 months</td></tr>` : ""}
+          <tr><th>Customer Saves</th><td>₦${discountAmount.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(discountRate * 100).toFixed(1)}%)</td></tr>
+          ${!forExport ? `<tr><th>Staff Incentive</th><td>₦${staffEarns.toLocaleString(undefined, { maximumFractionDigits: 2 })} (${(staffIncentiveRate * 100).toFixed(1)}%)</td></tr>` : ""}
       </table>
     `;
     result.classList.add("show");
@@ -759,3 +759,5 @@ document.addEventListener("DOMContentLoaded", function () {
     debtAmountInput.addEventListener("input", () => updateInputPlaceholderColor(debtAmountInput));
   }
 });
+
+
