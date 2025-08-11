@@ -1,202 +1,887 @@
-@charset "utf-8";
-/* CSS Document */
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*	height: 100vh;*/
-  margin: 0;
-  background-color: #534484;
+html {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -webkit-appearance: button;
+  -webkit-appearance: pushbutton;
 }
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+}
+
 /*
-.label-left{
-	text-align: left!important;
+#btnRefresh3, #lbRecord {
+  width: 48%
 }
 */
-h5 {
-  color: gray;
-  word-wrap: break-word;
-  font-size: 14px;
-}
-.gpsInstruction {
-  color: green;
-  font-size: 12px
+.btnWrapper {
+  width: 80%
 }
 #errorMessage {
-  /*	display: flex;*/
-  position: relative;
-  bottom: 0px;
-  margin-top: 50px;
   color: red;
-  font-size: 18px; /*  margin-top: 10px*/
-  /*	width: 350px;*/
-  height: 60px;
-  /*	background-color: burlywood;*/
-  word-wrap: break-word
+  font-size: 35px;
+  margin-top: 10px
 }
-.logoCont {
+.tipsCont {
+  border-radius: 10px;
+  width: 90%;
+  max-width: 700px;
+  margin: 0px auto;
+  padding: 0px 20px 30px;
+/*  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);*/
+  position: relative;
+  text-align: left;
+}
+
+.displayText {
+  background-color: #fff5f5;
+  color: #333;
+  font-size: 14px;
+  margin-top: 15px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: none;
+  text-align: justify;
+  line-height: 1.6;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.displayText a {
+  color: #d32f2f;
+  text-decoration: underline;
+}
+.toggleButton, .lbSub {
+  font-size: 12px;
+  outline: none;
+  border: none;
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, .2);
+}
+.lbSub {
   margin-top: 10px;
-  text-align: center;
+  margin-right: 30px;
+  float: right;
+  border-radius: 10px;
+  /*	background-color: green;*/
 }
-.thumbnail {
-  width: 100px;
-  height: 60px;
-  margin-right: 4px;
-}
-.uploadPreview {
-  max-height: 80px;
-/*  max-width: 320px;*/
-/*  max-width: 100vw;*/
-  display: flex;
-  overflow: scroll;
-}
-
-.thumbnail-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-     
-        .remove-button {
-            background-color: #ff0000;
-/*            color: #ffffff;*/
-            border: none;
-           margin-right: 10px;
-			width: 20px;
-			height: auto;
-            cursor: pointer;
-        }
-
 .green-text {
-  color: green
+  color: green;
 }
-.blue-text {
-  color: blue
+.brown-text {
+  color: brown;
 }
-.purple-text {
-  color: rebeccapurple
-}
-input, select {
-  /*			margin-left: 20px;*/
-  margin-bottom: 5px;
-  font-size: 18px
-}
-button {
-  background-color: #008ECC;
-  outline: none !important;
-  border: none !important;
-  box-shadow: 3px 2px 8px rgba(0, 0, 0, .2);
-}
-.wrapper {
-  /* Add any other styling you need for the parent container */
-  /*	width: 90%;*/
-  max-width: 800px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  background: #F0F1D5;
-  padding-bottom: 50px;
-	overflow: hidden
-}
-::placeholder {
-  font-size: 18px
-}
-.select-input {
-  font-size: 18px;
+.ticker-text {
+  font-size: 20px;
 }
 .form-container .btn-primary, .output .btn-primary .toggleButton {
   background-color: #008ECC;
   outline: none !important;
-  border: none !important;
-  font-size: 20px;
-  padding: 0px 10px; /*	border-radius: 14px*/
+  border: none !important
 }
 .form-container .btn-primary:focus, .output .btn-primary:focus {
   outline: none !important;
   border: none !important
 }
-.form-control {
-  font-size: 18px
+.output .bill {
+  background-color: lightblue;
+/*
+  font-size: 20px!important;
+  align-content: center;
+	justify-content: center;
+*/
 }
-.capture {
-  position: relative;
-  background-color: #04AA6D;
-  border: none;
-
-  color: #FFFFFF;
-
-  width: 200px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-	font-size: 14px; 
-	padding:5px 10px
+input:focus::placeholder {
+  color: transparent;
 }
-.capture:after {
-  content: "";
-  background: #90EE90;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px !important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 0.8s
+body {
+  background: #F0F1D5;
 }
-.capture:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
+.logo-txt h2 {
+  font-size: 25px;
+  color: green;
+  font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", "monospace";
 }
-#result {
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, .2);
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  line-height: 10px;
+.DTRloading__form ::placeholder {
+  text-align: center
+}
+input[type=number]:focus {
+  background-color: white;
+  outline: 2px solid #9999FF !important
+}
+.b-display {
+  font-size: 14px;
+}
+/*
+.phase input {
+  width: 65px !important;
+ margin-bottom: -8px;
+  height: 5vh;
   font-size: 20px;
-	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";  
-  color: black;
-  background-color: white
+
 }
-.gpsCont {
-  text-align: left;
-  margin-bottom: 10px
+*/
+
+ .phase input {
+  width: 100%;  /* Adjust as needed */
+  max-width: 65px;
+  font-size: 20px;
+  margin-bottom: -8px !important;
+/*  margin-top: -0.3rem !important;*/
 }
-fieldset {
-  border: 2px solid grey;
-  margin-bottom: 15px;
-	overflow: hidden;
+
+.phaseAmp input {
+  width: 65px !important;
+  height: 6vh;
+  font-size: 20px;
+  text-align: center !important;
+
+
 }
- /* Custom CSS for small screens */
-       
-@media screen and (min-width: 1024px) {
-  .wrapper {
-    /* Add any other styling you need for the parent container */
-    width: 50%;
-  }
-  h5 {
+.phase label {
+  font-size: 11px
+}
+.phaseAmp label {
+  font-size: 10px;
+  margin-bottom: -6px;
+}
+
+.info {
+/*  width: 80%;*/
+  border-top: 2px solid #5F8D4E;
+  border-bottom: 2px solid #5F8D4E;
+/*  height: 50px;*/
+  margin: 10px;
+  font-size: 14px;
+/*  padding: 0px*/
+}
+.tips {
+  font-size: 6px;
+  text-align: center;
+  padding-left: 10%;
+  padding-right: 10%;
+  
+}
+.container {
+  /*  width:  100%;*/
+  /*  min-width:  100%;*/
+  display: flex;
+  background-color: #F0F1D5;
+  /*	background-color: darkorange;*/
+  /*	overflow: hidden!important*/
+}
+.logo {
+  font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+  min-height: 92vh;
+  padding-bottom: 8vh;
+  background: #F0F1D5;
+  /*	background-color: lightcoral;*/
+  color: #105187;
+  /*	position: relative*/
+  overflow: hidden;
+  width: 100vw;
+}
+/*
+#myButton{
+	padding: 10px
+}
+*/
+
+.cont-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 10px;
+  margin-top: -10px;
+  overflow: hidden;
+}
+
+div .phed {
+  width: 60%;
+  height: auto;
+  /*  margin-right: 30px;*/
+}
+
+
+.kvaLabel {
+  font-size: 14px
+}
+.form-container, .output {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  justify-content: center;
+  align-items: center;
+  
+}
+.output {
+  display: content;
+}
+.form-control {
+  margin-bottom: 10px;
+  width: 80%;
+  /*	padding: 50px;*/
+  border: 1px solid #1174A8;
+  text-align: center;
+}
+.load {
+  padding: 20px 10px;
+  font-size: 20px;
+  height: 6vh
+}
+.loadA {
+  padding: 20px 10px;
+  font-size: 20px !important;
+height: 6vh
+  /*	color: blue*/
+}
+select {
+font-size: 20px;
+/*height: 6vh;*/
+text-align-last: center;
+text-align: center; 
+-moz-text-align-last: center;
+-webkit-appearance: none; 
+appearance: none
+  /*  padding: 30px;*/
+}
+
+.btn {
+  width: 80vw;
+  height: 5vh;
+  box-shadow: 2px 3px 1px rgba(16, 81, 135, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: normal; /* Allows wrapping inside button */
+  line-height: 1.2;    /* Improves vertical centering */
+}
+/*
+.drop-down-caret {
+  height: 100px;
+  font-size: 60px;
+}
+*/
+.btn:hover {
+  box-shadow: 1px 3px 1px rgba(241, 151, 35, .4);
+  color: whitesmoke;
+}
+.btn:active, .btn:visited {
+  outline: 0 none !important;
+}
+.btn2:focus {
+  outline: none !important;
+}
+/*
+.bill {
+  text-align: center;
+  height: 5vh;
+  font-size: 18px;
+  padding: 10px;
+}
+*/
+ .bill {
+    height: 6vh;
     font-size: 20px;
+    padding: 2px;
+    font-weight: bold;
   }
-  .gpsInstruction {
-    color: green;
-    font-size: 18px
-  }
-	.uploadPreview {
+
+
+.discDiv {
+  display: flex;
+  width: 70vw;
+}
+.discDiv div {
+  width: 100%;
+  /*
+	margin-left: 5%;
+	margin-right: 5%
+*/
+}
+.pay {
+  margin-right: 1px;
+  font-size: 50px
+}
+.disc {
+  float: right;
+  font-size: 50px
+}
+.billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
+  background-color: #008ECC;
+  border: 1px solid #008ECC;
+  border-radius: 50px;
+  width: 11rem;
+  /*padding: 8px;*/
+  max-height: 35px;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+
+}
+.billing-button-container {
+  width: 100%;
+  margin-top: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+.btn2 {
+  font-size: 20px !important;
+  color: white !important;
+}
+.status{
+  font-size: 20px;
+}
+#result, table td, table th {
+  font-size: 14px;
+  
+}
+
+#result { 
+	text-align: center;
+	width: 100%;
+	margin-top: 20px; 
+	font-weight: bold; 
+	background: #f9f9f9; 
+	padding: 10px; 
+	border-radius: 5px; 
+	}
+	
+table { 
+	width: 100%; 
+	border-collapse: collapse; 
+	margin-top: 10px; 
+	}
+th, td { 
+	border: 1px solid #ccc; 
+	padding: 8px; text-align: center; 
+	}
+    th { 
+	background-color: #eee; 
+	}
+
+ #result {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+}
+
+#result.show {
+  max-height: 500px; 
+  opacity: 1;
+}
+.billing__button:hover, .billingKW__button:hover, .lor__button:hover, .billingKwh__button:hover, .fuse__button:hover, .DTRloading__button:hover {
+  background: A4BE7B;
+  border: 2px solid white !important;
+  color: white;
+  box-shadow: none;
+}
+.billing__button:focus, .billing__button.focus, .billingKW__button:focus, .billingKW__button.focus, .lor__button:focus, .lor__button.focus, .billingKwh__button:focus, .billingKwh__button.focus, .fuse__button:focus, .fuse__button.focus, .DTRloading__button:focus, .DTRloading__button.focus {
+  outline: none !important;
+  border-: 1px solid white;
+}
+.billing__button:active, .billing__button.active, .billingKW__button:active, .billingKW__button.active, .lor__button:active, .lor__button.active, .billingKwh__button:active, .billingKwh__button.active, .fuse__button:active, .fuse__button.active, .DTRloading__button:active, .DTRloading__button.active {
+  background-color: white;
+  color: #008ECC;
+  box-shadow: none;
+}
+.hidden_clip {
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute;
+}
+input, label {
+  display: block;
+  text-align: center
+}
+
+.form-inline{
+	display: flex;
+	justify-content: center;
+	align-content: center
+}
+.formInline {
+  margin: 0px 3px 3px;
  
-/*  max-width: 100%;*/
+}
+.formInline2 {
+  margin: 10px 5px
+}
+
+#marquee-cont marquee {
+  margin-top: 5px;
+}
+.btn:focus {
+  outline: none !important
+}
+.btn:hover {
+  outline: none !important
+}
+#yellow, #red, #blue, #neutral {
+  font-weight: 400
+}
+.page {
+  position: relative;
+  /*	max-width: 980px;*/
+  margin: 0 auto;
+}
+/**/
+/* main styles */
+/**/
+.pcss3t {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 0;
+  text-align: center;
+}
+.pcss3t > input {
+  position: absolute;
+  left: -9999px;
+}
+.pcss3t > label {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.1s;
+  -o-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+}
+.pcss3t > input:checked + label {
+  cursor: default;
+}
+.pcss3t > ul {
+  list-style: none;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 13px;
+ 
+}
+.pcss3t > ul > li {
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  opacity: 0;
+  transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+.pcss3t > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t > .tab-content-2:checked ~ ul .tab-content-2 {
+  /*	z-index: 1;*/
+  top: 0;
+  left: 0;
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -webkit-transform: rotate(0deg);
+}
+
+
+
+.pcss3t > .tab-content-3:checked ~ ul .tab-content-3, .pcss3t > .tab-content-4:checked ~ ul .tab-content-4 {
+  /*	z-index: 1;*/
+  top: 0;
+  left: 0;
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -webkit-transform: rotate(0deg);
+}
+.pcss3t > .tab-content-5:checked ~ ul .tab-content-5, .pcss3t > .tab-content-6:checked ~ ul .tab-content-6 {
+  /*	z-index: 1;*/
+  top: 0;
+  left: 0;
+  opacity: 1;
+  -webkit-transform: scale(1, 1);
+  -webkit-transform: rotate(0deg);
+}
+
+
+
+.pcss3t-height-auto > .tab-content-first:checked ~ ul .tab-content-first, .pcss3t-height-auto > .tab-content-2:checked ~ ul .tab-content-2 {
+  display: block;
+}
+/*
+.pcss3t .grid-row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+*/
+
+.pcss3t-height-auto > .tab-content-3:checked ~ ul .tab-content-3, .pcss3t-height-auto > .tab-content-4:checked ~ ul .tab-content-4 {
+  display: block;
+}
+.pcss3t-height-auto > .tab-content-5:checked ~ ul .tab-content-5, .pcss3t-height-auto > .tab-content-6:checked ~ ul .tab-content-6 {
+  display: block;
+}
+
+.pcss3t-steps > label {
+  cursor: default;
+}
+/**/
+/* animation effects */
+/**/
+.pcss3t-effect-scale > ul > li {
+  -webkit-transform: scale(0.1, 0.1);
+}
+.pcss3t-effect-rotate > ul > li {
+  -webkit-transform: rotate(180deg);
+}
+/*
+.pcss3t-effect-slide-top > ul > li {
+  top: -40px;
+}
+*/
+
+/*----------------------------------------------------------------------------*/
+/*                                   THEMES                                   */
+/*----------------------------------------------------------------------------*/
+.pcss3t > label {}
+.pcss3t > label:hover {}
+.pcss3t > input:checked + label {
+  background: #fff;
+}
+.billingTab > ul {
+  
+  width: 100%;
+  padding-bottom: 72px;
+  /*	background-color:*/
+  text-align: left;
+}
+.debtTab > ul {
+  width: 100%;
+
+/*  padding-bottom: 165px;*/
+  /*	background-color:*/
+  text-align: left;
+	
+ 
+}
+.pcss3t-steps > label:hover {
+  /*	background: #e5e5e5;	*/
+}
+.pcss3t-theme-1 > label:hover {
+  /*	background: #fff;*/
+  opacity: 1;
+}
+.pcss3t-theme-1 > label:active {
+  background: #fff;
+  /*	opacity: 1;*/
+}
+.pcss3t-theme-1 > input:checked + label {
+  margin-bottom: 0;
+  padding-bottom: 2px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom: 1px solid #008ECC;
+  color: #2b82d9;
+  opacity: 1;
+}
+.pcss3t-theme-1 > ul {
+  border-radius: 5px;
+  width: 100%;
+}
+.pcss3t-theme-1 > .tab-content-first:checked ~ ul {
+  border-top-left-radius: 0;
+}
+.pcss3t > ul, .pcss3t > ul > li {
+  margin-top: 2px;
+  /*	margin-bottom: 5px;*/
+  overflow: hidden
+}
+.pcss3t-theme-1 > label {
+  margin: 0px 10px;
+  padding: 6px 0px;
+  font-size: 16px;
+  width: 35vw;
+  height: 40px;
+  border-radius: 5px;
+  background: #008ECC;
+  color: #fff;
+  opacity: 0.8;
+  overflow: hidden
+}
+.pcss3t .singleA input {
+  width: 80vw;
+  
+  height: 6vh;
+  margin-top: -14px;
+  overflow: hidden;
+  font-size: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.fetchDiv{
+	display: flex; 
+	gap:6px; 
+	align-content: center; 
+	justify-content: center
+}
+
+.fetchDiv input{
+	width: 75%;
+	height: 6vh
+}
+.fetchDiv button{
+	width: 25%;
+	height: auto;
+	max-height: 6vh
+	
+}
+.select-input {
+  font-size: 20px !important;
+  text-align: center;
+	height: 6vh
 
 }
+#adjustContainer{
+/*  margin-top: 10px;*/
+  display: none;
+  width: 80vw;
+/*  background-color: red;*/
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
- @media (max-width: 800px) {
-            .label-left {
-                float: left!important;
-            }
-        }
+@media screen and (min-width: 800px) {
+	
+	#adjustContainer{
+  width: 60%;
+	}
+	
+	.fetchDiv input{
+	width: 80%;
+	max-height: 40px;
+}
+	
+	.fetchDiv button{
+	width: 25%;
+	height: auto;
+	max-height: 40px;
+	
+}
+
+	
+  body {
+    background: #534484;
+  }
+
+  .select-input {
+    font-size: 18px !important;
+    /*  padding: 30px;*/
+  }
+  .btn2 {
+    font-size: 24px !important;
+  }
+	.ticker-text {
+  font-size: 22px;
+}
+  .logo-txt h2 {
+    font-size: 25px
+  }
+	#result { 
+	width: 70%;
+
+	}
+  .status, #result, table td, table th {
+    font-size: 18px;
+  }
+	
+  .bill {
+    height: 38px;
+    font-size: 20px;
+    padding: 2px;
+    font-weight: bold;
+  }
+  .discDiv {
+    width: 60%;
+  }
+  .load, .loadA {
+    padding: 5px 10px;
+    margin: 0px;
+  }
+  .loadA {
+    font-size: 16px !important;
+  }
+	 .load {
+   height: 6vh
+  }
+  .b-display {
+    font-size: 16px;
+  }
+  .phase input {
+  width: 70%;  /* Adjust as needed */
+  max-width: 100px;
+  font-size: 16px;
+  margin-bottom: 0.75rem !important;
+  margin-top: -0.3rem !important;
+}
+  .phase label {
+    font-size: 12px
+  }
+	.kvaLabel {
+  font-size: 12px
+}
+  .phaseAmp input {
+    width: 95px !important;
+    height: auto;
+    font-size: 16px;
+    margin-top: -7px !important;
+  }
+  .phaseAmp label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+  div .phed {
+    width: 24vw;
+    height: auto;
+    margin-left: -15px;
+  }
+  .form-container, .output {
+    width: 50vw;
+  }
+  .btn {
+    width: 60%;
+    height: 40px;
+  }
+  .btn2 {
+    font-size: 18px !important;
+  }
+  .logo {
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, .2);
+    padding-bottom: 0px;
+    width: 100%;
+    min-height: 100vh;
+  }
+  .container {
+    /*    min-width: 50%;*/
+    width: 65%;
+    background-color: gray;
+    box-shadow: 1px 3px 10px 12px rgba(0, 0, 0, .2);
+  }
+  .form-control {
+    text-align: center;
+    margin-bottom: 6px;
+    width: 60%;
+    border: 1px solid #AE5AD3;
+  }
+  .billing__button, .billingKW__button, .lor__button, .billingKwh__button, .fuse__button, .DTRloading__button {
+    font-size: 14px;
+    margin: 0 auto;
+    width: 18rem;
+    max-height: 40px;
+    color: white;
+    padding: 10px
+  }
+  .billing-button-container {
+    width: 65%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-flow: wrap;
+  }
+  .info {
+    border-top: 1px solid #5F8D4E;
+    border-bottom: 1px solid #5F8D4E;
+    margin-bottom: 10px;
+    height: 30px;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+    padding: 1px;
+  }
+  .tips {
+    font-size: 12px
+  }
+/*
+  .drop-down-caret, .load, .form-control {
+    height: 30px;
+    font-size: 16px;
+  }
+*/
+  .billingTab > ul {
+    width: 100%;
+    margin-top: 8px;
+    padding-bottom: 65px;
+    /*	background-color:*/
+    text-align: left;
+  }
+	.debtTab > ul {
+    width: 100%;
+    margin-top: 8px;
+	padding-left: 5px;
+	padding-right: 5px;
+/*    padding-bottom: 55px;*/
+    /*	background-color:*/
+    text-align: left;
+  }
+  .pcss3t-theme-1 > label {
+    width: 14vw;
+    margin: 0px 10px;
+    font-size: 13px;
+    padding: 4px 0px;
+    height: 30px;
+  }
+  .pcss3t .singleA input {
+    width: 30vw;
+    margin-top: -7px;
+    height: 40px;
+    font-size: 16px;
+  }
+/*
+  .displayText {
+    font-size: 13px;
+	  background-color: blue;
+    width: 85%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+*/
+  .toggleButton, .lbSub {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+  }
+  .btnWrapper {
+    width: 60%
+  }
+  #errorMessage {
+    font-size: 18px;
+  }
+	
+ 
+}
+@media screen and (max-width: 1024px) {
+  .container {
+    min-width: 100%
+  }
+}
